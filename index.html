@@ -1,65 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlexBox Playground</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="flex.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="flex.css" />
     <script src="app.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <h2 class="title">FlexBox Playground</h2>
 
     <div class="main-wrapper">
-         
-        <section class="wide-layout">
-            <div class="flex-container" id="wide">
-                <div class="flex-items">
-                    <span class="flex-item-content" id="1">1</span>
-                </div>
-                <div class="flex-items">
-                    <span class="flex-item-content" id="2">2</span>
-                </div>
-                <div class="flex-items">
-                    <span class="flex-item-content" id="3">3</span>
-                </div>
-                <div class="flex-items">
-                    <span class="flex-item-content" id="4">4</span>
-                </div>
-               
-            </div>
-        </section>
-
-        <section class="flex-controls">
-            <span>Flex Controls</span>
-        </section>
-        <section class="flex-list">
-            <span>Content of Flex Items</span>
-            <ul>
-                <li>
-                  <input type="text" id="flex__item--1">
-                </li>
-                <li>
-                    <input type="text" id="flex__item--2">
-                  </li>
-                <li>
-                    <input type="text" id="flex__item--3">
-                  </li>
-                <li>
-                    <input type="text" id="flex__item--4">
-                  </li>
-                <li>
-                    <input type="text" id="flex__item--5">
-                  </li>
-            </ul>
-        </section>
-        <div class="flex-container" id="narrow">
-            <span>Flex Container narrow</span>
+      <section class="wide-layout">
+        <div class="flex-container" id="wide">
+          <div class="flex-items">
+            <span class="flex-item-content" id="1">1</span>
+          </div>
+          <div class="flex-items">
+            <span class="flex-item-content" id="2">2</span>
+          </div>
+          <div class="flex-items">
+            <span class="flex-item-content" id="3">3</span>
+          </div>
+          <div class="flex-items">
+            <span class="flex-item-content" id="4">4</span>
+          </div>
         </div>
-      
+      </section>
+      <!-- FlexBox Settings -->
+      <section class="flex-settings">
+        <!-- Display property -->
+        <div class="flex-setting">
+          <label for="display" class="setting-label">Display:</label>
+          <select name="display" class="setting-item" id="displayType">
+            <option value="flex">Flex</option>
+            <option value="inline-flex">Inline-Flex</option>
+            <option value="block">Block</option>
+            <option value="inline-block">Inline-Block</option>
+            <option value="inline">Inline</option>
+          </select>
+        </div>
+        <!-- Overflow property -->
+        <div class="flex-setting">
+          <label for="overflow" class="setting-label">Overflow:</label>
+          <select name="overflow" class="setting-item" id="overflowType">
+            <option value="visible">Visible</option>
+            <option value="hidden">Hidden</option>
+            <option value="scroll">Scroll</option>
+            <option value="auto">Auto</option>
+          </select>
+        </div>
+        <!-- Flex-Direction -->
+        <div class="flex-setting">
+          <label for="flexDirection" class="setting-label"
+            >Flex-Direction:</label
+          >
+          <select name="flexDirection" class="setting-item" id="flexDirection">
+            <option value="row">Row</option>
+            <option value="column">Column</option>
+            <option value="row-reverse">Row-Reverse</option>
+            <option value="column-reverse">Column-Reverse</option>
+          </select>
+        </div>
+        <!-- Justify-Content -->
+        <div class="flex-setting">
+          <label for="justifyContent" class="setting-label"
+            >Justify-Content:</label
+          >
+          <select
+            name="justifyContent"
+            class="setting-item"
+            id="justifyContent"
+          >
+            <option value="center">Center</option>
+            <option value="flex-start">Flex-Start</option>
+            <option value="flex-end">Flex-End</option>
+            <option value="space-between">Space-Between</option>
+            <option value="space-around">Space-Around</option>
+          </select>
+        </div>
+      </section>
+      <!-- Flex TextAreas -->
+      <section class="flex-text-list">
+        <span id="flex-text-title">Content of Flex Items</span>
+        <ol>
+          <li>
+            <textarea
+              id="flex-text-1"
+              cols="25"
+              rows="3"
+              placeholder="flex-item #1"
+            ></textarea>
+          </li>
+          <li>
+            <textarea
+              id="flex-text-2"
+              cols="25"
+              rows="3"
+              placeholder="flex-item #2"
+            ></textarea>
+          </li>
+          <li>
+            <textarea
+              id="flex-text-3"
+              cols="25"
+              rows="3"
+              placeholder="flex-item #3"
+            ></textarea>
+          </li>
+          <li>
+            <textarea
+              id="flex-text-4"
+              cols="25"
+              rows="3"
+              placeholder="flex-item #4"
+            ></textarea>
+          </li>
+        </ol>
+      </section>
+      <div class="flex-container" id="narrow">
+        <span>Flex Container narrow</span>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>

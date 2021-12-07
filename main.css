@@ -45,9 +45,10 @@ section {
   height: 80%;
 }
 
-/* Setting list-style-type:none removes the bullets which are pre-pended to the <li> elements */
-ul {
-  list-style-type: none;
+/* The index numbers are positioned ::before and thus are outside the bounding box.   This requires that we move the box displaying the <ol> to the right so that the visually apparent numbers are brought back into the visually recognized container where the <ol> resides.   By setting the positon:relative, we tell the browser to move the <ol> relative to its parent.   Using a left:rem value, the whole <ol> is shifted to the right visually, now within the bounds used by its parent, the section.flex-list. */
+ol {
+  position:relative;
+  left:1.4rem;
 }
 
 /* The width is set to full width of parent, i.e the wrapper div */
@@ -83,20 +84,45 @@ span.flex-item-content {
 }
 
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
-section.flex-controls {
+section.flex-settings{
   border: 1px solid blue;
   float: left; /*forces to the left edge in an inline-block row*/
   width: 30%;
 }
 
-section.flex-list {
+section.flex-text-list {
   border: 1px solid purple;
   width: 40%;
 }
 
-/* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper) */
+span#flex-text-title{
+    display:block;
+    width:100%;
+    text-align:center;
+    font-weight:bold;
+    margin: 0.3rem 0;
+}
+
+/* Reaching out to the list of <textarea> elements in the <ol> of section.flex-text-list, we align the center of the initial <texarea> box with the numerica prefix of the <ol> using the vertical-align:middle.   MDN docs say this applies to inline, inline-block and table-cell boxes only.  It works here, so probably b/c <textarea> are inline-block??.
+
+Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible.*/
+section.flex-text-list textarea{
+    vertical-align: middle;
+    margin-bottom:0.3rem;
+    width:90%;
+    text-align:center;
+}
+
+/* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
 div.flex-container#narrow {
   border: 1px solid black;
   float: right;
   width: 30%;
+  height: 80%;
 }
+
+div.flex-setting{
+    padding:0.3rem;
+
+}
+
