@@ -15,68 +15,83 @@ html{
     font-family: sans-serif;
 }
 
+/* Setting the section heights to a % requires we define the
+height of their parent, which is the body. */
 body{
     background-color: #ccc;
     margin:10px;
+    height:100vh;
 }
 
 h2.title{
-    width:100%;
     font-size:1.2rem;
     font-weight:bold;
-    text-align:center;
+    height: 1rem;
     margin:10px 0;
+    text-align:center;
+    width:100%;
 }
 
+/* This wrapper encompasses all elements, so you must set both its width and height so the children can reference off these values.  For example, by not setting a height, the wrapper takes the height of the content only.  This wrappers parent is the <body> which is full viewport, and the wrapper should also be full viewport.  The result is that the second row (of <sections> can establish their height based on a % of their parent which is this wrapper */
 div.main-wrapper{
-    width:100%;      /*of parent ie <body>*/
+    width:100%;      
+    height:100%;
+     
 }
 
+
+/* Using inline-block for all <section> tags allows converting
+typical block level elements to inline, thus displaying them in a single row (which will wrap in smaller viewports).  Unlike pure 'inline', this also permits a width/height to be set, plus using floats to push specific elements to either side. */
 section{
-    display:inline-block;
-    
+  display:inline-block; 
+  height:80%;
 }
 
+/* Setting list-style-type:none removes the bullets which are pre-pended to the <li> elements */
+ul{
+    list-style-type:none;
+}
 
-
+/* The width is set to full width of parent, i.e the wrapper div */
 section.wide-layout{
     border:1px solid black;
     height: 25vh;
-    width:100%;     /*of parent ie main-wrapper*/
+    width:100%;    
 }
 
-div.flex-container.wide{
+/* At the top is a full-width flex container */
+div.flex-container#wide{
     /* border: 1px solid green; */
-    width: 100%;   /*of parent*/
-    height: 100%;   /*of parent*/
     display:flex;
+    height: 100%;   /*of parent*/
+    width: 100%;   /*of parent*/
 }
-
+/* Inside the full-width flex container are children (ie flex-items */
 div.flex-items{
-    height:100px;
-    width:100px;
     border:1px solid var(--flex-item-border-color);
     background-color: var(--flex-item-color);
+    height:100px;
+    width:100px;
 }
 
+/* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 section.flex-controls{
     border:1px solid blue;
-    height:100px;
+    float:left;  /*forces to the left edge in an inline-block row*/
     width: 30%;
-    float:left;  /*forces to the left edge of the inline-block row*/
     
 }
 
 section.flex-list{
     border: 1px solid purple;
-    height: 100px;
     width:40%;
 }
 
-div.flex-container.narrow{
+
+/* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper) */
+div.flex-container#narrow{
    border:1px solid black;
-   height: 100px;
-   width:30%;
    float:right;
+   width:30%;
    
 }
