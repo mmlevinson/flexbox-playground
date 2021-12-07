@@ -33,37 +33,62 @@ h2.title {
 }
 
 /* This wrapper encompasses all elements, so you must set both its width and height so the children can reference off these values.  For example, by not setting a height, the wrapper takes the height of the content only.  This wrappers parent is the <body> which is full viewport, and the wrapper should also be full viewport.  The result is that the second row (of <sections> can establish their height based on a % of their parent which is this wrapper */
+/* Using inline-block for all <section> tags allows converting
+typical block level elements to inline, thus displaying them in a single row (which will wrap in smaller viewports).  Unlike pure 'inline', this also permits a width/height to be set, plus using floats to push specific elements to either side. */
 div.main-wrapper {
   width: 100%;
   height: 100%;
-}
-
-/* Using inline-block for all <section> tags allows converting
-typical block level elements to inline, thus displaying them in a single row (which will wrap in smaller viewports).  Unlike pure 'inline', this also permits a width/height to be set, plus using floats to push specific elements to either side. */
-section {
   display: inline-block;
-  height: 80%;
 }
 
-/* The index numbers are positioned ::before and thus are outside the bounding box.   This requires that we move the box displaying the <ol> to the right so that the visually apparent numbers are brought back into the visually recognized container where the <ol> resides.   By setting the positon:relative, we tell the browser to move the <ol> relative to its parent.   Using a left:rem value, the whole <ol> is shifted to the right visually, now within the bounds used by its parent, the section.flex-list. */
-ol {
-  position:relative;
-  left:1.4rem;
+section#settings-wrapper {
+  position: absolute;
+  width: 30rem;
+  margin-top:4px;
+  border: 1px solid red;
 }
 
-/* The width is set to full width of parent, i.e the wrapper div */
-section.wide-layout {
-  border: 1px solid black;
-  height: 25vh;
+/* Position absolute ignores DOM element order anf postions based on its nearest elrment */
+section#css-display {
+  position: absolute;
+  left: 60%;
+  width:40%;
+  top:0px;
+  height:100%;
+  font-family: monospace;
+  overflow: scroll;
+  border-left: 1px solid black;
+  float: left;
+}
+
+/* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
+/* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
+section.flex-settings {
+  /* border: 1px solid blue; */
+  width: 60%;
+}
+
+section.flex-item-settings {
+  /* border: 1px solid purple; */
+  width: 60%;
+
+}
+
+/* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
+span.section-title {
+  display: block;
   width: 100%;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  background-color: black;
+  color: white;
 }
 
 /* At the top is a full-width flex container */
 div.flex-container#wide {
-  /* border: 1px solid green; */
+  border: 4px solid black;
   display: flex;
-  height: 100%; /*of parent*/
-  width: 100%; /*of parent*/
 }
 /* Inside the full-width flex container are children (ie flex-items */
 div.flex-items {
@@ -83,71 +108,50 @@ span.flex-item-content {
   padding: 40% 0;
 }
 
-/* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
-section.flex-settings{
-  border: 1px solid blue;
-  float: left; /*forces to the left edge in an inline-block row*/
-  width: 30%;
-}
-
-section.flex-item-settings {
-  border: 1px solid purple;
-  width: 40%;
-}
-
-/* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
-span.flex-section-title{
-    display:block;
-    width:100%;
-    text-align:center;
-    font-weight:bold;
-    margin: 0.3rem 0;
-}
-
 /* Reaching out to the list of <textarea> elements in the <ol> of section.flex-item-settings, we align the center of the initial <texarea> box with the numerica prefix of the <ol> using the vertical-align:middle.   MDN docs say this applies to inline, inline-block and table-cell boxes only.  It works here, so probably b/c <textarea> are inline-block??.
 
 Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible. 
 
 I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
-section.flex-item-settings textarea{
-    vertical-align: middle;
-    margin-bottom:0.3rem;
-    width:100%;
-    text-align:center;
+section.flex-item-settings textarea {
+  vertical-align: middle;
+  margin-bottom: 0.3rem;
+  width: 100%;
+  text-align: center;
 }
 
 /* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
 div.flex-container#narrow {
-  border: 1px solid black;
+  border: 4px solid black;
   float: right;
   width: 30%;
   height: 80%;
 }
 
-div.flex-setting{
-    padding:0.3rem;
-
+div.flex-setting {
+  padding: 0.3rem;
 }
 
-
-div.flex-item-settings-block{
-    /* width:calc(100% - 1.4rem); */
-    border:1px solid #666;
-    padding: 0.3rem;
+div.flex-item-settings-block {
+  /* width:calc(100% - 1.4rem); */
+  border: 1px solid #666;
+  padding: 0.3rem;
 }
 
+div.flex-item-choices {
+  padding: 0.3rem;
+}
 
 /* I tried text-align center and it worked.   This aligned the checkboxes into the center of their container div.    */
 div.flex-items-checked {
-width:100%;
-border:1px solid goldenrod;
-text-align:center;
-padding:1rem;
+  width: 100%;
+  /* border:1px solid goldenrod; */
+  text-align: center;
+  padding: 1rem;
 }
 
 /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
-li.flex-item-checkbox{
-    display:inline-block;
-    width:20%;
+li.flex-item-checkbox {
+  display: inline-block;
+  width: 20%;
 }
-
