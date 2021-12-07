@@ -90,12 +90,13 @@ section.flex-settings{
   width: 30%;
 }
 
-section.flex-text-list {
+section.flex-item-settings {
   border: 1px solid purple;
   width: 40%;
 }
 
-span#flex-text-title{
+/* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
+span.flex-section-title{
     display:block;
     width:100%;
     text-align:center;
@@ -103,13 +104,15 @@ span#flex-text-title{
     margin: 0.3rem 0;
 }
 
-/* Reaching out to the list of <textarea> elements in the <ol> of section.flex-text-list, we align the center of the initial <texarea> box with the numerica prefix of the <ol> using the vertical-align:middle.   MDN docs say this applies to inline, inline-block and table-cell boxes only.  It works here, so probably b/c <textarea> are inline-block??.
+/* Reaching out to the list of <textarea> elements in the <ol> of section.flex-item-settings, we align the center of the initial <texarea> box with the numerica prefix of the <ol> using the vertical-align:middle.   MDN docs say this applies to inline, inline-block and table-cell boxes only.  It works here, so probably b/c <textarea> are inline-block??.
 
-Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible.*/
-section.flex-text-list textarea{
+Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible. 
+
+I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
+section.flex-item-settings textarea{
     vertical-align: middle;
     margin-bottom:0.3rem;
-    width:90%;
+    width:100%;
     text-align:center;
 }
 
@@ -124,5 +127,27 @@ div.flex-container#narrow {
 div.flex-setting{
     padding:0.3rem;
 
+}
+
+
+div.flex-item-settings-block{
+    /* width:calc(100% - 1.4rem); */
+    border:1px solid #666;
+    padding: 0.3rem;
+}
+
+
+/* I tried text-align center and it worked.   This aligned the checkboxes into the center of their container div.    */
+div.flex-items-checked {
+width:100%;
+border:1px solid goldenrod;
+text-align:center;
+padding:1rem;
+}
+
+/* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
+li.flex-item-checkbox{
+    display:inline-block;
+    width:20%;
 }
 
