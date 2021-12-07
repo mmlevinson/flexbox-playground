@@ -1,0 +1,82 @@
+*,
+::after,
+::before{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+:root{
+    --flex-item-color: #9aa559;
+    --flex-item-border-color: rgb(165, 46, 119);
+}
+
+html{
+    font-family: sans-serif;
+}
+
+body{
+    background-color: #ccc;
+    margin:10px;
+}
+
+h2.title{
+    width:100%;
+    font-size:1.2rem;
+    font-weight:bold;
+    text-align:center;
+    margin:10px 0;
+}
+
+div.main-wrapper{
+    width:100%;      /*of parent ie <body>*/
+}
+
+section{
+    display:inline-block;
+    
+}
+
+
+
+section.wide-layout{
+    border:1px solid black;
+    height: 25vh;
+    width:100%;     /*of parent ie main-wrapper*/
+}
+
+div.flex-container.wide{
+    /* border: 1px solid green; */
+    width: 100%;   /*of parent*/
+    height: 100%;   /*of parent*/
+    display:flex;
+}
+
+div.flex-items{
+    height:100px;
+    width:100px;
+    border:1px solid var(--flex-item-border-color);
+    background-color: var(--flex-item-color);
+}
+
+section.flex-controls{
+    border:1px solid blue;
+    height:100px;
+    width: 30%;
+    float:left;  /*forces to the left edge of the inline-block row*/
+    
+}
+
+section.flex-list{
+    border: 1px solid purple;
+    height: 100px;
+    width:40%;
+}
+
+div.flex-container.narrow{
+   border:1px solid black;
+   height: 100px;
+   width:30%;
+   float:right;
+   
+}
