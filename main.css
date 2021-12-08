@@ -23,6 +23,10 @@ body {
   height: 100vh;
 }
 
+ul {
+  list-style-type: none;
+}
+
 h2.main-title {
   font-size: 1.2rem;
   font-weight: bold;
@@ -45,17 +49,14 @@ div.main-wrapper {
   width: 100%;
 }
 
-#panel-wrapper ul li {
-  
-  display: inline-block;
-  width: 24%;
-  margin-right: 4px;
-}
 
 /* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
-.panel {
+li.panel {
+  display: inline-block;
+  /* width: 24%; */
+  margin-right: 4px;
   border: 1px solid #222;
   width: 300px;
   height: 30rem;
@@ -64,12 +65,39 @@ div.main-wrapper {
   overflow: scroll;
 }
 
-.panel#narrow-layout {
+/* To make the last panel resizable with the window, it was necessary to calc() the width using an empiric measurement subtracted from 100% */
+li.panel#narrow-layout {
   min-width: 100px;
   max-width: none;
-  width: calc(100% - 930px);
+  width: calc(100% - 950px);
   background-color: red;
-  margin-right:0;
+  margin-right: 0;
+}
+
+li.input-field,
+li.dimensions {
+  padding: 4px;
+  width: 100%;
+  display: inline-block;
+}
+
+li.input-field label {
+  display: inherit;
+  width: 48%;
+}
+li.input-field .setting-item {
+  display: inherit;
+  width: 50%;
+}
+
+li.dimensions > label {
+  /* border:1px solid red; */
+  display: inherit;
+  width: 90px;
+}
+
+li.dimensions input[type='number'] {
+  width: 54px;
 }
 
 #flex-container-settings {
@@ -100,6 +128,7 @@ span.section-title {
 section#flex-item-settings textarea {
   margin-bottom: 0.3rem;
   width: 100%;
+  overflow: scroll;
   text-align: center;
 }
 
@@ -107,7 +136,7 @@ section#flex-item-settings textarea {
 div.flex-container#wide {
   position: relative;
   border: 1px solid black;
-  height: 1000px;
+  /* height: 1000px; */
   display: flex;
 }
 /* Inside the full-width flex container are children (ie flex-items */
@@ -164,13 +193,14 @@ div.flex-item-choices {
 /* I tried text-align center and it worked.   This aligned the checkboxes into the center of their container div.    */
 div.flex-items-checked {
   width: 100%;
-  /* border:1px solid goldenrod; */
+
   text-align: center;
-  padding: 1rem;
+  padding: 6px;
 }
 
 /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
-li.flex-item-checkbox {
+div.flex-items-checked li.flex-item-checkbox {
+  order: 1px solid goldenrod;
   display: inline-block;
   width: 20%;
 }
@@ -187,8 +217,4 @@ div.button-container {
 
 div.dimensions {
   padding: 6px;
-}
-
-span.dimension-inputs input {
-  width: 3rem;
 }
