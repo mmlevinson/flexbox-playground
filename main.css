@@ -23,7 +23,7 @@ body {
   height: 100vh;
 }
 
-h2.title {
+h2.main-title {
   font-size: 1.2rem;
   font-weight: bold;
   height: 1rem;
@@ -41,39 +41,48 @@ div.main-wrapper {
   /* display: inline-block; */
 }
 
+#panel-wrapper {
+  width: 100%;
+}
+
+#panel-wrapper ul li {
+  
+  display: inline-block;
+  width: 24%;
+  margin-right: 4px;
+}
+
 /* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
 .panel {
   border: 1px solid #222;
-  width: 24%;
+  width: 300px;
   height: 30rem;
+  min-width: 300px;
+  max-width: 300px;
   overflow: scroll;
+}
+
+.panel#narrow-layout {
+  min-width: 100px;
+  max-width: none;
+  width: calc(100% - 930px);
+  background-color: red;
+  margin-right:0;
+}
+
+#flex-container-settings {
+  border: 1px solid green;
 }
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
-section#flex-item-settings {
-  position: absolute;
-  left: 25%;
-  /* width: 18rem; */
-  /* height: 20rem; */
-  /* left:16rem; */
-  /* top:2.5rem; */
-  top: 10px;
+#flex-item-settings {
   border-left: 1px solid black;
 }
 
-section#css-display {
-  position: absolute;
-  left: 50%;
-  /* width: 18rem; */
-  /* left:16rem; */
-  /* top:2.5rem; */
-  top: 10px;
-  /* height: 20rem; */
+#css-output pre {
   font-family: monospace;
-  overflow: scroll;
-  border-left: 1px solid black;
 }
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
@@ -87,10 +96,17 @@ span.section-title {
   color: white;
 }
 
-/* At the top is a full-width flex container */
+/*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
+section#flex-item-settings textarea {
+  margin-bottom: 0.3rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* At the bottom is a full-width flex container */
 div.flex-container#wide {
   position: relative;
-  border: 4px solid black;
+  border: 1px solid black;
   height: 1000px;
   display: flex;
 }
@@ -116,22 +132,17 @@ span.flex-item-content {
 
 Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible. 
 
-I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
-section#flex-item-settings textarea {
 
-  margin-bottom: 0.3rem;
-  width: 100%;
-  text-align: center;
-}
 
 /* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
 div.flex-container#narrow {
   position: relative;
+  height: 100%;
   /* float:right; */
-  top: 0px;
+  /* top: 0px; */
   /* left:75%; */
-  border: 4px solid black;
-  float: right;
+  border: 1px solid black;
+  /* float: right; */
 
   /* height: 80%; */
 }
@@ -167,18 +178,17 @@ li.flex-item-checkbox {
 div.button-container {
   width: 100%;
   padding: 8px;
-  border:1px solid #555;
+  border: 1px solid #555;
 }
 
 .button {
   width: 30%;
 }
 
-div.dimensions{
-    padding:6px;
-
+div.dimensions {
+  padding: 6px;
 }
 
-span.dimension-inputs input{
-   width:3rem;
+span.dimension-inputs input {
+  width: 3rem;
 }
