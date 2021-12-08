@@ -16,7 +16,7 @@
       <!-- PANEL WRAPPER -->
       <section id="panel-wrapper">
         <!-- PANELS -->
-        <ul>
+        <ul id="panel-list">
           <!-- Flex Container Settings -->
           <li class="panel">
             <section id="flex-container-settings">
@@ -230,12 +230,12 @@
                 </li>
                 <!-- BUTTON SET -->
                 <li class="button-set" id="flex-container-buttons">
-                  <button class="button" type="button" name="Apply">
-                    Apply
-                  </button>
-                  <button class="button" type="button" name="Undo">Undo</button>
                   <button class="button" type="button" name="Reset">
                     Reset
+                  </button>
+                  <button class="button" type="button" name="Undo">Undo</button>
+                  <button class="button" type="button" name="Apply">
+                    Apply
                   </button>
                 </li>
               </ul>
@@ -428,15 +428,15 @@
                       </li>
                       <!-- BUTTON SET -->
                       <li class="button-set" id="flex-item-buttons">
-                          <button class="button" type="button" name="Reset">
-                              Reset
-                          </button>
-                          <button class="button" type="button" name="Undo">
-                              Undo
-                            </button>
-                            <button class="button" type="button" name="Apply">
-                              Apply
-                            </button>
+                        <button class="button" type="button" name="Reset">
+                          Reset
+                        </button>
+                        <button class="button" type="button" name="Undo">
+                          Undo
+                        </button>
+                        <button class="button" type="button" name="Apply">
+                          Apply
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -446,18 +446,28 @@
           </li>
           <!-- CSS DISPLAY -->
           <li class="panel">
-            <section id="css-output">
-              <span class="section-title">CSS Result</span>
-              <pre id="css">
-              div.flex-container {
-                display:block; 
-                overflow:auto;
-                flex-direction:row;
-                flex-wrap:nowrap;
-              }
-                      </pre
-              >
-            </section>
+            <ul>
+              <li id="css-output">
+                <span class="section-title">CSS Result</span>
+                <pre id="css">
+div.flex-container {
+  display:block; 
+  overflow:auto;
+  flex-direction:row;
+  flex-wrap:nowrap;
+ }
+                </pre
+                >
+              </li>
+              <li>
+                <span class="section-title">+ Media Queries</span>
+                <textarea class="id" id="media-queries">
+                        @media(769){
+                            display:block;
+                        }
+                  </textarea>
+              </li>
+            </ul>
           </li>
           <!-- FLEX CONTAINER (NARROW) -->
           <li class="panel" id="narrow-layout">

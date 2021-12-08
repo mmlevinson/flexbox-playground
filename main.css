@@ -47,14 +47,23 @@ div.main-wrapper {
 
 #panel-wrapper {
   width: 100%;
+
 }
 
 
 /* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
+ul#panel-list{
+    display:inline;
+}
+
+
+/* Vertical-Align:top saved the entire layout from being ruined after I removed the overflow from the panels.   Whew */
 li.panel {
-  display: inline-block;
+    display: inline-block;
+    vertical-align: top;
+
   /* width: 24%; */
   margin-right: 4px;
   border: 1px solid #222;
@@ -62,7 +71,6 @@ li.panel {
   height: 400px;
   min-width: 300px;
   max-width: 300px;
-  overflow: scroll;
 }
 
 /* To make the last panel resizable with the window, it was necessary to calc() the width using an empiric measurement subtracted from 100% */
@@ -87,7 +95,7 @@ li.button-set#flex-container-buttons{
 }
 
 li.button-set#flex-item-buttons{
-    margin-top:11px;
+    margin-top:4px;
 }
 
 li.button-set button{
@@ -148,8 +156,14 @@ li.flex-item-checkbox label{
   border-left: 1px solid black;
 }
 
-#css-output pre {
+li#css-output{
+    height:50%;
+    background:indigo;
+}
+
+pre#css {
   font-family: monospace;
+
 }
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
@@ -165,7 +179,7 @@ span.section-title {
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 section#flex-item-settings textarea {
-  margin-bottom: 0.3rem;
+  margin-bottom: 5px;
   width: 100%;
   overflow: scroll;
   text-align: center;
