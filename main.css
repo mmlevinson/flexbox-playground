@@ -59,7 +59,7 @@ li.panel {
   margin-right: 4px;
   border: 1px solid #222;
   width: 300px;
-  height: 30rem;
+  height: 400px;
   min-width: 300px;
   max-width: 300px;
   overflow: scroll;
@@ -75,11 +75,19 @@ li.panel#narrow-layout {
 }
 
 li.button-set{
-    background:blue;
+    background:slategray;
     padding:8px;
     padding-left:12px;
     display:inline-block;
     width:100%;
+}
+
+li.button-set#flex-container-buttons{
+    margin-top:52px;
+}
+
+li.button-set#flex-item-buttons{
+    margin-top:11px;
 }
 
 li.button-set button{
@@ -114,6 +122,22 @@ li.dimensions > label {
 li.dimensions input[type='number'] {
   width: 54px;
 }
+
+li.flex-item-checkbox{
+    display:inline-block;
+    padding-top:8px;
+}
+div.checkbox-wrapper{
+  background:black;
+  color:white;
+  margin-top:0;
+}
+li.flex-item-checkbox label{
+      width:20px;
+      padding:0px 20px;
+      /* vertical-align: middle; */
+      /* height:20px; */
+  }
 
 #flex-container-settings {
   border: 1px solid green;
@@ -205,13 +229,7 @@ div.flex-item-choices {
   padding: 0.3rem;
 }
 
-/* I tried text-align center and it worked.   This aligned the checkboxes into the center of their container div.    */
-div.flex-items-checked {
-  width: 100%;
 
-  text-align: center;
-  padding: 6px;
-}
 
 /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
 div.flex-items-checked li.flex-item-checkbox {

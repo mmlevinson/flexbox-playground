@@ -22,16 +22,6 @@
             <section id="flex-container-settings">
               <span class="section-title">div.flex-container</span>
               <ul>
-                <!-- BUTTON SET -->
-                <li class="button-set">
-                  <button class="button" type="button" name="Apply">
-                    Apply
-                  </button>
-                  <button class="button" type="button" name="Undo">Undo</button>
-                  <button class="button" type="button" name="Reset">
-                    Reset
-                  </button>
-                </li>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
                 <li class="dimensions">
@@ -238,16 +228,8 @@
                     <option value="scroll">Scroll</option>
                   </select>
                 </li>
-              </ul>
-            </section>
-          </li>
-          <!-- Flex Item Settings -->
-          <li class="panel">
-            <section id="flex-item-settings">
-              <span class="section-title">div.flex-items</span>
-              <ul>
                 <!-- BUTTON SET -->
-                <li class="button-set">
+                <li class="button-set" id="flex-container-buttons">
                   <button class="button" type="button" name="Apply">
                     Apply
                   </button>
@@ -256,6 +238,14 @@
                     Reset
                   </button>
                 </li>
+              </ul>
+            </section>
+          </li>
+          <!-- Flex Item Settings -->
+          <li class="panel">
+            <section id="flex-item-settings">
+              <span class="section-title">div.flex-items</span>
+              <ul>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
                 <li class="dimensions">
@@ -300,9 +290,108 @@
                     />
                   </span>
                 </li>
+
+                <li class="input-field">
+                  <textarea
+                    id="flex-text-1"
+                    cols="25"
+                    rows="3"
+                    placeholder="flex-item text"
+                  ></textarea>
+                </li>
+                <!-- Flex-Grow -->
+                <li class="input-field">
+                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="flexGrow"
+                    class="setting-item"
+                  />
+                </li>
+                <!-- Flex-Shrink -->
+                <li class="input-field">
+                  <label for="flexShrink" class="setting-label"
+                    >Flex-Shrink</label
+                  >
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="flexShrink"
+                    class="setting-item"
+                  />
+                </li>
+                <!-- Flex-Basis Type -->
+                <li class="input-field">
+                  <label for="flexBasis" class="setting-label"
+                    >Flex-Basis:</label
+                  >
+                  <select
+                    name="flexBasis"
+                    class="setting-item"
+                    id="flexBasis-type"
+                  >
+                    <option value="auto">AUTO</option>
+                    <option value="fill">Fill</option>
+                    <option value="maxContent">Max-Content</option>
+                    <option value="minContent">Min-Content</option>
+                    <option value="content">Content</option>
+                    <option value="inherit">Inherit</option>
+                    <option value="initial">Initial</option>
+                    <option value="revert">Revert</option>
+                    <option value="unset">Unset</option>
+                  </select>
+                </li>
+                <!-- Flex-Basis Value -->
+                <li class="input-field">
+                  <label for="flexBasisValue" class="setting-label flex-basis"
+                    >Flex-Basis Value:</label
+                  >
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="flexBasisValue"
+                    class="setting-item"
+                  />
+                </li>
+                <!-- Align-Selt -->
+                <li class="input-field">
+                  <label for="alignSelf" class="setting-label"
+                    >Align-Self:</label
+                  >
+                  <select
+                    name="alignSelf"
+                    class="setting-item"
+                    id="alignSelf__1"
+                  >
+                    <option value="auto">AUTO</option>
+                    <option value="normal">Normal</option>
+                    <option value="center">Center</option>
+                    <option value="start">Start</option>
+                    <option value="self-start">End</option>
+                    <option value="self-start">Self-Start</option>
+                    <option value="self-end">Self-End</option>
+                    <option value="flex-start">Flex-Start</option>
+                    <option value="flex-end">Flex-End</option>
+                    <option value="stretch">Stretch</option>
+                    <option value="baseline">Baseline</option>
+                    <option value="first baseline">First Baseline</option>
+                    <option value="last baseline">Last Baseline</option>
+                    <option value="safe center">Safe Center</option>
+                    <option value="unsafe center">Unsafe Center</option>
+                    <option value="inherit">Inherit</option>
+                    <option value="initial">Initial</option>
+                    <option value="revert">Revert</option>
+                    <option value="unset">Unset</option>
+                  </select>
+                </li>
                 <!-- Flex Item Checkboxes -->
                 <li class="input-field">
-                  <div class="flex-items-checked">
+                  <span class="section-title">Select Flex Items</span>
+                  <div class="checkbox-wrapper">
                     <ul>
                       <li class="flex-item-checkbox">
                         <label for="checkbox__1">#1</label>
@@ -337,104 +426,20 @@
                           id="flex-item-check__4"
                         />
                       </li>
+                      <!-- BUTTON SET -->
+                      <li class="button-set" id="flex-item-buttons">
+                          <button class="button" type="button" name="Reset">
+                              Reset
+                          </button>
+                          <button class="button" type="button" name="Undo">
+                              Undo
+                            </button>
+                            <button class="button" type="button" name="Apply">
+                              Apply
+                            </button>
+                      </li>
                     </ul>
                   </div>
-                </li>
-                <li class="input-field">
-                  <textarea
-                    id="flex-text-1"
-                    cols="25"
-                    rows="5"
-                    placeholder="flex-item text"
-                  ></textarea>
-                </li>
-                <!-- Flex-Grow -->
-                <li class="input-field">
-                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
-                  <input
-                    type="number"
-                    min="0"
-                    value="0"
-                    name="flexGrow"
-                    class="setting-item"
-                  />
-                </li>
-                <!-- Flex-Shrink -->
-                <li class="input-field">
-                  <label for="flexShrink" class="setting-label"
-                    >Flex-Shrink</label
-                  >
-                  <input
-                    type="number"
-                    min="0"
-                    value="0"
-                    name="flexShrink"
-                    class="setting-item"
-                  />
-                </li>
-                <li class="input-field">
-                  <label for="flexBasis" class="setting-label"
-                    >Flex-Basis:</label
-                  >
-                  <select
-                    name="flexBasis"
-                    class="setting-item"
-                    id="flexBasis-type"
-                  >
-                    <option value="auto">AUTO</option>
-                    <option value="fill">Fill</option>
-                    <option value="maxContent">Max-Content</option>
-                    <option value="minContent">Min-Content</option>
-                    <option value="content">Content</option>
-                    <option value="inherit">Inherit</option>
-                    <option value="initial">Initial</option>
-                    <option value="revert">Revert</option>
-                    <option value="unset">Unset</option>
-                  </select>
-                </li>
-                <!-- Flex-Basis Value -->
-                <li class="input-field">
-                  <label for="flexBasisValue" class="setting-label flex-basis"
-                    >Flex-Basis Value:</label
-                  >
-                  <input
-                    type="number"
-                    min="0"
-                    value="0"
-                    name="flexBasisValue"
-                    class="setting-item"
-
-                  />
-                </li>
-                <li class="input-field">
-                    <label for="alignSelf" class="setting-label"
-                    >Align-Self:</label
-                  >
-                  <select
-                    name="alignSelf"
-                    class="setting-item"
-                    id="alignSelf__1"
-                  >
-                    <option value="auto">AUTO</option>
-                    <option value="normal">Normal</option>
-                    <option value="center">Center</option>
-                    <option value="start">Start</option>
-                    <option value="self-start">End</option>
-                    <option value="self-start">Self-Start</option>
-                    <option value="self-end">Self-End</option>
-                    <option value="flex-start">Flex-Start</option>
-                    <option value="flex-end">Flex-End</option>
-                    <option value="stretch">Stretch</option>
-                    <option value="baseline">Baseline</option>
-                    <option value="first baseline">First Baseline</option>
-                    <option value="last baseline">Last Baseline</option>
-                    <option value="safe center">Safe Center</option>
-                    <option value="unsafe center">Unsafe Center</option>
-                    <option value="inherit">Inherit</option>
-                    <option value="initial">Initial</option>
-                    <option value="revert">Revert</option>
-                    <option value="unset">Unset</option>
-                  </select>
                 </li>
               </ul>
             </section>
