@@ -15,57 +15,66 @@
       <h2 class="main-title">FlexBox Workspace</h2>
       <!-- PANEL WRAPPER -->
       <section id="panel-wrapper">
-          <!-- PANELS -->
+        <!-- PANELS -->
         <ul>
-            <!-- Flex Container Settings -->
+          <!-- Flex Container Settings -->
           <li class="panel">
             <section id="flex-container-settings">
               <span class="section-title">div.flex-container</span>
               <ul>
+                <!-- BUTTON SET -->
+                <li class="button-set">
+                  <button class="button" type="button" name="Apply">
+                    Apply
+                  </button>
+                  <button class="button" type="button" name="Undo">Undo</button>
+                  <button class="button" type="button" name="Reset">
+                    Reset
+                  </button>
+                </li>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
                 <li class="dimensions">
-                    <input type="checkbox" name="wide" id="wide-dimensions" />
-                    <label for="wide">Landscape</label>
-                    <span class="dimension-inputs"
-                      >W:
-                      <input
-                        type="number"
-                        name="wide-dimension-horizontal"
-                        id="wide-dimension-horizontal"
-                      />
-                    </span>
-                    <span class="dimension-inputs"
-                      >H:
-                      <input
-                        type="number"
-                        name="wide-dimension-vertical"
-                        id="wide-dimension-vertical"
-                      />
-                    </span>
-                 
+                  <input type="checkbox" name="wide" id="wide-dimensions" />
+                  <label for="wide">Landscape</label>
+                  <span class="dimension-inputs"
+                    >W:
+                    <input
+                      type="number"
+                      name="wide-dimension-horizontal"
+                      id="wide-dimension-horizontal"
+                    />
+                  </span>
+                  <span class="dimension-inputs"
+                    >H:
+                    <input
+                      type="number"
+                      name="wide-dimension-vertical"
+                      id="wide-dimension-vertical"
+                    />
+                  </span>
                 </li>
                 <!-- Portrait -->
                 <li class="dimensions">
-                    <input type="checkbox" name="wide" id="narrow-dimensions" />
-                    <label for="narrow">Portrait</label>
-                    <span class="dimension-inputs"
-                      >W:
-                      <input
-                        type="number"
-                        name="narrow-dimension-horizontal"
-                        id="narrow-dimension-horizontal"
-                      />
-                    </span>
-                    <span class="dimension-inputs"
-                      >H:
-                      <input
-                        type="number"
-                        name="narrow-dimension-vertical"
-                        id="narrow-dimension-vertical"
-                        max="1024"
-                      />
-                    </span>
+                  <input type="checkbox" name="wide" id="narrow-dimensions" />
+                  <label for="narrow">Portrait</label>
+                  <span class="dimension-inputs"
+                    >W:
+                    <input
+                      type="number"
+                      name="narrow-dimension-horizontal"
+                      id="narrow-dimension-horizontal"
+                    />
+                  </span>
+                  <span class="dimension-inputs"
+                    >H:
+                    <input
+                      type="number"
+                      name="narrow-dimension-vertical"
+                      id="narrow-dimension-vertical"
+                      max="1024"
+                    />
+                  </span>
                 </li>
                 <!-- Display property -->
                 <li class="input-field">
@@ -78,7 +87,7 @@
                     <option value="inline">Inline</option>
                   </select>
                 </li>
-              
+
                 <!-- Flex-Direction -->
                 <li class="input-field">
                   <label for="flexDirection" class="setting-label"
@@ -101,9 +110,7 @@
                 </li>
                 <!-- Flex Wrap -->
                 <li class="input-field">
-                  <label for="flexWrap" class="setting-label"
-                    >Flex-Wrap:</label
-                  >
+                  <label for="flexWrap" class="setting-label">Flex-Wrap:</label>
                   <select name="flexWrap" class="setting-item" id="flexWrap">
                     <option value="nowrap">NO WRAP</option>
                     <option value="wrap">Wrap</option>
@@ -208,90 +215,171 @@
                 <!-- Gap -->
                 <li class="input-field">
                   <label for="gap" class="setting-label">Gap:</label>
-                  <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" />
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="gap"
+                    id="gap"
+                    class="setting-item"
+                  />
                 </li>
-                  <!-- Overflow property -->
-                  <li class="input-field">
-                    <label for="overflow" class="setting-label">Overflow:</label>
-                    <select
-                      name="overflow"
-                      class="setting-item"
-                      id="overflowType"
-                    >
-                      <option value="auto">AUTO</option>
-                      <option value="visible">Visible</option>
-                      <option value="hidden">Hidden</option>
-                      <option value="scroll">Scroll</option>
-                    </select>
-                  </li>
+                <!-- Overflow property -->
+                <li class="input-field">
+                  <label for="overflow" class="setting-label">Overflow:</label>
+                  <select
+                    name="overflow"
+                    class="setting-item"
+                    id="overflowType"
+                  >
+                    <option value="auto">AUTO</option>
+                    <option value="visible">Visible</option>
+                    <option value="hidden">Hidden</option>
+                    <option value="scroll">Scroll</option>
+                  </select>
+                </li>
               </ul>
-
-              <div class="flex-setting"></div>
-              <div class="flex-setting"></div>
-              <div class="button-container">
-                <button class="button" type="button" name="Apply">Apply</button>
-                <button class="button" type="button" name="Undo">Undo</button>
-                <button class="button" type="button" name="Reset">Reset</button>
-              </div>
             </section>
           </li>
+          <!-- Flex Item Settings -->
           <li class="panel">
-            <!-- Flex Item Settings -->
             <section id="flex-item-settings">
               <span class="section-title">div.flex-items</span>
-              <div class="flex-items-checked">
-                <ul>
-                  <li class="flex-item-checkbox">
-                    <label for="checkbox__1">#1</label>
+              <ul>
+                <!-- BUTTON SET -->
+                <li class="button-set">
+                  <button class="button" type="button" name="Apply">
+                    Apply
+                  </button>
+                  <button class="button" type="button" name="Undo">Undo</button>
+                  <button class="button" type="button" name="Reset">
+                    Reset
+                  </button>
+                </li>
+                <!-- DIMENSIONS -->
+                <!-- Landscape -->
+                <li class="dimensions">
+                  <input type="checkbox" name="wide" id="wide-dimensions" />
+                  <label for="wide">Landscape</label>
+                  <span class="dimension-inputs"
+                    >W:
                     <input
-                      type="checkbox"
-                      checked
-                      name="checkbox__1"
-                      id="flex-item-check__1"
+                      type="number"
+                      name="wide-dimension-horizontal"
+                      id="wide-dimension-horizontal"
                     />
-                  </li>
-                  <li class="flex-item-checkbox">
-                    <label for="checkbox__2">#2</label>
+                  </span>
+                  <span class="dimension-inputs"
+                    >H:
                     <input
-                      type="checkbox"
-                      name="checkbox__2"
-                      id="flex-item-check__2"
+                      type="number"
+                      name="wide-dimension-vertical"
+                      id="wide-dimension-vertical"
                     />
-                  </li>
-                  <li class="flex-item-checkbox">
-                    <label for="checkbox__3">#3</label>
+                  </span>
+                </li>
+                <!-- Portrait -->
+                <li class="dimensions">
+                  <input type="checkbox" name="wide" id="narrow-dimensions" />
+                  <label for="narrow">Portrait</label>
+                  <span class="dimension-inputs"
+                    >W:
                     <input
-                      type="checkbox"
-                      name="checkbox__3"
-                      id="flex-item-check__3"
+                      type="number"
+                      name="narrow-dimension-horizontal"
+                      id="narrow-dimension-horizontal"
                     />
-                  </li>
-                  <li class="flex-item-checkbox">
-                    <label for="checkbox__">#4</label>
+                  </span>
+                  <span class="dimension-inputs"
+                    >H:
                     <input
-                      type="checkbox"
-                      name="checkbox__4"
-                      id="flex-item-check__4"
+                      type="number"
+                      name="narrow-dimension-vertical"
+                      id="narrow-dimension-vertical"
+                      max="1024"
                     />
-                  </li>
-                </ul>
-              </div>
-
-              <div class="flex-item-settings-block">
-                <textarea
-                  id="flex-text-1"
-                  cols="25"
-                  rows="5"
-                  placeholder="flex-item text"
-                ></textarea>
-                <div class="flex-item-choices">
+                  </span>
+                </li>
+                <!-- Flex Item Checkboxes -->
+                <li class="input-field">
+                  <div class="flex-items-checked">
+                    <ul>
+                      <li class="flex-item-checkbox">
+                        <label for="checkbox__1">#1</label>
+                        <input
+                          type="checkbox"
+                          checked
+                          name="checkbox__1"
+                          id="flex-item-check__1"
+                        />
+                      </li>
+                      <li class="flex-item-checkbox">
+                        <label for="checkbox__2">#2</label>
+                        <input
+                          type="checkbox"
+                          name="checkbox__2"
+                          id="flex-item-check__2"
+                        />
+                      </li>
+                      <li class="flex-item-checkbox">
+                        <label for="checkbox__3">#3</label>
+                        <input
+                          type="checkbox"
+                          name="checkbox__3"
+                          id="flex-item-check__3"
+                        />
+                      </li>
+                      <li class="flex-item-checkbox">
+                        <label for="checkbox__">#4</label>
+                        <input
+                          type="checkbox"
+                          name="checkbox__4"
+                          id="flex-item-check__4"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="input-field">
+                  <textarea
+                    id="flex-text-1"
+                    cols="25"
+                    rows="5"
+                    placeholder="flex-item text"
+                  ></textarea>
+                </li>
+                <!-- Flex-Grow -->
+                <li class="input-field">
+                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="flexGrow"
+                    class="setting-item"
+                  />
+                </li>
+                <!-- Flex-Shrink -->
+                <li class="input-field">
+                  <label for="flexShrink" class="setting-label"
+                    >Flex-Shrink</label
+                  >
+                  <input
+                    type="number"
+                    min="0"
+                    value="0"
+                    name="flexShrink"
+                    class="setting-item"
+                  />
+                </li>
+                <li class="input-field">
                   <label for="flexBasis" class="setting-label"
                     >Flex-Basis:</label
                   >
                   <select
                     name="flexBasis"
                     class="setting-item"
-                    id="flexBasis__1"
+                    id="flexBasis-type"
                   >
                     <option value="auto">AUTO</option>
                     <option value="fill">Fill</option>
@@ -303,44 +391,23 @@
                     <option value="revert">Revert</option>
                     <option value="unset">Unset</option>
                   </select>
-                  <div class="flex-item-choices">
-                    <label for="flexBasisValue" class="setting-label flex-basis"
-                      >Flex-Basis Value:</label
-                    >
-                    <input
-                      type="number"
-                      min="0"
-                      value="0"
-                      name="flexBasisValue"
-                      class="flex-basis-value"
-                      id="flexBasisValue__1"
-                    />
-                  </div>
-                </div>
-                <div class="flex-item-choices">
-                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
-                  <input
-                    type="number"
-                    min="0"
-                    value="0"
-                    name="flexGrow"
-                    id="flexGrow__1"
-                  />
-                </div>
-                <div class="flex-item-choices">
-                  <label for="flexShrink" class="setting-label"
-                    >Flex-Shrink</label
+                </li>
+                <!-- Flex-Basis Value -->
+                <li class="input-field">
+                  <label for="flexBasisValue" class="setting-label flex-basis"
+                    >Flex-Basis Value:</label
                   >
                   <input
                     type="number"
                     min="0"
                     value="0"
-                    name="flexShrink"
-                    id="flexShrink__1"
+                    name="flexBasisValue"
+                    class="setting-item"
+
                   />
-                </div>
-                <div class="flex-item-choices">
-                  <label for="alignSelf" class="setting-label"
+                </li>
+                <li class="input-field">
+                    <label for="alignSelf" class="setting-label"
                     >Align-Self:</label
                   >
                   <select
@@ -368,18 +435,12 @@
                     <option value="revert">Revert</option>
                     <option value="unset">Unset</option>
                   </select>
-                </div>
-              </div>
-
-              <div class="button-container">
-                <button class="button" type="button" name="Apply">Apply</button>
-                <button class="button" type="button" name="Undo">Undo</button>
-                <button class="button" type="button" name="Reset">Reset</button>
-              </div>
+                </li>
+              </ul>
             </section>
           </li>
+          <!-- CSS DISPLAY -->
           <li class="panel">
-            <!-- CSS DISPLAY -->
             <section id="css-output">
               <span class="section-title">CSS Result</span>
               <pre id="css">
@@ -393,8 +454,8 @@
               >
             </section>
           </li>
+          <!-- FLEX CONTAINER (NARROW) -->
           <li class="panel" id="narrow-layout">
-            <!-- FLEX CONTAINER (NARROW) -->
             <div class="flex-container" id="narrow">
               <span>Flex Container narrow</span>
             </div>

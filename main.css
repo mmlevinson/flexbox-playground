@@ -74,6 +74,20 @@ li.panel#narrow-layout {
   margin-right: 0;
 }
 
+li.button-set{
+    background:blue;
+    padding:8px;
+    padding-left:12px;
+    display:inline-block;
+    width:100%;
+}
+
+li.button-set button{
+    display:inherit;
+    width:30%;
+    margin-right:5px;
+}
+
 li.input-field,
 li.dimensions {
   padding: 4px;
@@ -82,6 +96,7 @@ li.dimensions {
 }
 
 li.input-field label {
+    /* background:coral; */
   display: inherit;
   width: 48%;
 }
