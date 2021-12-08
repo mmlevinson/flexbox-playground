@@ -47,6 +47,7 @@ div.main-wrapper {
 
 #panel-wrapper {
   width: 100%;
+  background-color: #666;
 
 }
 
@@ -63,12 +64,13 @@ ul#panel-list{
 li.panel {
     display: inline-block;
     vertical-align: top;
+    background-color: slategray;
 
   /* width: 24%; */
-  margin-right: 4px;
+  margin-right: 5px;
   border: 1px solid #222;
   width: 300px;
-  height: 400px;
+  height: 385px;
   min-width: 300px;
   max-width: 300px;
 }
@@ -77,8 +79,8 @@ li.panel {
 li.panel#narrow-layout {
   min-width: 100px;
   max-width: none;
-  width: calc(100% - 950px);
-  background-color: red;
+  width: calc(100% - 930px);
+  /* background-color: red; */
   margin-right: 0;
 }
 
@@ -147,14 +149,9 @@ li.flex-item-checkbox label{
       /* height:20px; */
   }
 
-#flex-container-settings {
-  border: 1px solid green;
-}
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
-#flex-item-settings {
-  border-left: 1px solid black;
-}
+
 
 li#css-output{
     height:50%;
