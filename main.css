@@ -160,19 +160,27 @@ li#css-output-item{
 
 li#media-queries-item{
     /* background:brown; */
-    height:198px;
+    height:100px;
     margin-top:25px;
 }
 
 textarea#media-queries{
     width:calc(100% - 8px);
-    margin:2px 4px;
+    margin:0px 4px;
 }
 
-pre#css {
+pre#css{
   font-family: monospace;
   height:100%;
   overflow:scroll;
+}
+
+/* The buttons are positioned by setting their position:relative which allows me to adjust the top by pixels until it is displayed at the bottom of the panel (which is not adjustable.   The original top is determined by its relationship to adjacent DOM elements */
+li.button-set#media-query-buttons{
+  position:relative;
+top:48px;
+
+
 
 }
 
@@ -199,7 +207,8 @@ section#flex-item-settings textarea {
 div.flex-container#wide {
   position: relative;
   border: 1px solid black;
-  /* height: 1000px; */
+  /* height: 1000px;
+  width:500px; */
   display: flex;
 }
 /* Inside the full-width flex container are children (ie flex-items */
@@ -272,6 +281,8 @@ div.button-container {
   width: 30%;
 }
 
-div.dimensions {
-  padding: 6px;
+.flex-container#wide {
+    background:red;
 }
+
+

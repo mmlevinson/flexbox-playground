@@ -24,8 +24,8 @@
               <ul>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
-                <li class="dimensions">
-                  <input type="checkbox" name="wide" id="wide-dimensions" />
+                <li class="dimensions wide-layout">
+                  <input type="checkbox" name="wide" />
                   <label for="wide">Landscape</label>
                   <span class="dimension-inputs"
                     >W:
@@ -456,16 +456,22 @@ div.flex-container {
   flex-direction:row;
   flex-wrap:nowrap;
  }
-                </pre
-                >
+                </pre>
               </li>
               <li id="media-queries-item">
                 <span class="section-title">+ Media Queries</span>
-                <textarea class="id" id="media-queries" rows="10">
-                        @media(769){
+                <textarea class="id" id="media-queries" rows="8">
+         @media(769){
                             display:block;
                         }
-                  </textarea>
+                  </textarea
+                >
+              </li>
+              <!-- BUTTON SET -->
+              <li class="button-set" id="media-query-buttons">
+                <button class="button" type="button" name="Reset">Reset</button>
+                <button class="button" type="button" name="Undo">Undo</button>
+                <button class="button" type="button" name="Apply">Apply</button>
               </li>
             </ul>
           </li>
