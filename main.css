@@ -153,13 +153,26 @@ li.flex-item-checkbox label{
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
 
-li#css-output{
-    height:50%;
-    background:indigo;
+li#css-output-item{
+    height:175px;
+    /* background:indigo; */
+}
+
+li#media-queries-item{
+    /* background:brown; */
+    height:198px;
+    margin-top:25px;
+}
+
+textarea#media-queries{
+    width:calc(100% - 8px);
+    margin:2px 4px;
 }
 
 pre#css {
   font-family: monospace;
+  height:100%;
+  overflow:scroll;
 
 }
 
