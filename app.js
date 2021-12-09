@@ -1,3 +1,16 @@
+import { validateDimensions } from './validate.js';
+
+
+/* Globals */
+/* For coding clarity, we store reference to DOM elements in one
+place, a key:value object */
+const elements = {
+    flexContainer: {
+        landscape: null,
+        portrait:null,
+    }
+}
+
 /* Perform setup in advance of any User activated events */
 initialize();
 

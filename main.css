@@ -76,7 +76,7 @@ li.panel {
 }
 
 /* To make the last panel resizable with the window, it was necessary to calc() the width using an empiric measurement subtracted from 100% */
-li.panel#narrow-layout {
+li.panel#portrait-layout {
   min-width: 100px;
   max-width: none;
   width: calc(100% - 930px);
@@ -204,7 +204,7 @@ section#flex-item-settings textarea {
 }
 
 /* At the bottom is a full-width flex container */
-div.flex-container#wide {
+div.flex-container#landscape {
   position: relative;
   border: 1px solid black;
   /* height: 1000px;
@@ -236,7 +236,7 @@ Although the default width of <textarea> is determined by its 'cols' attribute, 
 
 
 /* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
-div.flex-container#narrow {
+div.flex-container#portrait {
   position: relative;
   height: 100%;
   /* float:right; */
@@ -281,7 +281,7 @@ div.button-container {
   width: 30%;
 }
 
-.flex-container#wide {
+.flex-container#landscape {
     background:red;
 }
 
