@@ -111,6 +111,15 @@ function initialize() {
   setUpEventListeners();
 }
 
+function updateCSS() {
+   //print out the .style property of the FlexContainer and each FlexIem
+    //I found an interesting property called cssText on the style object
+    //Is this the custom CSS added programatically???
+    let style = elements.flexContainer.landscape.style.cssText;
+    const reformattedStyle = style.replaceAll(';', ';\n');
+    elements.cssResults.textArea.textContent = `div.flex-container  { \n ${reformattedStyle} \n }`
+}
+
 function setUpCheckboxListeners() {
    //checkboxes
    elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
@@ -147,7 +156,8 @@ function setDimensions(target, orientation, isChecked) {
   } else {
     elements[target][orientation].style.width = 'auto';
     elements[target][orientation].style.height = 'auto';
-  }
+    }
+    updateCSS();
 }
 
 function updateFlexContainer() {
