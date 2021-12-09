@@ -24,7 +24,8 @@ body {
 }
 
 ul {
-  list-style-type: none;
+  list-style: none;
+  
 }
 
 h2.main-title {
@@ -42,13 +43,12 @@ typical block level elements to inline, thus displaying them in a single row (wh
 div.main-wrapper {
   width: 100%;
   height: 100%;
-  /* display: inline-block; */
+  display: inline-block;
 }
 
 #panel-wrapper {
-  width: 100%;
+  /* width: 75%; */
   background-color: #666;
-
 }
 
 
@@ -203,12 +203,33 @@ section#flex-item-settings textarea {
   text-align: center;
 }
 
+ul.containers-list{
+    /* position:relative; */
+    /* display:inline-block; */
+    width:100%;
+    align-items:top;
+}
+
+ul.containers-list li{
+    display:inline-block;
+}
+ul.containers-list li.portrait{
+    width:calc(20% - 6px);
+    max-width:400px;
+}
+
+ul.containers-list li.landscape{
+    width:80%;
+}
+
 /* At the bottom is a full-width flex container */
 div.flex-container#landscape {
   position: relative;
   border: 1px solid black;
-  /* height: 1000px;
-  width:500px; */
+  width:100%;
+  top:4px;
+  
+
 
 }
 /* Inside the full-width flex container are children (ie flex-items */
@@ -237,10 +258,14 @@ Although the default width of <textarea> is determined by its 'cols' attribute, 
 
 /* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
 div.flex-container#portrait {
-  position: relative;
-  height: 100%;
+  /* position: relative; */
+  /* top:0; */
+  width:100%;
+  max-width:500px;
+  height: 500px;
+  /* height: 100%; */
   /* float:right; */
-  /* top: 0px; */
+  top: 0px;
   /* left:75%; */
   border: 1px solid black;
   /* float: right; */
