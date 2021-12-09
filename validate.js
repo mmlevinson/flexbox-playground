@@ -10,6 +10,6 @@ function validateDimensions(width, height, landsacape = true) {
 }
 
 
-export {
+module.export = {
     validateDimensions
 }

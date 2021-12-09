@@ -1,14 +1,94 @@
-import { validateDimensions } from './validate.js';
-
+// import { validateDimensions } from './validate.js';
 
 /* Globals */
 /* For coding clarity, we store reference to DOM elements in one
 place, a key:value object */
 const elements = {
+  flexContainer: {
+    landscape: document.querySelector('.flex-container#landscape'),
+    portrait: document.querySelector('.flex-container#portrait'),
+    checkbox: {
+      landscape: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[0],
+      portrait: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[1],
+    },
+    dimensions: {
+      landscape: {
+        width: document.querySelector('.flex-container .landscape-width'),
+        height: document.querySelector('.flex-container .landscape-height'),
+      },
+      portrait: {
+        width: document.querySelector('.flex-container .portrait-width'),
+        height: document.querySelector('.flex-container .portrait-height'),
+      },
+    },
+    displayType: document.getElementById('displayType'),
+    flexDirection: document.getElementById('flexDirection'),
+    flexWrap: document.getElementById('flexWrap'),
+    justifyContent: document.getElementById('justifyContent'),
+    alignItems: document.getElementById('alignItems'),
+    alignContent: document.getElementById('alignContent'),
+    gap: document.getElementById('gap'),
+    overflow: document.getElementById('overflowType'),
+    buttons: {
+      list: document.getElementById('flex-container-buttons'),
+    },
+  },
+  flexItems: {
+    checkbox: {
+      landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
+      portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
+    },
+    dimensions: {
+      landscape: {
+        width: document.querySelector('.flex-items .landscape-width'),
+        height: document.querySelector('.flex-items .landscape-height'),
+      },
+      portrait: {
+        width: document.querySelector('.flex-items .portrait-width'),
+        height: document.querySelector('.flex-items .portrait-height'),
+      },
+    },
+    flexItemText: document.getElementById('flex-item-text'),
+    flexGrow: document.getElementById('flexGrow'),
+    flexShrink: document.getElementById('flexShrink'),
+    flexBasis: document.getElementById('flexBasis'),
+    flexBasisValue: document.getElementById('flexBasisValue'),
+    alignSelf: document.getElementById('alignSelf'),
+    flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
+    buttons: {
+      list: document.getElementById('flex-item-buttons'),
+    },
+  },
+
+  cssResults: {
+    textArea: document.getElementById('css'),
+  },
+  mediaQueries: {
+    buttons: {
+      list: document.getElementById('media-query-buttons'),
+    },
+    textArea: document.getElementById('media-queries'),
+  },
+};
+
+
+const state = {
     flexContainer: {
-        landscape: null,
-        portrait:null,
-    }
+        landscape: {
+            checked:false,
+        },
+        portrait: {
+            checked:false,
+        }
+    },
+    flexItems: {
+        landscape: {
+            checked:false,
+        },
+        portrait: {
+            checked:false,
+        }
+    },
 }
 
 /* Perform setup in advance of any User activated events */
@@ -16,76 +96,62 @@ initialize();
 
 /* Hoisted... */
 function initialize() {
-    getFlexTextElements();
-    getFlexItemElements();
+  //additional properties of elements are set here b/c they are not accessible
+  //in the elements constructor
+  elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
+  elements.flexContainer.buttons.undo = elements.flexContainer.buttons.list.children[1];
+  elements.flexContainer.buttons.apply = elements.flexContainer.buttons.list.children[2];
+  elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
+  elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
+  elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
+  elements.mediaQueries.buttons.reset = elements.mediaQueries.buttons.list.children[0];
+  elements.mediaQueries.buttons.undo = elements.mediaQueries.buttons.list.children[1];
+  elements.mediaQueries.buttons.apply = elements.mediaQueries.buttons.list.children[2];
+  console.log(`elements`, elements);
+  setUpEventListeners();
 }
 
-
-/* Get a reference to the parent Flex Container, so that its style property can be set in code */
-const flexContainerWideLayout = document.querySelector('.flex-container#wide');
-
-
-
-/* Get a reference to each choice first panel (for setting Flex properties on the Container), so we can use the user selections to update the style property of the FlexContainer */
-const displayTypeMenu = document.getElementById('displayType');
-
-
-/* Set an EventListener for input/change events for every control in the section.flex-controls */
-displayTypeMenu.addEventListener('change', updateFlexContainer);
-
-function setWideLayoutDimensions() {
-    //get the w/h inputs
-    const inputs = document.querySelectorAll('section#flex-container-settings .dimensions.wide-layout input[type=number]');    //should be two of them:  w/h
-    const width = inputs[0].value;
-    const height = inputs[1].value;
-    console.log(`width, height`, width, height);
-    flexContainerWideLayout.style.width = width + 'px';
-    flexContainerWideLayout.style.height = height + 'px';
+function setUpCheckboxListeners() {
+   //checkboxes
+   elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
+    setDimensions(event, 'flexContainer', 'landscape');
+  });
+  elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
+    setDimensions(event, 'flexContainer', 'portrait');
+  });  
 }
 
-/* Lets get the W/H checkboxes */
-const fcs_landscape_checkbox = document.querySelector('section#flex-container-settings .dimensions.wide-layout input[type=checkbox]')
+function setUpValueFieldListeners() {
+    //numeric input fields
+    elements.flexContainer.dimensions.landscape.addEventListener('input', (event) => {
 
-/* Decode checkboxes with event.target.checked */
-fcs_landscape_checkbox.addEventListener('input', (event) => {
+    })
+}
+
+function setUpEventListeners() {
+    setUpCheckboxListeners();
+    setUpValueFieldListeners();
+}
+
+function setDimensions(event, target, orientation) {
+    state[target][orientation].checked = event.target.checked;
     if (event.target.checked) {
-        setWideLayoutDimensions();
-    } else {
-        flexContainerWideLayout.style.width = 'auto';
-        flexContainerWideLayout.style.height = 'auto';
-    }
-})
-
-
-/* Save a reference to each <textarea> (in an array) so we can programmatically update the contents of each flex-item when changed by user input.  Since there is only one <ol> in the layout, its a simple querySelector()  */
-const flexTextAreas = [];
-function getFlexTextElements() {
-
-    const orderedList = document.querySelector('ol');
-    //loop through the children
-    // orderedList.forEach((listItemElement) => {
-    //     let textAreaElement = listItemElement.firstChild();
-    //     textAreaElement.addEventListener('input', updateFlexItemText());
-    //     flexTextAreas.push(textAreaElement);
-    // })
+    const width = elements[target].dimensions[orientation].width.value;
+    const height = elements[target].dimensions[orientation].height.value;
+    console.log(`width, height`, width, height);
+    elements[target][orientation].style.width = width + 'px';
+    elements[target][orientation].style.height = height + 'px';
+  } else {
+    elements[target][orientation].style.width = 'auto';
+    elements[target][orientation].style.height = 'auto';
+  }
 }
-
-/* Save a reference to the <span> within each div.flex-item  so we can update its textContent with new user input  */
-const flexItems_wide = [];
-function getFlexItemElements() {
-    // const wideFlexContainer = document.querySelector('div.flex-container#wide');
-    // wideFlexContainer.forEach((element) => {
-    //     let spanElement = element.firstChild();
-    //     flexItems_wide.push(spanElement);
-    // })
-}
-
 
 function updateFlexContainer() {
-    //set the style properties of the Flex Container
-    flexContainer.style.display = displayTypeMenu.value;
+  //set the style properties of the Flex Container
+  flexContainer.style.display = displayTypeMenu.value;
 }
 
 function updateFlexItemText() {
-    //stub for now
+  //stub for now
 }

@@ -24,44 +24,44 @@
               <ul>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
-                <li class="dimensions wide-layout">
-                  <input type="checkbox" name="wide" />
-                  <label for="wide">Landscape</label>
+                <li class="dimensions flex-container">
+                  <input type="checkbox" name="landscape" id="flex-container-landscape"/>
+                  <label for="landscape">Landscape</label>
                   <span class="dimension-inputs"
                     >W:
                     <input
                       type="number"
-                      name="wide-dimension-horizontal"
-                      id="wide-dimension-horizontal"
+                      name="landscape-width"
+                      class="landscape-width"
                     />
                   </span>
                   <span class="dimension-inputs"
                     >H:
                     <input
                       type="number"
-                      name="wide-dimension-vertical"
-                      id="wide-dimension-vertical"
+                      name="landscape-height"
+                      class="landscape-height"
                     />
                   </span>
                 </li>
                 <!-- Portrait -->
-                <li class="dimensions">
-                  <input type="checkbox" name="wide" id="narrow-dimensions" />
-                  <label for="narrow">Portrait</label>
+                <li class="dimensions flex-container">
+                  <input type="checkbox" name="portrait" id="flex-container-portrait"/>
+                  <label for="portrait">Portrait</label>
                   <span class="dimension-inputs"
                     >W:
                     <input
                       type="number"
-                      name="narrow-dimension-horizontal"
-                      id="narrow-dimension-horizontal"
+                      name="portrait-width"
+                      class="portrait-width"
                     />
                   </span>
                   <span class="dimension-inputs"
                     >H:
                     <input
                       type="number"
-                      name="narrow-dimension-vertical"
-                      id="narrow-dimension-vertical"
+                      name="portrait-height"
+                      class="portrait-height"
                       max="1024"
                     />
                   </span>
@@ -248,44 +248,44 @@
               <ul>
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
-                <li class="dimensions">
-                  <input type="checkbox" name="wide" id="wide-dimensions" />
-                  <label for="wide">Landscape</label>
+                <li class="dimensions flex-items">
+                  <input type="checkbox" name="landscape" id="flex-item-landscape"/>
+                  <label for="landscape">Landscape</label>
                   <span class="dimension-inputs"
                     >W:
                     <input
                       type="number"
-                      name="wide-dimension-horizontal"
-                      id="wide-dimension-horizontal"
+                      name="landscape-width"
+                      class="landscape-width"
                     />
                   </span>
                   <span class="dimension-inputs"
                     >H:
                     <input
                       type="number"
-                      name="wide-dimension-vertical"
-                      id="wide-dimension-vertical"
+                      name="landscape-height"
+                      class="landscape-height"
                     />
                   </span>
                 </li>
                 <!-- Portrait -->
-                <li class="dimensions">
-                  <input type="checkbox" name="wide" id="narrow-dimensions" />
-                  <label for="narrow">Portrait</label>
+                <li class="dimensions flex-items">
+                  <input type="checkbox" name="wide" id="flex-item-portrait" />
+                  <label for="portrait">Portrait</label>
                   <span class="dimension-inputs"
                     >W:
                     <input
                       type="number"
-                      name="narrow-dimension-horizontal"
-                      id="narrow-dimension-horizontal"
+                      name="portrait-width"
+                      class="portrait-width"
                     />
                   </span>
                   <span class="dimension-inputs"
                     >H:
                     <input
                       type="number"
-                      name="narrow-dimension-vertical"
-                      id="narrow-dimension-vertical"
+                      name="portrait-height"
+                      class="portrait-height"
                       max="1024"
                     />
                   </span>
@@ -293,10 +293,11 @@
 
                 <li class="input-field">
                   <textarea
-                    id="flex-text-1"
+                    id="flex-item-text"
                     cols="25"
                     rows="3"
                     placeholder="flex-item text"
+
                   ></textarea>
                 </li>
                 <!-- Flex-Grow -->
@@ -307,6 +308,7 @@
                     min="0"
                     value="0"
                     name="flexGrow"
+                    id="flexGrow"
                     class="setting-item"
                   />
                 </li>
@@ -320,6 +322,7 @@
                     min="0"
                     value="0"
                     name="flexShrink"
+                    id="flexShrink"
                     class="setting-item"
                   />
                 </li>
@@ -331,7 +334,7 @@
                   <select
                     name="flexBasis"
                     class="setting-item"
-                    id="flexBasis-type"
+                    id="flexBasis"
                   >
                     <option value="auto">AUTO</option>
                     <option value="fill">Fill</option>
@@ -354,10 +357,11 @@
                     min="0"
                     value="0"
                     name="flexBasisValue"
+                    id="flexBasisValue"
                     class="setting-item"
                   />
                 </li>
-                <!-- Align-Selt -->
+                <!-- Align-Self -->
                 <li class="input-field">
                   <label for="alignSelf" class="setting-label"
                     >Align-Self:</label
@@ -365,7 +369,7 @@
                   <select
                     name="alignSelf"
                     class="setting-item"
-                    id="alignSelf__1"
+                    id="alignSelf"
                   >
                     <option value="auto">AUTO</option>
                     <option value="normal">Normal</option>
