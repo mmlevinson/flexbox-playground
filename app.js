@@ -182,9 +182,18 @@ function updateDislayType(event) {
   updateCSS();
 }
 
+function updateFlexDirection(event) {
+    elements.flexContainer.landscape.style.flexDirection = event.target.value;
+    elements.flexContainer.portrait.style.flexDirection = event.target.value;
+    updateCSS();
+}
+
 function setUpMenuListeners() {
   elements.flexContainer.displayType.addEventListener('change', (event) => {
     updateDislayType(event);
+  });
+  elements.flexContainer.flexDirection.addEventListener('change', (event) => {
+    updateFlexDirection(event);
   });
 }
 
