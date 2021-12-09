@@ -214,6 +214,11 @@
                   <input type="number" name="portrait-height" class="portrait-height" max="1024" />
                 </span>
               </li>
+              <!-- Flex Proportion -->
+              <li class="input-field">
+                <label for="flexProportion" class="setting-label flex-proportion">Flex:</label>
+                <input type="number" min="0" value="0" name="flexProportion" id="flexProportion" class="setting-item" disabled />
+              </li>
               <!-- Flex-Grow -->
               <li class="input-field">
                 <label for="flexGrow" class="setting-label">Flex-Grow</label>
@@ -244,11 +249,7 @@
                 <label for="flexBasisValue" class="setting-label flex-basis">Flex-Basis Value:</label>
                 <input type="number" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" disabled />
               </li>
-              <!-- Flex Value -->
-              <li class="input-field">
-                <label for="flexValue" class="setting-label flex-value">Flex:</label>
-                <input type="number" min="0" value="0" name="flexValue" id="flexValue" class="setting-item" disabled />
-              </li>
+
               <!-- Align-Self -->
               <li class="input-field">
                 <label for="alignSelf" class="setting-label">Align-Self:</label>
@@ -280,7 +281,7 @@
               </li>
               <!-- Flex Item Checkboxes -->
               <li class="input-field">
-                <span class="section-title">Select Flex Items</span>
+                
                 <div class="checkbox-wrapper">
                   <ul>
                     <li class="flex-item-checkbox">
@@ -311,7 +312,7 @@
             </ul>
           </li>
           <!-- Media Queries -->
-          <li class="panel" id="media-queries">
+          <li class="panel" id="media-queries-panel">
             <span class="section-title">+ Media Queries</span>
             <textarea class="id" id="media-queries" rows="8"> </textarea>
             <!-- BUTTON SET -->
@@ -334,26 +335,30 @@
         </ul>
       </section>
 
-      <!-- FLEX CONTAINER (Landscape) -->
+      <!-- FLEX CONTAINERS -->
       <ul class="containers-list">
-        <li class="portrait">
-          <!-- FLEX CONTAINER (Portriat) -->
-          <div class="flex-container" id="portrait">
-            <div class="flex-items">
-              <span class="flex-item-content" id="portrait_1">1</span>
-            </div>
-            <div class="flex-items">
-              <span class="flex-item-content" id="portrait_2">2</span>
-            </div>
-            <div class="flex-items">
-              <span class="flex-item-content" id="portrait_3">3</span>
-            </div>
-            <div class="flex-items">
-              <span class="flex-item-content" id="portrait_4">4</span>
-            </div>
+        <li class="portrait-panel">
+
+            <span class="section-title">Portrait</span>
+            <!-- FLEX CONTAINER (Portriat) -->
+            <div class="flex-container" id="portrait">
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_1">1</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_2">2</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_3">3</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_4">4</span>
+              </div>
+            
           </div>
         </li>
-        <li class="landscape">
+        <li class="landscape-panel">
+          <span class="section-title">Landscape</span>
           <div class="flex-container" id="landscape">
             <div class="flex-items">
               <span class="flex-item-content" id="landscape_1">1</span>

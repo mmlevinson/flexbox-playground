@@ -48,26 +48,29 @@ const elements = {
         height: document.querySelector('.flex-items .portrait-height'),
       },
     },
-    flexItemText: document.getElementById('flex-item-text'),
+    flexProportion: document.getElementById('flexProportion'),
     flexGrow: document.getElementById('flexGrow'),
     flexShrink: document.getElementById('flexShrink'),
     flexBasis: document.getElementById('flexBasis'),
     flexBasisValue: document.getElementById('flexBasisValue'),
     alignSelf: document.getElementById('alignSelf'),
+    flexItemText: document.getElementById('flex-item-text'),
     flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
     buttons: {
       list: document.getElementById('flex-item-buttons'),
     },
-  },
-
-  cssResults: {
-    textArea: document.getElementById('css'),
   },
   mediaQueries: {
     buttons: {
       list: document.getElementById('media-query-buttons'),
     },
     textArea: document.getElementById('media-queries'),
+  },
+    cssOutput: {
+        buttons: {
+            list: document.getElementById('css-output-buttons'),
+      },
+    textArea: document.getElementById('css-output'),
   },
 };
 
@@ -129,7 +132,7 @@ function updateCSS() {
   if (state.flexContainer.portrait.checked) {
     cssText += `### Portrait\ndiv.flex-container { \n ${portraitStyle}}`;
   }
-  elements.cssResults.textArea.textContent = cssText;
+  elements.cssOutput.textArea.textContent = cssText;
 }
 
 function setUpCheckboxListeners() {
@@ -173,6 +176,7 @@ function updateDislayType(event) {
   elements.flexContainer.alignContent.disabled = !isFlex;
   elements.flexContainer.gap.disabled = !isFlex;
   elements.flexContainer.overflow.disabled = !isFlex;
+  elements.flexItems.flexProportion.disabled = !isFlex;
   elements.flexItems.flexGrow.disabled = !isFlex;
   elements.flexItems.flexShrink.disabled = !isFlex;
   elements.flexItems.flexBasis.disabled = !isFlex;

@@ -9,6 +9,7 @@
 :root {
   --flex-item-color: #9aa559;
   --flex-item-border-color: rgb(165, 46, 119);
+  --panel-border-color:#222;
 }
 
 html {
@@ -48,7 +49,7 @@ div.main-wrapper {
 
 #panel-wrapper {
   /* width: 75%; */
-  height: 433px;
+  height: 450px;
   background-color: #666;
 }
 
@@ -69,16 +70,13 @@ li.panel {
 
   /* width: 24%; */
   margin-right: 5px;
-  border: 1px solid #222;
+  border: 1px solid var(--panel-border-color);
   width: 300px;
-  height: 430px;
+  height: 446px;
   min-width: 300px;
   max-width: 300px;
 }
 
-#media-queries{
-    
-}
 
 
 #css-panel{
@@ -97,8 +95,16 @@ li.panel {
 #css-output{
     font-family:monospace;
     height: 357px;
-    border-bottom:1px solid green;
+    border-bottom:1px solid var(--panel-border-color);
+}
 
+
+.button{
+    display:inherit;
+    width:30%;
+    margin-right:5px;
+    border-radius:6px;
+    padding:4px 0px;
 }
 
 .button-set{
@@ -109,13 +115,6 @@ li.panel {
     width:100%;
 }
 
-.button-set button{
-    display:inherit;
-    width:30%;
-    margin-right:5px;
-    border-radius:6px;
-    padding:4px 0px;
-}
 
 #flex-container-buttons{
     margin-top:90px;
@@ -123,15 +122,17 @@ li.panel {
 }
 
 #flex-item-buttons{
-    margin-top:9px;
+    margin-top:21px;
 }
 
-#flex-item-buttons{
-    margin-top:9px;
-}
+
 
 #css-output-buttons{
     margin-top:4px;
+}
+
+#css-copy-button{
+    float:right;
 }
 
 
@@ -167,12 +168,13 @@ li.dimensions input[type='number'] {
 
 li.flex-item-checkbox{
     display:inline-block;
-    padding-top:8px;
+    padding:8px 0px;
 }
 div.checkbox-wrapper{
   background:black;
   color:white;
   margin-top:0;
+  text-align:center;
 }
 li.flex-item-checkbox label{
       width:20px;
@@ -206,7 +208,7 @@ top:48px;
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
 span.section-title {
-   
+  padding:6px 0px;
   display: block;
   width: 100%;
   text-align: center;
@@ -240,19 +242,10 @@ ul.containers-list li.portrait{
 }
 
 ul.containers-list li.landscape{
-    width:80%;
+    width:70%;
 }
 
-/* At the bottom is a full-width flex container */
-div.flex-container#landscape {
-  position: relative;
-  border: 1px solid black;
-  width:100%;
-  top:4px;
-  
 
-
-}
 /* Inside the full-width flex container are children (ie flex-items */
 div.flex-items {
   border: 1px solid var(--flex-item-border-color);
@@ -271,17 +264,12 @@ span.flex-item-content {
   padding: 40% 0;
 }
 
-/* Reaching out to the list of <textarea> elements in the <ol> of section.flex-item-settings, we align the center of the initial <texarea> box with the numerica prefix of the <ol> using the vertical-align:middle.   MDN docs say this applies to inline, inline-block and table-cell boxes only.  It works here, so probably b/c <textarea> are inline-block??.
-
-Although the default width of <textarea> is determined by its 'cols' attribute, setting its visible width is possible. 
 
 
-
-/* This is a block level element as the final member of a row with 2 inline-block elements.   By setting its width to only 30% and float:right, it is positioned flush with the right edge of the parent container (div.main-wrapper).   We manually set the height to the same value used by the <section> rule above. */
 div.flex-container#portrait {
   /* position: relative; */
   /* top:0; */
-  width:100%;
+  width:300px;
   max-width:500px;
   height: 500px;
   /* height: 100%; */
@@ -289,10 +277,17 @@ div.flex-container#portrait {
   top: 0px;
   /* left:75%; */
   border: 1px solid black;
-  /* float: right; */
-
-  /* height: 80%; */
+  background:khaki;
 }
+
+/* At the bottom is a full-width flex container */
+div.flex-container#landscape {
+    position: relative;
+    background:indigo;
+    border: 1px solid black;
+    width:800px;
+    top:4px;
+  }
 
 div.flex-setting {
   padding: 0.3rem;
@@ -317,23 +312,17 @@ div.flex-items-checked li.flex-item-checkbox {
   width: 20%;
 }
 
-div.button-container {
+/* div.button-container {
   width: 100%;
   padding: 8px;
   border: 1px solid #555;
-}
+} */
 
-.button {
-  width: 30%;
-}
 
-.flex-container#landscape{
-    background:indigo;
-}
 
-.flex-container#portrait{
-    background:khaki;
-}
+
+
+
 
 /* li.dimensions.flex-container input[type=checkbox]{
     background-color: coral;
