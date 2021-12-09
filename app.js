@@ -71,25 +71,28 @@ const elements = {
   },
 };
 
-
 const state = {
-    flexContainer: {
-        landscape: {
-            checked:false,
-        },
-        portrait: {
-            checked:false,
-        }
+  flexContainer: {
+    landscape: {
+      checked: true,
     },
-    flexItems: {
-        landscape: {
-            checked:false,
-        },
-        portrait: {
-            checked:false,
-        }
+    portrait: {
+      checked: true,
     },
-}
+  },
+  flexItems: {
+    landscape: {
+      checked: false,
+    },
+    portrait: {
+      checked: false,
+    },
+  },
+};
+
+const defaults = {
+  displayType: 'BLOCK',
+};
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -112,42 +115,88 @@ function initialize() {
 }
 
 function updateCSS() {
-   //print out the .style property of the FlexContainer and each FlexIem
-    //I found an interesting property called cssText on the style object
-    //Is this the custom CSS added programatically???
-    let style = elements.flexContainer.landscape.style.cssText;
-    const reformattedStyle = style.replaceAll(';', ';\n');
-    elements.cssResults.textArea.textContent = `div.flex-container  { \n ${reformattedStyle} \n }`
+  //print out the .style property of the FlexContainer and each FlexIem
+  //I found an interesting property called cssText on the style object
+  //Is this the custom CSS added programatically???
+  let style = elements.flexContainer.landscape.style.cssText;
+  const landscapeStyle = style.replaceAll(';', ';\n');
+  style = elements.flexContainer.portrait.style.cssText;
+  const portraitStyle = style.replaceAll(';', ';\n');
+  let cssText = '';
+  if (state.flexContainer.landscape.checked) {
+    cssText = `### Landscape:\ndiv.flex-container  { \n ${landscapeStyle}}\n\n`;
+  }
+  if (state.flexContainer.portrait.checked) {
+    cssText += `### Portrait\ndiv.flex-container { \n ${portraitStyle}}`;
+  }
+  elements.cssResults.textArea.textContent = cssText;
 }
 
 function setUpCheckboxListeners() {
-   //checkboxes
-   elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
+  //checkboxes
+  elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
     setDimensions('flexContainer', 'landscape', event.target.checked);
   });
-  elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
+  elements.flexContainer.checkbox.portrait.addEventListener('input', (event) => {
     setDimensions('flexContainer', 'portrait', event.target.checked);
-  });  
+  });
 }
 
 function setUpValueFieldListeners() {
-    //numeric input fields
-    elements.flexContainer.dimensions.landscape.width.addEventListener('input', (event) => {
-        setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
-    })
-    elements.flexContainer.dimensions.landscape.height.addEventListener('input', (event) => {
-        setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
-    })
+  //numeric input fields
+  elements.flexContainer.dimensions.landscape.width.addEventListener('input', (event) => {
+    setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
+  });
+  elements.flexContainer.dimensions.landscape.height.addEventListener('input', (event) => {
+    setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
+  });
+  elements.flexContainer.dimensions.portrait.width.addEventListener('input', (event) => {
+    setDimensions('flexContainer', 'portrait', state.flexContainer.portrait.checked);
+  });
+  elements.flexContainer.dimensions.portrait.height.addEventListener('input', (event) => {
+    setDimensions('flexContainer', 'portrait', state.flexContainer.portrait.checked);
+  });
+}
+
+function updateDislayType(event) {
+  elements.flexContainer.landscape.style.display = event.target.value;
+  elements.flexContainer.portrait.style.display = event.target.value;
+
+  let isFlex = false;
+  if (event.target.value === 'flex' || event.target.value === 'inline-flex') {
+    isFlex = true;
+  }
+  elements.flexContainer.flexDirection.disabled = !isFlex;
+  elements.flexContainer.flexWrap.disabled = !isFlex;
+  elements.flexContainer.justifyContent.disabled = !isFlex;
+  elements.flexContainer.alignItems.disabled = !isFlex;
+  elements.flexContainer.alignContent.disabled = !isFlex;
+  elements.flexContainer.gap.disabled = !isFlex;
+  elements.flexContainer.overflow.disabled = !isFlex;
+  elements.flexItems.flexGrow.disabled = !isFlex;
+  elements.flexItems.flexShrink.disabled = !isFlex;
+  elements.flexItems.flexBasis.disabled = !isFlex;
+  elements.flexItems.flexBasisValue.disabled = !isFlex;
+  elements.flexItems.alignSelf.disabled = !isFlex;
+
+  updateCSS();
+}
+
+function setUpMenuListeners() {
+  elements.flexContainer.displayType.addEventListener('change', (event) => {
+    updateDislayType(event);
+  });
 }
 
 function setUpEventListeners() {
-    setUpCheckboxListeners();
-    setUpValueFieldListeners();
+  setUpCheckboxListeners();
+  setUpValueFieldListeners();
+  setUpMenuListeners();
 }
 
 function setDimensions(target, orientation, isChecked) {
-    state[target][orientation].checked = isChecked;
-    if (isChecked) {
+  state[target][orientation].checked = isChecked;
+  if (isChecked) {
     const width = elements[target].dimensions[orientation].width.value;
     const height = elements[target].dimensions[orientation].height.value;
     console.log(`width, height`, width, height);
@@ -156,8 +205,8 @@ function setDimensions(target, orientation, isChecked) {
   } else {
     elements[target][orientation].style.width = 'auto';
     elements[target][orientation].style.height = 'auto';
-    }
-    updateCSS();
+  }
+  updateCSS();
 }
 
 function updateFlexContainer() {

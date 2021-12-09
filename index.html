@@ -25,7 +25,7 @@
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
                 <li class="dimensions flex-container">
-                  <input type="checkbox" name="landscape" id="flex-container-landscape" />
+                  <input type="checkbox" name="landscape" id="flex-container-landscape" checked />
                   <label for="landscape">Landscape</label>
                   <span class="dimension-inputs"
                     >W:
@@ -38,7 +38,7 @@
                 </li>
                 <!-- Portrait -->
                 <li class="dimensions flex-container">
-                  <input type="checkbox" name="portrait" id="flex-container-portrait" />
+                  <input type="checkbox" name="portrait" id="flex-container-portrait" checked />
                   <label for="portrait">Portrait</label>
                   <span class="dimension-inputs"
                     >W:
@@ -53,18 +53,18 @@
                 <li class="input-field">
                   <label for="display" class="setting-label">Display:</label>
                   <select name="display" class="setting-item" id="displayType">
+                    <option value="block">BLOCK</option>
+                    <option value="inline">Inline</option>
+                    <option value="inline-block">Inline-Block</option>
                     <option value="flex">Flex</option>
                     <option value="inline-flex">Inline-Flex</option>
-                    <option value="block">BLOCK</option>
-                    <option value="inline-block">Inline-Block</option>
-                    <option value="inline">Inline</option>
                   </select>
                 </li>
 
                 <!-- Flex-Direction -->
                 <li class="input-field">
                   <label for="flexDirection" class="setting-label">Flex-Direction:</label>
-                  <select name="flexDirection" class="setting-item" id="flexDirection">
+                  <select name="flexDirection" class="setting-item" id="flexDirection" disabled>
                     <option value="row">ROW</option>
                     <option value="column">Column</option>
                     <option value="row-reverse">Row-Reverse</option>
@@ -78,7 +78,7 @@
                 <!-- Flex Wrap -->
                 <li class="input-field">
                   <label for="flexWrap" class="setting-label">Flex-Wrap:</label>
-                  <select name="flexWrap" class="setting-item" id="flexWrap">
+                  <select name="flexWrap" class="setting-item" id="flexWrap" disabled>
                     <option value="nowrap">NO WRAP</option>
                     <option value="wrap">Wrap</option>
                     <option value="wrap-reverse">Wrap-Reverse</option>
@@ -92,7 +92,7 @@
                 <!-- Justify-Content -->
                 <li class="input-field">
                   <label for="justifyContent" class="setting-label">Justify-Content:</label>
-                  <select name="justifyContent" class="setting-item" id="justifyContent">
+                  <select name="justifyContent" class="setting-item" id="justifyContent" disabled>
                     <option value="flex-start">FLEX START</option>
                     <option value="center">Center</option>
                     <option value="start">Start</option>
@@ -117,7 +117,7 @@
                 <!-- Align Items -->
                 <li class="input-field">
                   <label for="alignItems" class="setting-label">Align-Items:</label>
-                  <select name="alignItems" class="setting-item" id="alignItems">
+                  <select name="alignItems" class="setting-item" id="alignItems" disabled>
                     <option value="stretch">STRETCH</option>
                     <option value="center">Center</option>
                     <option value="start">Start</option>
@@ -139,7 +139,7 @@
                 <!-- Align Content -->
                 <li class="input-field">
                   <label for="alignContent" class="setting-label">Align-Content:</label>
-                  <select name="alignContent" class="setting-item" id="alignContent">
+                  <select name="alignContent" class="setting-item" id="alignContent" disabled>
                     <option value="stretch">STRETCH</option>
                     <option value="normal">Normal</option>
                     <option value="center">Center</option>
@@ -164,12 +164,12 @@
                 <!-- Gap -->
                 <li class="input-field">
                   <label for="gap" class="setting-label">Gap:</label>
-                  <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" />
+                  <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
                 </li>
                 <!-- Overflow property -->
                 <li class="input-field">
                   <label for="overflow" class="setting-label">Overflow:</label>
-                  <select name="overflow" class="setting-item" id="overflowType">
+                  <select name="overflow" class="setting-item" id="overflowType" disabled>
                     <option value="auto">AUTO</option>
                     <option value="visible">Visible</option>
                     <option value="hidden">Hidden</option>
@@ -224,17 +224,17 @@
                 <!-- Flex-Grow -->
                 <li class="input-field">
                   <label for="flexGrow" class="setting-label">Flex-Grow</label>
-                  <input type="number" min="0" value="0" name="flexGrow" id="flexGrow" class="setting-item" />
+                  <input type="number" min="0" value="0" name="flexGrow" id="flexGrow" class="setting-item" disabled />
                 </li>
                 <!-- Flex-Shrink -->
                 <li class="input-field">
                   <label for="flexShrink" class="setting-label">Flex-Shrink</label>
-                  <input type="number" min="0" value="0" name="flexShrink" id="flexShrink" class="setting-item" />
+                  <input type="number" min="0" value="0" name="flexShrink" id="flexShrink" class="setting-item" disabled />
                 </li>
                 <!-- Flex-Basis Type -->
                 <li class="input-field">
                   <label for="flexBasis" class="setting-label">Flex-Basis:</label>
-                  <select name="flexBasis" class="setting-item" id="flexBasis">
+                  <select name="flexBasis" class="setting-item" id="flexBasis" disabled>
                     <option value="auto">AUTO</option>
                     <option value="fill">Fill</option>
                     <option value="maxContent">Max-Content</option>
@@ -249,12 +249,12 @@
                 <!-- Flex-Basis Value -->
                 <li class="input-field">
                   <label for="flexBasisValue" class="setting-label flex-basis">Flex-Basis Value:</label>
-                  <input type="number" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" />
+                  <input type="number" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" disabled />
                 </li>
                 <!-- Align-Self -->
                 <li class="input-field">
                   <label for="alignSelf" class="setting-label">Align-Self:</label>
-                  <select name="alignSelf" class="setting-item" id="alignSelf">
+                  <select name="alignSelf" class="setting-item" id="alignSelf" disabled>
                     <option value="auto">AUTO</option>
                     <option value="normal">Normal</option>
                     <option value="center">Center</option>
@@ -318,12 +318,7 @@
               </li>
               <li id="media-queries-item">
                 <span class="section-title">+ Media Queries</span>
-                <textarea class="id" id="media-queries" rows="8">
-         @media(769){
-                            display:block;
-                        }
-                  </textarea
-                >
+                <textarea class="id" id="media-queries" rows="8"> </textarea>
               </li>
               <!-- BUTTON SET -->
               <li class="button-set" id="media-query-buttons">
@@ -336,7 +331,18 @@
           <!-- FLEX CONTAINER (NARROW) -->
           <li class="panel" id="portrait-layout">
             <div class="flex-container" id="portrait">
-              <span>Flex Container narrow</span>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_1">1</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_2">2</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_3">3</span>
+              </div>
+              <div class="flex-items">
+                <span class="flex-item-content" id="portrait_4">4</span>
+              </div>
             </div>
           </li>
         </ul>
@@ -345,16 +351,16 @@
       <!-- FLEX CONTAINER (WIDE) -->
       <div class="flex-container" id="landscape">
         <div class="flex-items">
-          <span class="flex-item-content" id="1">1</span>
+          <span class="flex-item-content" id="landscape_1">1</span>
         </div>
         <div class="flex-items">
-          <span class="flex-item-content" id="2">2</span>
+          <span class="flex-item-content" id="landscape_2">2</span>
         </div>
         <div class="flex-items">
-          <span class="flex-item-content" id="3">3</span>
+          <span class="flex-item-content" id="landscape_3">3</span>
         </div>
         <div class="flex-items">
-          <span class="flex-item-content" id="4">4</span>
+          <span class="flex-item-content" id="landscape_4">4</span>
         </div>
       </div>
     </div>

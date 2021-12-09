@@ -209,14 +209,14 @@ div.flex-container#landscape {
   border: 1px solid black;
   /* height: 1000px;
   width:500px; */
-  display: flex;
+
 }
 /* Inside the full-width flex container are children (ie flex-items */
 div.flex-items {
   border: 1px solid var(--flex-item-border-color);
   background-color: var(--flex-item-color);
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
 }
 
 /* This rule is for the content of each flex-item.  By default, a span is inline, so setting the display to block permits assigning an explicit width/height ()which is based on the parent container, in this case the div.flex-items which wraps this span.    If you just put a single char (like a numeric value), then padding-vertical:40% will get it to about the middle of the element.  Otherwise, the content should flow and size according to its specified width/height. */
@@ -281,8 +281,12 @@ div.button-container {
   width: 30%;
 }
 
-.flex-container#landscape {
+.flex-container#landscape{
     background:indigo;
+}
+
+.flex-container#portrait{
+    background:khaki;
 }
 
 /* li.dimensions.flex-container input[type=checkbox]{
