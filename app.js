@@ -114,17 +114,20 @@ function initialize() {
 function setUpCheckboxListeners() {
    //checkboxes
    elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
-    setDimensions(event, 'flexContainer', 'landscape');
+    setDimensions('flexContainer', 'landscape', event.target.checked);
   });
   elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
-    setDimensions(event, 'flexContainer', 'portrait');
+    setDimensions('flexContainer', 'portrait', event.target.checked);
   });  
 }
 
 function setUpValueFieldListeners() {
     //numeric input fields
-    elements.flexContainer.dimensions.landscape.addEventListener('input', (event) => {
-
+    elements.flexContainer.dimensions.landscape.width.addEventListener('input', (event) => {
+        setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
+    })
+    elements.flexContainer.dimensions.landscape.height.addEventListener('input', (event) => {
+        setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
     })
 }
 
@@ -133,9 +136,9 @@ function setUpEventListeners() {
     setUpValueFieldListeners();
 }
 
-function setDimensions(event, target, orientation) {
-    state[target][orientation].checked = event.target.checked;
-    if (event.target.checked) {
+function setDimensions(target, orientation, isChecked) {
+    state[target][orientation].checked = isChecked;
+    if (isChecked) {
     const width = elements[target].dimensions[orientation].width.value;
     const height = elements[target].dimensions[orientation].height.value;
     console.log(`width, height`, width, height);
