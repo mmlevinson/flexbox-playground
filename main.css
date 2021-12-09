@@ -48,6 +48,7 @@ div.main-wrapper {
 
 #panel-wrapper {
   /* width: 75%; */
+  height: 433px;
   background-color: #666;
 }
 
@@ -70,21 +71,37 @@ li.panel {
   margin-right: 5px;
   border: 1px solid #222;
   width: 300px;
-  height: 385px;
+  height: 430px;
   min-width: 300px;
   max-width: 300px;
 }
 
-/* To make the last panel resizable with the window, it was necessary to calc() the width using an empiric measurement subtracted from 100% */
-li.panel#portrait-layout {
-  min-width: 100px;
-  max-width: none;
-  width: calc(100% - 930px);
-  /* background-color: red; */
-  margin-right: 0;
+#media-queries{
+    
 }
 
-li.button-set{
+
+#css-panel{
+    /* border: 1px solid red; */
+    /* height:360px; */
+    min-width: 100px;
+    max-width: none;
+    width: calc(100% - 930px);
+    /* background-color: red; */
+    margin-right: 0;
+    /* background:indigo; */
+    /* font-family: monospace; */
+    
+}
+
+#css-output{
+    font-family:monospace;
+    height: 357px;
+    border-bottom:1px solid green;
+
+}
+
+.button-set{
     background:slategray;
     padding:8px;
     padding-left:12px;
@@ -92,45 +109,60 @@ li.button-set{
     width:100%;
 }
 
-li.button-set#flex-container-buttons{
-    margin-top:52px;
-}
-
-li.button-set#flex-item-buttons{
-    margin-top:4px;
-}
-
-li.button-set button{
+.button-set button{
     display:inherit;
     width:30%;
     margin-right:5px;
+    border-radius:6px;
+    padding:4px 0px;
 }
+
+#flex-container-buttons{
+    margin-top:90px;
+ 
+}
+
+#flex-item-buttons{
+    margin-top:9px;
+}
+
+#flex-item-buttons{
+    margin-top:9px;
+}
+
+#css-output-buttons{
+    margin-top:4px;
+}
+
+
+
 
 li.input-field,
 li.dimensions {
   padding: 4px;
   width: 100%;
   display: inline-block;
+  
 }
 
 li.input-field label {
     /* background:coral; */
   display: inherit;
-  width: 48%;
+  width: 130px;
 }
 li.input-field .setting-item {
   display: inherit;
-  width: 50%;
+  width: 148px;
 }
 
 li.dimensions > label {
   /* border:1px solid red; */
   display: inherit;
-  width: 90px;
+  width: 112px;
 }
 
 li.dimensions input[type='number'] {
-  width: 54px;
+  width: 50px;
 }
 
 li.flex-item-checkbox{
@@ -153,27 +185,15 @@ li.flex-item-checkbox label{
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
 
-li#css-output-item{
-    height:175px;
-    /* background:indigo; */
-}
 
-li#media-queries-item{
-    /* background:brown; */
-    height:100px;
-    margin-top:25px;
-}
 
 textarea#media-queries{
     width:calc(100% - 8px);
     margin:0px 4px;
+    height:356px;
 }
 
-pre#css{
-  font-family: monospace;
-  height:100%;
-  overflow:scroll;
-}
+
 
 /* The buttons are positioned by setting their position:relative which allows me to adjust the top by pixels until it is displayed at the bottom of the panel (which is not adjustable.   The original top is determined by its relationship to adjacent DOM elements */
 li.button-set#media-query-buttons{
@@ -186,6 +206,7 @@ top:48px;
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
 span.section-title {
+   
   display: block;
   width: 100%;
   text-align: center;
@@ -196,7 +217,7 @@ span.section-title {
 }
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
-section#flex-item-settings textarea {
+#flex-item-settings textarea {
   margin-bottom: 5px;
   width: 100%;
   overflow: scroll;
