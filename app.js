@@ -37,7 +37,7 @@ const elements = {
     checkbox: {
       landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
       portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
-      itemsList: document.getElementById('flex-item-checkbox-list'),
+      list: document.querySelectorAll('.checkbox__flex-item'),
     },
     dimensions: {
       landscape: {
@@ -60,7 +60,7 @@ const elements = {
     buttons: {
       list: document.getElementById('flex-item-buttons'),
     },
-    allItems: document.querySelectorAll('.flex-item'),
+    list: document.querySelectorAll('.flex-item'),
   },
   mediaQueries: {
     buttons: {
@@ -118,10 +118,10 @@ function initialize() {
   elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
   elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
   elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
-  elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.itemsList.children[0];
-  elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.itemsList.children[1];
-  elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.itemsList.children[2];
-  elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.itemsList.children[3];
+  elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.list[0];
+  elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.list[1];
+  elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.list[2];
+  elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.list[3];
   console.log(`elements`, elements);
   setUpEventListeners();
 }
@@ -208,6 +208,26 @@ function setUpMenuListeners() {
 
 function updateFlexItems() {
   //we need to poll listItem CheckBoxes and find which ones are checked
+    //update the Flex-Item-Text field first
+
+    const itemText = elements.flexItems.flexItemText.value;
+    if (itemText) {
+        console.log(`itemText`, itemText);
+        //loop each item in elements.flexItems.itemsList and set their span.textContent
+        for (let index = 0; index < 4; index++) {
+            const portraitItem = elements.flexItems.list[index];
+            const landscapeItem = elements.flexItems.list[index+4];
+            if (elements.flexItems.checkbox.list[index].checked) {
+                portraitItem.firstElementChild.textContent = itemText;
+                landscapeItem.firstElementChild.textContent = itemText;
+            } else {
+                portraitItem.firstElementChild.textContent = index.toString();
+                landscapeItem.firstElementChild.textContent = index.toString();
+            }
+            
+        }
+
+    }
 }
 
 function setUpButtonListeners() {

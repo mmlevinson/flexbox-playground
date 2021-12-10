@@ -252,7 +252,7 @@ ul.containers-list li.landscape{
 
 
 /* Inside the full-width flex container are children (ie flex-items */
-div.flex-items {
+div.flex-item {
   border: 1px solid var(--flex-item-border-color);
   background-color: var(--flex-item-color);
   height: 80px;
