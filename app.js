@@ -37,6 +37,7 @@ const elements = {
     checkbox: {
       landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
       portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
+      itemsList: document.getElementById('flex-item-checkbox-list'),
     },
     dimensions: {
       landscape: {
@@ -59,6 +60,7 @@ const elements = {
     buttons: {
       list: document.getElementById('flex-item-buttons'),
     },
+    allItems: document.querySelectorAll('.flex-item'),
   },
   mediaQueries: {
     buttons: {
@@ -66,10 +68,10 @@ const elements = {
     },
     textArea: document.getElementById('media-queries'),
   },
-    cssOutput: {
-        buttons: {
-            list: document.getElementById('css-output-buttons'),
-      },
+  cssOutput: {
+    buttons: {
+      list: document.getElementById('css-output-buttons'),
+    },
     textArea: document.getElementById('css-output'),
   },
 };
@@ -113,8 +115,22 @@ function initialize() {
   elements.mediaQueries.buttons.reset = elements.mediaQueries.buttons.list.children[0];
   elements.mediaQueries.buttons.undo = elements.mediaQueries.buttons.list.children[1];
   elements.mediaQueries.buttons.apply = elements.mediaQueries.buttons.list.children[2];
+  elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
+  elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
+  elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
+  elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.itemsList.children[0];
+  elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.itemsList.children[1];
+  elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.itemsList.children[2];
+  elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.itemsList.children[3];
   console.log(`elements`, elements);
   setUpEventListeners();
+}
+
+function setUpEventListeners() {
+  setUpCheckboxListeners();
+  setUpValueFieldListeners();
+  setUpMenuListeners();
+  setUpButtonListeners();
 }
 
 function updateCSS() {
@@ -159,14 +175,60 @@ function setUpValueFieldListeners() {
   elements.flexContainer.dimensions.portrait.height.addEventListener('input', (event) => {
     setDimensions('flexContainer', 'portrait', state.flexContainer.portrait.checked);
   });
+
+  elements.flexContainer.gap.addEventListener('input', (event) => {
+    setGap(event.target.value);
+  });
 }
 
-function updateDislayType(event) {
-  elements.flexContainer.landscape.style.display = event.target.value;
-  elements.flexContainer.portrait.style.display = event.target.value;
+function setUpMenuListeners() {
+  elements.flexContainer.displayType.addEventListener('change', (event) => {
+    setDisplayType(event.target.value);
+    //   setFlexContainerStyle('display', event.target.value);
+  });
+  elements.flexContainer.flexDirection.addEventListener('change', (event) => {
+    setFlexContainerStyle('flex-direction', event.target.value);
+  });
+  elements.flexContainer.flexWrap.addEventListener('change', (event) => {
+    setFlexContainerStyle('flex-wrap', event.target.value);
+  });
+  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+    setFlexContainerStyle('justify-content', event.target.value);
+  });
+  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+    setFlexContainerStyle('align-items', event.target.value);
+  });
+  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+    setFlexContainerStyle('align-content', event.target.value);
+  });
+  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+    setFlexContainerStyle('overflow', event.target.value);
+  });
+}
+
+function updateFlexItems() {
+  //we need to poll listItem CheckBoxes and find which ones are checked
+}
+
+function setUpButtonListeners() {
+  //the FlexItem Apply button
+  elements.flexItems.buttons.apply.addEventListener('click', (event) => {
+    updateFlexItems();
+  });
+}
+
+function setFlexContainerStyle(property, newValue) {
+  elements.flexContainer.landscape.style[property] = newValue;
+  elements.flexContainer.portrait.style[property] = newValue;
+  updateCSS();
+}
+
+function setDisplayType(newValue) {
+  elements.flexContainer.landscape.style.display = newValue;
+  elements.flexContainer.portrait.style.display = newValue;
 
   let isFlex = false;
-  if (event.target.value === 'flex' || event.target.value === 'inline-flex') {
+  if (newValue === 'flex' || newValue === 'inline-flex') {
     isFlex = true;
   }
   elements.flexContainer.flexDirection.disabled = !isFlex;
@@ -186,27 +248,6 @@ function updateDislayType(event) {
   updateCSS();
 }
 
-function updateFlexDirection(event) {
-    elements.flexContainer.landscape.style.flexDirection = event.target.value;
-    elements.flexContainer.portrait.style.flexDirection = event.target.value;
-    updateCSS();
-}
-
-function setUpMenuListeners() {
-  elements.flexContainer.displayType.addEventListener('change', (event) => {
-    updateDislayType(event);
-  });
-  elements.flexContainer.flexDirection.addEventListener('change', (event) => {
-    updateFlexDirection(event);
-  });
-}
-
-function setUpEventListeners() {
-  setUpCheckboxListeners();
-  setUpValueFieldListeners();
-  setUpMenuListeners();
-}
-
 function setDimensions(target, orientation, isChecked) {
   state[target][orientation].checked = isChecked;
   if (isChecked) {
@@ -220,11 +261,6 @@ function setDimensions(target, orientation, isChecked) {
     elements[target][orientation].style.height = 'auto';
   }
   updateCSS();
-}
-
-function updateFlexContainer() {
-  //set the style properties of the Flex Container
-  flexContainer.style.display = displayTypeMenu.value;
 }
 
 function updateFlexItemText() {
