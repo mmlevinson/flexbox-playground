@@ -9,7 +9,28 @@ function validateDimensions(width, height, landsacape = true) {
     }
 }
 
+const MAX_ITEMS = 12;
+const MIN_ITEMS = 1;
+function validateHowManyItems(numItems) {
+    if (!numItems) {
+        return false;  //when delete button or empty field
+    }
+    //input from WWW is always text (see console.log)
+    const flexItemCount = +numItems;  //coerce to Number
+    // console.log(`flexItemCount`, flexItemCount);
+    if (flexItemCount < MIN_ITEMS) {
+        alert(`You must have at least ${MIN_ITEMS} item(s)`);
+        return false;
+    }
+    if (flexItemCount > MAX_ITEMS) {
+        alert(`Plase enter a value less than ${MAX_ITEMS}`);
+        return false;
+    }
+    return true;
+}
 
-module.export = {
-    validateDimensions
+
+export {
+    validateDimensions,
+    validateHowManyItems
 }

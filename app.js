@@ -1,4 +1,9 @@
-// import { validateDimensions } from './validate.js';
+import {
+    validateDimensions,
+    validateHowManyItems,
+} from './validate.js';
+
+import { FlexItem } from './classes.js';
 
 /* Globals */
 /* For coding clarity, we store reference to DOM elements in one
@@ -32,7 +37,7 @@ const elements = {
     alignContent: document.getElementById('alignContent'),
     gap: document.getElementById('gap'),
     overflow: document.getElementById('overflowType'),
-    howManyItems: document.getElementById('overflowType'),
+    howManyItems: document.getElementById('howManyItems'),
     buttons: {
       list: document.getElementById('flex-container-buttons'),
     },
@@ -128,6 +133,7 @@ initialize();
 
 /* Hoisted... */
 function initialize() {
+    customElements.define('flex-item', FlexItem, { extends: 'div' });
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
   elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
@@ -139,15 +145,33 @@ function initialize() {
   elements.mediaQueries.buttons.reset = elements.mediaQueries.buttons.list.children[0];
   elements.mediaQueries.buttons.undo = elements.mediaQueries.buttons.list.children[1];
   elements.mediaQueries.buttons.apply = elements.mediaQueries.buttons.list.children[2];
-  elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
-  elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
-  elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
-  elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.list[0];
-  elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.list[1];
-  elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.list[2];
-  elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.list[3];
+  //   elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.list[0];
+  //   elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.list[1];
+  //   elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.list[2];
+  //   elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.list[3];
   console.log(`elements`, elements);
+  setUpFlexItems();
   setUpEventListeners();
+}
+
+function setUpFlexItems(newValue) {
+  // const numItems = elements.flexContainer.howManyItems.value;
+    // console.log(`newValue`, newValue);
+    if (!validateHowManyItems(newValue)) return;
+    //remove all children from flexContainers
+    // elements.flexContainer.landscape.children.forEach((child) => {
+    //     document.removeChild(child);   //get rid of all previous 
+    // });
+    //now create new elements meeting the number specified
+    const flexItemCount = +newValue;   //coerce text value to numeric value
+    for (let index = 0; index < flexItemCount; index++) {
+        const newFlexItem = document.createElement('div', {is:'flex-item'});
+        elements.flexContainer.landscape.appendChild(newFlexItem);
+        
+    }
+
+
+
 }
 
 function setUpEventListeners() {
@@ -202,6 +226,10 @@ function setUpValueFieldListeners() {
 
   elements.flexContainer.gap.addEventListener('input', (event) => {
     setFlexContainerStyle('gap', event.target.value + 'px');
+  });
+
+  elements.flexContainer.howManyItems.addEventListener('input', (event) => {
+    setUpFlexItems(event.target.value);
   });
 }
 
@@ -259,6 +287,7 @@ function setDisplayType(newValue) {
   elements.flexContainer.alignContent.disabled = !isFlex;
   elements.flexContainer.gap.disabled = !isFlex;
   elements.flexContainer.overflow.disabled = !isFlex;
+  elements.flexContainer.howManyItems.disabled = !isFlex;
   elements.flexItems.flexProportion.disabled = !isFlex;
   elements.flexItems.flexGrow.disabled = !isFlex;
   elements.flexItems.flexShrink.disabled = !isFlex;
