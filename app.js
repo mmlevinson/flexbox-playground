@@ -3,6 +3,9 @@
 /* Globals */
 /* For coding clarity, we store reference to DOM elements in one
 place, a key:value object */
+
+const FLEX_ITEM_COUNT = 4;
+
 const elements = {
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
@@ -29,6 +32,7 @@ const elements = {
     alignContent: document.getElementById('alignContent'),
     gap: document.getElementById('gap'),
     overflow: document.getElementById('overflowType'),
+    howManyItems: document.getElementById('overflowType'),
     buttons: {
       list: document.getElementById('flex-container-buttons'),
     },
@@ -92,11 +96,31 @@ const state = {
     portrait: {
       checked: false,
     },
+    set: [],
   },
 };
 
 const defaults = {
-  displayType: 'BLOCK',
+  flexContainer: {
+    displayType: {
+      property: 'displayType',
+      default: 'block',
+    },
+  },
+  flexItem: {
+    flexShrink: {
+      property: 'flex-shrink',
+      default: 1,
+    },
+    flexGrow: {
+      property: 'flex-grow',
+      default: 0,
+    },
+    flexBasis: {
+      property: 'flex-basis',
+      default: 'auto',
+    },
+  },
 };
 
 /* Perform setup in advance of any User activated events */
@@ -177,7 +201,7 @@ function setUpValueFieldListeners() {
   });
 
   elements.flexContainer.gap.addEventListener('input', (event) => {
-    setGap(event.target.value);
+    setFlexContainerStyle('gap', event.target.value + 'px');
   });
 }
 
@@ -195,51 +219,28 @@ function setUpMenuListeners() {
   elements.flexContainer.justifyContent.addEventListener('change', (event) => {
     setFlexContainerStyle('justify-content', event.target.value);
   });
-  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+  elements.flexContainer.alignItems.addEventListener('change', (event) => {
     setFlexContainerStyle('align-items', event.target.value);
   });
-  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+  elements.flexContainer.alignContent.addEventListener('change', (event) => {
     setFlexContainerStyle('align-content', event.target.value);
   });
-  elements.flexContainer.justifyContent.addEventListener('change', (event) => {
+  elements.flexContainer.overflow.addEventListener('change', (event) => {
     setFlexContainerStyle('overflow', event.target.value);
   });
-}
-
-function updateFlexItems() {
-  //we need to poll listItem CheckBoxes and find which ones are checked
-    //update the Flex-Item-Text field first
-
-    const itemText = elements.flexItems.flexItemText.value;
-    if (itemText) {
-        console.log(`itemText`, itemText);
-        //loop each item in elements.flexItems.itemsList and set their span.textContent
-        for (let index = 0; index < 4; index++) {
-            const portraitItem = elements.flexItems.list[index];
-            const landscapeItem = elements.flexItems.list[index+4];
-            if (elements.flexItems.checkbox.list[index].checked) {
-                portraitItem.firstElementChild.textContent = itemText;
-                landscapeItem.firstElementChild.textContent = itemText;
-            } else {
-                portraitItem.firstElementChild.textContent = index.toString();
-                landscapeItem.firstElementChild.textContent = index.toString();
-            }
-            
-        }
-
-    }
 }
 
 function setUpButtonListeners() {
   //the FlexItem Apply button
   elements.flexItems.buttons.apply.addEventListener('click', (event) => {
-    updateFlexItems();
+    updateAllFlexItems(event);
   });
 }
 
 function setFlexContainerStyle(property, newValue) {
-  elements.flexContainer.landscape.style[property] = newValue;
-  elements.flexContainer.portrait.style[property] = newValue;
+  console.log(`property, newValue`, property, newValue);
+  elements.flexContainer.landscape.style.setProperty(property, newValue);
+  elements.flexContainer.portrait.style.setProperty(property, newValue);
   updateCSS();
 }
 
@@ -284,5 +285,38 @@ function setDimensions(target, orientation, isChecked) {
 }
 
 function updateFlexItemText() {
-  //stub for now
+  const itemText = elements.flexItems.flexItemText.value;
+  if (!itemText) {
+    return;
+  }
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+    const portraitItem = elements.flexItems.list[index];
+    const landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT];
+    if (elements.flexItems.checkbox.list[index].checked) {
+      portraitItem.firstElementChild.textContent = itemText;
+      landscapeItem.firstElementChild.textContent = itemText;
+    } else {
+      portraitItem.firstElementChild.textContent = (index + 1).toString();
+      landscapeItem.firstElementChild.textContent = (index + 1).toString();
+    }
+  }
+}
+
+function updateFlexItemProperty(property, newValue) {
+  function updateItem(index) {
+    let portraitItem = elements.flexItems.list[index];
+    let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT];
+    portraitItem.style[property] = newValue;
+    landscapeItem.style[property] = newValue;
+  }
+  //set flowGrow on each flexItem
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+    updateItem(index);
+  }
+  updateCSS();
+}
+
+function updateAllFlexItems(event) {
+  console.log(`event`, event);
+  updateFlexItemText();
 }

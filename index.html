@@ -88,6 +88,31 @@
                   <option value="unset">Unset</option>
                 </select>
               </li>
+              <!-- Align Content -->
+              <li class="input-field">
+                <label for="alignContent" class="setting-label">Align-Content:</label>
+                <select name="alignContent" class="setting-item" id="alignContent" disabled>
+                  <option value="stretch">STRETCH</option>
+                  <option value="normal">Normal</option>
+                  <option value="center">Center</option>
+                  <option value="start">Start</option>
+                  <option value="self-start">End</option>
+                  <option value="flex-start">Flex-Start</option>
+                  <option value="flex-end">Flex-End</option>
+                  <option value="space-between">Space-Between</option>
+                  <option value="stretch">Stretch</option>
+                  <option value="space-evenly">Space-Evenly</option>
+                  <option value="baseline">Baseline</option>
+                  <option value="first baseline">First Baseline</option>
+                  <option value="last baseline">Last Baseline</option>
+                  <option value="safe center">Safe Center</option>
+                  <option value="unsafe center">Unsafe Center</option>
+                  <option value="inherit">Inherit</option>
+                  <option value="initial">Initial</option>
+                  <option value="revert">Revert</option>
+                  <option value="unset">Unset</option>
+                </select>
+              </li>
               <!-- Justify-Content -->
               <li class="input-field">
                 <label for="justifyContent" class="setting-label">Justify-Content:</label>
@@ -135,31 +160,7 @@
                   <option value="unset">Unset</option>
                 </select>
               </li>
-              <!-- Align Content -->
-              <li class="input-field">
-                <label for="alignContent" class="setting-label">Align-Content:</label>
-                <select name="alignContent" class="setting-item" id="alignContent" disabled>
-                  <option value="stretch">STRETCH</option>
-                  <option value="normal">Normal</option>
-                  <option value="center">Center</option>
-                  <option value="start">Start</option>
-                  <option value="self-start">End</option>
-                  <option value="flex-start">Flex-Start</option>
-                  <option value="flex-end">Flex-End</option>
-                  <option value="space-between">Space-Between</option>
-                  <option value="stretch">Stretch</option>
-                  <option value="space-evenly">Space-Evenly</option>
-                  <option value="baseline">Baseline</option>
-                  <option value="first baseline">First Baseline</option>
-                  <option value="last baseline">Last Baseline</option>
-                  <option value="safe center">Safe Center</option>
-                  <option value="unsafe center">Unsafe Center</option>
-                  <option value="inherit">Inherit</option>
-                  <option value="initial">Initial</option>
-                  <option value="revert">Revert</option>
-                  <option value="unset">Unset</option>
-                </select>
-              </li>
+
               <!-- Gap -->
               <li class="input-field">
                 <label for="gap" class="setting-label">Gap:</label>
@@ -174,6 +175,11 @@
                   <option value="hidden">Hidden</option>
                   <option value="scroll">Scroll</option>
                 </select>
+              </li>
+              <!-- How Many Items -->
+              <li class="input-field">
+                <label for="howMany" class="setting-label"># Flex-Items:</label>
+                <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" disabled />
               </li>
               <!-- BUTTON SET -->
               <li class="button-set" id="flex-container-buttons">
@@ -281,12 +287,11 @@
               </li>
               <!-- Flex Item Checkboxes -->
               <li class="input-field">
-                
                 <div class="checkbox-wrapper">
                   <ul id="flex-item-checkbox-list">
                     <li class="flex-item-checkbox">
                       <label for="checkbox__1">#1</label>
-                      <input type="checkbox" checked name="checkbox__1" class="checkbox__flex-item"/>
+                      <input type="checkbox" checked name="checkbox__1" class="checkbox__flex-item" />
                     </li>
                     <li class="flex-item-checkbox">
                       <label for="checkbox__2">#2</label>
@@ -338,23 +343,21 @@
       <!-- FLEX CONTAINERS -->
       <ul class="containers-list">
         <li class="portrait-panel">
-
-            <span class="section-title">Portrait</span>
-            <!-- FLEX CONTAINER (Portriat) -->
-            <div class="flex-container" id="portrait">
-              <div class="flex-item">
-                <span class="flex-item-content" id="portrait_1">1</span>
-              </div>
-              <div class="flex-item">
-                <span class="flex-item-content" id="portrait_2">2</span>
-              </div>
-              <div class="flex-item">
-                <span class="flex-item-content" id="portrait_3">3</span>
-              </div>
-              <div class="flex-item">
-                <span class="flex-item-content" id="portrait_4">4</span>
-              </div>
-            
+          <span class="section-title">Portrait</span>
+          <!-- FLEX CONTAINER (Portriat) -->
+          <div class="flex-container" id="portrait">
+            <div class="flex-item">
+              <span class="flex-item-content" id="portrait_1">1</span>
+            </div>
+            <div class="flex-item">
+              <span class="flex-item-content" id="portrait_2">2</span>
+            </div>
+            <div class="flex-item">
+              <span class="flex-item-content" id="portrait_3">3</span>
+            </div>
+            <div class="flex-item">
+              <span class="flex-item-content" id="portrait_4">4</span>
+            </div>
           </div>
         </li>
         <li class="landscape-panel">
