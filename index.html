@@ -20,7 +20,7 @@
           <!-- Flex Container Settings -->
           <li class="panel">
             <span class="section-title">div.flex-container</span>
-            <ul>
+            <ul class="panel-item">
               <!-- DIMENSIONS -->
               <!-- Landscape -->
               <li class="dimensions flex-container">
@@ -47,6 +47,21 @@
                   >H:
                   <input type="number" name="portrait-height" class="portrait-height" max="1024" />
                 </span>
+              </li>
+              <!-- How Many Items -->
+              <li class="input-field">
+                <label for="howMany" class="setting-label">How Many Items?</label>
+                <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
+              </li>
+              <!-- Overflow property -->
+              <li class="input-field">
+                <label for="overflow" class="setting-label">Overflow:</label>
+                <select name="overflow" class="setting-item" id="overflowType">
+                  <option value="auto">AUTO</option>
+                  <option value="visible">Visible</option>
+                  <option value="hidden">Hidden</option>
+                  <option value="scroll">Scroll</option>
+                </select>
               </li>
               <!-- Display property -->
               <li class="input-field">
@@ -166,21 +181,7 @@
                 <label for="gap" class="setting-label">Gap:</label>
                 <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
               </li>
-              <!-- Overflow property -->
-              <li class="input-field">
-                <label for="overflow" class="setting-label">Overflow:</label>
-                <select name="overflow" class="setting-item" id="overflowType" disabled>
-                  <option value="auto">AUTO</option>
-                  <option value="visible">Visible</option>
-                  <option value="hidden">Hidden</option>
-                  <option value="scroll">Scroll</option>
-                </select>
-              </li>
-              <!-- How Many Items -->
-              <li class="input-field">
-                <label for="howMany" class="setting-label"># Flex-Items:</label>
-                <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" disabled />
-              </li>
+
               <!-- BUTTON SET -->
               <li class="button-set" id="flex-container-buttons">
                 <button class="button" type="button" name="Reset">Reset</button>
@@ -220,6 +221,11 @@
                   <input type="number" name="portrait-height" class="portrait-height" max="1024" />
                 </span>
               </li>
+                            <!-- Which Items -->
+                            <li class="input-field">
+                                <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
+                                <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" disabled />
+                              </li>
               <!-- Flex Proportion -->
               <li class="input-field">
                 <label for="flexProportion" class="setting-label flex-proportion">Flex:</label>
@@ -283,10 +289,11 @@
               </li>
               <!-- Flex-Item Text -->
               <li class="input-field">
-                <textarea id="flex-item-text" cols="25" rows="3" placeholder="flex-item text"></textarea>
+                <textarea id="flex-item-text" cols="25" rows="5" placeholder="flex-item text"></textarea>
               </li>
+
               <!-- Flex Item Checkboxes -->
-              <li class="input-field">
+              <!-- <li class="input-field">
                 <div class="checkbox-wrapper">
                   <ul id="flex-item-checkbox-list">
                     <li class="flex-item-checkbox">
@@ -307,7 +314,7 @@
                     </li>
                   </ul>
                 </div>
-              </li>
+              </li> -->
               <!-- BUTTON SET -->
               <li class="button-set" id="flex-item-buttons">
                 <button class="button" type="button" name="Reset">Reset</button>
@@ -344,27 +351,16 @@
       <ul class="containers-list">
         <li class="portrait-panel">
           <span class="section-title">Portrait</span>
-          <!-- FLEX CONTAINER (Portriat) -->
+          <!-- FLEX CONTAINER (Portrait) -->
           <div class="flex-container" id="portrait">
-            <div class="flex-item">
-              <span class="flex-item-content" id="portrait_1">1</span>
-            </div>
-            <div class="flex-item">
-              <span class="flex-item-content" id="portrait_2">2</span>
-            </div>
-            <div class="flex-item">
-              <span class="flex-item-content" id="portrait_3">3</span>
-            </div>
-            <div class="flex-item">
-              <span class="flex-item-content" id="portrait_4">4</span>
-            </div>
+            <!-- determined by user input -->
           </div>
         </li>
         <!-- FLEX CONTAINER (Landscape) -->
         <li class="landscape-panel">
           <span class="section-title">Landscape</span>
           <div class="flex-container" id="landscape">
-
+            <!-- determined by user input -->
           </div>
         </li>
       </ul>

@@ -64,6 +64,7 @@ const elements = {
     alignSelf: document.getElementById('alignSelf'),
     flexItemText: document.getElementById('flex-item-text'),
     flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
+    whichItems: document.getElementById('whichItems'),
     buttons: {
       list: document.getElementById('flex-item-buttons'),
     },
@@ -151,7 +152,6 @@ function initialize() {
   //   elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.list[2];
   //   elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.list[3];
   console.log(`elements`, elements);
-  setUpFlexItems();
   setUpEventListeners();
 }
 
@@ -230,6 +230,10 @@ function setUpValueFieldListeners() {
   elements.flexContainer.howManyItems.addEventListener('input', (event) => {
     setUpFlexItems(event.target.value);
   });
+
+  elements.flexItems.whichItems.addEventListener('input', (event) => {
+    parseWhichItems(event.target.value);
+  });
 }
 
 function setUpMenuListeners() {
@@ -285,14 +289,13 @@ function setDisplayType(newValue) {
   elements.flexContainer.alignItems.disabled = !isFlex;
   elements.flexContainer.alignContent.disabled = !isFlex;
   elements.flexContainer.gap.disabled = !isFlex;
-  elements.flexContainer.overflow.disabled = !isFlex;
-  elements.flexContainer.howManyItems.disabled = !isFlex;
   elements.flexItems.flexProportion.disabled = !isFlex;
   elements.flexItems.flexGrow.disabled = !isFlex;
   elements.flexItems.flexShrink.disabled = !isFlex;
   elements.flexItems.flexBasis.disabled = !isFlex;
   elements.flexItems.flexBasisValue.disabled = !isFlex;
   elements.flexItems.alignSelf.disabled = !isFlex;
+  elements.flexItems.whichItems.disabled = !isFlex;
 
   updateCSS();
 }
@@ -347,4 +350,19 @@ function updateFlexItemProperty(property, newValue) {
 function updateAllFlexItems(event) {
   console.log(`event`, event);
   updateFlexItemText();
+}
+
+/* whichItems is a field that takes a space-delimited array of numbers
+which tells us which FlexItems to be modified by the Apply button.  This allows
+the user to set individual properties for each FlexItem */
+import { isValidIndex } from './validate.js';
+function parseWhichItems(userEntry) {
+  const items = [];
+  let choices = userEntry.trim().split(' ');
+  choices.forEach((choice) => {
+    if (isValidIndex(choice)) {
+      items.push(+choice);    //output a Number
+    }
+  });
+  console.log(`items`, items);
 }

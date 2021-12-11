@@ -29,8 +29,20 @@ function validateHowManyItems(numItems) {
     return true;
 }
 
+function isValidIndex(value) {
+    if (isNaN(value)) {
+        return false;
+    }
+    let index = Number(value);
+    if (index >= MIN_ITEMS && index <= MAX_ITEMS) {
+        return true;
+    }
+    return false;
+}
+
 
 export {
+    isValidIndex,
     validateDimensions,
     validateHowManyItems
 }

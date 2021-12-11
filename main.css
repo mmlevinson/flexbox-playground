@@ -9,7 +9,7 @@
 :root {
   --flex-item-color: #9aa559;
   --flex-item-border-color: rgb(165, 46, 119);
-  --panel-border-color:#222;
+  --panel-border-color: #222;
 }
 
 html {
@@ -26,7 +26,6 @@ body {
 
 ul {
   list-style: none;
-  
 }
 
 h2.main-title {
@@ -53,20 +52,18 @@ div.main-wrapper {
   background-color: #666;
 }
 
-
 /* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
-ul#panel-list{
-    display:inline;
+ul#panel-list {
+  display: inline;
 }
-
 
 /* Vertical-Align:top saved the entire layout from being ruined after I removed the overflow from the panels.   Whew */
 li.panel {
-    display: inline-block;
-    vertical-align: top;
-    background-color: slategray;
+  display: inline-block;
+  vertical-align: top;
+  background-color: slategray;
 
   /* width: 24%; */
   margin-right: 5px;
@@ -77,82 +74,71 @@ li.panel {
   max-width: 300px;
 }
 
-
-
-#css-panel{
-    /* border: 1px solid red; */
-    /* height:360px; */
-    min-width: 100px;
-    max-width: none;
-    width: calc(100% - 930px);
-    /* background-color: red; */
-    margin-right: 0;
-    /* background:indigo; */
-    /* font-family: monospace; */
-    
+#css-panel {
+  /* border: 1px solid red; */
+  /* height:360px; */
+  min-width: 100px;
+  max-width: none;
+  width: calc(100% - 930px);
+  /* background-color: red; */
+  margin-right: 0;
+  /* background:indigo; */
+  /* font-family: monospace; */
 }
 
-#css-output{
-    font-family:monospace;
-    height: 357px;
-    border-bottom:1px solid var(--panel-border-color);
+#css-output {
+  font-family: monospace;
+  height: 357px;
+  border-bottom: 1px solid var(--panel-border-color);
 }
 
-
-.button{
-    display:inherit;
-    width:30%;
-    margin-right:5px;
-    border-radius:6px;
-    padding:4px 0px;
-    cursor:pointer;
+.button {
+  display: inherit;
+  width: 30%;
+  margin-right: 5px;
+  border-radius: 6px;
+  padding: 4px 0px;
+  cursor: pointer;
 }
 
 .button:hover,
-.button:active{
-    background-color: wheat;
+.button:active {
+  background-color: wheat;
 }
-.button-set{
-    background:slategray;
-    padding:8px;
-    padding-left:12px;
-    display:inline-block;
-    width:100%;
-}
-
-
-#flex-container-buttons{
-    margin-top:90px;
- 
+.button-set {
+  position: relative;
+  background: slategray;
+  padding: 8px;
+  padding-left: 12px;
+  display: inline-block;
+  width: 100%;
 }
 
-#flex-item-buttons{
-    margin-top:21px;
+#flex-container-buttons {
+  margin-top: 60px;
 }
 
-
-
-#css-output-buttons{
-    margin-top:4px;
+#flex-item-buttons {
+  /* margin-top: 8px; */
 }
 
-#css-copy-button{
-    float:right;
+#css-output-buttons {
+  margin-top: 4px;
 }
 
-
-
+#css-copy-button {
+  float: right;
+}
 
 li.input-field,
 li.dimensions {
   padding: 4px;
   width: 100%;
   display: inline-block;
-  
 }
 
 li.input-field label {
-    /* background:coral; */
+  /* background:coral; */
   display: inherit;
   width: 130px;
 }
@@ -171,49 +157,40 @@ li.dimensions input[type='number'] {
   width: 50px;
 }
 
-li.flex-item-checkbox{
-    display:inline-block;
-    padding:8px 0px;
+li.flex-item-checkbox {
+  display: inline-block;
+  padding: 8px 0px;
 }
-div.checkbox-wrapper{
-  background:black;
-  color:white;
-  margin-top:0;
-  text-align:center;
+div.checkbox-wrapper {
+  background: black;
+  color: white;
+  margin-top: 0;
+  text-align: center;
 }
-li.flex-item-checkbox label{
-      width:20px;
-      padding:0px 20px;
-      /* vertical-align: middle; */
-      /* height:20px; */
-  }
-
+li.flex-item-checkbox label {
+  width: 20px;
+  padding: 0px 20px;
+  /* vertical-align: middle; */
+  /* height:20px; */
+}
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
-
-
-
-textarea#media-queries{
-    width:calc(100% - 8px);
-    margin:0px 4px;
-    height:356px;
+textarea#media-queries {
+  width: calc(100% - 8px);
+  margin: 0px 4px;
+  height: 356px;
 }
 
-
-
 /* The buttons are positioned by setting their position:relative which allows me to adjust the top by pixels until it is displayed at the bottom of the panel (which is not adjustable.   The original top is determined by its relationship to adjacent DOM elements */
-li.button-set#media-query-buttons{
-  position:relative;
-top:48px;
-
-
-
+li.button-set#media-query-buttons {
+  position: relative;
+  top: 48px;
 }
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
 span.section-title {
-  padding:6px 0px;
+  padding: 6px 0px;
   display: block;
   width: 100%;
   text-align: center;
@@ -225,31 +202,30 @@ span.section-title {
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 #flex-item-settings textarea {
-  margin-bottom: 5px;
+  margin-top: 10px;
   width: 100%;
   overflow: scroll;
   text-align: center;
 }
 
-ul.containers-list{
-    /* position:relative; */
-    /* display:inline-block; */
-    width:100%;
-    align-items:top;
+ul.containers-list {
+  /* position:relative; */
+  /* display:inline-block; */
+  width: 100%;
+  align-items: top;
 }
 
-ul.containers-list li{
-    display:inline-block;
+ul.containers-list li {
+  display: inline-block;
 }
-ul.containers-list li.portrait{
-    width:calc(20% - 6px);
-    max-width:400px;
-}
-
-ul.containers-list li.landscape{
-    width:70%;
+ul.containers-list li.portrait {
+  width: calc(20% - 6px);
+  max-width: 400px;
 }
 
+ul.containers-list li.landscape {
+  width: 70%;
+}
 
 /* Inside the full-width flex container are children (ie flex-items */
 div.flex-item {
@@ -269,31 +245,29 @@ span.flex-item-content {
   padding: 40% 0;
 }
 
-
-
 div.flex-container#portrait {
   /* position: relative; */
   /* top:0; */
-  width:300px;
-  max-width:500px;
+  width: 300px;
+  max-width: 500px;
   height: 500px;
   /* height: 100%; */
   /* float:right; */
   top: 0px;
   /* left:75%; */
   border: 1px solid black;
-  background:khaki;
+  background: khaki;
 }
 
 /* At the bottom is a full-width flex container */
 div.flex-container#landscape {
-    position: relative;
-    background:indigo;
-    border: 1px solid black;
-    width:800px;
-    height:500px;
-    top:4px;
-  }
+  position: relative;
+  background: indigo;
+  border: 1px solid black;
+  width: 800px;
+  height: 500px;
+  top: 4px;
+}
 
 div.flex-setting {
   padding: 0.3rem;
@@ -309,10 +283,8 @@ div.flex-item-choices {
   padding: 0.3rem;
 }
 
-
-
 /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
-div.flex-items-checked li.flex-item-checkboxs{
+div.flex-items-checked li.flex-item-checkboxs {
   order: 1px solid goldenrod;
   display: inline-block;
   width: 20%;
@@ -324,16 +296,8 @@ div.flex-items-checked li.flex-item-checkboxs{
   border: 1px solid #555;
 } */
 
-
-
-
-
-
-
 /* li.dimensions.flex-container input[type=checkbox]{
     background-color: coral;
    border-color:red;
    width:200px;
 } */
-
-
