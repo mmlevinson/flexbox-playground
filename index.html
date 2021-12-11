@@ -53,16 +53,7 @@
                 <label for="howMany" class="setting-label">How Many Items?</label>
                 <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
               </li>
-              <!-- Overflow property -->
-              <li class="input-field">
-                <label for="overflow" class="setting-label">Overflow:</label>
-                <select name="overflow" class="setting-item" id="overflowType">
-                  <option value="auto">AUTO</option>
-                  <option value="visible">Visible</option>
-                  <option value="hidden">Hidden</option>
-                  <option value="scroll">Scroll</option>
-                </select>
-              </li>
+
               <!-- Display property -->
               <li class="input-field">
                 <label for="display" class="setting-label">Display:</label>
@@ -72,6 +63,17 @@
                   <option value="inline-block">Inline-Block</option>
                   <option value="flex">Flex</option>
                   <option value="inline-flex">Inline-Flex</option>
+                </select>
+              </li>
+
+              <!-- Overflow property -->
+              <li class="input-field">
+                <label for="overflow" class="setting-label">Overflow:</label>
+                <select name="overflow" class="setting-item" id="overflowType">
+                  <option value="auto">AUTO</option>
+                  <option value="visible">Visible</option>
+                  <option value="hidden">Hidden</option>
+                  <option value="scroll">Scroll</option>
                 </select>
               </li>
 
@@ -144,7 +146,6 @@
                   <option value="space-between">Space-Between</option>
                   <option value="space-around">Space-Around</option>
                   <option value="space-evenly">Space-Evenly</option>
-                  <option value="stretch">Stretch</option>
                   <option value="safe center">Safe Center</option>
                   <option value="unsafe center">Unsafe Center</option>
                   <option value="inherit">Inherit</option>
@@ -221,11 +222,11 @@
                   <input type="number" name="portrait-height" class="portrait-height" max="1024" />
                 </span>
               </li>
-                            <!-- Which Items -->
-                            <li class="input-field">
-                                <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
-                                <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" disabled />
-                              </li>
+              <!-- Which Items -->
+              <li class="input-field">
+                <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
+                <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" disabled />
+              </li>
               <!-- Flex Proportion -->
               <li class="input-field">
                 <label for="flexProportion" class="setting-label flex-proportion">Flex:</label>
@@ -325,7 +326,7 @@
           </li>
           <!-- Media Queries -->
           <li class="panel" id="media-queries-panel">
-            <span class="section-title">+ Media Queries</span>
+            <span class="section-title">+ Custom CSS</span>
             <textarea class="id" id="media-queries" rows="8"> </textarea>
             <!-- BUTTON SET -->
             <div class="button-set" id="media-query-buttons">

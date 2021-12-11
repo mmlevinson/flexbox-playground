@@ -88,6 +88,7 @@ li.panel {
 
 #css-output {
   font-family: monospace;
+  font-weight:bold;
   height: 357px;
   border-bottom: 1px solid var(--panel-border-color);
 }
@@ -102,9 +103,10 @@ li.panel {
 }
 
 .button:hover,
-.button:active {
+.button:focus{
   background-color: wheat;
 }
+
 .button-set {
   position: relative;
   background: slategray;

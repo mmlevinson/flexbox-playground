@@ -2,140 +2,15 @@ import { validateDimensions, validateHowManyItems } from './validate.js';
 
 import { FlexItem } from './classes.js';
 import { clearFlexContainers } from './helpers.js';
-
-/* Globals */
-/* For coding clarity, we store reference to DOM elements in one
-place, a key:value object */
-
-const FLEX_ITEM_COUNT = 4;
-
-const elements = {
-  flexContainer: {
-    landscape: document.querySelector('.flex-container#landscape'),
-    portrait: document.querySelector('.flex-container#portrait'),
-    checkbox: {
-      landscape: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[0],
-      portrait: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[1],
-    },
-    dimensions: {
-      landscape: {
-        width: document.querySelector('.flex-container .landscape-width'),
-        height: document.querySelector('.flex-container .landscape-height'),
-      },
-      portrait: {
-        width: document.querySelector('.flex-container .portrait-width'),
-        height: document.querySelector('.flex-container .portrait-height'),
-      },
-    },
-    displayType: document.getElementById('displayType'),
-    flexDirection: document.getElementById('flexDirection'),
-    flexWrap: document.getElementById('flexWrap'),
-    justifyContent: document.getElementById('justifyContent'),
-    alignItems: document.getElementById('alignItems'),
-    alignContent: document.getElementById('alignContent'),
-    gap: document.getElementById('gap'),
-    overflow: document.getElementById('overflowType'),
-    howManyItems: document.getElementById('howManyItems'),
-    buttons: {
-      list: document.getElementById('flex-container-buttons'),
-    },
-  },
-  flexItems: {
-    checkbox: {
-      landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
-      portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
-      list: document.querySelectorAll('.checkbox__flex-item'),
-    },
-    dimensions: {
-      landscape: {
-        width: document.querySelector('.flex-items .landscape-width'),
-        height: document.querySelector('.flex-items .landscape-height'),
-      },
-      portrait: {
-        width: document.querySelector('.flex-items .portrait-width'),
-        height: document.querySelector('.flex-items .portrait-height'),
-      },
-    },
-    flexProportion: document.getElementById('flexProportion'),
-    flexGrow: document.getElementById('flexGrow'),
-    flexShrink: document.getElementById('flexShrink'),
-    flexBasis: document.getElementById('flexBasis'),
-    flexBasisValue: document.getElementById('flexBasisValue'),
-    alignSelf: document.getElementById('alignSelf'),
-    flexItemText: document.getElementById('flex-item-text'),
-    flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
-    whichItems: document.getElementById('whichItems'),
-    buttons: {
-      list: document.getElementById('flex-item-buttons'),
-    },
-    list: document.querySelectorAll('.flex-item'),
-  },
-  mediaQueries: {
-    buttons: {
-      list: document.getElementById('media-query-buttons'),
-    },
-    textArea: document.getElementById('media-queries'),
-  },
-  cssOutput: {
-    buttons: {
-      list: document.getElementById('css-output-buttons'),
-    },
-    textArea: document.getElementById('css-output'),
-  },
-};
-
-const state = {
-  flexContainer: {
-    landscape: {
-      checked: true,
-    },
-    portrait: {
-      checked: true,
-    },
-  },
-  flexItems: {
-    landscape: {
-      checked: false,
-    },
-    portrait: {
-      checked: false,
-    },
-    set: [],
-  },
-};
-
-const defaults = {
-  flexContainer: {
-    displayType: {
-      property: 'displayType',
-      default: 'block',
-    },
-    howManyItems: 4,
-  },
-  flexItem: {
-    flexShrink: {
-      property: 'flex-shrink',
-      default: 1,
-    },
-    flexGrow: {
-      property: 'flex-grow',
-      default: 0,
-    },
-    flexBasis: {
-      property: 'flex-basis',
-      default: 'auto',
-    },
-  },
-};
+import { elements, state, defaults, FLEX_ITEM_COUNT } from './globals.js';
 
 /* Perform setup in advance of any User activated events */
 initialize();
 
 /* Hoisted... */
 function initialize() {
-  //dynamic number of div.flex-item using a CustomElement
-  customElements.define('flex-item', FlexItem, { extends: 'div' });
-  setUpFlexItems(defaults.flexContainer.howManyItems);
+  //we store references to all DOM elements we need in one global Object
+  console.log(`elements`, elements);
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
   elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
@@ -147,13 +22,26 @@ function initialize() {
   elements.mediaQueries.buttons.reset = elements.mediaQueries.buttons.list.children[0];
   elements.mediaQueries.buttons.undo = elements.mediaQueries.buttons.list.children[1];
   elements.mediaQueries.buttons.apply = elements.mediaQueries.buttons.list.children[2];
-  //   elements.flexItems.checkbox.itemOne = elements.flexItems.checkbox.list[0];
-  //   elements.flexItems.checkbox.itemTwo = elements.flexItems.checkbox.list[1];
-  //   elements.flexItems.checkbox.itemThree = elements.flexItems.checkbox.list[2];
-  //   elements.flexItems.checkbox.itemFour = elements.flexItems.checkbox.list[3];
-  console.log(`elements`, elements);
   setUpEventListeners();
+
+  //allow dynamic number of div.flex-item using a CustomElement
+  customElements.define('flex-item', FlexItem, { extends: 'div' });
+  reset(); //establishes default state of app, calls setUpFlexItems();
 }
+
+function reset() {
+    setUpFlexItems(defaults.flexContainer.howManyItems);
+    //set menus back to defalut values
+    setDefault('flexContainer', 'displayType');
+    setDefault('flexContainer', 'overflow');
+    setDefault('flexContainer', 'flexDirection');
+    setDefault('flexContainer', 'flexWrap');
+    setDefault('flexContainer', 'alignContent');
+    setDefault('flexContainer', 'justifyContent');
+    setDefault('flexContainer', 'alignItems');
+    setDefault('flexContainer', 'gap');
+    //   setDefault('flexContainer', 'flexOrder');
+  }
 
 function setUpFlexItems(newValue) {
   // const numItems = elements.flexContainer.howManyItems.value;
@@ -161,7 +49,7 @@ function setUpFlexItems(newValue) {
   if (!validateHowManyItems(newValue)) return;
   clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
   //now create new elements meeting the number specified
-  const flexItemCount = +newValue; //coerce text value to numeric value
+  const flexItemCount = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < flexItemCount; index++) {
     let newFlexItem = document.createElement('div', { is: 'flex-item' });
     newFlexItem.firstElementChild.textContent = (index + 1).toString();
@@ -266,6 +154,9 @@ function setUpButtonListeners() {
   elements.flexItems.buttons.apply.addEventListener('click', (event) => {
     updateAllFlexItems(event);
   });
+  elements.flexContainer.buttons.reset.addEventListener('click', () => {
+    reset();
+  });
 }
 
 function setFlexContainerStyle(property, newValue) {
@@ -361,8 +252,21 @@ function parseWhichItems(userEntry) {
   let choices = userEntry.trim().split(' ');
   choices.forEach((choice) => {
     if (isValidIndex(choice)) {
-      items.push(+choice);    //output a Number
+      items.push(+choice); //output a Number
     }
   });
   console.log(`items`, items);
 }
+
+function setDefault(container, key) {
+  const property = defaults[container][key].property;
+  const defaultValue = defaults[container][key].default;
+  elements[container][key].value = defaultValue;
+  //programmatically setting the menu.value did not fire an 'input' event
+  //so we must also simulate this manually
+  if (container === 'flexContainer') {
+    setFlexContainerStyle(property, defaultValue);
+  }
+}
+
+
