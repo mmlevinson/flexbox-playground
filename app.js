@@ -1,9 +1,7 @@
-import {
-    validateDimensions,
-    validateHowManyItems,
-} from './validate.js';
+import { validateDimensions, validateHowManyItems } from './validate.js';
 
 import { FlexItem } from './classes.js';
+import { clearFlexContainers } from './helpers.js';
 
 /* Globals */
 /* For coding clarity, we store reference to DOM elements in one
@@ -111,6 +109,7 @@ const defaults = {
       property: 'displayType',
       default: 'block',
     },
+    howManyItems: 4,
   },
   flexItem: {
     flexShrink: {
@@ -133,7 +132,9 @@ initialize();
 
 /* Hoisted... */
 function initialize() {
-    customElements.define('flex-item', FlexItem, { extends: 'div' });
+  //dynamic number of div.flex-item using a CustomElement
+  customElements.define('flex-item', FlexItem, { extends: 'div' });
+  setUpFlexItems(defaults.flexContainer.howManyItems);
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
   elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
@@ -156,22 +157,20 @@ function initialize() {
 
 function setUpFlexItems(newValue) {
   // const numItems = elements.flexContainer.howManyItems.value;
-    // console.log(`newValue`, newValue);
-    if (!validateHowManyItems(newValue)) return;
-    //remove all children from flexContainers
-    // elements.flexContainer.landscape.children.forEach((child) => {
-    //     document.removeChild(child);   //get rid of all previous 
-    // });
-    //now create new elements meeting the number specified
-    const flexItemCount = +newValue;   //coerce text value to numeric value
-    for (let index = 0; index < flexItemCount; index++) {
-        const newFlexItem = document.createElement('div', {is:'flex-item'});
-        elements.flexContainer.landscape.appendChild(newFlexItem);
-        
-    }
-
-
-
+  // console.log(`newValue`, newValue);
+  if (!validateHowManyItems(newValue)) return;
+  clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
+  //now create new elements meeting the number specified
+  const flexItemCount = +newValue; //coerce text value to numeric value
+  for (let index = 0; index < flexItemCount; index++) {
+    let newFlexItem = document.createElement('div', { is: 'flex-item' });
+    newFlexItem.firstElementChild.textContent = (index + 1).toString();
+    elements.flexContainer.landscape.append(newFlexItem);
+    //newFlexItem.cloneNode(true) failed...created a ghost <span> instead of a true copy
+    newFlexItem = document.createElement('div', { is: 'flex-item' });
+    newFlexItem.firstElementChild.textContent = (index + 1).toString();
+    elements.flexContainer.portrait.append(newFlexItem);
+  }
 }
 
 function setUpEventListeners() {
