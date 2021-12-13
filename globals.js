@@ -72,9 +72,6 @@ const elements = {
     textArea: document.getElementById('media-queries'),
   },
   cssOutput: {
-    buttons: {
-      list: document.getElementById('css-output-buttons'),
-    },
     textArea: document.getElementById('css-output'),
   },
 };

@@ -56,9 +56,9 @@ div.flex-item {
   }
   
   /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
-  div.flex-items-checked li.flex-item-checkboxs {
+  /* div.flex-items-checked li.flex-item-checkboxs {
     order: 1px solid goldenrod;
     display: inline-block;
     width: 20%;
   }
-  
+   */

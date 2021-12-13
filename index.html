@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FlexBox Playground</title>
+    <title>FlexBox Workspace</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="./styles/flex.css" />
     <link rel="stylesheet" href="./styles/custom.css" />
     <script src="./app.js" type="module" defer></script>
   </head>
   <body>
+    <!-- MAIN NAV -->
+    <header class="main-header">
+      <div class="app-title">FlexBox Workspace</div>
+      <nav class="main-nav">
+        <ul class="main-nav-items">
+          <li class="main-nav-item"><a href="">Save</a></li>
+          <li class="main-nav-item"><a href="">Load</a></li>
+          <li class="main-nav-item"><a href="">Copy</a></li>
+        </ul>
+      </nav>
+    </header>
     <!-- MAIN WRAPPER -->
     <div class="main-wrapper">
-      <h2 class="main-title">FlexBox Workspace</h2>
       <!-- PANEL WRAPPER -->
       <section id="panel-wrapper">
         <!-- PANELS -->
@@ -29,11 +39,11 @@
                 <label for="landscape">Landscape</label>
                 <span class="dimension-inputs"
                   >W:
-                  <input type="number" name="landscape-width" class="landscape-width" />
+                  <input type="number" name="landscape-width" value="800" class="landscape-width" />
                 </span>
                 <span class="dimension-inputs"
                   >H:
-                  <input type="number" name="landscape-height" class="landscape-height" />
+                  <input type="number" name="landscape-height" value="500" class="landscape-height" />
                 </span>
               </li>
               <!-- Portrait -->
@@ -42,11 +52,11 @@
                 <label for="portrait">Portrait</label>
                 <span class="dimension-inputs"
                   >W:
-                  <input type="number" name="portrait-width" class="portrait-width" />
+                  <input type="number" name="portrait-width" value="300" class="portrait-width" />
                 </span>
                 <span class="dimension-inputs"
                   >H:
-                  <input type="number" name="portrait-height" class="portrait-height" max="1024" />
+                  <input type="number" name="portrait-height" value="500" class="portrait-height" max="1024" />
                 </span>
               </li>
               <!-- How Many Items -->
@@ -201,11 +211,11 @@
                 <label for="landscape">Landscape</label>
                 <span class="dimension-inputs"
                   >W:
-                  <input type="number" name="landscape-width" class="landscape-width" />
+                  <input type="number" name="landscape-width" value = "80" class="landscape-width" />
                 </span>
                 <span class="dimension-inputs"
                   >H:
-                  <input type="number" name="landscape-height" class="landscape-height" />
+                  <input type="number" name="landscape-height" value="80" class="landscape-height" />
                 </span>
               </li>
               <!-- Portrait -->
@@ -214,11 +224,11 @@
                 <label for="portrait">Portrait</label>
                 <span class="dimension-inputs"
                   >W:
-                  <input type="number" name="portrait-width" class="portrait-width" />
+                  <input type="number" name="portrait-width" value="80" class="portrait-width" />
                 </span>
                 <span class="dimension-inputs"
                   >H:
-                  <input type="number" name="portrait-height" class="portrait-height" max="1024" />
+                  <input type="number" name="portrait-height" value="80" class="portrait-height" max="1024" />
                 </span>
               </li>
               <!-- Which Items -->
@@ -292,29 +302,7 @@
                 <textarea id="flex-item-text" cols="25" rows="5" placeholder="flex-item text"></textarea>
               </li>
 
-              <!-- Flex Item Checkboxes -->
-              <!-- <li class="input-field">
-                <div class="checkbox-wrapper">
-                  <ul id="flex-item-checkbox-list">
-                    <li class="flex-item-checkbox">
-                      <label for="checkbox__1">#1</label>
-                      <input type="checkbox" checked name="checkbox__1" class="checkbox__flex-item" />
-                    </li>
-                    <li class="flex-item-checkbox">
-                      <label for="checkbox__2">#2</label>
-                      <input type="checkbox" name="checkbox__2" class="checkbox__flex-item" />
-                    </li>
-                    <li class="flex-item-checkbox">
-                      <label for="checkbox__3">#3</label>
-                      <input type="checkbox" name="checkbox__3" class="checkbox__flex-item" />
-                    </li>
-                    <li class="flex-item-checkbox">
-                      <label for="checkbox__">#4</label>
-                      <input type="checkbox" name="checkbox__4" class="checkbox__flex-item" />
-                    </li>
-                  </ul>
-                </div>
-              </li> -->
+             
               <!-- BUTTON SET -->
               <li class="button-set" id="flex-item-buttons">
                 <button class="button" type="button" name="Reset">Reset</button>
@@ -337,12 +325,7 @@
           <!-- CSS Output -->
           <li class="panel" id="css-panel">
             <span class="section-title">CSS Output</span>
-            <pre id="css-output">Whatever</pre>
-
-            <!-- BUTTON SET -->
-            <div class="button-set" id="css-output-buttons">
-              <button class="button" type="button" name="Copy" id="css-copy-button">Copy</button>
-            </div>
+            <pre id="css-output"></pre>
           </li>
         </ul>
       </section>

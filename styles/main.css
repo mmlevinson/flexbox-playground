@@ -10,31 +10,77 @@
   --flex-item-color: #9aa559;
   --flex-item-border-color: rgb(165, 46, 119);
   --panel-border-color: #222;
+  --header-color:#2ddf5c;
+  --dark-green: hsl(120, 49%, 12%);
 }
 
 html {
   font-family: sans-serif;
+
 }
+
 
 /* Setting the section heights to a % requires we define the
 height of their parent, which is the body. */
 body {
   background-color: #ccc;
-  margin: 10px;
+  /* margin: 10px; */
   height: 100vh;
 }
+
+.app-title{
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+.main-header{
+  width:100%;
+  background:var(--header-color);
+  color: var(--dark-green);
+  font-weight: bold;
+  margin:2px 0px;
+  padding:8px 14px;
+  border-bottom:3px solid var(--dark-green);
+}
+
+
+/* nav, div, li are all block level elements */
+.main-header > div,
+.main-nav,
+.main-nav-item {
+  display:inline-block;
+}
+
+
+.main-nav{
+  text-align:right;
+  vertical-align: middle;
+  width:calc(100% - 220px);
+ 
+}
+
+.main-nav-item{
+  margin:0px 12px;
+}
+
+.main-nav-item a{
+  text-decoration:none;
+  color:inherit;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border:1px solid var(--header-color);
+}
+
 
 ul {
   list-style: none;
 }
 
-h2.main-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  height: 1rem;
-  margin: 10px 0;
-  text-align: center;
-  width: 100%;
+.main-nav-item a:hover, 
+.main-nav-item a:active {
+  cursor:pointer;
+  background:wheat;
+  border:1px solid var(--dark-green);
+
 }
 
 /* This wrapper encompasses all elements, so you must set both its width and height so the children can reference off these values.  For example, by not setting a height, the wrapper takes the height of the content only.  This wrappers parent is the <body> which is full viewport, and the wrapper should also be full viewport.  The result is that the second row (of <sections> can establish their height based on a % of their parent which is this wrapper */
@@ -48,7 +94,8 @@ div.main-wrapper {
 
 #panel-wrapper {
   /* width: 75%; */
-  height: 450px;
+
+  height: 455px;
   background-color: #666;
 }
 
@@ -66,7 +113,8 @@ li.panel {
   background-color: slategray;
 
   /* width: 24%; */
-  margin-right: 5px;
+  margin-left:4px;
+  margin-top:4px;
   border: 1px solid var(--panel-border-color);
   width: 300px;
   height: 446px;
@@ -74,14 +122,16 @@ li.panel {
   max-width: 300px;
 }
 
+
+
 #css-panel {
   /* border: 1px solid red; */
   /* height:360px; */
-  min-width: 100px;
+  min-width: 300px;
   max-width: none;
-  width: calc(100% - 930px);
+  width: calc(100% - 938px);
   /* background-color: red; */
-  margin-right: 0;
+ 
   /* background:indigo; */
   /* font-family: monospace; */
 }
@@ -90,8 +140,8 @@ li.panel {
   font-family: monospace;
   font-weight:bold;
   font-size:1rem;
-  height: 357px;
-  border-bottom: 1px solid var(--panel-border-color);
+  height: calc(100% - 40px);
+  /* border-bottom: 1px solid var(--panel-border-color); */
   overflow:scroll;
 }
 
@@ -107,6 +157,7 @@ li.panel {
 
 .button:hover,
 .button:focus{
+  cursor:pointer;
   background-color: wheat;
 }
 
@@ -123,15 +174,11 @@ li.panel {
   margin-top: 60px;
 }
 
-/* #flex-item-buttons {
+#flex-item-buttons {
   margin-top: 8px;
-} */
-
-#css-output-buttons {
-  margin-top: 4px;
 }
 
-#css-copy-button,
+
 #flex-container-reset-button {
   float: right;
 }
@@ -163,10 +210,10 @@ li.dimensions input[type='number'] {
   width: 50px;
 }
 
-li.flex-item-checkbox {
+/* li.flex-item-checkbox {
   display: inline-block;
   padding: 8px 0px;
-}
+} */
 div.checkbox-wrapper {
   background: black;
   color: white;
