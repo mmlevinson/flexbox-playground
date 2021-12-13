@@ -90,9 +90,15 @@ function updateCSS() {
     cssText = `### Landscape:\ndiv.flex-container  { \n ${landscapeStyle}}\n\n`;
   }
   if (state.flexContainer.portrait.checked) {
-    cssText += `### Portrait\ndiv.flex-container { \n ${portraitStyle}}`;
+    cssText += `### Portrait\ndiv.flex-container { \n ${portraitStyle}}\n\n`;
   }
-  elements.cssOutput.textArea.textContent = cssText;
+
+  let flexItemCSS = '';
+  whichFlexItems.forEach((itemNumber) => {
+    style = elements.flexItems.list[itemNumber - 1].style.cssText.replaceAll(';', ';\n');
+    flexItemCSS += `div.flex-item_${itemNumber}:{ \n ${style}}\n\n`;
+  });
+  elements.cssOutput.textArea.textContent = cssText + flexItemCSS;
 }
 
 function setUpCheckboxListeners() {
@@ -222,29 +228,31 @@ function updateFlexItemText() {
     return;
   }
   for (let index = 0; index < whichFlexItems.length; index++) {
-    const portraitItem = elements.flexItems.list[whichFlexItems[index]-1];
+    const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
-      portraitItem.firstElementChild.textContent = itemText;
+    portraitItem.firstElementChild.textContent = itemText;
     landscapeItem.firstElementChild.textContent = itemText;
-    // portraitItem.firstElementChild.textContent = (index + 1).toString();
-    // landscapeItem.firstElementChild.textContent = (index + 1).toString();
   }
 }
 
 function updateFlexItemProperty(property, newValue) {
-  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    let portraitItem = elements.flexItems.list[index];
-    let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT];
+  for (let index = 0; index < whichFlexItems.length; index++) {
+    let portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
+    let landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
     portraitItem.style.setProperty(property, newValue);
     landscapeItem.style.setProperty(property, newValue);
   }
-  updateCSS();
 }
 
 function updateAllFlexItems(event) {
   console.log(`event`, event);
   parseWhichItems();
   updateFlexItemText();
+  updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value); //update flex-grow for whichFlexItems
+  updateFlexItemProperty('flex-shrink', elements.flexItems.flexShrink.value); //update flex-shrink for whichFlexItems
+  updateFlexItemProperty('flex-basis', elements.flexItems.flexBasis.value); //update flex-basis for whichFlexItems
+  updateFlexItemProperty('align-self', elements.flexItems.alignSelf.value); //update align-self for whichFlexItems
+  updateCSS();
 }
 
 /* whichItems is a field that takes a space-delimited array of numbers
