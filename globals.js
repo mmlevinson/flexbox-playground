@@ -1,4 +1,4 @@
-const FLEX_ITEM_COUNT = 4;
+const DEFAULT_FLEX_ITEM_COUNT = 4;
 
 /* Globals */
 /* For coding clarity, we store reference to DOM elements in one
@@ -100,71 +100,71 @@ const state = {
 };
 
 const defaults = {
-  flexContainer: {
-    howManyItems: FLEX_ITEM_COUNT,
-    landscape: {
-      dimensions: {
-        width: '800px',
-        height: '800px',
-      },
-      portrait: {
-        dimensions: {
-          width: '300px',
-          height: '500px',
+    flexContainer: {
+        howManyItems: DEFAULT_FLEX_ITEM_COUNT,
+        landscape: {
+            dimensions: {
+                width: '800px',
+                height: '800px',
+            },
         },
-      },
-    },
-    displayType: {
-      property: 'display',
-      default: 'block',
-    },
-    overflow: {
-      property: 'overflow',
-      default: 'auto',
-    },
-    flexDirection: {
-      property: 'flex-direction',
-      default: 'row',
-    },
-    flexWrap: {
-      property: 'flex-wrap',
-      default: 'nowrap',
-    },
-    justifyContent: {
-      property: 'justify-content',
-      default: 'flex-start',
-    },
-    alignItems: {
-      property: 'align-items',
-      default: 'stretch',
-    },
-    alignContent: {
-      property: 'align-content',
-      default: 'start',
-    },
-    gap: {
-      property: 'gap',
-      default: 0,
-    },
-    flexOrder: {
-      property: 'flex-order',
-      default: 0,
-    },
-  },
-  flexItems: {
-    flexShrink: {
-      property: 'flex-shrink',
-      default: 1,
-    },
-    flexGrow: {
-      property: 'flex-grow',
-      default: 0,
-    },
-    flexBasis: {
-      property: 'flex-basis',
-      default: 'auto',
-    },
-  },
-};
+        portrait: {
+            dimensions: {
+                width: '300px',
+                height: '500px',
+            },
+        },
+        displayType: {
+            property: 'display',
+            default: 'block',
+        },
+        overflow: {
+            property: 'overflow',
+            default: 'auto',
+        },
+        flexDirection: {
+            property: 'flex-direction',
+            default: 'row',
+        },
+        flexWrap: {
+            property: 'flex-wrap',
+            default: 'nowrap',
+        },
+        justifyContent: {
+            property: 'justify-content',
+            default: 'flex-start',
+        },
+        alignItems: {
+            property: 'align-items',
+            default: 'stretch',
+        },
+        alignContent: {
+            property: 'align-content',
+            default: 'start',
+        },
+        gap: {
+            property: 'gap',
+            default: 0,
+        },
+        flexOrder: {
+            property: 'flex-order',
+            default: 0,
+        },
+        flexItems: {
+            flexShrink: {
+                property: 'flex-shrink',
+                default: 1,
+            },
+            flexGrow: {
+                property: 'flex-grow',
+                default: 0,
+            },
+            flexBasis: {
+                property: 'flex-basis',
+                default: 'auto',
+            },
+        },
+    }
+}
 
-export { elements, state, defaults, FLEX_ITEM_COUNT };
+export { elements, state, defaults };

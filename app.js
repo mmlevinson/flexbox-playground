@@ -1,8 +1,9 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
-
 import { FlexItem } from './classes.js';
 import { clearFlexContainers } from './helpers.js';
-import { elements, state, defaults, FLEX_ITEM_COUNT } from './globals.js';
+import { elements, state, defaults } from './globals.js';
+
+var FLEX_ITEM_COUNT;
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -40,10 +41,11 @@ function reset() {
     setDefault('flexContainer', 'gap');
     //   setDefault('flexContainer', 'flexOrder');
     //set the sizes of the FlexContainers, and their input fields
-    elements.flexContainer.landscape.dimensions.width.value = defaults.flexContainer.landscape.dimensions.width;
-    elements.flexContainer.landscape.dimensions.height.value = defaults.flexContainer.landscape.dimensions.height;
-    elements.flexContainer.portrait.dimensions.width.value = defaults.flexContainer.portrait.dimensions.width;
-    elements.flexContainer.portrait.dimensions.height.value = defaults.flexContainer.portrait.dimensions.height;
+    console.log(`defaults`, defaults);
+    elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
+    elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
+    elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
+    elements.flexContainer.portrait.style.setProperty('height',  defaults.flexContainer.portrait.dimensions.height);
 
   }
 
@@ -53,8 +55,8 @@ function setUpFlexItems(newValue) {
   if (!validateHowManyItems(newValue)) return;
   clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
   //now create new elements meeting the number specified
-  const flexItemCount = +newValue; //coerce any user input value to a numeric
-  for (let index = 0; index < flexItemCount; index++) {
+    FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     let newFlexItem = document.createElement('div', { is: 'flex-item' });
     newFlexItem.firstElementChild.textContent = (index + 1).toString();
     elements.flexContainer.landscape.append(newFlexItem);
@@ -263,6 +265,7 @@ function parseWhichItems(userEntry) {
 }
 
 function setDefault(container, key) {
+  console.log(`defaults`, defaults);
   const property = defaults[container][key].property;
   const defaultValue = defaults[container][key].default;
   elements[container][key].value = defaultValue;
