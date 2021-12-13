@@ -14,8 +14,6 @@ function initialize() {
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
   elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
-  elements.flexContainer.buttons.undo = elements.flexContainer.buttons.list.children[1];
-  elements.flexContainer.buttons.apply = elements.flexContainer.buttons.list.children[2];
   elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
   elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
   elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
@@ -41,6 +39,12 @@ function reset() {
     setDefault('flexContainer', 'alignItems');
     setDefault('flexContainer', 'gap');
     //   setDefault('flexContainer', 'flexOrder');
+    //set the sizes of the FlexContainers, and their input fields
+    elements.flexContainer.landscape.dimensions.width.value = defaults.flexContainer.landscape.dimensions.width;
+    elements.flexContainer.landscape.dimensions.height.value = defaults.flexContainer.landscape.dimensions.height;
+    elements.flexContainer.portrait.dimensions.width.value = defaults.flexContainer.portrait.dimensions.width;
+    elements.flexContainer.portrait.dimensions.height.value = defaults.flexContainer.portrait.dimensions.height;
+
   }
 
 function setUpFlexItems(newValue) {

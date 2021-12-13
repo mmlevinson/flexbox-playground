@@ -102,6 +102,18 @@ const state = {
 const defaults = {
   flexContainer: {
     howManyItems: FLEX_ITEM_COUNT,
+    landscape: {
+      dimensions: {
+        width: '800px',
+        height: '800px',
+      },
+      portrait: {
+        dimensions: {
+          width: '300px',
+          height: '500px',
+        },
+      },
+    },
     displayType: {
       property: 'display',
       default: 'block',
