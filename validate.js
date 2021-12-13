@@ -29,15 +29,19 @@ function validateHowManyItems(numItems) {
     return true;
 }
 
-function isValidIndex(value) {
+function isValidIndex(value,  currentCount) {
     if (isNaN(value)) {
         return false;
     }
+  
     let index = Number(value);
-    if (index >= MIN_ITEMS && index <= MAX_ITEMS) {
-        return true;
+    if (
+        index > currentCount ||   //index out of range
+        index < MIN_ITEMS ||      // i.e < 1
+        index > MAX_ITEMS) {      // i.e > 12
+        return false;   
     }
-    return false;
+    return true;
 }
 
 

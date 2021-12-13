@@ -3,7 +3,8 @@ import { FlexItem } from './classes.js';
 import { clearFlexContainers } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 
-var FLEX_ITEM_COUNT;
+let FLEX_ITEM_COUNT;
+let whichFlexItems = []; //any flex-items settings apply to these children
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -29,25 +30,24 @@ function initialize() {
 }
 
 function reset() {
-    setUpFlexItems(defaults.flexContainer.howManyItems);
-    //set menus back to defalut values
-    setDefault('flexContainer', 'displayType');
-    setDefault('flexContainer', 'overflow');
-    setDefault('flexContainer', 'flexDirection');
-    setDefault('flexContainer', 'flexWrap');
-    setDefault('flexContainer', 'alignContent');
-    setDefault('flexContainer', 'justifyContent');
-    setDefault('flexContainer', 'alignItems');
-    setDefault('flexContainer', 'gap');
-    //   setDefault('flexContainer', 'flexOrder');
-    //set the sizes of the FlexContainers, and their input fields
-    console.log(`defaults`, defaults);
-    elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
-    elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
-    elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
-    elements.flexContainer.portrait.style.setProperty('height',  defaults.flexContainer.portrait.dimensions.height);
-
-  }
+  setUpFlexItems(defaults.flexContainer.howManyItems);
+  //set menus back to defalut values
+  setDefault('flexContainer', 'displayType');
+  setDefault('flexContainer', 'overflow');
+  setDefault('flexContainer', 'flexDirection');
+  setDefault('flexContainer', 'flexWrap');
+  setDefault('flexContainer', 'alignContent');
+  setDefault('flexContainer', 'justifyContent');
+  setDefault('flexContainer', 'alignItems');
+  setDefault('flexContainer', 'gap');
+  //   setDefault('flexContainer', 'flexOrder');
+  //set the sizes of the FlexContainers, and their input fields
+  // console.log(`defaults`, defaults);
+  elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
+  elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
+  elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
+  elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
+}
 
 function setUpFlexItems(newValue) {
   // const numItems = elements.flexContainer.howManyItems.value;
@@ -55,7 +55,7 @@ function setUpFlexItems(newValue) {
   if (!validateHowManyItems(newValue)) return;
   clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
   //now create new elements meeting the number specified
-    FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
+  FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     let newFlexItem = document.createElement('div', { is: 'flex-item' });
     newFlexItem.firstElementChild.textContent = (index + 1).toString();
@@ -65,6 +65,9 @@ function setUpFlexItems(newValue) {
     newFlexItem.firstElementChild.textContent = (index + 1).toString();
     elements.flexContainer.portrait.append(newFlexItem);
   }
+  //update our references to all the flex-items so we can change
+  //their content using the Apply button
+  elements.flexItems.list = document.querySelectorAll('.flex-item');
 }
 
 function setUpEventListeners() {
@@ -166,7 +169,7 @@ function setUpButtonListeners() {
 }
 
 function setFlexContainerStyle(property, newValue) {
-  console.log(`property, newValue`, property, newValue);
+  //   console.log(`property, newValue`, property, newValue);
   elements.flexContainer.landscape.style.setProperty(property, newValue);
   elements.flexContainer.portrait.style.setProperty(property, newValue);
   updateCSS();
@@ -214,38 +217,33 @@ function setDimensions(target, orientation, isChecked) {
 
 function updateFlexItemText() {
   const itemText = elements.flexItems.flexItemText.value;
+
   if (!itemText) {
     return;
   }
-  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    const portraitItem = elements.flexItems.list[index];
-    const landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT];
-    if (elements.flexItems.checkbox.list[index].checked) {
+  for (let index = 0; index < whichFlexItems.length; index++) {
+    const portraitItem = elements.flexItems.list[whichFlexItems[index]-1];
+    const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
       portraitItem.firstElementChild.textContent = itemText;
-      landscapeItem.firstElementChild.textContent = itemText;
-    } else {
-      portraitItem.firstElementChild.textContent = (index + 1).toString();
-      landscapeItem.firstElementChild.textContent = (index + 1).toString();
-    }
+    landscapeItem.firstElementChild.textContent = itemText;
+    // portraitItem.firstElementChild.textContent = (index + 1).toString();
+    // landscapeItem.firstElementChild.textContent = (index + 1).toString();
   }
 }
 
 function updateFlexItemProperty(property, newValue) {
-  function updateItem(index) {
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     let portraitItem = elements.flexItems.list[index];
     let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT];
-    portraitItem.style[property] = newValue;
-    landscapeItem.style[property] = newValue;
-  }
-  //set flowGrow on each flexItem
-  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    updateItem(index);
+    portraitItem.style.setProperty(property, newValue);
+    landscapeItem.style.setProperty(property, newValue);
   }
   updateCSS();
 }
 
 function updateAllFlexItems(event) {
   console.log(`event`, event);
+  parseWhichItems();
   updateFlexItemText();
 }
 
@@ -253,19 +251,20 @@ function updateAllFlexItems(event) {
 which tells us which FlexItems to be modified by the Apply button.  This allows
 the user to set individual properties for each FlexItem */
 import { isValidIndex } from './validate.js';
-function parseWhichItems(userEntry) {
-  const items = [];
+function parseWhichItems() {
+  whichFlexItems = []; //reset
+  const userEntry = elements.flexItems.whichItems.value;
   let choices = userEntry.trim().split(' ');
   choices.forEach((choice) => {
-    if (isValidIndex(choice)) {
-      items.push(+choice); //output a Number
+    if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
+      whichFlexItems.push(+choice); //output a Number
     }
   });
-  console.log(`items`, items);
+  console.log(`whichFlexItems`, whichFlexItems);
 }
 
 function setDefault(container, key) {
-  console.log(`defaults`, defaults);
+  //   console.log(`defaults`, defaults);
   const property = defaults[container][key].property;
   const defaultValue = defaults[container][key].default;
   elements[container][key].value = defaultValue;
@@ -275,5 +274,3 @@ function setDefault(container, key) {
     setFlexContainerStyle(property, defaultValue);
   }
 }
-
-

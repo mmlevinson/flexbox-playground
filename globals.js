@@ -36,6 +36,7 @@ const elements = {
     },
   },
   flexItems: {
+    list: document.querySelectorAll('.flex-item'),
     checkbox: {
       landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
       portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
@@ -63,7 +64,6 @@ const elements = {
     buttons: {
       list: document.getElementById('flex-item-buttons'),
     },
-    list: document.querySelectorAll('.flex-item'),
   },
   mediaQueries: {
     buttons: {
@@ -100,71 +100,71 @@ const state = {
 };
 
 const defaults = {
-    flexContainer: {
-        howManyItems: DEFAULT_FLEX_ITEM_COUNT,
-        landscape: {
-            dimensions: {
-                width: '800px',
-                height: '800px',
-            },
-        },
-        portrait: {
-            dimensions: {
-                width: '300px',
-                height: '500px',
-            },
-        },
-        displayType: {
-            property: 'display',
-            default: 'block',
-        },
-        overflow: {
-            property: 'overflow',
-            default: 'auto',
-        },
-        flexDirection: {
-            property: 'flex-direction',
-            default: 'row',
-        },
-        flexWrap: {
-            property: 'flex-wrap',
-            default: 'nowrap',
-        },
-        justifyContent: {
-            property: 'justify-content',
-            default: 'flex-start',
-        },
-        alignItems: {
-            property: 'align-items',
-            default: 'stretch',
-        },
-        alignContent: {
-            property: 'align-content',
-            default: 'start',
-        },
-        gap: {
-            property: 'gap',
-            default: 0,
-        },
-        flexOrder: {
-            property: 'flex-order',
-            default: 0,
-        },
-        flexItems: {
-            flexShrink: {
-                property: 'flex-shrink',
-                default: 1,
-            },
-            flexGrow: {
-                property: 'flex-grow',
-                default: 0,
-            },
-            flexBasis: {
-                property: 'flex-basis',
-                default: 'auto',
-            },
-        },
-    }
-}
+  flexContainer: {
+    howManyItems: DEFAULT_FLEX_ITEM_COUNT,
+    landscape: {
+      dimensions: {
+        width: '800px',
+        height: '800px',
+      },
+    },
+    portrait: {
+      dimensions: {
+        width: '300px',
+        height: '500px',
+      },
+    },
+    displayType: {
+      property: 'display',
+      default: 'block',
+    },
+    overflow: {
+      property: 'overflow',
+      default: 'auto',
+    },
+    flexDirection: {
+      property: 'flex-direction',
+      default: 'row',
+    },
+    flexWrap: {
+      property: 'flex-wrap',
+      default: 'nowrap',
+    },
+    justifyContent: {
+      property: 'justify-content',
+      default: 'flex-start',
+    },
+    alignItems: {
+      property: 'align-items',
+      default: 'stretch',
+    },
+    alignContent: {
+      property: 'align-content',
+      default: 'start',
+    },
+    gap: {
+      property: 'gap',
+      default: 0,
+    },
+    flexOrder: {
+      property: 'flex-order',
+      default: 0,
+    },
+    flexItems: {
+      flexShrink: {
+        property: 'flex-shrink',
+        default: 1,
+      },
+      flexGrow: {
+        property: 'flex-grow',
+        default: 0,
+      },
+      flexBasis: {
+        property: 'flex-basis',
+        default: 'auto',
+      },
+    },
+  },
+};
 
 export { elements, state, defaults };
