@@ -102,12 +102,10 @@ div.main-wrapper {
 /* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
 /* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
-ul#panel-list {
-  display: inline;
-}
+
 
 /* Vertical-Align:top saved the entire layout from being ruined after I removed the overflow from the panels.   Whew */
-li.panel {
+.panel {
   display: inline-block;
   vertical-align: top;
   background-color: slategray;
