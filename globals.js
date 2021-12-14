@@ -65,11 +65,11 @@ const elements = {
       list: document.getElementById('flex-item-buttons'),
     },
   },
-  mediaQueries: {
+  additionalCSS: {
     buttons: {
-      list: document.getElementById('media-query-buttons'),
+      list: document.getElementById('additional-css-buttons'),
     },
-    textArea: document.getElementById('media-queries'),
+    textArea: document.getElementById('additonal-css'),
   },
   cssOutput: {
     textArea: document.getElementById('css-output'),

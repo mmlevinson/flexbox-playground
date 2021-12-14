@@ -19,9 +19,9 @@ function initialize() {
   elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
   elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
   elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
-  elements.mediaQueries.buttons.reset = elements.mediaQueries.buttons.list.children[0];
-  elements.mediaQueries.buttons.undo = elements.mediaQueries.buttons.list.children[1];
-  elements.mediaQueries.buttons.apply = elements.mediaQueries.buttons.list.children[2];
+  elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
+  elements.additionalCSS.buttons.undo = elements.additionalCSS.buttons.list.children[1];
+  elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[2];
   setUpEventListeners();
 
   //allow dynamic number of div.flex-item using a CustomElement
