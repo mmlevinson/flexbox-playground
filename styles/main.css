@@ -13,6 +13,7 @@
   --header-color:#2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
+  --sub-panel-height: 450px;
 }
 
 html {
@@ -28,7 +29,7 @@ body {
 }
 ul {
   list-style: none;
-  display:inline-block;
+  /* display:inline-block; */
 }
 
 .app-title{
@@ -93,15 +94,26 @@ ul {
 .panel {
   display: inline-block;
   vertical-align: top;
-  background-color: slategray;
+  /* background-color: slategray; */
 
   /* width: 24%; */
   margin-left:4px;
   margin-top:4px;
+ border: 1px solid red;
+  width: 304px;
+  height: calc((var(--sub-panel-height) * 2) + 8px);
+
+}
+
+.subPanel {
+  display: inline-block;
+  /* vertical-align: top; */
+  background-color: slategray;
+  margin-bottom:4px;
   border: 1px solid var(--panel-border-color);
   border-radius:5px;
   width: 300px;
-  height: 446px;
+  height: var(--sub-panel-height);
   min-width: 300px;
   max-width: 300px;
 }
@@ -113,12 +125,14 @@ ul {
   /* height:360px; */
   min-width: 300px;
   max-width: none;
-  width: calc(100% - 938px);
+  /* width: calc(100% - 938px); */
   /* background-color: red; */
  
   /* background:indigo; */
   /* font-family: monospace; */
 }
+
+
 
 #css-output {
   font-family: monospace;
