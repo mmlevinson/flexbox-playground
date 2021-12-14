@@ -28,7 +28,7 @@ div.flex-item {
     /* top: 0px; */
     /* left:75%; */
     border: 1px solid black;
-    background: khaki;
+    background: hsl(39, 93%, 17%);
   }
   
   /* At the bottom is a full-width flex container */

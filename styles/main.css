@@ -13,8 +13,9 @@
   --header-color:#2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
-  --panel-background-color: slategray;
+  --panel-background-color: #708090;
   --sub-panel-height: 452px;
+  --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
 }
 
 html {
@@ -102,13 +103,14 @@ ul {
   display: inline-block;
   vertical-align: top;
   /* background-color: slategray; */
-
+  border-radius:7px;
   /* width: 24%; */
   margin-left:8px;
   margin-top:4px;
  /* border: 1px solid red; */
   width: 304px;
   height: calc((var(--sub-panel-height) * 2) + 8px);
+ 
 
 
 }
@@ -116,8 +118,9 @@ ul {
 .panel#portrait-panel{
   border: 1px solid var(--panel-border-color);
   background-color: var(--panel-background-color);
+  box-shadow: var(--standard-box-shadow);
   height: calc((var(--sub-panel-height) * 2) + 8px);
-  border-radius:5px;
+  
 }
 
 .panel#landscape-panel{
@@ -127,6 +130,7 @@ ul {
   background-color: var(--panel-background-color);
   height: calc((var(--sub-panel-height) * 2) + 8px);
   border-radius:5px;
+  box-shadow: var(--standard-box-shadow);
 }
 
 .subPanel {
@@ -140,6 +144,7 @@ ul {
   height: var(--sub-panel-height);
   min-width: 300px;
   max-width: 300px;
+  box-shadow: var(--standard-box-shadow);
 }
 
 
@@ -196,9 +201,7 @@ ul {
   margin-top: 60px;
 }
 
-#flex-item-buttons {
-  margin-top: 8px;
-}
+
 
 
 #flex-container-reset-button {
