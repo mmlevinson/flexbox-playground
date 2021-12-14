@@ -58,11 +58,12 @@ function setUpFlexItems(newValue) {
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     let newFlexItem = document.createElement('div', { is: 'flex-item' });
-    newFlexItem.firstElementChild.textContent = (index + 1).toString();
+    newFlexItem.textContent = `.flex-item_${index + 1}`;
     elements.flexContainer.landscape.append(newFlexItem);
     //newFlexItem.cloneNode(true) failed...created a ghost <span> instead of a true copy
     newFlexItem = document.createElement('div', { is: 'flex-item' });
-    newFlexItem.firstElementChild.textContent = (index + 1).toString();
+    // newFlexItem.firstElementChild.textContent = (index + 1).toString();
+    newFlexItem.textContent = `.flex-item_${index + 1}`;
     elements.flexContainer.portrait.append(newFlexItem);
   }
   //update our references to all the flex-items so we can change
@@ -74,7 +75,8 @@ function setUpEventListeners() {
   setUpCheckboxListeners();
   setUpValueFieldListeners();
   setUpMenuListeners();
-  setUpButtonListeners();
+    setUpButtonListeners();
+    setUpToolTipListeners();
 }
 
 function updateCSS() {
@@ -85,13 +87,7 @@ function updateCSS() {
   const landscapeStyle = style.replaceAll(';', ';\n');
   style = elements.flexContainer.portrait.style.cssText;
   const portraitStyle = style.replaceAll(';', ';\n');
-  let cssText = '';
-  if (state.flexContainer.landscape.checked) {
-    cssText = `### Landscape:\ndiv.flex-container  { \n ${landscapeStyle}}\n\n`;
-  }
-  if (state.flexContainer.portrait.checked) {
-    cssText += `### Portrait\ndiv.flex-container { \n ${portraitStyle}}\n\n`;
-  }
+  let cssText =  `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
   whichFlexItems.forEach((itemNumber) => {
@@ -173,6 +169,13 @@ function setUpButtonListeners() {
     reset();
   });
 }
+
+function setUpToolTipListeners() {
+    //get the label for each one of these elements, its the parent.firstElementChild?
+    //set up a 'hover' event and set the tooltip text
+
+}
+
 
 function setFlexContainerStyle(property, newValue) {
   //   console.log(`property, newValue`, property, newValue);

@@ -73,7 +73,10 @@ const elements = {
   },
   cssOutput: {
     textArea: document.getElementById('css-output'),
-  },
+    },
+    toolTip: {
+        text: document.querySelector('.tooltip > .tooltip-text'),
+  }
 };
 
 const state = {
@@ -164,4 +167,34 @@ const defaults = {
   },
 };
 
-export { elements, state, defaults };
+const toolTips = {
+    overflow: {
+        text:'Tip',
+    },
+    displayType: {
+        text:'Tip',
+    },
+    flexDirection: {
+        text:'Tip',
+    },
+    flexWrap: {
+        text:'Tip',
+    },
+    justifyContent: {
+        text:'Tip'
+    },
+    alignItems: {
+        text:'Tip'
+    },        
+    alignContent: {
+        text:'Tip'
+    },
+    order:{
+        text:'Tip'
+    },
+    gap: {
+        text:'Tip'
+    }
+}
+
+export { elements, state, defaults, toolTips };
