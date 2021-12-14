@@ -13,7 +13,8 @@
   --header-color:#2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
-  --sub-panel-height: 450px;
+  --panel-background-color: slategray;
+  --sub-panel-height: 452px;
 }
 
 html {
@@ -103,19 +104,36 @@ ul {
   /* background-color: slategray; */
 
   /* width: 24%; */
-  margin-left:4px;
+  margin-left:8px;
   margin-top:4px;
- border: 1px solid red;
+ /* border: 1px solid red; */
   width: 304px;
   height: calc((var(--sub-panel-height) * 2) + 8px);
 
+
+}
+
+.panel#portrait-panel{
+  border: 1px solid var(--panel-border-color);
+  background-color: var(--panel-background-color);
+  height: calc((var(--sub-panel-height) * 2) + 8px);
+  border-radius:5px;
+}
+
+.panel#landscape-panel{
+  
+  width:calc(100vw - 990px);
+  border: 1px solid var(--panel-border-color);
+  background-color: var(--panel-background-color);
+  height: calc((var(--sub-panel-height) * 2) + 8px);
+  border-radius:5px;
 }
 
 .subPanel {
   display: inline-block;
   /* vertical-align: top; */
-  background-color: slategray;
-  margin-bottom:4px;
+  background-color: var(--panel-background-color);
+  margin-bottom:8px;
   border: 1px solid var(--panel-border-color);
   border-radius:5px;
   width: 300px;

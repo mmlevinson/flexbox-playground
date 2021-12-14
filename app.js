@@ -43,10 +43,10 @@ function reset() {
   //   setDefault('flexContainer', 'flexOrder');
   //set the sizes of the FlexContainers, and their input fields
   // console.log(`defaults`, defaults);
-  elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
-  elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
-  elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
-  elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
+//   elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
+//   elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
+//   elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
+//   elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
 }
 
 function setUpFlexItems(newValue) {

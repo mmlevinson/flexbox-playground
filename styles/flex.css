@@ -20,12 +20,12 @@ div.flex-item {
   div.flex-container#portrait {
     /* position: relative; */
     /* top:0; */
-    width: 300px;
-    max-width: 500px;
-    height: 500px;
+    /* width: 300px; */
+    /* max-width: 500px; */
+    /* height: 100%; */
     /* height: 100%; */
     /* float:right; */
-    top: 0px;
+    /* top: 0px; */
     /* left:75%; */
     border: 1px solid black;
     background: khaki;
@@ -33,12 +33,13 @@ div.flex-item {
   
   /* At the bottom is a full-width flex container */
   div.flex-container#landscape {
+    
     position: relative;
     background: indigo;
     border: 1px solid black;
-    width: 800px;
-    height: 500px;
-    top: 4px;
+    /* height:100%;
+    width:100%; */
+    
   }
   
   div.flex-setting {
