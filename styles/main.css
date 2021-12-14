@@ -160,17 +160,15 @@ ul {
   /* background-color: slategray; */
   border-radius:7px;
   /* width: 24%; */
-  margin-left:8px;
+  margin-left:12px;
   margin-top:4px;
  /* border: 1px solid red; */
   width: 304px;
   height: calc((var(--sub-panel-height) * 2) + 8px);
  
-
-
 }
 
-.panel#portrait-panel{
+#portrait-panel{
   border: 1px solid var(--panel-border-color);
   background-color: var(--panel-background-color);
   box-shadow: var(--standard-box-shadow);
@@ -178,14 +176,16 @@ ul {
   
 }
 
-.panel#landscape-panel{
+#landscape-panel{
   
   width:calc(100vw - 990px);
-  border: 1px solid var(--panel-border-color);
+  min-width:300px;
+  
   background-color: var(--panel-background-color);
   height: calc((var(--sub-panel-height) * 2) + 8px);
   border-radius:5px;
   box-shadow: var(--standard-box-shadow);
+ 
 }
 
 .subPanel {
@@ -294,11 +294,21 @@ li.dimensions input[type='number'] {
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
-#additional-css-text{
+#additional-css-text, 
+#css-output{
   width: calc(100% - 8px);
   margin: 0px 4px;
   height: 356px;
+  resize:none;
+  overflow:auto;
 }
+
+#css-output{
+  background:white;
+  height: calc(100% - 40px);
+}
+
+
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
 span.section-title {
@@ -319,3 +329,4 @@ span.section-title {
   overflow: scroll;
   text-align: center;
 }
+

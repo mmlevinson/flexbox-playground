@@ -69,14 +69,15 @@ const elements = {
     buttons: {
       list: document.getElementById('additional-css-buttons'),
     },
-    textArea: document.getElementById('additonal-css'),
+      textArea: document.getElementById('additional-css-text'),
+      styleTag: document.getElementById('addition-styles-tag'),
   },
   cssOutput: {
     textArea: document.getElementById('css-output'),
-    },
-    toolTip: {
-        text: document.querySelector('.tooltip > .tooltip-text'),
-  }
+  },
+  toolTip: {
+    text: document.querySelector('.tooltip > .tooltip-text'),
+  },
 };
 
 const state = {
@@ -168,33 +169,33 @@ const defaults = {
 };
 
 const toolTips = {
-    overflow: {
-        text:'Tip',
-    },
-    displayType: {
-        text:'Tip',
-    },
-    flexDirection: {
-        text:'Tip',
-    },
-    flexWrap: {
-        text:'Tip',
-    },
-    justifyContent: {
-        text:'Tip'
-    },
-    alignItems: {
-        text:'Tip'
-    },        
-    alignContent: {
-        text:'Tip'
-    },
-    order:{
-        text:'Tip'
-    },
-    gap: {
-        text:'Tip'
-    }
-}
+  overflow: {
+    text: 'Tip',
+  },
+  displayType: {
+    text: 'Tip',
+  },
+  flexDirection: {
+    text: 'Tip',
+  },
+  flexWrap: {
+    text: 'Tip',
+  },
+  justifyContent: {
+    text: 'Tip',
+  },
+  alignItems: {
+    text: 'Tip',
+  },
+  alignContent: {
+    text: 'Tip',
+  },
+  order: {
+    text: 'Tip',
+  },
+  gap: {
+    text: 'Tip',
+  },
+};
 
 export { elements, state, defaults, toolTips };

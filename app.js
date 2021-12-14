@@ -33,7 +33,7 @@ function reset() {
   setUpFlexItems(defaults.flexContainer.howManyItems);
   //set menus back to defalut values
   setDefault('flexContainer', 'displayType');
-  setDefault('flexContainer', 'overflow');
+//   setDefault('flexContainer', 'overflow');
   setDefault('flexContainer', 'flexDirection');
   setDefault('flexContainer', 'flexWrap');
   setDefault('flexContainer', 'alignContent');
@@ -58,12 +58,12 @@ function setUpFlexItems(newValue) {
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     let newFlexItem = document.createElement('div', { is: 'flex-item' });
-    newFlexItem.textContent = `.flex-item_${index + 1}`;
+    newFlexItem.textContent = `Flex Item ${index + 1}`;
     elements.flexContainer.landscape.append(newFlexItem);
     //newFlexItem.cloneNode(true) failed...created a ghost <span> instead of a true copy
     newFlexItem = document.createElement('div', { is: 'flex-item' });
     // newFlexItem.firstElementChild.textContent = (index + 1).toString();
-    newFlexItem.textContent = `.flex-item_${index + 1}`;
+    newFlexItem.textContent = `Flex Item ${index + 1}`;
     elements.flexContainer.portrait.append(newFlexItem);
   }
   //update our references to all the flex-items so we can change
@@ -168,6 +168,15 @@ function setUpButtonListeners() {
   elements.flexContainer.buttons.reset.addEventListener('click', () => {
     reset();
   });
+    
+    elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
+      //update the custom.css file which is imported into the project
+        const additionalCSSText = elements.additionalCSS.textArea.value;
+        const rules = additionalCSSText.split('}');
+        console.log(`rules`, rules);
+  })
+
+    
 }
 
 function setUpToolTipListeners() {
@@ -233,8 +242,8 @@ function updateFlexItemText() {
   for (let index = 0; index < whichFlexItems.length; index++) {
     const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
-    portraitItem.firstElementChild.textContent = itemText;
-    landscapeItem.firstElementChild.textContent = itemText;
+    portraitItem.textContent = itemText;
+    landscapeItem.textContent = itemText;
   }
 }
 
