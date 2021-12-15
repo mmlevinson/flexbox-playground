@@ -15,7 +15,7 @@ function initialize() {
   console.log(`elements`, elements);
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
-  elements.flexContainer.buttons.reset = elements.flexContainer.buttons.list.children[0];
+  elements.flexContainer.buttons.restoreDefaults = elements.flexContainer.buttons.list.children[0];
   elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
   elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
   elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
@@ -27,23 +27,31 @@ function initialize() {
   reset(); //establishes default state of app, calls setUpFlexItems();
 }
 
-function reset() {
-  setUpFlexItems(defaults.flexContainer.howManyItems);
-  //set menus back to defalut values
-  setDefault('flexContainer', 'displayType');
-  setDefault('flexContainer', 'overflow');
-  setDefault('flexContainer', 'flexDirection');
-  setDefault('flexContainer', 'flexWrap');
-  setDefault('flexContainer', 'alignContent');
-  setDefault('flexContainer', 'justifyContent');
-  setDefault('flexContainer', 'alignItems');
+function flexItemDefaults() {
     setDefault('flexItems', 'flexProportion');
     setDefault('flexItems', 'flexShrink');
     setDefault('flexItems', 'flexGrow');
     setDefault('flexItems', 'flexBasis');
     setDefault('flexItems', 'alignSelf');
-    setDefault('flexItems', 'flexOrder');
+    setDefault('flexItems', 'flexOrder'); 
+}
+
+function flexContainerDefaults(params) {
+    //set menus back to defalut values
+    setDefault('flexContainer', 'displayType');
+    setDefault('flexContainer', 'overflow');
+    setDefault('flexContainer', 'flexDirection');
+    setDefault('flexContainer', 'flexWrap');
+    setDefault('flexContainer', 'alignContent');
+    setDefault('flexContainer', 'justifyContent');
+    setDefault('flexContainer', 'alignItems');
     
+}
+
+function reset() {
+    setUpFlexItems(defaults.flexContainer.howManyItems);
+    flexContainerDefaults();
+    flexItemDefaults();
 }
 
 function setUpFlexItems(newValue) {
@@ -162,13 +170,21 @@ function setUpMenuListeners() {
 }
 
 function setUpButtonListeners() {
+    //    Main Nav Menu buttons
+    elements.navigation.reset.addEventListener('click', (event) => {
+        reset();
+    })
+
+    //FlexContainer Restore Defaults
+    elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
+        flexContainerDefaults();
+    })
+  
   //the FlexItem Apply button
   elements.flexItems.buttons.apply.addEventListener('click', (event) => {
     updateAllFlexItems(event);
   });
-  elements.flexContainer.buttons.reset.addEventListener('click', () => {
-    reset();
-  });
+
 
   elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
     //update the custom.css file which is imported into the project
@@ -234,7 +250,7 @@ function setDimensions(target, orientation, isChecked) {
 function updateFlexItemText() {
   let itemText = elements.flexItems.flexItemText.value;
 
-    if (!itemText) return;
+  if (!itemText) return;
   //is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {
@@ -244,7 +260,7 @@ function updateFlexItemText() {
 
   for (let index = 0; index < WHICH_FLEX_ITEMS.length; index++) {
     const portraitItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
-    portraitItem.firstChild.textContent = itemText;   //update the textNode associated with the 
+    portraitItem.firstChild.textContent = itemText; //update the textNode associated with the
     const landscapeItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] + FLEX_ITEM_COUNT - 1];
     landscapeItem.firstChild.textContent = itemText;
   }
@@ -263,12 +279,12 @@ function updateAllFlexItems(event) {
   console.log(`event`, event);
   parseWhichItems();
   updateFlexItemText();
-  updateFlexItemProperty('flex', elements.flexItems.flexProportion.value); 
-  updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value); 
+  updateFlexItemProperty('flex', elements.flexItems.flexProportion.value);
+  updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value);
   updateFlexItemProperty('flex-shrink', elements.flexItems.flexShrink.value);
   updateFlexItemProperty('flex-basis', elements.flexItems.flexBasis.value);
-  updateFlexItemProperty('align-self', elements.flexItems.alignSelf.value); 
-  updateFlexItemProperty('order', elements.flexItems.flexOrder.value); 
+  updateFlexItemProperty('align-self', elements.flexItems.alignSelf.value);
+  updateFlexItemProperty('order', elements.flexItems.flexOrder.value);
   updateCSS();
 }
 
@@ -285,7 +301,7 @@ function parseWhichItems() {
       WHICH_FLEX_ITEMS.push(+choice); //output a Number
     }
   });
-//   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
+  //   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
 }
 
 function setDefault(container, key) {

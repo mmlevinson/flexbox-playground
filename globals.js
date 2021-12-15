@@ -76,6 +76,12 @@ const elements = {
   cssOutput: {
     textArea: document.getElementById('css-output'),
   },
+  navigation: {
+    reset: document.querySelector('.main-nav-item.reset-item'),
+    copy: document.querySelector('.main-nav-item.copy-item'),
+    load: document.querySelector('.main-nav-item.load-item'),
+    save: document.querySelector('.main-nav-item.save-item'),
+  },
   toolTip: {
     text: document.querySelector('.tooltip > .tooltip-text'),
   },
@@ -167,12 +173,12 @@ const defaults = {
       default: 0,
     },
     flexBasis: {
-        property: 'flex-basis',
-        default: 'auto',
+      property: 'flex-basis',
+      default: 'auto',
     },
     alignSelf: {
-        property: 'align-self',
-        default: 'auto',
+      property: 'align-self',
+      default: 'auto',
     },
     flexOrder: {
       property: 'order',
