@@ -1,5 +1,5 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
-import { FlexItem, LoremIpsum } from './classes.js';
+import { LoremIpsum } from './classes.js';
 import { clearFlexContainers } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 
@@ -24,8 +24,7 @@ function initialize() {
   elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[2];
   setUpEventListeners();
 
-  //allow dynamic number of div.flex-item using a CustomElement
-  customElements.define('flex-item', FlexItem, { extends: 'div' });
+
   reset(); //establishes default state of app, calls setUpFlexItems();
 }
 
@@ -43,13 +42,25 @@ function reset() {
   //   setDefault('flexContainer', 'flexOrder');
   //set the sizes of the FlexContainers, and their input fields
   // console.log(`defaults`, defaults);
-//   elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
-//   elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
-//   elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
-//   elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
+  //   elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
+  //   elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
+  //   elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
+  //   elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
 }
 
 function setUpFlexItems(newValue) {
+
+    function newFlexItem(index) {
+      /* factory method */
+    const newDiv = document.createElement('div');
+    newDiv.textContent = LoremIpsum.getSentence(10);
+    newDiv.classList.add('flex-item');
+    const span = document.createElement('span');
+    span.textContent = index.toString();
+    span.classList.add('flex-item-number');
+    newDiv.appendChild(span);
+    return newDiv;
+  }
   // const numItems = elements.flexContainer.howManyItems.value;
   // console.log(`newValue`, newValue);
   if (!validateHowManyItems(newValue)) return;
@@ -57,14 +68,15 @@ function setUpFlexItems(newValue) {
   //now create new elements meeting the number specified
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    let newFlexItem = document.createElement('div', { is: 'flex-item' });
-    newFlexItem.textContent = `Flex Item ${index + 1}`;
-    elements.flexContainer.landscape.append(newFlexItem);
-    //newFlexItem.cloneNode(true) failed...created a ghost <span> instead of a true copy
-    newFlexItem = document.createElement('div', { is: 'flex-item' });
-    // newFlexItem.firstElementChild.textContent = (index + 1).toString();
-    newFlexItem.textContent = `Flex Item ${index + 1}`;
-    elements.flexContainer.portrait.append(newFlexItem);
+    // let newFlexItem = document.createElement('div', { is: 'flex-item' });
+
+    // newFlexItem.textContent = `${index + 1} ${LoremIpsum.getSentence(10)}`;
+    //   console.log(`newFlexItem`, newFlexItem);
+    // newFlexItem = document.createElement('div', { is: 'flex-item' });
+    // newFlexItem.textContent = `${index + 1} ${LoremIpsum.getSentence(10)}`;
+    //   let newFlexItem = spawnFlexItem(index, LoremIpsum.getSentence(10));
+    elements.flexContainer.landscape.append(newFlexItem(index));
+    elements.flexContainer.portrait.append(newFlexItem(index));
   }
   //update our references to all the flex-items so we can change
   //their content using the Apply button
@@ -75,8 +87,8 @@ function setUpEventListeners() {
   setUpCheckboxListeners();
   setUpValueFieldListeners();
   setUpMenuListeners();
-    setUpButtonListeners();
-    setUpToolTipListeners();
+  setUpButtonListeners();
+  setUpToolTipListeners();
 }
 
 function updateCSS() {
@@ -87,7 +99,7 @@ function updateCSS() {
   const landscapeStyle = style.replaceAll(';', ';\n');
   style = elements.flexContainer.portrait.style.cssText;
   const portraitStyle = style.replaceAll(';', ';\n');
-  let cssText =  `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
+  let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
   whichFlexItems.forEach((itemNumber) => {
@@ -168,23 +180,19 @@ function setUpButtonListeners() {
   elements.flexContainer.buttons.reset.addEventListener('click', () => {
     reset();
   });
-    
-    elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
-      //update the custom.css file which is imported into the project
-        const additionalCSSText = elements.additionalCSS.textArea.value;
-        const rules = additionalCSSText.split('}');
-        console.log(`rules`, rules);
-  })
 
-    
+  elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
+    //update the custom.css file which is imported into the project
+    const additionalCSSText = elements.additionalCSS.textArea.value;
+    const rules = additionalCSSText.split('}');
+    console.log(`rules`, rules);
+  });
 }
 
 function setUpToolTipListeners() {
-    //get the label for each one of these elements, its the parent.firstElementChild?
-    //set up a 'hover' event and set the tooltip text
-
+  //get the label for each one of these elements, its the parent.firstElementChild?
+  //set up a 'hover' event and set the tooltip text
 }
-
 
 function setFlexContainerStyle(property, newValue) {
   //   console.log(`property, newValue`, property, newValue);
@@ -239,18 +247,20 @@ function updateFlexItemText() {
   if (!itemText) {
     return;
   }
-   //is this LoremXX?
-    const loremCount = LoremIpsum.isLorem(itemText);
-    console.log(`loremCount`, loremCount);
-  if (loremCount) {   //returns 0 if not begins with 'lorem'
-      itemText = LoremIpsum.getSentence(loremCount);
+  //is this LoremXX?
+  const loremCount = LoremIpsum.isLorem(itemText);
+  console.log(`loremCount`, loremCount);
+  if (loremCount) {
+    //returns 0 if not begins with 'lorem'
+    itemText = LoremIpsum.getSentence(loremCount);
   }
-  
+
   for (let index = 0; index < whichFlexItems.length; index++) {
     const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
+    portraitItem.textContent = `${index} ${itemText}`;
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
-    portraitItem.textContent = itemText;
-    landscapeItem.textContent = itemText;
+    landscapeItem.textContent = `${index} ${itemText}`;
+    //the flex item text
   }
 }
 

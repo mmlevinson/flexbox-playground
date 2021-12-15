@@ -1,13 +1,4 @@
-/* Factory Class for creating new FlexItems for populating the FlexContainer */
-class FlexItem extends HTMLDivElement {
-  constructor() {
-    super();
-    this.classList.add('flex-item');
-    // const span = document.createElement('span');
-    // span.classList.add('flex-item-content');
-    // this.appendChild(span);
-  }
-}
+
 
 /* LoremIpsum adapted from https://github.com/fffilo/lorem-ipsum-js/blob/master/src/lorem-ipsum.js */
 
@@ -293,4 +284,4 @@ class LoremIpsum {
   }
 }
 
-export { FlexItem, LoremIpsum };
+export {  LoremIpsum };

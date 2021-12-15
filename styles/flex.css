@@ -1,14 +1,31 @@
 
 
 
-/* Inside the full-width flex container are children (ie flex-items */
+/* Flex Items
+...position relative establishes this as a parent container for the enclosed <span> which uses
+...position absolute to stack underneath the flex item text
+ */
 div.flex-item {
     border: 1px solid var(--flex-item-border-color);
     background-color: var(--flex-item-color);
     padding:8px;
+    position:relative; 
+    margin:8px;     
     /* height: 80px;
     width: 80px; */
 
+  }
+
+  .flex-item .flex-item-number{
+    position:absolute;
+    text-align:center;
+    border-radius:50%;
+    bottom:0;
+    left:calc(100% - 1.2rem);
+    width:1.2rem;
+    height:1.2rem;
+    background-color: hsla(0, 0%, 0%, 0.118);
+    color:rgba(0, 0, 255, 0.564);
   }
   
   /* This rule is for the content of each flex-item.  By default, a span is inline, so setting the display to block permits assigning an explicit width/height ()which is based on the parent container, in this case the div.flex-items which wraps this span.    If you just put a single char (like a numeric value), then padding-vertical:40% will get it to about the middle of the element.  Otherwise, the content should flow and size according to its specified width/height. */
@@ -27,7 +44,7 @@ div.flex-item {
     max-width: 300px;
     overflow:none;
     /* max-width: 500px; */
-    height: auto;
+    max-height: calc(var(--panel-height) - 40px);
     /* height: 100%; */
     /* float:right; */
     /* top: 0px; */
@@ -43,6 +60,7 @@ div.flex-item {
     position: relative;
     background: hsl(275, 79%, 13%);
     border: 1px solid black;
+    
   
     /* height:100%;
     width:100%; */
@@ -70,3 +88,10 @@ div.flex-item {
     width: 20%;
   }
    */
+
+  @media(max-width:1330px){
+    #landscape,
+    #landscape-panel{
+      visibility:hidden;
+    }
+  }
