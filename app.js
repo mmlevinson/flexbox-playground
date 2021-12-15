@@ -15,13 +15,10 @@ function initialize() {
   console.log(`elements`, elements);
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
-  elements.flexContainer.buttons.restoreDefaults = elements.flexContainer.buttons.list.children[0];
-  elements.flexItems.buttons.reset = elements.flexItems.buttons.list.children[0];
-  elements.flexItems.buttons.undo = elements.flexItems.buttons.list.children[1];
-  elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[2];
+  elements.flexItems.buttons.restoreDefaults = elements.flexItems.buttons.list.children[0];
+  elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[1];
   elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
-  elements.additionalCSS.buttons.undo = elements.additionalCSS.buttons.list.children[1];
-  elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[2];
+  elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
   setUpEventListeners();
 
   reset(); //establishes default state of app, calls setUpFlexItems();
@@ -45,6 +42,7 @@ function flexContainerDefaults(params) {
     setDefault('flexContainer', 'alignContent');
     setDefault('flexContainer', 'justifyContent');
     setDefault('flexContainer', 'alignItems');
+    setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
     
 }
 
@@ -178,6 +176,11 @@ function setUpButtonListeners() {
     //FlexContainer Restore Defaults
     elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
         flexContainerDefaults();
+    })
+
+    elements.flexItems.buttons.restoreDefaults.addEventListener('click', (event) => {
+        flexItemDefaults();
+        updateAllFlexItems(event)
     })
   
   //the FlexItem Apply button

@@ -32,7 +32,7 @@ const elements = {
     gap: document.getElementById('gap'),
     howManyItems: document.getElementById('howManyItems'),
     buttons: {
-      list: document.getElementById('flex-container-buttons'),
+        restoreDefaults: document.getElementById('flex-container-defaults-button'),
     },
   },
   flexItems: {
