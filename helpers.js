@@ -14,6 +14,15 @@ function clearFlexContainers(landscape, portrait) {
 }
 
 
+function parseCSSRules(rawText) {
+    let result = rawText.split(/[{}]/).filter(String).map((str) => {
+        return str.trim();
+    })
+
+
+    return result;
+}
+
 
 
 
@@ -304,5 +313,6 @@ class LoremIpsum {
 
 export {
     clearFlexContainers,
+    parseCSSRules,
     LoremIpsum
 }

@@ -1,6 +1,6 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
 import { LoremIpsum } from './classes.js';
-import { clearFlexContainers } from './helpers.js';
+import { clearFlexContainers, parseCSSRules } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 
 let FLEX_ITEM_COUNT;
@@ -24,6 +24,7 @@ function initialize() {
   reset(); //establishes default state of app, calls setUpFlexItems();
 }
 
+
 function flexItemDefaults() {
   setDefault('flexItems', 'flexProportion');
   setDefault('flexItems', 'flexShrink');
@@ -31,6 +32,7 @@ function flexItemDefaults() {
   setDefault('flexItems', 'flexBasis');
   setDefault('flexItems', 'alignSelf');
   setDefault('flexItems', 'flexOrder');
+  elements.additionalCSS.textArea.value = '';
 }
 
 function flexContainerDefaults(params) {
@@ -78,6 +80,7 @@ function setUpFlexItems(newValue) {
   //update our references to all the flex-items so we can change
   //their content using the Apply button
   elements.flexItems.list = document.querySelectorAll('.flex-item');
+  elements.additionalCSS.textArea.value = '';
 }
 
 function setUpEventListeners() {
@@ -99,14 +102,20 @@ function updateCSS() {
   let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
+  let additionalCSSTemplate = '';
 
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     const element = elements.flexItems.list[index];
     style = element.style.cssText.replaceAll(';', ';\n');
     flexItemCSS += `div.flex-item#item__${index}:{ \n ${style}}\n\n`;
+    additionalCSSTemplate += `div.flex-item#item__${index}:{ \n ${style}}\n\n`;
   }
 
   elements.cssOutput.textArea.textContent = cssText + flexItemCSS;
+
+  if (!elements.additionalCSS.textArea.value) {
+    elements.additionalCSS.textArea.value = additionalCSSTemplate;
+  }
 }
 
 function setUpCheckboxListeners() {
@@ -196,7 +205,7 @@ function setUpButtonListeners() {
   elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
     //update the custom.css file which is imported into the project
     const additionalCSSText = elements.additionalCSS.textArea.value;
-    const rules = additionalCSSText.split('}');
+      const rules = parseCSSRules(additionalCSSText);
     console.log(`rules`, rules);
   });
 }
