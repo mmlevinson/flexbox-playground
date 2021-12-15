@@ -53,7 +53,7 @@ function setUpFlexItems(newValue) {
     function newFlexItem(index) {
       /* factory method */
     const newDiv = document.createElement('div');
-    newDiv.textContent = LoremIpsum.getSentence(10);
+    newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
     const span = document.createElement('span');
     span.textContent = index.toString();
@@ -61,20 +61,12 @@ function setUpFlexItems(newValue) {
     newDiv.appendChild(span);
     return newDiv;
   }
-  // const numItems = elements.flexContainer.howManyItems.value;
-  // console.log(`newValue`, newValue);
+
   if (!validateHowManyItems(newValue)) return;
   clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
-  //now create new elements meeting the number specified
-  FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
+  
+  FLEX_ITEM_COUNT = +newValue;   //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    // let newFlexItem = document.createElement('div', { is: 'flex-item' });
-
-    // newFlexItem.textContent = `${index + 1} ${LoremIpsum.getSentence(10)}`;
-    //   console.log(`newFlexItem`, newFlexItem);
-    // newFlexItem = document.createElement('div', { is: 'flex-item' });
-    // newFlexItem.textContent = `${index + 1} ${LoremIpsum.getSentence(10)}`;
-    //   let newFlexItem = spawnFlexItem(index, LoremIpsum.getSentence(10));
     elements.flexContainer.landscape.append(newFlexItem(index));
     elements.flexContainer.portrait.append(newFlexItem(index));
   }
@@ -249,18 +241,15 @@ function updateFlexItemText() {
   }
   //is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
-  console.log(`loremCount`, loremCount);
-  if (loremCount) {
-    //returns 0 if not begins with 'lorem'
+  if (loremCount) {   //returns 0 if not begins with 'lorem'
     itemText = LoremIpsum.getSentence(loremCount);
   }
 
   for (let index = 0; index < whichFlexItems.length; index++) {
-    const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
-    portraitItem.textContent = `${index} ${itemText}`;
+      const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
+    portraitItem.firstChild.textContent = itemText;
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
-    landscapeItem.textContent = `${index} ${itemText}`;
-    //the flex item text
+    landscapeItem.textContent = itemText;
   }
 }
 

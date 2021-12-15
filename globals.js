@@ -70,8 +70,8 @@ const elements = {
     buttons: {
       list: document.getElementById('additional-css-buttons'),
     },
-      textArea: document.getElementById('additional-css-text'),
-      styleTag: document.getElementById('addition-styles-tag'),
+    textArea: document.getElementById('additional-css-text'),
+    styleTag: document.getElementById('addition-styles-tag'),
   },
   cssOutput: {
     textArea: document.getElementById('css-output'),
@@ -166,6 +166,9 @@ const defaults = {
         default: 'auto',
       },
     },
+  },
+  loremText: {
+    words: 10,
   },
 };
 
