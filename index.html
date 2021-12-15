@@ -168,10 +168,11 @@
                 <li class="input-field">
                   <label for="alignItems" class="setting-label">Align-Items:</label>
                   <select name="alignItems" class="setting-item" id="alignItems" disabled>
-                    <option value="stretch">STRETCH</option>
+                    <option value="stretch">NORMAL</option>
                     <option value="center">Center</option>
                     <option value="start">Start</option>
                     <option value="end">End</option>
+                    <option value="stretch">Stretch</option>
                     <option value="flex-start">Flex-Start</option>
                     <option value="flex-end">Flex-End</option>
                     <option value="baseline">Baseline</option>
@@ -243,11 +244,7 @@
                     <label for="flexGrow" class="setting-label">Flex-Grow</label>
                     <input type="number" min="0" value="0" name="flexGrow" id="flexGrow" class="setting-item" disabled />
                 </li>
-                <!-- Order -->
-                <li class="input-field">
-                    <label for="flexOrder" class="setting-label">Order</label>
-                    <input type="number" min="0" value="0" name="flexOrder" id="flexOrder" class="setting-item" disabled />
-                </li>
+              
                 <!-- Flex-Basis Type -->
                 <li class="input-field">
                     <label for="flexBasis" class="setting-label">Flex-Basis:</label>
@@ -292,6 +289,11 @@
                         <option value="revert">Revert</option>
                         <option value="unset">Unset</option>
                     </select>
+                </li>
+                  <!-- Order -->
+                  <li class="input-field">
+                    <label for="flexOrder" class="setting-label">Order</label>
+                    <input type="number" min="0" value="0" name="flexOrder" id="flexOrder" class="setting-item" disabled />
                 </li>
                 <!-- Flex-Item Text -->
                 <li class="input-field">

@@ -122,7 +122,7 @@ const defaults = {
     },
     overflow: {
       property: 'overflow',
-      default: 'auto',
+      default: 'visible',
     },
     flexDirection: {
       property: 'flex-direction',
@@ -134,15 +134,15 @@ const defaults = {
     },
     justifyContent: {
       property: 'justify-content',
-      default: 'flex-start',
+      default: 'normal',
     },
     alignItems: {
       property: 'align-items',
-      default: 'stretch',
+      default: 'normal',
     },
     alignContent: {
       property: 'align-content',
-      default: 'start',
+      default: 'normal',
     },
     gap: {
       property: 'gap',
@@ -152,19 +152,31 @@ const defaults = {
       property: 'flex-order',
       default: 0,
     },
-    flexItems: {
-      flexShrink: {
-        property: 'flex-shrink',
-        default: 1,
-      },
-      flexGrow: {
-        property: 'flex-grow',
-        default: 0,
-      },
-      flexBasis: {
+  },
+  flexItems: {
+    flexProportion: {
+      property: 'flex',
+      default: '0',
+    },
+    flexShrink: {
+      property: 'flex-shrink',
+      default: 1,
+    },
+    flexGrow: {
+      property: 'flex-grow',
+      default: 0,
+    },
+    flexBasis: {
         property: 'flex-basis',
         default: 'auto',
-      },
+    },
+    alignSelf: {
+        property: 'align-self',
+        default: 'auto',
+    },
+    flexOrder: {
+      property: 'order',
+      default: '0',
     },
   },
   loremText: {

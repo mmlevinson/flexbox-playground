@@ -4,7 +4,7 @@ import { clearFlexContainers } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 
 let FLEX_ITEM_COUNT;
-let whichFlexItems = []; //any flex-items settings apply to these children
+let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -37,14 +37,13 @@ function reset() {
   setDefault('flexContainer', 'alignContent');
   setDefault('flexContainer', 'justifyContent');
   setDefault('flexContainer', 'alignItems');
-  setDefault('flexContainer', 'gap');
-  //   setDefault('flexContainer', 'flexOrder');
-  //set the sizes of the FlexContainers, and their input fields
-  // console.log(`defaults`, defaults);
-  //   elements.flexContainer.landscape.style.setProperty('width', defaults.flexContainer.landscape.dimensions.width);
-  //   elements.flexContainer.landscape.style.setProperty('height', defaults.flexContainer.landscape.dimensions.height);
-  //   elements.flexContainer.portrait.style.setProperty('width', defaults.flexContainer.portrait.dimensions.width);
-  //   elements.flexContainer.portrait.style.setProperty('height', defaults.flexContainer.portrait.dimensions.height);
+    setDefault('flexItems', 'flexProportion');
+    setDefault('flexItems', 'flexShrink');
+    setDefault('flexItems', 'flexGrow');
+    setDefault('flexItems', 'flexBasis');
+    setDefault('flexItems', 'alignSelf');
+    setDefault('flexItems', 'flexOrder');
+    
 }
 
 function setUpFlexItems(newValue) {
@@ -54,7 +53,7 @@ function setUpFlexItems(newValue) {
     newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
     const span = document.createElement('span');
-    span.textContent = index.toString();
+    span.textContent = `${index + 1}`;
     span.classList.add('flex-item-number');
     newDiv.appendChild(span);
     return newDiv;
@@ -92,7 +91,7 @@ function updateCSS() {
   let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
-  whichFlexItems.forEach((itemNumber) => {
+  WHICH_FLEX_ITEMS.forEach((itemNumber) => {
     style = elements.flexItems.list[itemNumber - 1].style.cssText.replaceAll(';', ';\n');
     flexItemCSS += `div.flex-item_${itemNumber}:{ \n ${style}}\n\n`;
   });
@@ -212,6 +211,7 @@ function setDisplayType(newValue) {
   elements.flexItems.flexBasisValue.disabled = !isFlex;
   elements.flexItems.alignSelf.disabled = !isFlex;
   elements.flexItems.whichItems.disabled = !isFlex;
+  elements.flexItems.flexOrder.disabled = !isFlex;
 
   updateCSS();
 }
@@ -234,9 +234,7 @@ function setDimensions(target, orientation, isChecked) {
 function updateFlexItemText() {
   let itemText = elements.flexItems.flexItemText.value;
 
-  if (!itemText) {
-    return;
-  }
+    if (!itemText) return;
   //is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {
@@ -244,18 +242,18 @@ function updateFlexItemText() {
     itemText = LoremIpsum.getSentence(loremCount);
   }
 
-  for (let index = 0; index < whichFlexItems.length; index++) {
-    const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
-    portraitItem.firstChild.textContent = itemText;   //update the textNode associated with the div
-    const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
+  for (let index = 0; index < WHICH_FLEX_ITEMS.length; index++) {
+    const portraitItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
+    portraitItem.firstChild.textContent = itemText;   //update the textNode associated with the 
+    const landscapeItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] + FLEX_ITEM_COUNT - 1];
     landscapeItem.firstChild.textContent = itemText;
   }
 }
 
 function updateFlexItemProperty(property, newValue) {
-  for (let index = 0; index < whichFlexItems.length; index++) {
-    let portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
-    let landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
+  for (let index = 0; index < WHICH_FLEX_ITEMS.length; index++) {
+    let portraitItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
+    let landscapeItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] + FLEX_ITEM_COUNT - 1];
     portraitItem.style.setProperty(property, newValue);
     landscapeItem.style.setProperty(property, newValue);
   }
@@ -265,10 +263,12 @@ function updateAllFlexItems(event) {
   console.log(`event`, event);
   parseWhichItems();
   updateFlexItemText();
-  updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value); //update flex-grow for whichFlexItems
-  updateFlexItemProperty('flex-shrink', elements.flexItems.flexShrink.value); //update flex-shrink for whichFlexItems
-  updateFlexItemProperty('flex-basis', elements.flexItems.flexBasis.value); //update flex-basis for whichFlexItems
-  updateFlexItemProperty('align-self', elements.flexItems.alignSelf.value); //update align-self for whichFlexItems
+  updateFlexItemProperty('flex', elements.flexItems.flexProportion.value); 
+  updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value); 
+  updateFlexItemProperty('flex-shrink', elements.flexItems.flexShrink.value);
+  updateFlexItemProperty('flex-basis', elements.flexItems.flexBasis.value);
+  updateFlexItemProperty('align-self', elements.flexItems.alignSelf.value); 
+  updateFlexItemProperty('order', elements.flexItems.flexOrder.value); 
   updateCSS();
 }
 
@@ -277,15 +277,15 @@ which tells us which FlexItems to be modified by the Apply button.  This allows
 the user to set individual properties for each FlexItem */
 import { isValidIndex } from './validate.js';
 function parseWhichItems() {
-  whichFlexItems = []; //reset
+  WHICH_FLEX_ITEMS = []; //reset
   const userEntry = elements.flexItems.whichItems.value;
   let choices = userEntry.trim().split(' ');
   choices.forEach((choice) => {
     if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
-      whichFlexItems.push(+choice); //output a Number
+      WHICH_FLEX_ITEMS.push(+choice); //output a Number
     }
   });
-  console.log(`whichFlexItems`, whichFlexItems);
+//   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
 }
 
 function setDefault(container, key) {
