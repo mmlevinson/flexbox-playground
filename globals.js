@@ -124,7 +124,7 @@ const defaults = {
     },
     displayType: {
       property: 'display',
-      default: 'block',
+      default: 'flex',
     },
     overflow: {
       property: 'overflow',

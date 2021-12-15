@@ -25,31 +25,32 @@ function initialize() {
 }
 
 function flexItemDefaults() {
-    setDefault('flexItems', 'flexProportion');
-    setDefault('flexItems', 'flexShrink');
-    setDefault('flexItems', 'flexGrow');
-    setDefault('flexItems', 'flexBasis');
-    setDefault('flexItems', 'alignSelf');
-    setDefault('flexItems', 'flexOrder'); 
+  setDefault('flexItems', 'flexProportion');
+  setDefault('flexItems', 'flexShrink');
+  setDefault('flexItems', 'flexGrow');
+  setDefault('flexItems', 'flexBasis');
+  setDefault('flexItems', 'alignSelf');
+  setDefault('flexItems', 'flexOrder');
 }
 
 function flexContainerDefaults(params) {
-    //set menus back to defalut values
-    // setDefault('flexContainer', 'displayType');
-    setDefault('flexContainer', 'overflow');
-    setDefault('flexContainer', 'flexDirection');
-    setDefault('flexContainer', 'flexWrap');
-    setDefault('flexContainer', 'alignContent');
-    setDefault('flexContainer', 'justifyContent');
-    setDefault('flexContainer', 'alignItems');
-    // setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
-    
+  //set menus back to defalut values
+
+  setDefault('flexContainer', 'overflow');
+  setDefault('flexContainer', 'flexDirection');
+  setDefault('flexContainer', 'flexWrap');
+  setDefault('flexContainer', 'alignContent');
+  setDefault('flexContainer', 'justifyContent');
+  setDefault('flexContainer', 'alignItems');
+  // setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
 }
 
 function reset() {
-    setUpFlexItems(defaults.flexContainer.howManyItems);
-    flexContainerDefaults();
-    flexItemDefaults();
+  setUpFlexItems(defaults.flexContainer.howManyItems);
+  flexContainerDefaults();
+  flexItemDefaults();
+  setDefault('flexContainer', 'displayType');
+  setDisplayType(defaults.flexContainer.displayType.default); //flex
 }
 
 function setUpFlexItems(newValue) {
@@ -58,6 +59,7 @@ function setUpFlexItems(newValue) {
     const newDiv = document.createElement('div');
     newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
+    newDiv.id = `item__${index}`;
     const span = document.createElement('span');
     span.textContent = `${index + 1}`;
     span.classList.add('flex-item-number');
@@ -97,10 +99,13 @@ function updateCSS() {
   let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
-  WHICH_FLEX_ITEMS.forEach((itemNumber) => {
-    style = elements.flexItems.list[itemNumber - 1].style.cssText.replaceAll(';', ';\n');
-    flexItemCSS += `div.flex-item_${itemNumber}:{ \n ${style}}\n\n`;
-  });
+
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+    const element = elements.flexItems.list[index];
+    style = element.style.cssText.replaceAll(';', ';\n');
+    flexItemCSS += `div.flex-item#item__${index}:{ \n ${style}}\n\n`;
+  }
+
   elements.cssOutput.textArea.textContent = cssText + flexItemCSS;
 }
 
@@ -168,26 +173,25 @@ function setUpMenuListeners() {
 }
 
 function setUpButtonListeners() {
-    //    Main Nav Menu buttons
-    elements.navigation.reset.addEventListener('click', (event) => {
-        reset();
-    })
+  //    Main Nav Menu buttons
+  elements.navigation.reset.addEventListener('click', (event) => {
+    reset();
+  });
 
-    //FlexContainer Restore Defaults
-    elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
-        flexContainerDefaults();
-    })
+  //FlexContainer Restore Defaults
+  elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
+    flexContainerDefaults();
+  });
 
-    elements.flexItems.buttons.restoreDefaults.addEventListener('click', (event) => {
-        flexItemDefaults();
-        updateAllFlexItems(event)
-    })
-  
+  elements.flexItems.buttons.restoreDefaults.addEventListener('click', (event) => {
+    flexItemDefaults();
+    updateAllFlexItems(event);
+  });
+
   //the FlexItem Apply button
   elements.flexItems.buttons.apply.addEventListener('click', (event) => {
     updateAllFlexItems(event);
   });
-
 
   elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
     //update the custom.css file which is imported into the project
