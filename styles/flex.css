@@ -74,10 +74,7 @@ div.flex-item {
     background: hsl(275, 79%, 13%);
     border: 1px solid black;
     resize:both;
-
     max-width:calc(100% - 16px);
-  
-    
   }
   
   div.flex-setting {

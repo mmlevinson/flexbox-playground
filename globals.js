@@ -128,7 +128,7 @@ const defaults = {
     },
     overflow: {
       property: 'overflow',
-      default: 'visible',
+      default: 'auto',
     },
     flexDirection: {
       property: 'flex-direction',
@@ -140,11 +140,11 @@ const defaults = {
     },
     justifyContent: {
       property: 'justify-content',
-      default: 'normal',
+      default: 'flex-start',
     },
     alignItems: {
       property: 'align-items',
-      default: 'normal',
+      default: 'stretch',
     },
     alignContent: {
       property: 'align-content',

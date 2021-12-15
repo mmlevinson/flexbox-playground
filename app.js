@@ -35,14 +35,14 @@ function flexItemDefaults() {
 
 function flexContainerDefaults(params) {
     //set menus back to defalut values
-    setDefault('flexContainer', 'displayType');
+    // setDefault('flexContainer', 'displayType');
     setDefault('flexContainer', 'overflow');
     setDefault('flexContainer', 'flexDirection');
     setDefault('flexContainer', 'flexWrap');
     setDefault('flexContainer', 'alignContent');
     setDefault('flexContainer', 'justifyContent');
     setDefault('flexContainer', 'alignItems');
-    setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
+    // setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
     
 }
 

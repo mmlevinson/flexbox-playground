@@ -32,3 +32,27 @@ children (ie flex-items) which can individually be customized with different tex
 3.  As a consequence, there is a lot of DOM traversal, which is expensive.   However, the tradeoff is keeping all the controls and layouts on the same Web page.   The User sees and integrate display with cause/effect.
 
 4.  There are (many) BETTER ways of doing this same task, but this is the way I could get going in a reasonable time frame.   My apologies in advance if I missed obvious optimizations.
+
+### Default Values:
+
+The following are the default values used in this project, based on [CSSTricks website ](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+In some cases (i.e. justify-content, align-items), these values differ from those specified by [MDN](https://developer.mozilla.org/en-US) but do appear to be how the browser implements the initial state of these settings.
+
+**Flex Container:**
+- flex-direction: row;
+- flex-wrap : nowrap;
+- align-content: normal;
+- justify-content: flex-start;
+- align-items: stretch;
+- gap: 0;
+
+**Flex Items:**
+
+- flex: 0;
+- flex-shrink: 1;
+- flex-grow: 0;
+- flex-basis: auto;
+- align-self: auto;
+- order: 0;
+
