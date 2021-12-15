@@ -33,7 +33,7 @@ function reset() {
   setUpFlexItems(defaults.flexContainer.howManyItems);
   //set menus back to defalut values
   setDefault('flexContainer', 'displayType');
-//   setDefault('flexContainer', 'overflow');
+  setDefault('flexContainer', 'overflow');
   setDefault('flexContainer', 'flexDirection');
   setDefault('flexContainer', 'flexWrap');
   setDefault('flexContainer', 'alignContent');

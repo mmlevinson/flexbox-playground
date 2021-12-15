@@ -58,8 +58,9 @@ const elements = {
     flexBasis: document.getElementById('flexBasis'),
     flexBasisValue: document.getElementById('flexBasisValue'),
     alignSelf: document.getElementById('alignSelf'),
+    flexOrder: document.getElementById('flexOrder'),
     flexItemText: document.getElementById('flex-item-text'),
-    flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
+    // flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
     whichItems: document.getElementById('whichItems'),
     buttons: {
       list: document.getElementById('flex-item-buttons'),
