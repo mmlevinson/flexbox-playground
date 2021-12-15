@@ -191,10 +191,10 @@ ul{
   min-width:300px;
   
   background-color: var(--panel-background-color);
-  /* height: calc((var(--sub-panel-height) * 2) + 8px); */
+  height: calc((var(--sub-panel-height) * 2) + 8px);
   border-radius:5px;
   box-shadow: var(--standard-box-shadow);
-  resize:both;
+  
 }
 
 .subPanel {

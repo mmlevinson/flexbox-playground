@@ -24,7 +24,6 @@ function initialize() {
   elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[2];
   setUpEventListeners();
 
-
   reset(); //establishes default state of app, calls setUpFlexItems();
 }
 
@@ -49,9 +48,8 @@ function reset() {
 }
 
 function setUpFlexItems(newValue) {
-
-    function newFlexItem(index) {
-      /* factory method */
+  function newFlexItem(index) {
+    /* factory method */
     const newDiv = document.createElement('div');
     newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
@@ -64,8 +62,8 @@ function setUpFlexItems(newValue) {
 
   if (!validateHowManyItems(newValue)) return;
   clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
-  
-  FLEX_ITEM_COUNT = +newValue;   //coerce any user input value to a numeric
+
+  FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     elements.flexContainer.landscape.append(newFlexItem(index));
     elements.flexContainer.portrait.append(newFlexItem(index));
@@ -241,15 +239,16 @@ function updateFlexItemText() {
   }
   //is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
-  if (loremCount) {   //returns 0 if not begins with 'lorem'
+  if (loremCount) {
+    //returns 0 if not begins with 'lorem'
     itemText = LoremIpsum.getSentence(loremCount);
   }
 
   for (let index = 0; index < whichFlexItems.length; index++) {
-      const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
-    portraitItem.firstChild.textContent = itemText;
+    const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
+    portraitItem.firstChild.textContent = itemText;   //update the textNode associated with the div
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];
-    landscapeItem.textContent = itemText;
+    landscapeItem.firstChild.textContent = itemText;
   }
 }
 
