@@ -1,5 +1,5 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
-import { FlexItem } from './classes.js';
+import { FlexItem, LoremIpsum } from './classes.js';
 import { clearFlexContainers } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 
@@ -234,11 +234,18 @@ function setDimensions(target, orientation, isChecked) {
 }
 
 function updateFlexItemText() {
-  const itemText = elements.flexItems.flexItemText.value;
+  let itemText = elements.flexItems.flexItemText.value;
 
   if (!itemText) {
     return;
   }
+   //is this LoremXX?
+    const loremCount = LoremIpsum.isLorem(itemText);
+    console.log(`loremCount`, loremCount);
+  if (loremCount) {   //returns 0 if not begins with 'lorem'
+      itemText = LoremIpsum.getSentence(loremCount);
+  }
+  
   for (let index = 0; index < whichFlexItems.length; index++) {
     const portraitItem = elements.flexItems.list[whichFlexItems[index] - 1];
     const landscapeItem = elements.flexItems.list[whichFlexItems[index] + FLEX_ITEM_COUNT - 1];

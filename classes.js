@@ -13,7 +13,7 @@ class FlexItem extends HTMLDivElement {
 
 class LoremIpsum {
   /* Source Words (Array) */
-  _words = [
+  static _words = [
     'a',
     'ac',
     'accumsan',
@@ -194,6 +194,18 @@ class LoremIpsum {
     'vulputate',
   ];
 
+  /* given an imput string...does it begin with 'lorem' 
+    @param text as String ... i.e. lorem25
+    @return Number ... 0 means not a lorem request...otherwise the number of words*/
+  static isLorem(text) {
+    const lower = text.toLowerCase();
+    const startsWith = lower.slice(0, 5);
+    if (startsWith !== 'lorem') {
+      return 0; //falsy value
+    }
+    return Number(lower.substring(5)); //assumes to the end of string
+  }
+
   /* return a random value between x and y
     @param x as Number
     @param y as Number
@@ -221,17 +233,17 @@ class LoremIpsum {
      @param max (optional) maximal word count
      @return [String]  array of random words */
   static getWords(min, max) {
-    const result = [];
+    let result = ['Lorem ipsum'];
     const count = this.getCount(min, max);
     //get random words from array
     while (result.length < count) {
-      let pos = Math.floor(Math.random() * this._words.length);
-      let rnd = this._words[pos];
+      let position = Math.floor(Math.random() * LoremIpsum._words.length);
+      let randomWord = LoremIpsum._words[position];
       //no duplicates after each other
-      if (result.length && result[result.length - 1] === rnd) {
+      if (result.length && result[result.length - 1] === randomWord) {
         continue;
       }
-      result.push(rnd);
+      result.push(randomWord);
     }
     return result;
   }
@@ -247,15 +259,16 @@ class LoremIpsum {
       words[index] += ', ';
       index += this.getRandom(6, 2);
     }
-    //add some punctuation
-    let punct = '...!?';
-    words[words.length - 1] = punct.charAt(Math.floor(Math.random() * punct.length));
+    
     //upper case first char
     words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
-    return words.join(' ');
+    let result = words.join(' ');
+    //add some punctuation
+    let punct = '...!?';
+    return result + punct.charAt(Math.floor(Math.random() * punct.length));
   }
 
-      /* generate random sentence with max,min words
+  /* generate random sentence with max,min words
     @param min (optional) as Number (minimal word count) 
     @param max (optional) as Number (maximum word count)
     @return String*/
@@ -264,16 +277,16 @@ class LoremIpsum {
     var count = this.getCount(min, max);
 
     //append sentences until max limit
-    while (result.slice(0, -1).split(" ").length < count) {
+    while (result.slice(0, -1).split(' ').length < count) {
       result += this.getSentence + '';
     }
     result = result.slice(0, -1);
 
     //remove words
-    if (result.split(" ").length > count) {
+    if (result.split(' ').length > count) {
       let punct = result.slice(-1);
-      result = result.split(" ").slice(0, count).join(" ");
-      result = result.replace(/,$/, "");
+      result = result.split(' ').slice(0, count).join(' ');
+      result = result.replace(/,$/, '');
       result += punct;
     }
     return result;
