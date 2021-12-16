@@ -369,7 +369,7 @@ function parseAdditionalCSS(rawText) {
       setFlexItemCSSRule(index, rule.property, rule.value);
     })
   })
-  
+  updateCSS();
   
 
 }
