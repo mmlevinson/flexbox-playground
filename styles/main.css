@@ -46,6 +46,47 @@ html {
   height:100vh;
   /* width:90vw; */
   margin: 0 auto;
+  display:flex;
+}
+
+.tool-panel{
+  width:27rem;
+  max-width:400px;
+  margin:4px;
+}
+
+.tool-panel-tab-bar{
+ position:relative;
+ top:0px;
+}
+
+.tool-panel-contents{
+
+  /* display:inline-block; */
+  
+  height:calc(100vh - 70px);
+  border:1px solid var(--panel-border-color);
+  background:var(--panel-background-color);
+  border-radius:0 0 6px 6px;
+  box-shadow:var(--standard-box-shadow);
+}
+
+
+
+.tool-panel-tab{
+  background-color:black;
+  color:white;
+  text-align:center;
+  font-size:1rem;
+  font-weight:bold;
+  font-family:inherit;
+  margin:0;
+  padding:0 4px;
+  border-radius:8px 8px 0 0;
+}
+
+.tool-panel-header.active{
+  background-color:var(--panel-background-color)
 }
 
 
@@ -72,6 +113,8 @@ ul{
   font-size: 1.3rem;
   vertical-align: middle;
 }
+
+/* MAIN HEADER */
 .main-header{
   width:100%;
   background:var(--header-color);
@@ -118,82 +161,24 @@ ul{
 
 }
 
-/* Tool Tip Container */
-.tooltip{
-  position:relative;
-  display:inline-block;
- 
-}
-
-/* Tool Tip Text */
-.tooltip .tooltip-text{
-  visibility: hidden;
-  width:120px;
-  background-color: black;
-  color:white;
-  text-align: center;
-  padding: 5px 0;
-  border-radius:6px;
-}
-
-/* Positioning */
-.tooltip{
-  position:absolute;
-  z-index:100;
-}
-
-.tooltip .showRight{
-  top:-5px;
-  left:105%;
-}
-
-.tooltip .showLeft{
-  top:-5px;
-  right:105%;
-}
-
-.tooltip .showTop{
-  top:100%;
-  left:50%;
-  margin-left: -60px;  /* half the width*/
-}
-
-
-.tooltip:hover .tootooltip-text{
-    visibility: visible;
-}
-
-/* ToolTip Arrow */
-.tooltip .tooltip-text::after{
-  content:'';
-  position:absolute;
-  top:100%;   /* at the top of the tooltip */
-  left:50%;
-  margin-left:5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent
-}
-
-
-/* Wrapper for both Settings blocks.  Since the main-wrapper is inline, and there is a block keeping to the left edge (CSS Result) block, we move this section to the right by using position:relative (to its original position)*/
-/* Float:left allows positioning of an inline/inline-block element to the left side of the parent element.  Since the previous element in the DOM is a block level element, this <section> takes up the left edge of the second row of DOM elements */
 
 
 
-/* Vertical-Align:top saved the entire layout from being ruined after I removed the overflow from the panels.   Whew */
+/* PANELS */
+
+
 .panel {
   display: inline-block;
   vertical-align: top;
-  /* background-color: slategray; */
-  border-radius:7px;
-  /* width: 24%; */
-  margin-left:12px;
+  margin-left: 6px;
   margin-top:4px;
- /* border: 1px solid red; */
-  width: 304px;
-  height: calc((var(--sub-panel-height) * 2) + 8px);
- 
+  background-color: var(--panel-background-color);
+  border: 1px solid var(--panel-border-color);
+  border-radius:5px;
+  width:100px;
+  height: calc(100vh - 40px);
+  /* max-width: 300px; */
+  box-shadow: var(--standard-box-shadow);
 }
 
 #portrait-panel{
@@ -216,19 +201,6 @@ ul{
   
 }
 
-.subPanel {
-  display: inline-block;
-  /* vertical-align: top; */
-  background-color: var(--panel-background-color);
-  margin-bottom:8px;
-  border: 1px solid var(--panel-border-color);
-  border-radius:5px;
-  width: 300px;
-  height: var(--sub-panel-height);
-  min-width: 300px;
-  max-width: 300px;
-  box-shadow: var(--standard-box-shadow);
-}
 
 
 
@@ -276,32 +248,25 @@ ul{
 
 
 
-#flex-container-defaults-button {
-  margin-top: 60px;
-
-}
 
 li.input-field,
 li.dimensions {
   padding: 4px;
-  width: 100%;
+  /* width: 100%; */
   display: inline-block;
 }
 
-li.input-field label {
-  /* background:coral; */
-  display: inherit;
-  width: 130px;
-}
+
 li.input-field .setting-item {
   display: inherit;
-  width: 148px;
+  width: 100%;
 }
 
 li.dimensions > label {
   /* border:1px solid red; */
   display: inherit;
-  width: 112px;
+  margin-left:4px;
+  /* width: 100%; */
 }
 
 li.dimensions input[type='number'] {
