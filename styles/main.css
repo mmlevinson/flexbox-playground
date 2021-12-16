@@ -50,43 +50,47 @@ html {
 }
 
 .tool-panel{
-  width:27rem;
+  width:27.5rem;
   max-width:400px;
   margin:4px;
 }
 
-.tool-panel-tab-bar{
- position:relative;
- top:0px;
-}
+
 
 .tool-panel-contents{
 
   /* display:inline-block; */
   
-  height:calc(100vh - 70px);
-  border:1px solid var(--panel-border-color);
+  height:calc(100vh - 75px);
+  border-width: 0px 1px 1px 1px;
+  border-style:solid;
+  border-color:var(--panel-border-color);
   background:var(--panel-background-color);
   border-radius:0 0 6px 6px;
   box-shadow:var(--standard-box-shadow);
 }
 
-
+.tool-panel-tab-bar{
+  display:flex;     /* took away all spacing between tabs !! */
+}
 
 .tool-panel-tab{
-  background-color:black;
-  color:white;
+  background-color:var(--panel-background-color);
+  color:navy;
   text-align:center;
   font-size:1rem;
   font-weight:bold;
   font-family:inherit;
   margin:0;
-  padding:0 4px;
+  padding:2px 4px;
+  border: 1px solid var(--panel-border-color);
   border-radius:8px 8px 0 0;
 }
 
-.tool-panel-header.active{
-  background-color:var(--panel-background-color)
+.tool-panel-tab.active{
+  background-color:black;
+  color:white;
+
 }
 
 
