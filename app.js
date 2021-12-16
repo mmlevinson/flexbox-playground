@@ -165,6 +165,7 @@ function setUpMenuListeners() {
   });
   elements.flexContainer.flexDirection.addEventListener('change', (event) => {
     setFlexContainerStyle('flex-direction', event.target.value);
+
   });
   elements.flexContainer.flexWrap.addEventListener('change', (event) => {
     setFlexContainerStyle('flex-wrap', event.target.value);

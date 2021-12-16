@@ -1,40 +1,37 @@
 
 
-
 /* Flex Items
 ...position relative establishes this as a parent container for the enclosed <span> which uses
 ...position absolute to stack underneath the flex item text
  */
 div.flex-item {
-    border: 2px solid var(--flex-item-border-color);
-    /* background-color: var(--flex-item-color); */
-    background-color:gray;
-    padding:8px;
-    position:relative; 
-    margin:15px;    
-    border-radius:3px; 
-    /* height: 80px;
+  border: 2px solid var(--flex-item-border-color);
+  /* background-color: var(--flex-item-color); */
+  background-color: gray;
+  padding: 8px;
+  position: relative;
+  margin: 15px;
+  border-radius: 3px;
+  /* height: 80px;
     width: 80px; */
- 
+}
 
-  }
+.flex-item .flex-item-number {
+  position: absolute;
+  text-align: center;
+  border: 1px solid rgba(255, 0, 0, 0.171);
+  border-radius: 50% 50% 0 50%;
+  bottom: 0;
+  left: calc(100% - 1.2rem);
+  width: 1.2rem;
+  height: 1.2rem;
+  /* background-color: hsla(0, 0%, 0%, 0.118); */
+  background-color: pink;
+  color: rgba(0, 0, 255, 0.564);
+}
 
-  .flex-item .flex-item-number{
-    position:absolute;
-    text-align:center;
-    border:1px solid rgba(255, 0, 0, 0.171);
-    border-radius:50% 50%  0 50%;
-    bottom:0;
-    left:calc(100% - 1.2rem);
-    width:1.2rem;
-    height:1.2rem;
-    /* background-color: hsla(0, 0%, 0%, 0.118); */
-    background-color:pink;
-    color:rgba(0, 0, 255, 0.564);
-  }
-  
-  /* This rule is for the content of each flex-item.  By default, a span is inline, so setting the display to block permits assigning an explicit width/height ()which is based on the parent container, in this case the div.flex-items which wraps this span.    If you just put a single char (like a numeric value), then padding-vertical:40% will get it to about the middle of the element.  Otherwise, the content should flow and size according to its specified width/height. */
-  /* span.flex-item-content {
+/* This rule is for the content of each flex-item.  By default, a span is inline, so setting the display to block permits assigning an explicit width/height ()which is based on the parent container, in this case the div.flex-items which wraps this span.    If you just put a single char (like a numeric value), then padding-vertical:40% will get it to about the middle of the element.  Otherwise, the content should flow and size according to its specified width/height. */
+/* span.flex-item-content {
     border: 1px solid orange;
     width: 100%;
     height: 100%;
@@ -43,70 +40,70 @@ div.flex-item {
     padding: 40% 0;
   } */
 
- div.flex-container{
-   position:relative;
-   background: hsl(275, 79%, 13%);
-   overflow:none;
-   margin:8px;
-   width:calc(100% - 16px);
-   /* height:calc(100% - 16px); */
-   max-height:calc(var(--panel-height) - 16px);
-    /* max-width:100%;
+div.flex-container {
+  position: relative;
+  background: hsl(275, 79%, 13%);
+  overflow: none;
+  margin: 8px;
+  width: calc(100% - 16px);
+  /* height:calc(100% - 16px); */
+  max-height: calc(var(--panel-height) - 16px);
+  /* max-width:100%;
     max-height:100%; */
-  }
-  
-  div.flex-container#portrait {
-    /* position: relative; */
-    /* top:0; */
-    max-width: 300px;
-    resize:vertical;
- 
-    /* max-width: 500px; */
-    /* max-height: calc(var(--panel-height) - 40px); */
-    /* height: 100%; */
-    /* float:right; */
-    /* top: 0px; */
-    /* left:75%; */
-  
-    /* background: hsl(39, 93%, 17%); */
-  
-  }
-  
-  /* At the bottom is a full-width flex container */
-  div.flex-container#landscape {
-    
-    position: relative;
-    background: hsl(275, 79%, 13%);
-    border: 1px solid black;
-    resize:both;
-    max-width:calc(100% - 16px);
-  }
-  
-  div.flex-setting {
-    padding: 0.3rem;
-  }
-  
-  div.flex-item-settings-block {
-    /* width:calc(100% - 1.4rem); */
-    border: 1px solid #666;
-    padding: 0.3rem;
-  }
-  
-  div.flex-item-choices {
-    padding: 0.3rem;
-  }
-  
-  /* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
-  /* div.flex-items-checked li.flex-item-checkboxs {
+}
+
+div.flex-container#portrait {
+  /* position: relative; */
+  /* top:0; */
+  max-width: 300px;
+  resize: vertical;
+
+  /* max-width: 500px; */
+  /* max-height: calc(var(--panel-height) - 40px); */
+  /* height: 100%; */
+  /* float:right; */
+  /* top: 0px; */
+  /* left:75%; */
+
+  /* background: hsl(39, 93%, 17%); */
+}
+
+/* At the bottom is a full-width flex container */
+div.flex-container#landscape {
+  position: relative;
+  background: hsl(275, 79%, 13%);
+  border: 1px solid black;
+  resize: both;
+  max-width: calc(100% - 16px);
+}
+
+div.flex-setting {
+  padding: 0.3rem;
+}
+
+div.flex-item-settings-block {
+  /* width:calc(100% - 1.4rem); */
+  border: 1px solid #666;
+  padding: 0.3rem;
+}
+
+div.flex-item-choices {
+  padding: 0.3rem;
+}
+
+/* Normally <li> are block level elements (take up the full width), but for this array of items, it should be arrange horizontally, so display:inline-block works best, allowing also to set width/height values for each one. */
+/* div.flex-items-checked li.flex-item-checkboxs {
     order: 1px solid goldenrod;
     display: inline-block;
     width: 20%;
   }
    */
 
-  @media(max-width:1330px){
-    #landscape,
-    #landscape-panel{
-      visibility:hidden;
-    }
+
+
+@media (max-width: 1330px) {
+  #landscape,
+  #landscape-panel {
+    visibility: hidden;
   }
+}
