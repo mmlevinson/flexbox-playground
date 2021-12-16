@@ -6,6 +6,7 @@ import CSSParser from './cssParser.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
+let customCSSDirty = false;   //set this once user makes any changes
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -32,10 +33,9 @@ function flexItemDefaults() {
   setDefault('flexItems', 'flexBasis');
   setDefault('flexItems', 'alignSelf');
   setDefault('flexItems', 'flexOrder');
-  elements.additionalCSS.textArea.value = '';
 }
 
-function flexContainerDefaults(params) {
+function flexContainerDefaults() {
   //set menus back to defalut values
 
   setDefault('flexContainer', 'overflow');
@@ -53,6 +53,7 @@ function reset() {
   flexItemDefaults();
   setDefault('flexContainer', 'displayType');
   setDisplayType(defaults.flexContainer.displayType.default); //flex
+  updateCSS();
 }
 
 function setUpFlexItems(newValue) {
@@ -80,7 +81,6 @@ function setUpFlexItems(newValue) {
   //update our references to all the flex-items so we can change
   //their content using the Apply button
   elements.flexItems.list = document.querySelectorAll('.flex-item');
-  // elements.additionalCSS.textArea.value = '';
   updateCSS();
 }
 
@@ -94,29 +94,29 @@ function setUpEventListeners() {
 
 function updateCSS() {
   //print out the .style property of the FlexContainer and each FlexIem
-  //I found an interesting property called cssText on the style object
+  //I found an interesting property called cssText on the element.style object
   //Is this the custom CSS added programatically???
   let style = elements.flexContainer.landscape.style.cssText;
   const landscapeStyle = style.replaceAll(';', ';\n');
-  style = elements.flexContainer.portrait.style.cssText;
-  const portraitStyle = style.replaceAll(';', ';\n');
+  // style = elements.flexContainer.portrait.style.cssText;
+  // const portraitStyle = style.replaceAll(';', ';\n');
   let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
-  let additionalCSSTemplate = '';
+  let additionalCSSTemplate = '/*Additional CSS Rules*/\n\n';
 
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     const element = elements.flexItems.list[index];
     style = element.style.cssText.replaceAll(';', ';\n');
     flexItemCSS += `div.flex-item#item__${index + 1} { \n ${style}}\n\n`;
-    additionalCSSTemplate += `div.flex-item#item__${index + 1} { \n ${style}}\n\n`;
+    additionalCSSTemplate += `div.flex-item#item__${index + 1} { \n\n}\n\n`;
   }
 
-  elements.cssOutput.textArea.textContent = cssText + flexItemCSS;
+  elements.cssOutput.textContent = cssText + flexItemCSS;
 
-  //Prepopulate the AdditionalCSS textArea
-  if (!elements.additionalCSS.textArea.value) {
-    elements.additionalCSS.textArea.value = additionalCSSTemplate;
+  //If not edits in AdditionalCSS...embed a new template
+  if (!customCSSDirty) {
+    elements.additionalCSS.textArea.value = additionalCSSTemplate; 
   }
 }
 
@@ -293,7 +293,7 @@ function updateFlexItemProperty(property, newValue) {
 }
 
 function updateAllFlexItems(event) {
-  console.log(`event`, event);
+  // console.log(`event`, event);
   parseWhichItems();
   updateFlexItemText();
   updateFlexItemProperty('flex', elements.flexItems.flexProportion.value);
@@ -355,6 +355,8 @@ function setFlexItemCSSRule(index, property, value) {
   }
   */
 function parseAdditionalCSS(rawText) {
+  //there is new AdditionalCSS Content so
+  customCSSDirty = true;     
   const parser = new CSSParser();
   const cssData = parser.parseCSS(rawText);
 

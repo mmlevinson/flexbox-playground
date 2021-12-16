@@ -71,11 +71,8 @@ const elements = {
       list: document.getElementById('additional-css-buttons'),
     },
     textArea: document.getElementById('additional-css-text'),
-    styleTag: document.getElementById('addition-styles-tag'),
   },
-  cssOutput: {
-    textArea: document.getElementById('css-output'),
-  },
+  cssOutput: document.getElementById('css-output'),
   navigation: {
     reset: document.querySelector('.main-nav-item.reset-item'),
     copy: document.querySelector('.main-nav-item.copy-item'),

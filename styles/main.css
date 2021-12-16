@@ -228,14 +228,7 @@ ul{
 
 
 
-#css-output {
-  font-family: monospace;
-  font-weight:bold;
-  font-size:1rem;
-  height: calc(100% - 40px);
-  /* border-bottom: 1px solid var(--panel-border-color); */
-  overflow:scroll;
-}
+
 
 .button {
   display: inherit;
@@ -300,19 +293,6 @@ li.dimensions input[type='number'] {
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
-#additional-css-text, 
-#css-output{
-  width: calc(100% - 8px);
-  margin: 0px 4px;
-  height: 356px;
-  resize:none;
-  overflow:auto;
-}
-
-#css-output{
-  background:white;
-  height: calc(100% - 40px);
-}
 
 
 
@@ -330,9 +310,31 @@ span.section-title {
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 #flex-item-settings textarea {
+  font-weight:bold;
   margin-top: 10px;
   width: 100%;
   overflow: scroll;
   text-align: center;
 }
+
+#additional-css-text, 
+#css-output{
+  font-family:monospace;
+  font-weight:bold;
+  font-size:1rem;
+  width: calc(100% - 8px);
+  margin: 0px 4px;
+  height: 356px;
+  resize:none;
+  overflow:auto;
+}
+
+#css-output {
+  height: calc(100% - 40px);
+  background:white;
+  /* border-bottom: 1px solid var(--panel-border-color); */
+  overflow:scroll;
+}
+
+
 
