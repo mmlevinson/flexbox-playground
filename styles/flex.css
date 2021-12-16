@@ -20,7 +20,8 @@ div.flex-item {
   .flex-item .flex-item-number{
     position:absolute;
     text-align:center;
-    border-radius:50%;
+    border:1px solid rgba(255, 0, 0, 0.171);
+    border-radius:50% 50%  0 50%;
     bottom:0;
     left:calc(100% - 1.2rem);
     width:1.2rem;

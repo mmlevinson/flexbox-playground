@@ -13,17 +13,12 @@ function clearFlexContainers(landscape, portrait) {
     }
 }
 
-
-function parseCSSRules(rawText) {
-    let result = rawText.split(/[{}]/).filter(String).map((str) => {
-        return str.trim();
-    })
-
-
-    return result;
+function chop(text, numChars, fromEnd = true) {
+    if (fromEnd) {
+        return  text.substring(text.length - numChars, numChars);
+    }
+    return text.substring(numChars);   //start at numChars, return all remaining chars
 }
-
-
 
 
 /* LoremIpsum adapted from https://github.com/fffilo/lorem-ipsum-js/blob/master/src/lorem-ipsum.js */
@@ -313,6 +308,6 @@ class LoremIpsum {
 
 export {
     clearFlexContainers,
-    parseCSSRules,
+    chop,
     LoremIpsum
 }

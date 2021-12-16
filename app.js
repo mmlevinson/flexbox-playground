@@ -1,7 +1,8 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
 import { LoremIpsum } from './classes.js';
-import { clearFlexContainers, parseCSSRules } from './helpers.js';
+import { clearFlexContainers, chop } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
+import CSSParser from './cssParser.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
@@ -23,7 +24,6 @@ function initialize() {
 
   reset(); //establishes default state of app, calls setUpFlexItems();
 }
-
 
 function flexItemDefaults() {
   setDefault('flexItems', 'flexProportion');
@@ -80,7 +80,8 @@ function setUpFlexItems(newValue) {
   //update our references to all the flex-items so we can change
   //their content using the Apply button
   elements.flexItems.list = document.querySelectorAll('.flex-item');
-  elements.additionalCSS.textArea.value = '';
+  // elements.additionalCSS.textArea.value = '';
+  updateCSS();
 }
 
 function setUpEventListeners() {
@@ -107,12 +108,13 @@ function updateCSS() {
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     const element = elements.flexItems.list[index];
     style = element.style.cssText.replaceAll(';', ';\n');
-    flexItemCSS += `div.flex-item#item__${index}:{ \n ${style}}\n\n`;
-    additionalCSSTemplate += `div.flex-item#item__${index}:{ \n ${style}}\n\n`;
+    flexItemCSS += `div.flex-item#item__${index + 1} { \n ${style}}\n\n`;
+    additionalCSSTemplate += `div.flex-item#item__${index + 1} { \n ${style}}\n\n`;
   }
 
   elements.cssOutput.textArea.textContent = cssText + flexItemCSS;
 
+  //Prepopulate the AdditionalCSS textArea
   if (!elements.additionalCSS.textArea.value) {
     elements.additionalCSS.textArea.value = additionalCSSTemplate;
   }
@@ -202,11 +204,10 @@ function setUpButtonListeners() {
     updateAllFlexItems(event);
   });
 
+  //AdditionalCSS Apply Button
   elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
     //update the custom.css file which is imported into the project
-    const additionalCSSText = elements.additionalCSS.textArea.value;
-      const rules = parseCSSRules(additionalCSSText);
-    console.log(`rules`, rules);
+    parseAdditionalCSS(elements.additionalCSS.textArea.value);
   });
 }
 
@@ -330,4 +331,43 @@ function setDefault(container, key) {
   if (container === 'flexContainer') {
     setFlexContainerStyle(property, defaultValue);
   }
+}
+
+function setFlexItemCSSRule(index, property, value) {
+
+  let portraitItem = elements.flexItems.list[index - 1];
+  
+  let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT - 1];
+  portraitItem.style.setProperty(property, value);
+  landscapeItem.style.setProperty(property, value);
+}
+
+
+/* MML...December 15, 2021 @ 16:08...Refactored public cssParser
+*/
+
+/* CSSParser.parseCSS(source:string) : [Objects]:
+  {  selector: "div.flex-item#item__1:" 
+     rules: Array(3)
+        0: {property: 'flex', value: '0 1 auto'}
+        1: {property: 'align-self', value: 'auto'}
+        2: {property: 'order', value: '0'
+  }
+  */
+function parseAdditionalCSS(rawText) {
+  const parser = new CSSParser();
+  const cssData = parser.parseCSS(rawText);
+
+  cssData.forEach((css) => {
+    let whichItem = css.selector.match(/([0-9]+)/)[0];   //only retrieve the first match
+    console.log(`whichItem`, whichItem);
+    let index = +whichItem  //coerce to number
+    console.log(`index`, index);
+    css.rules.forEach((rule) => {
+      setFlexItemCSSRule(index, rule.property, rule.value);
+    })
+  })
+  
+  
+
 }

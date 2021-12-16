@@ -6,7 +6,7 @@ Updated from a function prototype syntax to modern JS Class syntax
 
 */
 
-class CSSParser {
+export default class CSSParser {
   static cssMediaQueryRegex = '((@media [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
   static cssKeyframeRegex = '((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
   static combinedCSSRegex = '((\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})'; //to match css & media queries together
@@ -61,7 +61,7 @@ class CSSParser {
     source = source.replace(this.cssImportStatementRegex, '');
     //next...match all keyframe statements
     let keyframesRegex = new RegExp(CSSParser.cssKeyframeRegex, 'gi');
-    let keyframes = [];
+    let keyframes = null; //starting value to c/w RegEx return value
     while (true) {
       keyframes = keyframesRegex.exec(source);
       if (keyframes === null) {
@@ -76,42 +76,45 @@ class CSSParser {
     }
     //next ... remove all @keyframes
     source = source.replace(keyframesRegex, '');
-
     //unified regex
     let unified = new RegExp(CSSParser.combinedCSSRegex, 'gi');
+    let results = null;   //starting value to c/w RegEx return value
     while (true) {
-      allSelectors = unified.exec(source);
-      if (allSelectors === null) {
+      results = unified.exec(source);
+      if (results === null) {
         break;
       }
       let selector = '';
-      if (allSelectors[2] === undefined) {
-        selector = allSelectors[5].split('\r\n').join('\n').trim();
+      if (results[2] === undefined) {
+        selector = results[5].split('\r\n').join('\n').trim();   //Windoze CRLF to LF
       } else {
-        selector = allSelectors[2].split('\r\n').join('\n').trim();
+        selector = results[2].split('\r\n').join('\n').trim();   //Windoze CRLF to LF
       }
 
       /* fetch comments and associate it with current selector */
       let commentsRegex = new RegExp(CSSParser.cssCommentsRegex, 'gi');
       let comments = commentsRegex.exec(selector);
       if (comments !== null) {
+        //strip out comments before processing 
         selector = selector.replace(commentsRegex, '').trim();
       }
-      //determine the type
+      //determine the selector type
       if (selector.indexOf('@media') !== -1) {
-        //we have a media query
+        //we have a  MEDIA QUERY
         let cssObject = {
           selector: selector,
           type: 'media',
-          subStyles: this.parseCSS(arr[3] + '\n}'), //recursively parse media query
+          subStyles: this.parseCSS(results[3] + '\n}'), //recursively parse media query
         };
+        //restore comments to the output object
         if (comments !== null) {
           cssObject.comments = comments[0];
         }
+        //PUSH TO OUTPUT
         this.css.push(cssObject);
       } else {
         //we have standard css
-        let rules = this.parseRules(arr[6]);
+        let rules = this.parseRules(results[6]);
         let style = {
           selector: selector,
           rules: rules,
@@ -138,8 +141,8 @@ class CSSParser {
   parseRules(rules) {
     //convert all windows style line endings to unix style line endings
     let result = [];
-    rules = rules.split('\r\n').join('\n');    //swap Windoze CRLF for LF
-    rules = rules.split(';');                  //each rule ends with semicolon
+    rules = rules.split('\r\n').join('\n'); //swap Windoze CRLF for LF
+    rules = rules.split(';'); //each rule ends with semicolon
 
     //proccess rules one by one
     for (let i = 0; i < rules.length; i++) {
