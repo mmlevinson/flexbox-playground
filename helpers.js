@@ -20,6 +20,18 @@ function chop(text, numChars, fromEnd = true) {
     return text.substring(numChars);   //start at numChars, return all remaining chars
 }
 
+function toCamelCase(source) {
+  //so far only one level of conversion, not iterating
+  let words = source.split('-');
+  let firstWord = words[0].toLowerCase();
+  let camelWords = '';
+  for (let next = 1; next < words.length; next++) {
+    let nextWord = words[next];
+    camelWords += nextWord[0].toUpperCase() + nextWord.substring(1)
+  }
+  return firstWord+camelWords
+}
+
 
 /* LoremIpsum adapted from https://github.com/fffilo/lorem-ipsum-js/blob/master/src/lorem-ipsum.js */
 
@@ -308,6 +320,7 @@ class LoremIpsum {
 
 export {
     clearFlexContainers,
-    chop,
+  chop,
+    toCamelCase,
     LoremIpsum
 }

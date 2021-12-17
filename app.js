@@ -1,6 +1,6 @@
 import { validateDimensions, validateHowManyItems } from './validate.js';
 import { LoremIpsum } from './classes.js';
-import { clearFlexContainers, chop } from './helpers.js';
+import { clearFlexContainers, toCamelCase } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 import CSSParser from './cssParser.js';
 
@@ -54,6 +54,21 @@ function reset() {
   setDefault('flexContainer', 'displayType');
   setDisplayType(defaults.flexContainer.displayType.default); //flex
   updateCSS();
+}
+
+function switchTab(identifier) {
+  //rebuild the correct key for elements.tabs
+  let words = identifier.split('-');
+  words.splice(0,1);  //remove 'tab'
+  let clickedTab = toCamelCase(words.join('-'));
+  for (const key in elements.tabs) {
+    if (key === clickedTab) {
+      elements.tabs[clickedTab].classList.add('active-tab');
+    } else {
+      elements.tabs[key].classList.remove('active-tab');
+    }
+  }
+
 }
 
 function setUpFlexItems(newValue) {
@@ -189,6 +204,12 @@ function setUpButtonListeners() {
   elements.navigation.reset.addEventListener('click', (event) => {
     reset();
   });
+
+  for (const key in elements.tabs) {
+    elements.tabs[key].addEventListener('click', (event) => {
+      switchTab(event.srcElement.id);
+    });
+  }
 
   //FlexContainer Restore Defaults
   elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {

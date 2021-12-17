@@ -4,6 +4,12 @@ const DEFAULT_FLEX_ITEM_COUNT = 4;
 /* For coding clarity, we store reference to DOM elements in one
 place, a key:value object */
 const elements = {
+  tabs: {
+    flexContainer:document.getElementById('tab-flex-container'),
+    flexItems:document.getElementById('tab-flex-items'),
+    cssOutput:document.getElementById('tab-css-output'),
+    customCSS:document.getElementById('tab-custom-CSS'),
+  },
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
     portrait: document.querySelector('.flex-container#portrait'),

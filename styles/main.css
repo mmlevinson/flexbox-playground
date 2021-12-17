@@ -31,7 +31,11 @@ select {
   --header-color:#2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
-  --panel-background-color: #708090;
+  --panel-background-color: hsl(210, 13%, 50%);
+  --tab-inactive-color: var(--panel-background-color);
+  --tab-active-color: black;
+  --tab-active-border-color:red;
+  --tab-inactive-border-color:var(--panel-border-color);
   --sub-panel-height: 452px;
   --panel-height: calc((var(--sub-panel-height) * 2) + 8px);
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
@@ -51,7 +55,7 @@ html {
 
 .tool-panel{
   width:27.5rem;
-  max-width:400px;
+  max-width:27.5rem;
   margin:4px;
 }
 
@@ -85,13 +89,44 @@ html {
   padding:2px 4px;
   border: 1px solid var(--panel-border-color);
   border-radius:8px 8px 0 0;
+
 }
 
-.tool-panel-tab.active{
-  background-color:black;
+.tool-panel-tab:hover{
+  cursor:pointer;
+  background-color: hsl(210, 13%, 63%);
+}
+
+.tool-panel-tab.active-tab{
+  background-color:hsl(20, 100%, 20%);
   color:white;
 
+  transition-duration: 400ms;
+  transition-property: background-color, color;
+  transition-timing-function: ease-out;
 }
+
+
+
+.settings-options{
+  background-color:darkslateblue;
+  color:white;
+  width:100%;
+  height: 1.5rem;
+  vertical-align: center;
+  border-bottom:1px solid var(--panel-border-color);
+}
+
+.settings-options > * {
+  display:inline-block;
+  /* border:1px solid black; */
+  text-align:center;
+  padding-top:2px;
+  width:calc(50% - 2px);
+ 
+}
+
+
 
 
 /* Setting the section heights to a % requires we define the
@@ -162,7 +197,6 @@ ul{
   cursor:pointer;
   background:wheat;
   border:1px solid var(--dark-green);
-
 }
 
 
