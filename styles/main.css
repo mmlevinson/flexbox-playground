@@ -31,12 +31,12 @@ select {
   --header-color:#2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
-  --panel-background-color: hsl(210, 13%, 50%);
-  --tab-inactive-color: var(--panel-background-color);
-  --tab-active-color: black;
-  --tab-active-border-color:red;
-  --tab-inactive-border-color:var(--panel-border-color);
-  --sub-panel-height: 452px;
+  --panel-background-color: hsl(220, 20%, 60%);
+  --tab-font-color:hsl(240, 100%, 25%);
+  --tab-inactive-color: hsl(230, 13%, 70%);
+  --tab-active-color: var(--panel-background-color);
+  --tab-hover-color:hsl(0, 0%, 65%);
+  --tool-panel-width:27.5rem;
   --panel-height: calc((var(--sub-panel-height) * 2) + 8px);
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
 }
@@ -54,7 +54,7 @@ html {
 }
 
 .tool-panel{
-  width:27.5rem;
+  width:20rem;
   max-width:27.5rem;
   margin:4px;
 }
@@ -79,28 +79,28 @@ html {
 }
 
 .tool-panel-tab{
-  background-color:var(--panel-background-color);
-  color:navy;
+  background-color:var(--tab-inactive-color);
+  border: 1px solid var(--panel-border-color);
+  color: var(--tab-font-color);
   text-align:center;
   font-size:1rem;
   font-weight:bold;
   font-family:inherit;
   margin:0;
   padding:2px 4px;
-  border: 1px solid var(--panel-border-color);
   border-radius:8px 8px 0 0;
 
 }
 
 .tool-panel-tab:hover{
   cursor:pointer;
-  background-color: hsl(210, 13%, 63%);
+  background-color: var(--tab-hover-color);
 }
 
 .tool-panel-tab.active-tab{
-  background-color:hsl(20, 100%, 20%);
-  color:white;
-
+  background-color:var(--panel-background-color);
+  color:navy;
+  border-bottom:none;
   transition-duration: 400ms;
   transition-property: background-color, color;
   transition-timing-function: ease-out;
