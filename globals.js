@@ -47,21 +47,6 @@ const elements = {
   },
   flexItems: {
     list: document.querySelectorAll('.flex-item'),
-    checkbox: {
-      landscape: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[0],
-      portrait: document.querySelectorAll('li.dimensions.flex-items input[type=checkbox]')[1],
-      list: document.querySelectorAll('.checkbox__flex-item'),
-    },
-    dimensions: {
-      landscape: {
-        width: document.querySelector('.flex-items .landscape-width'),
-        height: document.querySelector('.flex-items .landscape-height'),
-      },
-      portrait: {
-        width: document.querySelector('.flex-items .portrait-width'),
-        height: document.querySelector('.flex-items .portrait-height'),
-      },
-    },
     flexProportion: document.getElementById('flexProportion'),
     flexGrow: document.getElementById('flexGrow'),
     flexShrink: document.getElementById('flexShrink'),
