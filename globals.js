@@ -31,20 +31,6 @@ const elements = {
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
     portrait: document.querySelector('.flex-container#portrait'),
-    checkbox: {
-      landscape: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[0],
-      portrait: document.querySelectorAll('li.dimensions.flex-container input[type=checkbox]')[1],
-    },
-    dimensions: {
-      landscape: {
-        width: document.querySelector('.flex-container .landscape-width'),
-        height: document.querySelector('.flex-container .landscape-height'),
-      },
-      portrait: {
-        width: document.querySelector('.flex-container .portrait-width'),
-        height: document.querySelector('.flex-container .portrait-height'),
-      },
-    },
     overflow: document.getElementById('overflowType'),
     displayType: document.getElementById('displayType'),
     flexDirection: document.getElementById('flexDirection'),

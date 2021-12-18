@@ -122,7 +122,6 @@ function setUpFlexItems(newValue) {
 }
 
 function setUpEventListeners() {
-  setUpCheckboxListeners();
   setUpValueFieldListeners();
   setUpMenuListeners();
   setUpButtonListeners();
@@ -159,19 +158,7 @@ function updateCSS() {
 
 
 function setUpValueFieldListeners() {
-  //numeric input fields
-  elements.flexContainer.dimensions.landscape.width.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
-  });
-  elements.flexContainer.dimensions.landscape.height.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'landscape', state.flexContainer.landscape.checked);
-  });
-  elements.flexContainer.dimensions.portrait.width.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'portrait', state.flexContainer.portrait.checked);
-  });
-  elements.flexContainer.dimensions.portrait.height.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'portrait', state.flexContainer.portrait.checked);
-  });
+
 
   elements.flexContainer.gap.addEventListener('input', (event) => {
     setFlexContainerStyle('gap', event.target.value + 'px');
