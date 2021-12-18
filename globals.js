@@ -139,12 +139,18 @@ const defaults = {
       dimensions: {
         width: '800px',
         height: '800px',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        resize:'both'
       },
     },
     portrait: {
       dimensions: {
         width: '300px',
-        height: '500px',
+        height: '100%',
+        maxWidth: '300px',
+        maxHeight: '100%',
+        resize:'vertical'
       },
     },
     displayType: {

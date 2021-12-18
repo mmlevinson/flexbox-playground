@@ -61,7 +61,7 @@ function showHidePanels(group, show) {
   // console.log(`show`, show);
   const panelGroup = elements.tabs.panels[group];
   for (const key in panelGroup) {
-    panelGroup[key].style.setProperty('display', key === show ? 'inline-block' : 'none');
+    panelGroup[key].style.setProperty('display', key === show ? 'flex' : 'none');
   }
 }
 
@@ -222,7 +222,7 @@ function setUpMenuListeners() {
   for (const key in elements.dropDownMenus) {
     elements.dropDownMenus[key].addEventListener('change', (event) => {
       switchLayoutSize(event);
-      })
+    });
   }
 }
 
@@ -426,31 +426,59 @@ function parseAdditionalCSS(rawText) {
   updateCSS();
 }
 
-
 function switchLayoutSize(event) {
-  
-  function parseDimensions(menuChoice) {
+
+  function parseDimensions(menuChoice, target) {
+    if (menuChoice === 'separator') return;
+    if (menuChoice === 'initial') {
+      return {
+        width: defaults.flexContainer[target].width,
+        height: defaults.flexContainer[target].height,
+        maxWidth: defaults.flexContainer[target].maxWidth,
+        maxHeight: defaults.flexContainer[target].maxHeight,
+        resize: defaults.flexContainer[target].resize,
+      }
+    }
+    if (menuChoice === 'responsive') {
+      //return 100% for both width and height, it sits inside parent container
+      return {
+        width: '100%',
+        height: '100%',
+        maxWidth: '100%',
+        maxHeight:'100%',
+        resizeValue: 'both',
+      };
+    }
     //parse edge cases 'resizable|full|half'
     const values = menuChoice.split('x');
-    return {
-      width: Number(values[0]),
-      height: Number(values[1]),
-      maxWidth: Number(values[0]),
-      maxHeight: Number(values[1]),
-      isResizable:false,
-    }
+    const width = Number(values[0]);
+    const height = Number(values[1]);
+    const resizeDirection = target === 'landscape' ? 'both' : 'vertical';
 
+    return {
+      width: `${width}px`,
+      height: `${height}px`,
+      maxWidth: `${width}px`,
+      maxHeight: `${height}px`,
+      resizeValue: resizeDirection,
+    };
   }
   console.log(`event`, event);
-  const newDimensions = parseDimensions(event.target.value);
   const target = event.target.name.split('-')[0];
+  const newDimensions = parseDimensions(event.target.value, target);
   console.log(`target`, target);
   console.log(`newDimensions`, newDimensions);
-  elements.flexContainer[target].style.width = `${newDimensions.width}px`;
-  elements.flexContainer[target].style.maxWidth = `${newDimensions.maxWidth}px`;
+  elements.flexContainer[target].style.width = newDimensions.width;
+  elements.flexContainer[target].style.maxWidth = newDimensions.maxWidth;
 
-  elements.flexContainer[target].style.height = `${newDimensions.height}px`;
-  elements.flexContainer[target].style.maxHeight = `${newDimensions.maxHeight}px`;
+  elements.flexContainer[target].style.height = newDimensions.height;
+  elements.flexContainer[target].style.maxHeight = newDimensions.maxHeight;
+  elements.flexContainer[target].style.resize = newDimensions.resizeValue;
+
+  //now we have the problem that the parent container/panel enclosing the layout
+  //  is probably smaller than the layout itself
+
+    // elements.flexContainer[target].parentElement.style.width = newDimensions.width;
+    // elements.flexContainer[target].parentElement.style.height = newDimensions.height;
  
-  
 }
