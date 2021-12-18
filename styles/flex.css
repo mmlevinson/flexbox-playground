@@ -107,3 +107,7 @@ div.flex-item-choices {
     visibility: hidden;
   }
 } */
+
+div.flex-container#portrait{
+  display:none;
+}
