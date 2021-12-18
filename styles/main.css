@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap');
 
 *,
 *::after,
@@ -25,52 +24,26 @@ select {
 }
 
 :root {
-  --flex-item-color: hsla(15, 29%, 97%, .7);
+  --flex-item-color: hsla(15, 29%, 97%, 0.7);
   --flex-item-border-color: rgba(165, 46, 119, 0.365);
   --panel-border-color: #222;
-  --header-color:#2ddf5c;
+  --header-color: #2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
   --main-background-color: #666;
   --panel-background-color: hsl(220, 20%, 56%);
-  --tab-font-color:hsl(240, 100%, 25%);
+  --tab-font-color: hsl(240, 100%, 25%);
   --tab-inactive-color: hsl(230, 13%, 70%);
   --tab-active-color: var(--panel-background-color);
-  --tab-hover-color:hsl(0, 0%, 65%);
-  --tool-panel-width:27.5rem;
+  --tab-hover-color: hsl(0, 0%, 65%);
+  --tool-panel-width: 27.5rem;
   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
-  --panel-height:calc(100vh - 92px);
+  --panel-height: calc(100vh - 92px);
 }
 
 html {
   font-family: sans-serif;
-  font-size:0.8rem;
-}
-
-
-/* PANELS */
-
-
-.panel {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 6px;
-  margin-top:4px;
-  background-color: var(--panel-background-color);
-  border: 1px solid var(--panel-border-color);
-  border-radius:5px;
-  width:100px;
-  /* height: calc(100vh - 40px); */
-  /* max-width: 300px; */
-  box-shadow: var(--standard-box-shadow);
-}
-
-#portrait-panel{
-  border: 1px solid var(--panel-border-color);
-  background-color: var(--panel-background-color);
-  box-shadow: var(--standard-box-shadow);
-  /* height: calc((var(--sub-panel-height) * 2) + 8px); */
-  
+  font-size: 0.8rem;
 }
 
 /* Temporarily hide some panels during development, and also set
@@ -78,123 +51,101 @@ their display only in code when the tab is activated */
 #flex-item-settings,
 #additional-css-panel,
 #css-panel,
-.flex-container#portrait{
-  display:none;
+.flex-container#portrait {
+  display: none;
 }
 
-.main-wrapper{
-  height:100vh;
+.main-wrapper {
+  /* height:100vh; */
   /* width:90vw; */
   margin: 0 auto;
-  display:flex;
+  display: flex;
 }
 
-#portrait-layout{
-  width:20rem;
+#portrait-layout {
+  width: 20rem;
 }
 
-#landscape-layout{
-  width:calc(100vw - 60rem);
+#landscape-layout {
+  width: calc(100vw - 60rem);
+}
+
+.tab-panel {
+  width: 20rem;
+  max-width: 20rem;
+  margin: 4px;
+
 }
 
 
-.tool-panel{
-  width:20rem;
-  max-width:20rem;
-  margin:4px;
+
+.tab-bar {
+  display: flex; /* took away all spacing between tabs !! */
 }
 
-
-
-.tool-panel-contents,
-.layout-panel-contents{
-  position:relative;
-  /* display:inline-block; */
-  
-  height:calc(var(--panel-height));
-  border-width: 0px 1px 1px 1px;
-  border-style:solid;
-  border-color:var(--panel-border-color);
-  background:var(--panel-background-color);
-  border-radius:0 0 6px 6px;
-  box-shadow:var(--standard-box-shadow);
-}
-
-.tool-panel-tab-bar,
-.layout-panel-tab-bar{
-  display:flex;     /* took away all spacing between tabs !! */
-}
-
-.tool-panel-tab,
-.layout-panel-tab-bar{
-  background-color:var(--tab-inactive-color);
+.tab {
+  background-color: var(--tab-inactive-color);
   border: 1px solid var(--panel-border-color);
   color: var(--tab-font-color);
-  text-align:center;
-  font-size:1rem;
-  font-weight:bold;
-  font-family:inherit;
-  margin:0;
-  padding:2px 4px;
-  border-radius:6px 6px 0 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  margin: 0;
+  padding: 2px 4px;
+  border-radius: 6px 6px 0 0;
 }
 
-.layout-panel-tab{
-  margin:0px;
-  padding: 0.65rem;
+/* Since the text is not multiline, add some padding */
+.tab-bar.layouts span{
+  padding: 9px;
 }
 
-.tool-panel-tab:hover,
-.layout-panel-tab:hover{
-  cursor:pointer;
+.tab:hover {
+  cursor: pointer;
   background-color: var(--tab-hover-color);
 }
 
-.tool-panel-tab.active-tab,
-.layout-panel-tab.active-tab{
-  background-color:var(--panel-background-color);
-  color:navy;
-  border-bottom:none;
+.tab.active-tab {
+  background-color: var(--panel-background-color);
+  color: navy;
+  border-bottom: none;
   transition-duration: 400ms;
   transition-property: background-color, color;
   transition-timing-function: ease-out;
 }
 
-.layout-panel{
-  margin: 4px;
-  height:calc(var(--tool-bar-height));
+.tab-panel-contents {
+  height: calc(var(--panel-height));
   border-width: 0px 1px 1px 1px;
-  border-style:solid;
-  border-color:var(--panel-border-color);
-  background:var(--panel-background-color);
-  border-radius:0 0 6px 6px;
-  box-shadow:var(--standard-box-shadow);
+  border-style: solid;
+  border-color: var(--panel-border-color);
+  background: var(--panel-background-color);
+  border-radius: 0 0 6px 6px;
+  box-shadow: var(--standard-box-shadow);
 }
 
-.layout-panel-header {
-  border-radius:6px 6px 0 0;
+.tab-panel-contents.layouts{
+  width:calc(100vw - 280px);
 }
 
-.settings-options{
-  background-color:darkslateblue;
-  color:white;
-  width:100%;
+
+.settings-options {
+  background-color: darkslateblue;
+  color: white;
+  width: 100%;
   height: 1.5rem;
   vertical-align: center;
-  border-bottom:1px solid var(--panel-border-color);
+  border-bottom: 1px solid var(--panel-border-color);
 }
 
 .settings-options > * {
-  display:inline-block;
+  display: inline-block;
   /* border:1px solid black; */
-  text-align:center;
-  padding-top:2px;
-  width:calc(50% - 2px);
- 
+  text-align: center;
+  padding-top: 2px;
+  width: calc(50% - 2px);
 }
-
-
-
 
 /* Setting the section heights to a % requires we define the
 height of their parent, which is the body. */
@@ -210,76 +161,64 @@ ul {
 body,
 div,
 span,
-ul{
-  margin:0px;
-  padding:0px;
+ul {
+  margin: 0px;
+  padding: 0px;
 }
 
-.app-title{
+.app-title {
   font-size: 1.3rem;
   vertical-align: middle;
 }
 
 /* MAIN HEADER */
-.main-header{
-  width:100%;
-  background:var(--header-color);
+.main-header {
+  width: 100%;
+  background: var(--header-color);
   color: var(--dark-green);
   font-weight: bold;
-  margin:2px 0px;
-  padding:8px 14px;
-  border-bottom:3px solid var(--dark-green);
+  margin: 2px 0px;
+  padding: 8px 14px;
+  border-bottom: 3px solid var(--dark-green);
 }
-
 
 /* nav, div, li are all block level elements */
 .main-header > div,
 .main-nav,
 .main-nav-item {
-  display:inline-block;
+  display: inline-block;
 }
 
 /* shift nav elements to far right, you need to specify a width */
-.main-nav{
-  text-align:right;
+.main-nav {
+  text-align: right;
   vertical-align: middle;
-  width:calc(100% - 220px);
+  width: calc(100% - 220px);
 }
 
-.main-nav-item{
-  margin:0px 12px;
+.main-nav-item {
+  margin: 0px 12px;
 }
 
-.main-nav-item a{
-  text-decoration:none;
-  color:inherit;
+.main-nav-item a {
+  text-decoration: none;
+  color: inherit;
   padding: 2px 8px;
   border-radius: 8px;
-  border:1px solid var(--header-color);
+  border: 1px solid var(--header-color);
 }
 
-
-.main-nav-item a:hover, 
+.main-nav-item a:hover,
 .main-nav-item a:active {
-  cursor:pointer;
-  background:wheat;
-  border:1px solid var(--dark-green);
+  cursor: pointer;
+  background: wheat;
+  border: 1px solid var(--dark-green);
 }
-
-
-
-
-
-
-
-
-
-
 
 .button {
   display: inherit;
   width: 50%;
-  max-width:7rem;
+  max-width: 7rem;
   margin: 0px 5px;
   border-radius: 6px;
   padding: 4px 0px;
@@ -287,8 +226,8 @@ ul{
 }
 
 .button:hover,
-.button:focus{
-  cursor:pointer;
+.button:focus {
+  cursor: pointer;
   background-color: wheat;
 }
 
@@ -301,16 +240,12 @@ ul{
   width: 100%;
 }
 
-
-
-
 li.input-field,
 li.dimensions {
   padding: 4px;
   /* width: 100%; */
   display: inline-block;
 }
-
 
 li.input-field .setting-item {
   display: inherit;
@@ -320,7 +255,7 @@ li.input-field .setting-item {
 li.dimensions > label {
   /* border:1px solid red; */
   display: inherit;
-  margin-left:4px;
+  margin-left: 4px;
   /* width: 100%; */
 }
 
@@ -328,12 +263,7 @@ li.dimensions input[type='number'] {
   width: 50px;
 }
 
-
-
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
-
-
-
 
 /* Display:block us used for an otherwise inline element (<span>) in order to center the text inside the containing <section>  */
 span.section-title {
@@ -349,34 +279,31 @@ span.section-title {
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 #flex-item-settings textarea {
-  font-weight:bold;
+  font-weight: bold;
   margin-top: 10px;
   width: 100%;
   overflow: scroll;
   /* text-align: center; */
 }
 
-#additional-css-text, 
-#css-output{
-  font-family:'Arial', sans-serif;
+#additional-css-text,
+#css-output {
+  font-family: 'Arial', sans-serif;
   /* font-weight:bold; */
-  font-size:1rem;
+  font-size: 1rem;
   width: calc(100% - 8px);
   margin: 0px 4px;
   height: 356px;
-  resize:none;
-  overflow:auto;
+  resize: none;
+  overflow: auto;
   /* background:hsl(275, 79%, 13%);
   color:yellow; */
-  padding:0 4px;
+  padding: 0 4px;
 }
 
 #css-output {
   height: calc(100% - 40px);
   /* background:white; */
   /* border-bottom: 1px solid var(--panel-border-color); */
-  overflow:scroll;
+  overflow: scroll;
 }
-
-
-

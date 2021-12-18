@@ -44,7 +44,7 @@ div.flex-container {
   position: relative;
   background: hsl(275, 79%, 13%);
   overflow: none;
-  margin: 8px;
+  /* margin: 8px; */
   width: calc(100% - 16px);
   /* height:calc(100% - 16px); */
   max-height: calc(var(--panel-height) - 16px);
@@ -70,7 +70,7 @@ div.flex-container#portrait {
 
 /* At the bottom is a full-width flex container */
 div.flex-container#landscape {
-  position: relative;
+  /* position: relative; */
   background: hsl(275, 79%, 13%);
   border: 1px solid black;
   resize: both;
