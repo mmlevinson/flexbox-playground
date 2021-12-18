@@ -52,11 +52,12 @@ div.flex-container {
     max-height:100%; */
 }
 
-div.flex-container#portrait {
+#portrait {
   /* position: relative; */
   /* top:0; */
   max-width: 300px;
   resize: vertical;
+  height:100%;
 
   /* max-width: 500px; */
   /* max-height: calc(var(--panel-height) - 40px); */
@@ -69,11 +70,12 @@ div.flex-container#portrait {
 }
 
 /* At the bottom is a full-width flex container */
-div.flex-container#landscape {
+#landscape {
   /* position: relative; */
   background: hsl(275, 79%, 13%);
   border: 1px solid black;
   resize: both;
+  width:100%;
   max-width:100%;
 }
 
