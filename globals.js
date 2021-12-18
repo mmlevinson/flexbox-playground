@@ -103,6 +103,10 @@ const elements = {
     load: document.querySelector('.main-nav-item.load-item'),
     save: document.querySelector('.main-nav-item.save-item'),
   },
+  dropDownMenus: {
+    landscapeSize: document.getElementById('landscape-size-menu'),
+    portraitSize: document.getElementById('portrait-size-menu'),
+  },
   toolTip: {
     text: document.querySelector('.tooltip > .tooltip-text'),
   },

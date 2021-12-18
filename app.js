@@ -57,8 +57,8 @@ function reset() {
 }
 
 function showHidePanels(group, show) {
-  console.log(`group`, group);
-  console.log(`show`, show);
+  // console.log(`group`, group);
+  // console.log(`show`, show);
   const panelGroup = elements.tabs.panels[group];
   for (const key in panelGroup) {
     panelGroup[key].style.setProperty('display', key === show ? 'inline-block' : 'none');
@@ -218,6 +218,12 @@ function setUpMenuListeners() {
   elements.flexContainer.overflow.addEventListener('change', (event) => {
     setFlexContainerStyle('overflow', event.target.value);
   });
+
+  for (const key in elements.dropDownMenus) {
+    elements.dropDownMenus[key].addEventListener('change', (event) => {
+      switchLayoutSize(event);
+      })
+  }
 }
 
 function setUpButtonListeners() {
@@ -418,4 +424,33 @@ function parseAdditionalCSS(rawText) {
     });
   });
   updateCSS();
+}
+
+
+function switchLayoutSize(event) {
+  
+  function parseDimensions(menuChoice) {
+    //parse edge cases 'resizable|full|half'
+    const values = menuChoice.split('x');
+    return {
+      width: Number(values[0]),
+      height: Number(values[1]),
+      maxWidth: Number(values[0]),
+      maxHeight: Number(values[1]),
+      isResizable:false,
+    }
+
+  }
+  console.log(`event`, event);
+  const newDimensions = parseDimensions(event.target.value);
+  const target = event.target.name.split('-')[0];
+  console.log(`target`, target);
+  console.log(`newDimensions`, newDimensions);
+  elements.flexContainer[target].style.width = `${newDimensions.width}px`;
+  elements.flexContainer[target].style.maxWidth = `${newDimensions.maxWidth}px`;
+
+  elements.flexContainer[target].style.height = `${newDimensions.height}px`;
+  elements.flexContainer[target].style.maxHeight = `${newDimensions.maxHeight}px`;
+ 
+  
 }
