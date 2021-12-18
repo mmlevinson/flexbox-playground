@@ -264,28 +264,30 @@ ul {
   width: 100%;
 }
 
-li.input-field,
-li.dimensions {
+li.input-field {
   padding: 4px;
   /* width: 100%; */
-  display: inline-block;
+  display: flex;
 }
 
-li.input-field .setting-item {
-  display: inherit;
-  width: 100%;
+.input-field:first-of-type{
+  padding-top:1.2rem;
 }
 
-li.dimensions > label {
+.input-field .setting-item {
+ flex-grow:1;
+ min-width:8rem;
+}
+
+li.input-field > label {
   /* border:1px solid red; */
-  display: inherit;
+  font-weight:bold;
+  min-width:10rem;
   margin-left: 4px;
-  /* width: 100%; */
+  
 }
 
-li.dimensions input[type='number'] {
-  width: 50px;
-}
+
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
