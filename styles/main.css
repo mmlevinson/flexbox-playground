@@ -48,9 +48,9 @@ html {
 
 /* Temporarily hide some panels during development, and also set
 their display only in code when the tab is activated */
-#flex-item-settings,
-#additional-css-panel,
-#css-panel {
+#panel-flex-items,
+#panel-custom-CSS,
+#panel-css-output {
   display: none;
 }
 
@@ -84,8 +84,6 @@ their display only in code when the tab is activated */
 .tab-bar.layouts span{
   padding: 9px;
 }
-
-
 
 .tab-bar {
   display: flex; /* took away all spacing between tabs !! */
@@ -284,7 +282,7 @@ span.section-title {
 }
 
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
-#flex-item-settings textarea {
+#flex-item-text {
   font-weight: bold;
   margin-top: 10px;
   width: 100%;
@@ -292,7 +290,7 @@ span.section-title {
   /* text-align: center; */
 }
 
-#additional-css-text,
+#custom-css-text,
 #css-output {
   font-family: 'Arial', sans-serif;
   /* font-weight:bold; */

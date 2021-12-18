@@ -6,7 +6,7 @@ import CSSParser from './cssParser.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
-let customCSSDirty = false;   //set this once user makes any changes
+let customCSSDirty = false; //set this once user makes any changes
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -56,19 +56,41 @@ function reset() {
   updateCSS();
 }
 
-function switchTab(identifier) {
-  //rebuild the correct key for elements.tabs
+function showHidePanels(group, show) {
+  console.log(`group`, group);
+  console.log(`show`, show);
+  const panelGroup = elements.tabs.panels[group];
+  for (const key in panelGroup) {
+    panelGroup[key].style.setProperty('display', key === show ? 'inline-block' : 'none');
+  }
+}
+
+function switchTab(group, identifier) {
   let words = identifier.split('-');
-  words.splice(0,1);  //remove 'tab'
+  words.splice(0, 1); //remove 'tab'
   let clickedTab = toCamelCase(words.join('-'));
-  for (const key in elements.tabs) {
+  //rebuild the correct key for elements.tabs
+  for (const key in elements.tabs[group]) {
     if (key === clickedTab) {
-      elements.tabs[clickedTab].classList.add('active-tab');
+      elements.tabs[group][clickedTab].classList.add('active-tab');
     } else {
-      elements.tabs[key].classList.remove('active-tab');
+      elements.tabs[group][key].classList.remove('active-tab');
     }
   }
-
+  //dispatch
+  switch (identifier) {
+    case 'tab-layout-landscape':
+    case 'tab-layout-portrait':
+      showHidePanels('layouts', clickedTab);
+      break;
+    case 'tab-flex-container':
+    case 'tab-flex-items':
+    case 'tab-custom-CSS':
+    case 'tab-css-output':
+      showHidePanels('settings', `${clickedTab}Panel`);
+    default:
+      break;
+  }
 }
 
 function setUpFlexItems(newValue) {
@@ -131,7 +153,7 @@ function updateCSS() {
 
   //If not edits in AdditionalCSS...embed a new template
   if (!customCSSDirty) {
-    elements.additionalCSS.textArea.value = additionalCSSTemplate; 
+    elements.additionalCSS.textArea.value = additionalCSSTemplate;
   }
 }
 
@@ -180,7 +202,6 @@ function setUpMenuListeners() {
   });
   elements.flexContainer.flexDirection.addEventListener('change', (event) => {
     setFlexContainerStyle('flex-direction', event.target.value);
-
   });
   elements.flexContainer.flexWrap.addEventListener('change', (event) => {
     setFlexContainerStyle('flex-wrap', event.target.value);
@@ -205,9 +226,14 @@ function setUpButtonListeners() {
     reset();
   });
 
-  for (const key in elements.tabs) {
-    elements.tabs[key].addEventListener('click', (event) => {
-      switchTab(event.srcElement.id);
+  for (const key in elements.tabs.settings) {
+    elements.tabs.settings[key].addEventListener('click', (event) => {
+      switchTab('settings', event.srcElement.id);
+    });
+  }
+  for (const key in elements.tabs.layouts) {
+    elements.tabs.layouts[key].addEventListener('click', (event) => {
+      switchTab('layouts', event.srcElement.id);
     });
   }
 
@@ -358,17 +384,15 @@ function setDefault(container, key) {
 }
 
 function setFlexItemCSSRule(index, property, value) {
-
   let portraitItem = elements.flexItems.list[index - 1];
-  
+
   let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT - 1];
   portraitItem.style.setProperty(property, value);
   landscapeItem.style.setProperty(property, value);
 }
 
-
 /* MML...December 15, 2021 @ 16:08...Refactored public cssParser
-*/
+ */
 
 /* CSSParser.parseCSS(source:string) : [Objects]:
   {  selector: "div.flex-item#item__1:" 
@@ -380,20 +404,18 @@ function setFlexItemCSSRule(index, property, value) {
   */
 function parseAdditionalCSS(rawText) {
   //there is new AdditionalCSS Content so
-  customCSSDirty = true;     
+  customCSSDirty = true;
   const parser = new CSSParser();
   const cssData = parser.parseCSS(rawText);
 
   cssData.forEach((css) => {
-    let whichItem = css.selector.match(/([0-9]+)/)[0];   //only retrieve the first match
+    let whichItem = css.selector.match(/([0-9]+)/)[0]; //only retrieve the first match
     console.log(`whichItem`, whichItem);
-    let index = +whichItem  //coerce to number
+    let index = +whichItem; //coerce to number
     console.log(`index`, index);
     css.rules.forEach((rule) => {
       setFlexItemCSSRule(index, rule.property, rule.value);
-    })
-  })
+    });
+  });
   updateCSS();
-  
-
 }

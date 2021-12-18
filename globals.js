@@ -5,10 +5,28 @@ const DEFAULT_FLEX_ITEM_COUNT = 4;
 place, a key:value object */
 const elements = {
   tabs: {
-    flexContainer:document.getElementById('tab-flex-container'),
-    flexItems:document.getElementById('tab-flex-items'),
-    cssOutput:document.getElementById('tab-css-output'),
-    customCSS:document.getElementById('tab-custom-CSS'),
+    settings: {
+      flexContainer: document.getElementById('tab-flex-container'),
+      flexItems: document.getElementById('tab-flex-items'),
+      cssOutput: document.getElementById('tab-css-output'),
+      customCSS: document.getElementById('tab-custom-CSS'),
+    },
+    layouts: {
+      layoutLandscape: document.getElementById('tab-layout-landscape'),
+      layoutPortrait: document.getElementById('tab-layout-portrait'),
+    },
+    panels: {
+      settings: {
+        flexContainerPanel: document.getElementById('panel-flex-container'),
+        flexItemsPanel: document.getElementById('panel-flex-items'),
+        customCSSPanel: document.getElementById('panel-custom-CSS'),
+        cssOutputPanel: document.getElementById('panel-css-output'),
+      },
+      layouts: {
+        layoutLandscape: document.getElementById('landscape'),
+        layoutPortrait: document.getElementById('portrait'),
+      }
+    },
   },
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
@@ -38,7 +56,7 @@ const elements = {
     gap: document.getElementById('gap'),
     howManyItems: document.getElementById('howManyItems'),
     buttons: {
-        restoreDefaults: document.getElementById('flex-container-defaults-button'),
+      restoreDefaults: document.getElementById('flex-container-defaults-button'),
     },
   },
   flexItems: {
@@ -76,7 +94,7 @@ const elements = {
     buttons: {
       list: document.getElementById('additional-css-buttons'),
     },
-    textArea: document.getElementById('additional-css-text'),
+    textArea: document.getElementById('custom-css-text'),
   },
   cssOutput: document.getElementById('css-output'),
   navigation: {

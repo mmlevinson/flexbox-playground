@@ -31,13 +31,13 @@
         <div class="tab-bar">
           <span class="tab active-tab" id="tab-flex-container">Flex Container</span>
           <span class="tab" id="tab-flex-items">Flex Items</span>
-          <span class="tab" id="tab-css-output">CSS Output</span>
           <span class="tab" id="tab-custom-CSS">Custom CSS</span>
+          <span class="tab" id="tab-css-output">CSS Result</span>
         </div>
         <div class="tab-panel-contents">
           <ul class="panel-list">
-            <!-- Flex Item Settings -->
-            <li class="flex-container-settings">
+            <!-- Flex Container Panel -->
+            <li id="panel-flex-container">
               <ul class="panel-item">
                 <!-- DIMENSIONS -->
                 <!-- Landscape -->
@@ -199,8 +199,8 @@
                 </li>
               </ul>
             </li>
-            <!-- Flex Container Settings -->
-            <li class="panel" id="flex-item-settings">
+            <!-- Flex Items Panel -->
+            <li class="panel" id="panel-flex-items">
               <span class="section-title">div.flex-item</span>
               <ul>
                 <!-- DIMENSIONS -->
@@ -312,10 +312,10 @@
                 </li>
               </ul>
             </li>
-            <!-- Additional CSS-->
-            <li id="additional-css-panel">
+            <!-- Custom CSS-->
+            <li id="panel-custom-CSS">
               <span class="section-title">+ Additional CSS</span>
-              <textarea class="id" id="additional-css-text" rows="8"> </textarea>
+              <textarea class="id" id="custom-css-text" rows="8"> </textarea>
               <!-- BUTTON SET -->
               <div class="button-set" id="additional-css-buttons">
                 <button class="button" type="button" name="Reset">Reset</button>
@@ -323,7 +323,7 @@
               </div>
             </li>
             <!-- CSS Output -->
-            <li id="css-panel">
+            <li id="panel-css-output">
               <span class="section-title">CSS Output</span>
               <pre id="css-output">whatever</pre>
             </li>
@@ -332,8 +332,8 @@
       </div>
       <div class="tab-panel layouts">
         <div class="tab-bar layouts">
-          <span class="tab active-tab" id="tab-flex-container">Landscape</span>
-          <span class="tab" id="tab-flex-items">Portrait</span>
+          <span class="tab active-tab" id="tab-layout-landscape">Landscape</span>
+          <span class="tab" id="tab-layout-portrait">Portrait</span>
         </div>
         <div class="tab-panel-contents layouts">
               <!-- LANDSCAPE -->
