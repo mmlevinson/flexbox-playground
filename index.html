@@ -34,7 +34,7 @@
           <span class="tab" id="tab-custom-CSS">Custom CSS</span>
           <span class="tab" id="tab-css-output">CSS Result</span>
         </div>
-        <div class="tab-panel-contents">
+        <div class="tab-panel-contents" id="settings-panel">
           <ul class="panel-list">
             <!-- Flex Container Panel -->
             <li id="panel-flex-container">
@@ -332,20 +332,6 @@
       </div>
       <div class="tab-panel layouts">
         <div class="tab-bar layouts">
-          <div class="tab active-tab" id="tab-layout-landscape">LANDSCAPE
-            <select name="landscape-size" class="drop-down-menu" id="landscape-size-menu">
-              <option value="initial`">Initial</option>
-              <option value="responsive">Responsive</option>
-              <option value="separator">---------</option>
-              <option value="1336x1024">iPad Pro</option>
-              <option value="1024x768">iPad 3rd/4th Gen</option>
-              <option value="1024x768">iPad Mini 2/3</option>
-              <option value="1336x1024">iPad Air 1/2</option>
-              <option value="1024x768">Nexus 9</option>
-              <option value="1280x800">Samsung Galaxy 10 </option>
-              <option value="1280x850">Chromebook Pixel</option>
-            </select>
-        </div>
           <div class="tab" id="tab-layout-portrait">PORTRAIT
             <select name="portrait-size" class="drop-down-menu" id="portrait-size-menu">
               <option value="initial">Initial</option>
@@ -368,18 +354,32 @@
               <option value="480x853">LG G5</option>
             </select>
         </div>
+          <div class="tab active-tab" id="tab-layout-landscape">LANDSCAPE
+            <select name="landscape-size" class="drop-down-menu" id="landscape-size-menu">
+              <option value="initial`">Initial</option>
+              <option value="responsive">Responsive</option>
+              <option value="separator">---------</option>
+              <option value="1336x1024">iPad Pro</option>
+              <option value="1024x768">iPad 3rd/4th Gen</option>
+              <option value="1024x768">iPad Mini 2/3</option>
+              <option value="1336x1024">iPad Air 1/2</option>
+              <option value="1024x768">Nexus 9</option>
+              <option value="1280x800">Samsung Galaxy 10 </option>
+              <option value="1280x850">Chromebook Pixel</option>
+            </select>
+        </div>
           
         </div>
-        <div class="tab-panel-contents layouts">
-              <!-- LANDSCAPE -->
-          <div class="flex-container" id="landscape">
-            <!-- determined by user input -->
-          </div>
+        <div class="tab-panel-contents" id="layouts-panel">
           <!-- PORTRAIT -->
           <div class="flex-container" id="portrait">
             <!-- determined by user input -->
           </div>
-  </div>
+              <!-- LANDSCAPE -->
+          <div class="flex-container" id="landscape">
+            <!-- determined by user input -->
+          </div>
+        </div>
 
         </div>
       </div>

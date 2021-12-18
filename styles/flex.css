@@ -7,7 +7,7 @@
 div.flex-item {
   border: 2px solid var(--flex-item-border-color);
   /* background-color: var(--flex-item-color); */
-  background-color: gray;
+  background-color: hsl(0, 0%, 70%);
   padding: 8px;
   position: relative;
   margin: 15px;
@@ -42,12 +42,12 @@ div.flex-item {
 
 div.flex-container {
   position: relative;
-  background: hsl(275, 79%, 13%);
+  
   overflow: none;
   /* margin: 8px; */
   width: calc(100% - 16px);
   /* height:calc(100% - 16px); */
-  max-height: calc(var(--panel-height) - 16px);
+  max-height: calc(var(--panel-height));
   /* max-width:100%;
     max-height:100%; */
 }
@@ -73,10 +73,11 @@ div.flex-container {
 /* At the bottom is a full-width flex container */
 #landscape {
   /* position: relative; */
-  background: hsl(275, 79%, 13%);
-  border: 1px solid black;
+  /* background: hsl(275, 79%, 13%); */
+  /* border: 1px solid black; */
   resize: both;
-  width:100%;
+  width: calc(100vw- 16px);
+  /* width:100%; */
   max-width:100%;
 }
 
