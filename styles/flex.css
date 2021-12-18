@@ -74,7 +74,7 @@ div.flex-container#landscape {
   background: hsl(275, 79%, 13%);
   border: 1px solid black;
   resize: both;
-  max-width: calc(100% - 16px);
+  max-width:100%;
 }
 
 div.flex-setting {
@@ -108,6 +108,3 @@ div.flex-item-choices {
   }
 } */
 
-div.flex-container#portrait{
-  display:none;
-}

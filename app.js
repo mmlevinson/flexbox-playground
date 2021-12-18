@@ -248,6 +248,8 @@ function setFlexContainerStyle(property, newValue) {
 function setDisplayType(newValue) {
   elements.flexContainer.landscape.style.display = newValue;
   elements.flexContainer.portrait.style.display = newValue;
+  /* TEMPORARY ... HIDE PORTRAIT  */
+  elements.flexContainer.portrait.style.display = 'none';
 
   let isFlex = false;
   if (newValue === 'flex' || newValue === 'inline-flex') {

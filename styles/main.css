@@ -50,8 +50,7 @@ html {
 their display only in code when the tab is activated */
 #flex-item-settings,
 #additional-css-panel,
-#css-panel,
-.flex-container#portrait {
+#css-panel {
   display: none;
 }
 
@@ -62,19 +61,28 @@ their display only in code when the tab is activated */
   display: flex;
 }
 
-#portrait-layout {
+/* #portrait-layout {
   width: 20rem;
 }
 
 #landscape-layout {
   width: calc(100vw - 60rem);
-}
+} */
 
 .tab-panel {
   width: 20rem;
   max-width: 20rem;
   margin: 4px;
+}
 
+/* To balance position on page */
+.tab-panel:first-of-type{
+  margin-left:6px;
+}
+
+/* Since the text is not multiline, add some padding */
+.tab-bar.layouts span{
+  padding: 9px;
 }
 
 
@@ -96,10 +104,7 @@ their display only in code when the tab is activated */
   border-radius: 6px 6px 0 0;
 }
 
-/* Since the text is not multiline, add some padding */
-.tab-bar.layouts span{
-  padding: 9px;
-}
+
 
 .tab:hover {
   cursor: pointer;
@@ -126,6 +131,7 @@ their display only in code when the tab is activated */
 }
 
 .tab-panel-contents.layouts{
+  padding: 8px;
   width:calc(100vw - 280px);
 }
 
