@@ -24,8 +24,8 @@ select {
 }
 
 :root {
-  --flex-item-color: hsla(15, 29%, 97%, 0.7);
-  --flex-item-border-color: rgba(165, 46, 119, 0.365);
+  --flex-item-color: hsla(15, 20%, 100%, 0.2);
+  --flex-item-border-color: hsla(256, 64%, 25%, 0.8);
   --panel-border-color: #222;
   --header-color: #2ddf5c;
   --dark-green: hsl(120, 49%, 12%);

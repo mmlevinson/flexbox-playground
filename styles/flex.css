@@ -4,10 +4,10 @@
 ...position relative establishes this as a parent container for the enclosed <span> which uses
 ...position absolute to stack underneath the flex item text
  */
-div.flex-item {
-  border: 2px solid var(--flex-item-border-color);
+.flex-item {
+  border: 3px solid hsla(256, 64%, 25%, 0.8);
   /* background-color: var(--flex-item-color); */
-  background-color: hsl(0, 0%, 70%);
+  background-color: hsl(0, 0%, 76%);
   padding: 8px;
   position: relative;
   margin: 15px;

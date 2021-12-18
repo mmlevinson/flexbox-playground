@@ -157,15 +157,6 @@ function updateCSS() {
   }
 }
 
-function setUpCheckboxListeners() {
-  //checkboxes
-  elements.flexContainer.checkbox.landscape.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'landscape', event.target.checked);
-  });
-  elements.flexContainer.checkbox.portrait.addEventListener('input', (event) => {
-    setDimensions('flexContainer', 'portrait', event.target.checked);
-  });
-}
 
 function setUpValueFieldListeners() {
   //numeric input fields
@@ -305,20 +296,7 @@ function setDisplayType(newValue) {
   updateCSS();
 }
 
-function setDimensions(target, orientation, isChecked) {
-  state[target][orientation].checked = isChecked;
-  if (isChecked) {
-    const width = elements[target].dimensions[orientation].width.value;
-    const height = elements[target].dimensions[orientation].height.value;
-    console.log(`width, height`, width, height);
-    elements[target][orientation].style.width = width + 'px';
-    elements[target][orientation].style.height = height + 'px';
-  } else {
-    elements[target][orientation].style.width = 'auto';
-    elements[target][orientation].style.height = 'auto';
-  }
-  updateCSS();
-}
+
 
 function updateFlexItemText() {
   let itemText = elements.flexItems.flexItemText.value;
@@ -475,10 +453,5 @@ function switchLayoutSize(event) {
   elements.flexContainer[target].style.maxHeight = newDimensions.maxHeight;
   elements.flexContainer[target].style.resize = newDimensions.resizeValue;
 
-  //now we have the problem that the parent container/panel enclosing the layout
-  //  is probably smaller than the layout itself
 
-    // elements.flexContainer[target].parentElement.style.width = newDimensions.width;
-    // elements.flexContainer[target].parentElement.style.height = newDimensions.height;
- 
 }
