@@ -332,8 +332,22 @@
       </div>
       <div class="tab-panel layouts">
         <div class="tab-bar layouts">
-          <span class="tab active-tab" id="tab-layout-landscape">Landscape</span>
-          <span class="tab" id="tab-layout-portrait">Portrait</span>
+          <div class="tab active-tab" id="tab-layout-landscape">
+            <span>LANDSCAPE</span>
+            <select name="landscape-size" class="drop-down-menu" id="landscape-size-menu">
+              <option value="full">Full</option>
+              <option value="100%x50%">Half</option>
+              <option value="100%x50%">---------</option>
+              <option value="1024x1336">iPad Pro</option>
+              <option value="768x1024">iPad 3rd/4th Gen</option>
+              <option value="768x1024">iPad Mini 2/3</option>
+              <option value="1024x1336">iPad Air 1/2</option>
+              <option value="768x1024">Nexus 9</option>
+              <option value="800x1280">Samsung Galaxy 10 </option>
+              <option value="1280x850">Chromebook Pixel</option>
+            </select>
+        </div>
+          <span class="tab" id="tab-layout-portrait">PORTRAIT</span>
         </div>
         <div class="tab-panel-contents layouts">
               <!-- LANDSCAPE -->

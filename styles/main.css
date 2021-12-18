@@ -81,8 +81,13 @@ their display only in code when the tab is activated */
 }
 
 /* Since the text is not multiline, add some padding */
-.tab-bar.layouts span{
-  padding: 9px;
+.tab-bar.layouts > .tab{
+ display:flex;
+ flex-direction:row;
+ flex-grow:1;
+ align-items:center;
+ width:500px;
+ padding:8px;
 }
 
 .tab-bar {
@@ -131,6 +136,14 @@ their display only in code when the tab is activated */
 .tab-panel-contents.layouts{
   padding: 8px;
   width:calc(100vw - 280px);
+}
+
+.drop-down-menu{
+  background: none;
+  text-align: center;
+  color:var(--tab-font-color);
+  border:none;
+  margin:0 0.75rem;
 }
 
 
