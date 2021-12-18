@@ -177,20 +177,16 @@
             <li class="panel" id="panel-flex-items">
               <ul>
                
-                <!-- Flex Proportion -->
+
+                <!-- Flex-Grow -->
                 <li class="input-field">
-                  <label for="flexProportion" class="setting-label flex-proportion">Flex:</label>
-                  <input type="number" min="0" value="0" name="flexProportion" id="flexProportion" class="setting-item" disabled />
+                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
+                  <input type="number" min="0" value="0" name="flexGrow" id="flexGrow" class="setting-item" disabled />
                 </li>
                 <!-- Flex-Shrink -->
                 <li class="input-field">
                   <label for="flexShrink" class="setting-label">Flex-Shrink</label>
                   <input type="number" min="0" value="1" name="flexShrink" id="flexShrink" class="setting-item" disabled />
-                </li>
-                <!-- Flex-Grow -->
-                <li class="input-field">
-                  <label for="flexGrow" class="setting-label">Flex-Grow</label>
-                  <input type="number" min="0" value="0" name="flexGrow" id="flexGrow" class="setting-item" disabled />
                 </li>
 
                 <!-- Flex-Basis Type -->
@@ -210,8 +206,8 @@
                 </li>
                 <!-- Flex-Basis Value -->
                 <li class="input-field">
-                  <label for="flexBasisValue" class="setting-label flex-basis">Flex-Basis Value:</label>
-                  <input type="number" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" disabled />
+                  <label for="flexBasisValue" class="setting-label flex-basis">  (basis value)</label>
+                  <input type="text" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" disabled />
                 </li>
                 <!-- Align-Self -->
                 <li class="input-field">
@@ -237,6 +233,11 @@
                     <option value="revert">Revert</option>
                     <option value="unset">Unset</option>
                   </select>
+                </li>
+                <!-- Flex Proportion -->
+                <li class="input-field">
+                  <label for="flexProportion" class="setting-label flex-proportion">Flex (Amount):</label>
+                  <input type="number" min="0" value="0" name="flexProportion" id="flexProportion" class="setting-item" disabled />
                 </li>
                 <!-- Order -->
                 <li class="input-field">

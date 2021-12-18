@@ -61,13 +61,6 @@ their display only in code when the tab is activated */
   display: flex;
 }
 
-/* #portrait-layout {
-  width: 20rem;
-}
-
-#landscape-layout {
-  width: calc(100vw - 60rem);
-} */
 
 .tab-panel {
   width: 20rem;
@@ -76,18 +69,18 @@ their display only in code when the tab is activated */
 }
 
 /* To balance position on page */
-.tab-panel:first-of-type{
-  margin-left:8px;
+.tab-panel:first-of-type {
+  margin-left: 8px;
 }
 
 /* Since the text is not multiline, add some padding */
-.tab-bar.layouts > .tab{
- display:flex;
- flex-direction:row;
- flex-grow:1;
- align-items:center;
- width:500px;
- padding:8px;
+.tab-bar.layouts > .tab {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+  width: 500px;
+  padding: 8px;
 }
 
 .tab-bar {
@@ -106,8 +99,6 @@ their display only in code when the tab is activated */
   padding: 2px 4px;
   border-radius: 6px 6px 0 0;
 }
-
-
 
 .tab:hover {
   cursor: pointer;
@@ -129,32 +120,30 @@ their display only in code when the tab is activated */
 }
 
 .tab-panel-contents#settings-panel,
-div.flex-container
-{
-border-style: solid;
-border-width: 0px 1px 1px 1px;
+.flex-container {
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
   border-color: var(--panel-border-color);
   background: var(--panel-background-color);
   border-radius: 0 0 6px 6px;
   box-shadow: var(--standard-box-shadow);
 }
 
-.tab-panel-contents#layouts-panel{
+.tab-panel-contents#layouts-panel {
   /* padding: 8px; */
-  width:calc(100vw - 280px);
+  width: calc(100vw - 280px);
 }
 
-.drop-down-menu{
+.drop-down-menu {
   background: none;
   text-align: center;
-  color:var(--tab-font-color);
-  border:none;
-  margin:0 0.5rem;
-  
+  color: var(--tab-font-color);
+  border: none;
+  margin: 0 0.5rem;
 }
 
 
-.settings-options {
+/* .settings-options {
   background-color: darkslateblue;
   color: white;
   width: 100%;
@@ -165,11 +154,11 @@ border-width: 0px 1px 1px 1px;
 
 .settings-options > * {
   display: inline-block;
-  /* border:1px solid black; */
+
   text-align: center;
   padding-top: 2px;
   width: calc(50% - 2px);
-}
+} */
 
 /* Setting the section heights to a % requires we define the
 height of their parent, which is the body. */
@@ -268,26 +257,24 @@ li.input-field {
   padding: 4px;
   /* width: 100%; */
   display: flex;
+  align-items: baseline;
 }
 
-.input-field:first-of-type{
-  padding-top:1.2rem;
+.input-field:first-of-type {
+  padding-top: 1.2rem;
 }
 
 .input-field .setting-item {
- flex-grow:1;
- min-width:8rem;
+  flex-grow: 1;
+  /* min-width:6rem; */
 }
 
 li.input-field > label {
   /* border:1px solid red; */
-  font-weight:bold;
-  min-width:10rem;
+  font-weight: bold;
+  min-width: 8rem;
   margin-left: 4px;
-  
 }
-
-
 
 /* Position absolute ignores DOM element ordering of elements and sets up a new positioning context where this element is positioned based on its nearest neighbor in the layout that has its position property set. */
 
@@ -306,8 +293,8 @@ span.section-title {
 /*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 #flex-item-text {
   font-weight: bold;
-  margin-top: 10px;
   width: 100%;
+  height: 44vh;
   overflow: scroll;
   /* text-align: center; */
 }
@@ -317,9 +304,9 @@ span.section-title {
   font-family: 'Arial', sans-serif;
   /* font-weight:bold; */
   font-size: 1rem;
-  width: calc(100% - 8px);
+  /* width: calc(100% - 8px); */
   margin: 0px 4px;
-  height: 356px;
+  height: 80vh;
   resize: none;
   overflow: auto;
   /* background:hsl(275, 79%, 13%);
