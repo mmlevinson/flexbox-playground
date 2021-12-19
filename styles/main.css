@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500;700&display=swap');
 
 *,
 *::after,
@@ -25,7 +26,8 @@ select {
 
 :root {
   --flex-item-color: hsla(15, 20%, 100%, 0.2);
-  --flex-item-border-color: hsla(256, 64%, 25%, 0.8);
+  --general-text-background-color:hsl(0, 0%, 82%);
+  --flex-item-border-color: hsla(256, 64%, 25%, 0.24);
   --panel-border-color: #222;
   --header-color: #2ddf5c;
   --dark-green: hsl(120, 49%, 12%);
@@ -42,8 +44,14 @@ select {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-size: 0.8rem;
+}
+
+#panel-flex-items,
+#panel-custom-CSS,
+#panel-css-output{
+  display:none;
 }
 
 
@@ -157,6 +165,18 @@ ul {
   padding: 0px;
 }
 
+div,
+span,
+p,
+h2,
+h3,
+input,
+select,
+textarea, 
+pre {
+  font-family:inherit;
+}
+
 .app-title {
   font-size: 1.3rem;
   vertical-align: middle;
@@ -225,8 +245,7 @@ ul {
 }
 
 .button-set {
-  position: relative;
-  background: slategray;
+  background: none;
   padding: 8px;
   padding-left: 22px;
   display: inline-block;
@@ -235,9 +254,16 @@ ul {
 
 li.input-field {
   padding: 4px;
-  /* width: 100%; */
   display: flex;
   align-items: baseline;
+}
+
+.input-field select,
+.input-field input{
+  background-color: var(--general-text-background-color);
+  border:none;
+  outline:none;
+  text-align:center;
 }
 
 .input-field:first-of-type {
@@ -246,17 +272,17 @@ li.input-field {
 
 .input-field .setting-item {
   flex-grow: 1;
-  /* min-width:6rem; */
 }
 
 li.input-field > label {
   /* border:1px solid red; */
+  
   font-weight: bold;
   min-width: 8rem;
   margin-left: 4px;
 }
 
-span.section-title {
+/* span.section-title {
   padding: 6px 0px;
   display: block;
   width: 100%;
@@ -265,28 +291,22 @@ span.section-title {
   margin-bottom: 0.3rem;
   background-color: black;
   color: white;
-}
+} */
 
- 
-
-
-/*I ended up wrapping the <textare> in a div.flex-items-settings-block in order to style each repeating block of controls used to manipulate individual flex-items in the parent layout.  The wrapping <div> needed to be reduced by 1.4rem to make up for the left margin set on the <ol> which effectively shifted the entire <ol> to the right, truncating the width of the <li> in the <ol> and their respetive contents. */
 #flex-item-text {
   font-weight: bold;
   width: 100%;
-  height: 44vh;
-  overflow: scroll;
-  /* text-align: center; */
+  height: calc(var(--panel-height) - 255px);
+  background-color: var(--general-text-background-color);
 }
-
 #custom-css-text,
 #css-output {
+  background-color: var(--general-text-background-color);
   font-family: 'Arial', sans-serif;
   /* font-weight:bold; */
   font-size: 1rem;
   width: calc(100% - 8px);
   margin: 4px;
-  height:var(--panel-height);
   resize: none;
   overflow: auto;
   padding: 4px 4px;
@@ -300,5 +320,9 @@ span.section-title {
 }
 
 #custom-css-text{
-  max-height:calc(var(--panel-height) - 50px);
+  height:calc(var(--panel-height) - 50px);
+}
+
+#css-output{
+  height:calc(var(--panel-height) - 15px);
 }
