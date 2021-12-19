@@ -64,85 +64,7 @@ html {
 }
 
 
-.tab-panel {
-  width: 20rem;
-  max-width: 20rem;
-  margin: 4px;
-}
 
-/* To balance position on page */
-.tab-panel:first-of-type {
-  margin-left: 8px;
-}
-
-/* Since the text is not multiline, add some padding */
-.tab-bar.layouts > .tab {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  align-items: center;
-  width: 500px;
-  padding: 8px;
-}
-
-.tab-bar {
-  display: flex; /* took away all spacing between tabs !! */
-}
-
-.tab {
-  background-color: var(--tab-inactive-color);
-  border: 1px solid var(--panel-border-color);
-  color: var(--tab-font-color);
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: inherit;
-  margin: 0;
-  padding: 2px 4px;
-  border-radius: 6px 6px 0 0;
-}
-
-.tab:hover {
-  cursor: pointer;
-  background-color: var(--tab-hover-color);
-}
-
-.tab.active-tab {
-  background-color: var(--panel-background-color);
-  color: navy;
-  border-bottom: none;
-  transition-duration: 300ms;
-  transition-property: background-color, color;
-  transition-timing-function: ease-out;
-}
-
-.tab-panel-contents {
-  height: calc(var(--panel-height));
-  max-height: calc(var(--panel-height));
-}
-
-.tab-panel-contents#settings-panel,
-.flex-container {
-  border-style: solid;
-  border-width: 0px 1px 1px 1px;
-  border-color: var(--panel-border-color);
-  background: var(--panel-background-color);
-  border-radius: 0 0 6px 6px;
-  box-shadow: var(--standard-box-shadow);
-}
-
-.tab-panel-contents#layouts-panel {
-  /* padding: 8px; */
-  width: calc(100vw - 280px);
-}
-
-.drop-down-menu {
-  background: none;
-  text-align: center;
-  color: var(--tab-font-color);
-  border: none;
-  margin: 0 0.5rem;
-}
 
 
 
@@ -252,6 +174,95 @@ pre {
   width: 100%;
 }
 
+.tab-panel {
+  width: 20rem;
+  max-width: 20rem;
+  margin: 4px;
+}
+
+/* To balance position on page */
+.tab-panel:first-of-type {
+  margin-left: 8px;
+}
+
+/* Since the text is not multiline, add some padding */
+.tab-bar.layouts > .tab {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+  width: 500px;
+  padding: 8px;
+}
+
+.tab-bar {
+  display: flex; /* took away all spacing between tabs !! */
+}
+
+.tab {
+  background-color: var(--tab-inactive-color);
+  border: 1px solid var(--panel-border-color);
+  color: var(--tab-font-color);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  margin: 0;
+  padding: 2px 4px;
+  border-radius: 6px 6px 0 0;
+}
+
+.tab-bar.layouts .tab:first-of-type{
+  border-radius: 6px 6px 0 6px;
+}
+.tab-bar.layouts .tab:last-of-type{
+  border-radius: 6px 6px 6px 0;
+}
+
+.tab:hover {
+  cursor: pointer;
+  background-color: var(--tab-hover-color);
+}
+
+.tab.active-tab {
+  background-color: var(--panel-background-color);
+  color: navy;
+  border-bottom: none;
+  transition-duration: 300ms;
+  transition-property: background-color, color;
+  transition-timing-function: ease-out;
+}
+
+
+
+.tab-panel-contents {
+  height: calc(var(--panel-height));
+  max-height: calc(var(--panel-height));
+}
+
+.tab-panel-contents#settings-panel,
+.flex-container {
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+  border-color: var(--panel-border-color);
+  background: var(--panel-background-color);
+  border-radius: 0 0 6px 6px;
+  box-shadow: var(--standard-box-shadow);
+}
+
+.tab-panel-contents#layouts-panel {
+  margin-top:2px;
+  width: calc(100vw - 280px);
+}
+
+.drop-down-menu {
+  background: none;
+  text-align: center;
+  color: var(--tab-font-color);
+  border: none;
+  margin: 0 0.5rem;
+}
+
 li.input-field {
   padding: 4px;
   display: flex;
@@ -296,6 +307,7 @@ li.input-field > label {
 #flex-item-text {
   font-weight: bold;
   width: 100%;
+  padding:6px;
   height: calc(var(--panel-height) - 255px);
   background-color: var(--general-text-background-color);
 }
@@ -309,7 +321,7 @@ li.input-field > label {
   margin: 4px;
   resize: none;
   overflow: auto;
-  padding: 4px 4px;
+  padding: 4px;
 }
 
 

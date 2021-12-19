@@ -27,8 +27,11 @@ div.flex-container {
   position: relative;
   overflow: none;
   width: calc(100vw - 16px);
-  max-height: calc(var(--panel-height));
-
+  /* max-height: calc(var(--panel-height)); */
+  border:18px solid black;
+  box-sizing:content-box;
+  border-radius:20px;
+  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
 
 #portrait {
