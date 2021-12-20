@@ -285,6 +285,21 @@ li.input-field {
   flex-grow: 1;
 }
 
+#portrait-size-menu{
+ /* border:1px solid var(--panel-border-color); */
+ margin:0 12px;
+}
+
+.rotate-icon{
+  padding:0;
+  margin-left:28px;
+}
+
+#svg-rotate__portrait-vertical,
+#svg-rotate__landscape-horizontal{
+border:1px solid red;
+}
+
 li.input-field > label {
   /* border:1px solid red; */
   

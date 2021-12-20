@@ -242,7 +242,16 @@ function setUpButtonListeners() {
     //update the custom.css file which is imported into the project
     parseAdditionalCSS(elements.additionalCSS.textArea.value);
   });
+
+  // Rotate Icons
+  for (const key in elements.icons) {
+    elements.icons[key].addEventListener('click', (event) => {
+      switchLayoutOrientation(event);
+    })
+  }
 }
+
+
 
 function setUpToolTipListeners() {
   //get the label for each one of these elements, its the parent.firstElementChild?
@@ -446,4 +455,24 @@ function switchLayoutSize(event) {
   elements.flexContainer[target].style.resize = newDimensions.resizeValue;
 
 
+}
+
+
+function switchLayoutOrientation(event) {
+  console.log(`event`, event);
+  //which tab?  portrait or vertical
+  console.log(`event.srcElement.id`, event.srcElement.id);
+  const srcId = event.srcElement.id;   //svg
+  const src = srcId.split('__')[1];   //break off last fragment
+  if (!src) return;   //bad click, coming from somewhere else
+  const fragments = src.split('-'); 
+  let layout = fragments[0];   //landscape|portrait
+  let orientation = fragments[1];
+  const targetLayout = elements.flexContainer[layout];
+  console.log(`targetLayout`, targetLayout);
+  const currentWidth = targetLayout.style.width;
+  const currentHeight = targetLayout.style.height;
+  //flip them ... and rest max values as well
+  targetLayout.style.width = currentHeight;
+  targetLayout.style.height = currentWidth;
 }

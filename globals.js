@@ -81,6 +81,10 @@ const elements = {
   toolTip: {
     text: document.querySelector('.tooltip > .tooltip-text'),
   },
+  icons: {
+    landscapeRotate: document.getElementById('svg-rotate__landscape-horizontal'),
+    portraitRotate: document.getElementById('svg-rotate__portrait-vertical'),
+  }
 };
 
 const state = {
