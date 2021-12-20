@@ -32,6 +32,25 @@ div.flex-container {
   box-sizing:content-box;
   border-radius:20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+  transition-property: width, height;
+  transition-duration: 0.5s;
+}
+
+@keyframes RotateOrientation{
+  0%{
+    transform-origin:top left;
+ 
+  }
+
+  50%{
+    width:calc(max-width * 50%);
+    height: calc(max-height 50%);
+  }
+  100%{
+    transform:rotate(90deg);
+    width:calc(max-width);
+    height: calc(max-height);
+  }
 }
 
 #portrait {
@@ -41,7 +60,7 @@ div.flex-container {
   resize: vertical;
   height:100%;
 
-  
+
 }
 
 
@@ -49,8 +68,10 @@ div.flex-container {
 
   resize: both;
   width: calc(100vw- 16px);
-
   max-width:100%;
+  transition-property: width, height;
+  transition-duration: 1s;
+
 }
 
 div.flex-item-choices {

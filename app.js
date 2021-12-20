@@ -474,5 +474,8 @@ function switchLayoutOrientation(event) {
   const currentHeight = targetLayout.style.height;
   //flip them ... and rest max values as well
   targetLayout.style.width = currentHeight;
+  targetLayout.style.maxWidth = currentHeight;
   targetLayout.style.height = currentWidth;
+  targetLayout.style.maxheight = currentWidth;
+  
 }
