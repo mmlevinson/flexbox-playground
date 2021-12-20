@@ -61,16 +61,16 @@ class Parser {
       result.tagName = word.slice(0, hashPosition);
       if (dotPosition >= 0) {
         //case 2
-        result.classList = word.slice(dotPosition); //to end of string
-        result.id = word.slice(hashPosition, dotPosition);
+        result.classList = word.slice(dotPosition + 1); //to end of string
+        result.id = word.slice(hashPosition + 1, dotPosition);
       } else {
         //case 1
-        result.id = word.slice(hashPosition); //to end of string
+        result.id = word.slice(hashPosition + 1); //to end of string
       }
     } else if (dotPosition >= 0) {
       //case 3
       result.tagName = word.slice(0, dotPosition);
-      result.classList = word.slice(dotPosition); //to end of string
+      result.classList = word.slice(dotPosition + 1); //to end of string
     }
     const newElement = new Element(result.tagName);
     newElement.id = result.id;
@@ -79,20 +79,30 @@ class Parser {
   }
 
   spawnElement(word) {
-    let newElement = null;
-    if (word.startsWith('#')) {
-      //shorthand for a 'div#identifier'
-      newElement = new Element('div');
-      newElement.id = word.slice(1); //returns all but first char
-    } else if (word.startsWith('.')) {
-      //shorthand for a 'div.classList'
-      newElement = new Element('div');
-      newElement.classes = word.slice(1); //returns all but first char
-    } else {
-      newElement = this.getElementFromWord(word);
-    }
-    console.log(`newElement`, newElement);
-    return newElement;
+      let newElement = null;
+      const hashPosition = word.indexOf('#');
+      const dotPosition = word.indexOf('.');
+      if (hashPosition === 0) {  //shorthand for 'div'
+          //1 #id
+          //2 #id.classList
+          newElement = new Element('div');
+          if (dotPosition >= 0) {
+              //case 2
+            newElement.classList = word.slice(dotPosition + 1);
+            newElement.id = word.slice(1, dotPosition);
+          } else {
+              //case 1
+              newElement.id = word.slice(1); //returns all but first char
+          }
+      } else if (dotPosition === 0) {
+          // .classList
+          newElement = new Element('div');
+          newElement.classes = word.slice(1);
+      } else {
+          newElement = this.getElementFromWord(word);
+      }
+      console.log(`newElement`, newElement);
+      return newElement;
   }
 
   breakWords() {
