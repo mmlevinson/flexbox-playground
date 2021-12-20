@@ -3,6 +3,7 @@ import { LoremIpsum } from './classes.js';
 import { clearFlexContainers, toCamelCase } from './helpers.js';
 import { elements, state, defaults } from './globals.js';
 import CSSParser from './cssParser.js';
+import Parser from './parser.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
@@ -289,6 +290,10 @@ function updateFlexItemText() {
   let itemText = elements.flexItems.flexItemText.value;
 
   if (!itemText) return;
+
+  //TESTING
+  const parser = new Parser();
+  parser.parse(itemText);
   //is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {
