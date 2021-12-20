@@ -1,0 +1,7 @@
+.card
+-#first-card.card
+--h3.card header(lorem15)
+--p.card contents(lorem25)
+--img#banner .banner <h:250 w:250>  src:http://www.flashpoint.com/
+--label.input-label for:bobsAge (Whatever)
+--input#bobsAge.numeric-input value:40 (40)
