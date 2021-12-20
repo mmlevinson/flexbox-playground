@@ -61,7 +61,7 @@ class Parser {
       result.tagName = word.slice(0, hashPosition);
       if (dotPosition >= 0) {
         //case 2
-        result.classList = word.slice(dotPosition + 1); //to end of string
+        result.classList = word.slice(dotPosition + 1).replaceAll('.', ' '); //to end of string
         result.id = word.slice(hashPosition + 1, dotPosition);
       } else {
         //case 1
@@ -70,7 +70,7 @@ class Parser {
     } else if (dotPosition >= 0) {
       //case 3
       result.tagName = word.slice(0, dotPosition);
-      result.classList = word.slice(dotPosition + 1); //to end of string
+      result.classList = word.slice(dotPosition + 1).replaceAll('.', ' '); 
     }
     const newElement = new Element(result.tagName);
     newElement.id = result.id;
