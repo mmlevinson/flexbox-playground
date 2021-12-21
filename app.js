@@ -1,9 +1,9 @@
-import { validateDimensions, validateHowManyItems } from './validate.js';
-import { LoremIpsum } from './classes.js';
-import { clearFlexContainers, toCamelCase } from './helpers.js';
-import { elements, state, defaults } from './globals.js';
-import CSSParser from './cssParser.js';
-import Parser from './parser.js';
+import { validateDimensions, validateHowManyItems } from './js/validate.js';
+import { LoremIpsum } from './js/classes.js';
+import { clearFlexContainers, toCamelCase } from './js/helpers.js';
+import { elements, state, defaults } from './js/globals.js';
+import CSSParser from './js/cssParser.js';
+import Parser from './js/parser.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
@@ -198,11 +198,9 @@ function setUpMenuListeners() {
     setFlexContainerStyle('overflow', event.target.value);
   });
 
-  for (const key in elements.dropDownMenus) {
-    elements.dropDownMenus[key].addEventListener('change', (event) => {
-      switchLayoutSize(event);
-    });
-  }
+  // elements.dropDownMenus.deviceMenu.addEventListener('change', (event) => {
+  //   switchLayoutSize(event);
+  // })
 }
 
 function setUpButtonListeners() {
@@ -216,11 +214,11 @@ function setUpButtonListeners() {
       switchTab('settings', event.srcElement.id);
     });
   }
-  for (const key in elements.tabs.layouts) {
-    elements.tabs.layouts[key].addEventListener('click', (event) => {
-      switchTab('layouts', event.srcElement.id);
-    });
-  }
+  // for (const key in elements.tabs.layouts) {
+  //   elements.tabs.layouts[key].addEventListener('click', (event) => {
+  //     switchTab('layouts', event.srcElement.id);
+  //   });
+  // }
 
   //FlexContainer Restore Defaults
   elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
@@ -244,11 +242,11 @@ function setUpButtonListeners() {
   });
 
   // Rotate Icons
-  for (const key in elements.icons) {
-    elements.icons[key].addEventListener('click', (event) => {
-      switchLayoutOrientation(event);
-    })
-  }
+  // for (const key in elements.icons) {
+  //   elements.icons[key].addEventListener('click', (event) => {
+  //     switchLayoutOrientation(event);
+  //   })
+  // }
 }
 
 
@@ -343,7 +341,7 @@ function updateAllFlexItems(event) {
 /* whichItems is a field that takes a space-delimited array of numbers
 which tells us which FlexItems to be modified by the Apply button.  This allows
 the user to set individual properties for each FlexItem */
-import { isValidIndex } from './validate.js';
+import { isValidIndex } from './js/validate.js';
 function parseWhichItems() {
   WHICH_FLEX_ITEMS = []; //reset
   const userEntry = elements.flexItems.whichItems.value;

@@ -29,8 +29,7 @@ select {
   --general-text-background-color:hsl(0, 0%, 82%);
   --flex-item-border-color: hsla(256, 64%, 25%, 0.24);
   --panel-border-color: #222;
-  --header-color: #2ddf5c;
-  --dark-green: hsl(120, 49%, 12%);
+
   --main-background-color: #666;
   --panel-background-color: hsl(220, 20%, 56%);
   --tab-font-color: hsl(240, 100%, 25%);
@@ -71,7 +70,8 @@ html {
 /* Setting the section heights to a % requires we define the
 height of their parent, which is the body. */
 body {
-  background-color: var(--main-background-color);
+  
+  background-color:hsl(240, 20%, 80%);
   /* height: 100vh; */
 }
 ul {
@@ -130,7 +130,7 @@ pre {
 }
 
 .main-nav-item {
-  margin: 0px 12px;
+  margin: 0px 8px;
 }
 
 .main-nav-item a {
@@ -255,12 +255,11 @@ pre {
   width: calc(100vw - 280px);
 }
 
-.drop-down-menu {
+.device-menu {
   background: none;
   text-align: center;
   color: var(--tab-font-color);
   border: none;
-  margin: 0 0.5rem;
 }
 
 li.input-field {

@@ -11,10 +11,6 @@ const elements = {
       cssOutput: document.getElementById('tab-css-output'),
       customCSS: document.getElementById('tab-custom-CSS'),
     },
-    layouts: {
-      layoutLandscape: document.getElementById('tab-layout-landscape'),
-      layoutPortrait: document.getElementById('tab-layout-portrait'),
-    },
     panels: {
       settings: {
         flexContainerPanel: document.getElementById('panel-flex-container'),
@@ -75,15 +71,13 @@ const elements = {
     save: document.querySelector('.main-nav-item.save-item'),
   },
   dropDownMenus: {
-    landscapeSize: document.getElementById('landscape-size-menu'),
-    portraitSize: document.getElementById('portrait-size-menu'),
+    deviceMenu: document.getElementById('device-menu'),
   },
   toolTip: {
     text: document.querySelector('.tooltip > .tooltip-text'),
   },
   icons: {
-    landscapeRotate: document.getElementById('svg-rotate__landscape-horizontal'),
-    portraitRotate: document.getElementById('svg-rotate__portrait-vertical'),
+    deviceOutline: document.getElementById('device-outline')
   }
 };
 
@@ -116,7 +110,7 @@ const defaults = {
         height: '800px',
         maxWidth: '100%',
         maxHeight: '100%',
-        resize:'both'
+        resize: 'both'
       },
     },
     portrait: {
@@ -125,7 +119,7 @@ const defaults = {
         height: '100%',
         maxWidth: '300px',
         maxHeight: '100%',
-        resize:'vertical'
+        resize: 'vertical'
       },
     },
     displayType: {
@@ -194,6 +188,32 @@ const defaults = {
   loremText: {
     words: 10,
   },
+  devices: {
+    responsive: {
+      landscape: {
+        
+      },
+      portrait: {
+        
+      },
+      narrow: {
+        
+      }
+    },
+    iPhone12ProMax: {
+      width: 428,
+      height:926
+    },
+    iPhone12Pro: {
+      width: 390,
+      height:844
+    },
+    iPhone12Pro: {
+      width: 390,
+      height:844
+    },
+
+  }
 };
 
 const toolTips = {

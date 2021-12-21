@@ -5,7 +5,7 @@
   background-color: hsl(0, 0%, 76%);
   padding: 8px;
   position: relative;
-  margin: 15px;
+  /* margin: 15px; */
   border-radius: 3px;
 }
 
@@ -33,7 +33,7 @@ div.flex-container {
   border-radius:20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
   transition-property: width, height;
-  transition-duration: 0.5s;
+  transition-duration: 300ms;
 }
 
 @keyframes RotateOrientation{
