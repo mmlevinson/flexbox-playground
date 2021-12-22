@@ -386,16 +386,11 @@ function switchLayoutSize(event) {
   const dimensions = devices[deviceName];
   console.log(`dimensions`, dimensions);
   //TESTING ... use landscape even for phones
-  elements.flexContainer.portrait.style.width = `${dimensions.width}px`;
-  elements.flexContainer.portrait.style.maxWidth = `${dimensions.width}px`;
-  elements.flexContainer.portrait.style.height = `${dimensions.height}px`;
-  elements.flexContainer.portrait.style.maxHeight = `${dimensions.height}px`;
-
-  elements.tabs.panels.portraitLayout.width = `${dimensions.width}px`;
-
-  // const tabPanel = document.querySelector('.tab-panel');
-  // tabPanel.style.minWidth = `${dimensions.width + 8}px`;
-  // tabPanel.style.minHeight = `${dimensions.height}px`;
+  elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
+  elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
+  elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
+  elements.flexContainer.landscape.style.maxHeight = `${dimensions.height}px`;
+ 
 
 }
 
