@@ -68,7 +68,7 @@ function showHidePanels(group, show) {
 
 function switchTab(identifier) {
   let words = identifier.split('-');
-  words.splice(0, 1); //remove 'tab'
+  words.splice(0, 1); //remove 'tab | panel'
   let clickedTab = toCamelCase(words.join('-'));
   //rebuild the correct key for elements.tabs
   console.log(`clickedTab`, clickedTab);
@@ -255,8 +255,7 @@ function setFlexContainerStyle(property, newValue) {
 function setDisplayType(newValue) {
   elements.flexContainer.landscape.style.display = newValue;
   elements.flexContainer.portrait.style.display = newValue;
-  /* TEMPORARY ... HIDE PORTRAIT  */
-  elements.flexContainer.portrait.style.display = 'none';
+
 
   let isFlex = false;
   if (newValue === 'flex' || newValue === 'inline-flex') {
