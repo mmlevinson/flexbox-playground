@@ -28,7 +28,7 @@ select {
   --flex-item-color: hsla(15, 20%, 100%, 0.2);
   --general-text-background-color:hsl(0, 0%, 82%);
   --flex-item-border-color: hsla(256, 64%, 25%, 0.24);
-  --panel-border-color: #222;
+  --panel-border-color: #555;
   --flex-container-background: hsl(200, 10%, 65%);
   --main-background-color: #666;
   --panel-background-color: hsl(220, 20%, 80%);
@@ -37,6 +37,7 @@ select {
   --tab-active-color: var(--panel-background-color);
   --tab-hover-color: hsl(0, 0%, 60%);
   --tool-panel-width: 27.5rem;
+  
   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
   --panel-height: calc(100vh - 92px);
@@ -94,6 +95,7 @@ pre {
 }
 
 .app-title {
+  color:var(--tab-font-color);
   font-size: 1.2rem;
   vertical-align: middle;
 }
@@ -132,7 +134,7 @@ pre {
 
 .main-nav-item a {
   text-decoration: none;
-  color: inherit;
+  color: var(--tab-font-color);
   padding:2px 8px;
   border-radius: 8px;
   font-size:1.2rem;
@@ -173,7 +175,7 @@ pre {
 .device-outline{
   margin-top:1rem;
   box-sizing:content-box;
-  border:18px solid black;
+  border:15px solid hsl(0, 10%, 15%);
   border-radius:20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
@@ -263,26 +265,32 @@ pre {
   width: calc(100vw - 280px);
 } */
 
-.device-menu {
+#select-device-menu {
   background: none;
   text-align: center;
   color: var(--tab-font-color);
   border: none;
+  font-size:1.2rem;
+  font-family:inherit;
+  font-weight:bold;
   /* margin-bottom:10px; */
 }
 
 li.input-field {
-  padding: 4px;
+  padding: 6px;
   display: flex;
   align-items: baseline;
+  
 }
 
 .input-field select,
 .input-field input{
   background-color: var(--general-text-background-color);
-  border:none;
+  border:1px solid hsl(0, 0%, 60%);
   outline:none;
   text-align:center;
+  height:1.7rem;
+  box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.39);
 }
 
 .input-field:first-of-type {
@@ -298,7 +306,7 @@ li.input-field > label {
   /* border:1px solid red; */
   
   font-weight: bold;
-  min-width: 8rem;
+  min-width: 12rem;
   margin-left: 4px;
 }
 
@@ -317,7 +325,7 @@ li.input-field > label {
   font-weight: bold;
   width: 100%;
   padding:6px;
-  height: calc(var(--panel-height) - 255px);
+  height: calc(var(--panel-height) - 340px);
   background-color: var(--general-text-background-color);
 }
 #custom-css-text,
@@ -344,5 +352,6 @@ li.input-field > label {
 }
 
 #css-output{
-  height:calc(var(--panel-height) - 15px);
+  height:calc(var(--panel-height) - 10px);
+  border: 1px solid var(--panel-border-color);
 }

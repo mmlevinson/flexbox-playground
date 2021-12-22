@@ -45,7 +45,7 @@ function flexContainerDefaults() {
   setDefault('flexContainer', 'alignContent');
   setDefault('flexContainer', 'justifyContent');
   setDefault('flexContainer', 'alignItems');
-  // setDisplayType(defaults.flexContainer.displayType);  //disables flex menus
+  setDefault('flexContainer', 'gap');
 }
 
 function reset() {
@@ -55,15 +55,6 @@ function reset() {
   setDefault('flexContainer', 'displayType');
   setDisplayType(defaults.flexContainer.displayType.default); //flex
   updateCSS();
-}
-
-function showHidePanels(group, show) {
-  // console.log(`group`, group);
-  // console.log(`show`, show);
-  const panelGroup = elements.tabs.panels[group];
-  for (const key in panelGroup) {
-    panelGroup[key].style.setProperty('display', key === show ? 'flex' : 'none');
-  }
 }
 
 function switchTab(identifier) {
@@ -166,7 +157,6 @@ function setUpValueFieldListeners() {
 function setUpMenuListeners() {
   elements.flexContainer.displayType.addEventListener('change', (event) => {
     setDisplayType(event.target.value);
-    //   setFlexContainerStyle('display', event.target.value);
   });
   elements.flexContainer.flexDirection.addEventListener('change', (event) => {
     setFlexContainerStyle('flex-direction', event.target.value);
@@ -187,9 +177,10 @@ function setUpMenuListeners() {
     setFlexContainerStyle('overflow', event.target.value);
   });
 
-  // elements.dropDownMenus.deviceMenu.addEventListener('change', (event) => {
+  // elements.menus.deviceMenu.addEventListener('change', (event) => {
   //   switchLayoutSize(event);
   // })
+
 }
 
 function setUpButtonListeners() {
@@ -203,11 +194,6 @@ function setUpButtonListeners() {
       switchTab(event.srcElement.id);
     });
   }
-  // for (const key in elements.tabs.layouts) {
-  //   elements.tabs.layouts[key].addEventListener('click', (event) => {
-  //     switchTab('layouts', event.srcElement.id);
-  //   });
-  // }
 
   //FlexContainer Restore Defaults
   elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {

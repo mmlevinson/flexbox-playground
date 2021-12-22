@@ -66,8 +66,8 @@ const elements = {
     load: document.querySelector('.main-nav-item.load-item'),
     save: document.querySelector('.main-nav-item.save-item'),
   },
-  dropDownMenus: {
-    deviceMenu: document.getElementById('device-menu'),
+  menus: {
+    deviceMenu: document.getElementById('select-device-menu'),
   },
   toolTip: {
     text: document.querySelector('.tooltip > .tooltip-text'),
@@ -183,25 +183,6 @@ const defaults = {
   },
   loremText: {
     words: 10,
-  },
-  devices: {
-    responsive: {
-      landscape: {},
-      portrait: {},
-      narrow: {},
-    },
-    iPhone12ProMax: {
-      width: 428,
-      height: 926,
-    },
-    iPhone12Pro: {
-      width: 390,
-      height: 844,
-    },
-    iPhone12Pro: {
-      width: 390,
-      height: 844,
-    },
   },
 };
 
