@@ -10,18 +10,14 @@ const elements = {
       flexItems: document.getElementById('tab-flex-items'),
       cssOutput: document.getElementById('tab-css-output'),
       customCSS: document.getElementById('tab-custom-CSS'),
+      portraitLayout: document.getElementById('tab-portrait-layout'),
     },
     panels: {
-      settings: {
-        flexContainerPanel: document.getElementById('panel-flex-container'),
-        flexItemsPanel: document.getElementById('panel-flex-items'),
-        customCSSPanel: document.getElementById('panel-custom-CSS'),
-        cssOutputPanel: document.getElementById('panel-css-output'),
-      },
-      layouts: {
-        layoutLandscape: document.getElementById('landscape'),
-        layoutPortrait: document.getElementById('portrait'),
-      }
+      flexContainer: document.getElementById('panel-flex-container'),
+      flexItems: document.getElementById('panel-flex-items'),
+      customCSS: document.getElementById('panel-custom-CSS'),
+      cssOutput: document.getElementById('panel-css-output'),
+      portraitLayout: document.getElementById('panel-portrait-layout'),
     },
   },
   flexContainer: {
@@ -77,8 +73,8 @@ const elements = {
     text: document.querySelector('.tooltip > .tooltip-text'),
   },
   icons: {
-    deviceOutline: document.getElementById('device-outline')
-  }
+    deviceOutline: document.getElementById('device-outline'),
+  },
 };
 
 const state = {
@@ -110,7 +106,7 @@ const defaults = {
         height: '800px',
         maxWidth: '100%',
         maxHeight: '100%',
-        resize: 'both'
+        resize: 'both',
       },
     },
     portrait: {
@@ -119,7 +115,7 @@ const defaults = {
         height: '100%',
         maxWidth: '300px',
         maxHeight: '100%',
-        resize: 'vertical'
+        resize: 'vertical',
       },
     },
     displayType: {
@@ -190,30 +186,23 @@ const defaults = {
   },
   devices: {
     responsive: {
-      landscape: {
-        
-      },
-      portrait: {
-        
-      },
-      narrow: {
-        
-      }
+      landscape: {},
+      portrait: {},
+      narrow: {},
     },
     iPhone12ProMax: {
       width: 428,
-      height:926
+      height: 926,
     },
     iPhone12Pro: {
       width: 390,
-      height:844
+      height: 844,
     },
     iPhone12Pro: {
       width: 390,
-      height:844
+      height: 844,
     },
-
-  }
+  },
 };
 
 const toolTips = {

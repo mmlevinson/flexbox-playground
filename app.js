@@ -66,31 +66,20 @@ function showHidePanels(group, show) {
   }
 }
 
-function switchTab(group, identifier) {
+function switchTab(identifier) {
   let words = identifier.split('-');
   words.splice(0, 1); //remove 'tab'
   let clickedTab = toCamelCase(words.join('-'));
   //rebuild the correct key for elements.tabs
-  for (const key in elements.tabs[group]) {
-    if (key === clickedTab) {
-      elements.tabs[group][clickedTab].classList.add('active-tab');
+  console.log(`clickedTab`, clickedTab);
+  for (const tab in elements.tabs.settings) {
+    if (tab === clickedTab) {
+      elements.tabs.settings[tab].classList.add('active-tab');
+      elements.tabs.panels[tab].style.display = 'flex';
     } else {
-      elements.tabs[group][key].classList.remove('active-tab');
+      elements.tabs.settings[tab].classList.remove('active-tab');
+      elements.tabs.panels[tab].style.display = 'none';
     }
-  }
-  //dispatch
-  switch (identifier) {
-    case 'tab-layout-landscape':
-    case 'tab-layout-portrait':
-      showHidePanels('layouts', clickedTab);
-      break;
-    case 'tab-flex-container':
-    case 'tab-flex-items':
-    case 'tab-custom-CSS':
-    case 'tab-css-output':
-      showHidePanels('settings', `${clickedTab}Panel`);
-    default:
-      break;
   }
 }
 
@@ -211,7 +200,7 @@ function setUpButtonListeners() {
 
   for (const key in elements.tabs.settings) {
     elements.tabs.settings[key].addEventListener('click', (event) => {
-      switchTab('settings', event.srcElement.id);
+      switchTab(event.srcElement.id);
     });
   }
   // for (const key in elements.tabs.layouts) {
