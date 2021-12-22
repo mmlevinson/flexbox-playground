@@ -4,6 +4,7 @@ import { clearFlexContainers, toCamelCase } from './js/helpers.js';
 import { elements, state, defaults } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
+import { devices } from './data/devices.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
@@ -177,9 +178,9 @@ function setUpMenuListeners() {
     setFlexContainerStyle('overflow', event.target.value);
   });
 
-  // elements.menus.deviceMenu.addEventListener('change', (event) => {
-  //   switchLayoutSize(event);
-  // })
+  elements.menus.deviceMenu.addEventListener('change', (event) => {
+    switchLayoutSize(event);
+  })
 
 }
 
@@ -379,53 +380,22 @@ function parseAdditionalCSS(rawText) {
 
 function switchLayoutSize(event) {
 
-  function parseDimensions(menuChoice, target) {
-    if (menuChoice === 'separator') return;
-    if (menuChoice === 'initial') {
-      return {
-        width: defaults.flexContainer[target].width,
-        height: defaults.flexContainer[target].height,
-        maxWidth: defaults.flexContainer[target].maxWidth,
-        maxHeight: defaults.flexContainer[target].maxHeight,
-        resize: defaults.flexContainer[target].resize,
-      }
-    }
-    if (menuChoice === 'responsive') {
-      //return 100% for both width and height, it sits inside parent container
-      return {
-        width: '100%',
-        height: '100%',
-        maxWidth: '100%',
-        maxHeight:'100%',
-        resizeValue: 'both',
-      };
-    }
-    //parse edge cases 'resizable|full|half'
-    const values = menuChoice.split('x');
-    const width = Number(values[0]);
-    const height = Number(values[1]);
-    const resizeDirection = target === 'landscape' ? 'both' : 'vertical';
+  console.log(`value`, event.target.value);
+  const deviceName = event.target.value;   //ie iPhone12
+  //lookup the default w/h
+  const dimensions = devices[deviceName];
+  console.log(`dimensions`, dimensions);
+  //TESTING ... use landscape even for phones
+  elements.flexContainer.portrait.style.width = `${dimensions.width}px`;
+  elements.flexContainer.portrait.style.maxWidth = `${dimensions.width}px`;
+  elements.flexContainer.portrait.style.height = `${dimensions.height}px`;
+  elements.flexContainer.portrait.style.maxHeight = `${dimensions.height}px`;
 
-    return {
-      width: `${width}px`,
-      height: `${height}px`,
-      maxWidth: `${width}px`,
-      maxHeight: `${height}px`,
-      resizeValue: resizeDirection,
-    };
-  }
-  console.log(`event`, event);
-  const target = event.target.name.split('-')[0];
-  const newDimensions = parseDimensions(event.target.value, target);
-  console.log(`target`, target);
-  console.log(`newDimensions`, newDimensions);
-  elements.flexContainer[target].style.width = newDimensions.width;
-  elements.flexContainer[target].style.maxWidth = newDimensions.maxWidth;
+  elements.tabs.panels.portraitLayout.width = `${dimensions.width}px`;
 
-  elements.flexContainer[target].style.height = newDimensions.height;
-  elements.flexContainer[target].style.maxHeight = newDimensions.maxHeight;
-  elements.flexContainer[target].style.resize = newDimensions.resizeValue;
-
+  const tabPanel = document.querySelector('.tab-panel');
+  tabPanel.style.minWidth = `${dimensions.width + 8}px`;
+  tabPanel.style.minHeight = `${dimensions.height}px`;
 
 }
 

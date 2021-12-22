@@ -135,7 +135,7 @@ pre {
 .main-nav-item a {
   text-decoration: none;
   color: var(--tab-font-color);
-  padding:2px 8px;
+  padding:2px;
   border-radius: 8px;
   font-size:1.2rem;
 }
@@ -175,15 +175,15 @@ pre {
 .device-outline{
   margin-top:1rem;
   box-sizing:content-box;
-  border:15px solid hsl(0, 10%, 15%);
+  border:15px solid hsl(0, 10%, 18%);
   border-radius:20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
 
 .tab-panel {
   min-width:24rem;
-  max-width: 24rem;
-  height:100%;
+  /* max-width: 24rem; */
+  /* height:100%; */
   resize:vertical;
   /* flex-grow:0;   */
   /* margin: 4px; */
@@ -273,6 +273,7 @@ pre {
   font-size:1.2rem;
   font-family:inherit;
   font-weight:bold;
+  max-width:10rem;
   /* margin-bottom:10px; */
 }
 
