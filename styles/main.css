@@ -106,8 +106,8 @@ pre {
 
 /* MAIN HEADER */
 .main-header {
-  width: 100%;
-
+  
+  left:30rem;
   font-weight: bold;
   margin: 2px 0px;
   padding: 8px 14px;
@@ -126,6 +126,7 @@ pre {
   text-align: right;
   vertical-align: middle;
   width: calc(100% - 220px);
+  /* border:1px solid red; */
 }
 
 
@@ -179,7 +180,12 @@ pre {
 .tab-panel {
   width: 20rem;
   max-width: 20rem;
-  margin: 4px;
+  /* margin: 4px; */
+  margin-right:10px;
+  box-sizing:content-box;
+  border:18px solid black;
+  border-radius:20px;
+  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
 
 /* To balance position on page */
@@ -211,7 +217,7 @@ pre {
   font-family: inherit;
   margin: 0;
   padding: 2px 4px;
-  border-radius: 6px 6px 0 0;
+  /* border-radius: 6px 6px 0 0; */
 }
 
 .tab-bar.layouts .tab:first-of-type{

@@ -32,8 +32,8 @@ div.flex-container {
   box-sizing:content-box;
   border-radius:20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
-  transition-property: width, height;
-  transition-duration: 300ms;
+  /* transition-property: width, height;
+  transition-duration: 300ms; */
 }
 
 @keyframes RotateOrientation{

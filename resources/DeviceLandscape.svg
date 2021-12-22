@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="34px" viewBox="0 0 41 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>DeviceLandscape</title>
+    <defs>
+        <radialGradient cx="7.10542736e-13%" cy="29.7106858%" fx="7.10542736e-13%" fy="29.7106858%" r="114.587819%" gradientTransform="translate(0.000000,0.297107),scale(1.000000,0.714286),rotate(29.226880),translate(-0.000000,-0.297107)" id="radialGradient-1">
+            <stop stop-color="#99C8D1" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.5" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="4" y="-4" width="20" height="28" rx="5"></rect>
+        <filter x="-37.5%" y="-26.8%" width="185.0%" height="160.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.87075827 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-188.000000, -28.000000)">
+            <g id="DeviceLandscape" transform="translate(193.500000, 34.000000)">
+                <g id="Device-Outline" transform="translate(14.000000, 10.000000) scale(1, -1) rotate(-90.000000) translate(-14.000000, -10.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use fill="#CBCBE7" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#060606" stroke-width="3.5" fill="url(#radialGradient-1)" fill-rule="evenodd" x="2.25" y="-5.75" width="23.5" height="31.5" rx="5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

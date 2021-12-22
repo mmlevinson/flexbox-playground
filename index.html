@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,27 +16,6 @@
       <div class="app-title">FlexBox Workspace</div>
       <nav class="main-nav">
         <ul class="main-nav-items">
-          <li class="main-nav-item orientation-item">
-            <svg id="device-outline" class="orientation-portrait" width="28px" height="36px" viewBox="0 0 28 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-                <radialGradient cx="97.0380087%" cy="19.5683086%" fx="97.0380087%" fy="19.5683086%" r="128.701681%" gradientTransform="translate(0.970380,0.195683),scale(0.714286,1.000000),rotate(153.843508),translate(-0.970380,-0.195683)" id="radialGradient-1">
-                    <stop stop-color="#99C8D1" stop-opacity="0.5" offset="0%"></stop>
-                    <stop stop-color="#000000" stop-opacity="0.5" offset="100%"></stop>
-                </radialGradient>
-                <rect id="path-2" x="-4" y="4" width="28" height="20" rx="5"></rect>
-            </defs>
-            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g transform="translate(-149.000000, -22.000000)">
-                    <g transform="translate(153.000000, 26.000000)">
-                        <g  transform="translate(10.000000, 14.000000) rotate(-90.000000) translate(-10.000000, -14.000000) ">
-                            <use fill="#CBCBE7" xlink:href="#path-2"></use>
-                            <rect stroke="#060606" stroke-width="3.5" fill="url(#radialGradient-1)" x="-5.75" y="2.25" width="31.5" height="23.5" rx="5"></rect>
-                        </g>
-                    </g>
-                </g>
-            </g>
-            </svg>
-        </li>
           <li class="main-nav-item select-device-icon">
             <select name="portrait-size" class="device-menu" id="portrait-size-menu">
               <option value="responsive">Responsive</option>
@@ -63,7 +41,7 @@
               <option value="iPadMini2">iPad Mini 2/3</option>
               <option value="iPadAir1">iPad Air 1/2</option>
               <option value="Nexus9">Nexus 9</option>
-              <option value="SamsungGalaxy10">Samsung Galaxy 10 </option>
+              <option value="SamsungGalaxy10">Samsung Galaxy 10</option>
               <option value="ChromebookPixel">Chromebook Pixel</option>
             </select>
           </li>
@@ -76,8 +54,8 @@
     </header>
     <!-- WRAPPER -->
     <div class="main-wrapper">
-      <!-- SETTINGS PANEL -->
-      <div class="tab-panel ">
+      <!-- TAB PANEL -->
+      <div class="tab-panel">
         <div class="tab-bar">
           <span class="tab active-tab" id="tab-flex-container">Flex Container</span>
           <span class="tab" id="tab-flex-items">Flex Items</span>
@@ -89,7 +67,6 @@
             <!-- Flex Container Panel -->
             <li id="panel-flex-container">
               <ul class="panel-item">
-                
                 <!-- How Many Items -->
                 <li class="input-field">
                   <label for="howMany" class="setting-label">How Many Items?</label>
@@ -226,8 +203,6 @@
             <!-- Flex Items Panel -->
             <li class="panel" id="panel-flex-items">
               <ul>
-               
-
                 <!-- Flex-Grow -->
                 <li class="input-field">
                   <label for="flexGrow" class="setting-label">Flex-Grow</label>
@@ -256,7 +231,7 @@
                 </li>
                 <!-- Flex-Basis Value -->
                 <li class="input-field">
-                  <label for="flexBasisValue" class="setting-label flex-basis">  (basis value)</label>
+                  <label for="flexBasisValue" class="setting-label flex-basis"> (basis value)</label>
                   <input type="text" min="0" value="0" name="flexBasisValue" id="flexBasisValue" class="setting-item" disabled />
                 </li>
                 <!-- Align-Self -->
@@ -318,7 +293,6 @@
                 <button class="button" type="button" name="Reset">Reset</button>
                 <button class="button" type="button" name="Apply">Apply</button>
               </div>
-
             </li>
             <!-- CSS Output -->
             <li id="panel-css-output">
@@ -327,23 +301,15 @@
           </ul>
         </div>
       </div>
-        <!-- LAYOUTS -->
-      <div class="tab-panel layouts">
-
-        <div class="tab-panel-contents" id="layouts-panel">
-          <!-- PORTRAIT -->
-          <div class="flex-container" id="portrait">
-            <!-- determined by user input -->
-          </div>
-              <!-- LANDSCAPE -->
-          <div class="flex-container" id="landscape">
-            <!-- determined by user input -->
-          </div>
+      <!-- LAYOUTS -->
+        <!-- PORTRAIT -->
+        <div class="flex-container" id="portrait">
+          <!-- determined by user input -->
         </div>
-
+        <!-- LANDSCAPE -->
+        <div class="flex-container" id="landscape">
+          <!-- determined by user input -->
         </div>
-      </div>
-
+    </div>
   </body>
-  <div class="layout-panel-contents">
 </html>
