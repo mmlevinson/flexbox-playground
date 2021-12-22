@@ -20,7 +20,7 @@ const elements = {
   },
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
-    portrait: document.querySelector('.flex-container#portrait'),
+    // portrait: document.querySelector('.flex-container#portrait'),
     overflow: document.getElementById('overflowType'),
     displayType: document.getElementById('displayType'),
     flexDirection: document.getElementById('flexDirection'),

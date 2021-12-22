@@ -284,10 +284,8 @@ function updateFlexItemText() {
   }
 
   for (let index = 0; index < WHICH_FLEX_ITEMS.length; index++) {
-    const portraitItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
-    portraitItem.firstChild.textContent = itemText; //update the textNode associated with the
-    const landscapeItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] + FLEX_ITEM_COUNT - 1];
-    landscapeItem.firstChild.textContent = itemText;
+    const flexItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
+    flexItem.firstChild.textContent = itemText; //update the textNode associated with the
   }
 }
 
