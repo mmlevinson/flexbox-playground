@@ -393,9 +393,9 @@ function switchLayoutSize(event) {
 
   elements.tabs.panels.portraitLayout.width = `${dimensions.width}px`;
 
-  const tabPanel = document.querySelector('.tab-panel');
-  tabPanel.style.minWidth = `${dimensions.width + 8}px`;
-  tabPanel.style.minHeight = `${dimensions.height}px`;
+  // const tabPanel = document.querySelector('.tab-panel');
+  // tabPanel.style.minWidth = `${dimensions.width + 8}px`;
+  // tabPanel.style.minHeight = `${dimensions.height}px`;
 
 }
 
