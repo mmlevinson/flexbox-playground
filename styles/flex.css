@@ -47,7 +47,7 @@ width even if we did not explicitly assign a width */
 }
 
 .flex-container{
-  margin:6px;
+  margin:3px;
   padding:6px;
   background-color: var(--flex-container-background) ;
   border:2px solid var(--panel-border-color);

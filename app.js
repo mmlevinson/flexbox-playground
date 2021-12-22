@@ -337,13 +337,7 @@ function setDefault(container, key) {
   }
 }
 
-function setFlexItemCSSRule(index, property, value) {
-  let portraitItem = elements.flexItems.list[index - 1];
 
-  let landscapeItem = elements.flexItems.list[index + FLEX_ITEM_COUNT - 1];
-  portraitItem.style.setProperty(property, value);
-  landscapeItem.style.setProperty(property, value);
-}
 
 /* MML...December 15, 2021 @ 16:08...Refactored public cssParser
  */
@@ -357,6 +351,11 @@ function setFlexItemCSSRule(index, property, value) {
   }
   */
 function parseAdditionalCSS(rawText) {
+
+  function setRule(index, property, value) {
+    let flexItem = elements.flexItems.list[index - 1];
+    flexItem.style.setProperty(property, value);
+  }
   //there is new AdditionalCSS Content so
   customCSSDirty = true;
   const parser = new CSSParser();
@@ -364,11 +363,12 @@ function parseAdditionalCSS(rawText) {
 
   cssData.forEach((css) => {
     let whichItem = css.selector.match(/([0-9]+)/)[0]; //only retrieve the first match
-    console.log(`whichItem`, whichItem);
+    // console.log(`whichItem`, whichItem);
     let index = +whichItem; //coerce to number
-    console.log(`index`, index);
+    // console.log(`index`, index);
+    let flexItem = elements.flexItems.list[index - 1];
     css.rules.forEach((rule) => {
-      setFlexItemCSSRule(index, rule.property, rule.value);
+      flexItem.style.setProperty(rule.property, rule.value);
     });
   });
   updateCSS();

@@ -97,11 +97,12 @@ pre {
 
 /* MAIN HEADER */
 .main-header {
-
+  display: inline-block;
+  width:100%;
   font-weight: bold;
   padding: 8px;
   border-bottom: 1px solid gray;
-  
+  background-color: hsl(53, 21%, 70%);
   /* border:1px solid red; */
 }
 
@@ -113,12 +114,12 @@ pre {
 }
 
 /* shift nav elements to far right, you need to specify a width */
-.main-nav
-.device-nav {
+.main-nav{
   text-align: right;
   vertical-align:middle;
-  width:calc(100% - 140px);
+  width:calc(100% - 200px);
   height:1rem;
+
 }
 
 .device-nav{
@@ -172,7 +173,7 @@ pre {
   width: 100%;
 }
 .device-outline{
-  margin-top:1rem;
+  margin-top:6px;
   box-sizing:content-box;
   border:15px solid hsl(0, 10%, 18%);
   border-radius:20px;
@@ -185,7 +186,7 @@ pre {
   height:100%;
   resize:vertical;
   /* flex-grow:0;   */
-  /* margin: 4px; */
+  margin: 6px;
   margin-right:10px;
   
 }
