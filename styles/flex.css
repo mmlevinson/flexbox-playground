@@ -50,7 +50,10 @@
 }
 
 .flex-container{
+  margin:6px;
   padding:6px;
+  background-color: var(--flex-container-background) ;
+  border:1px solid gray;
 }
 
 #portrait {

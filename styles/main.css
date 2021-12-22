@@ -29,7 +29,7 @@ select {
   --general-text-background-color:hsl(0, 0%, 82%);
   --flex-item-border-color: hsla(256, 64%, 25%, 0.24);
   --panel-border-color: #222;
-
+  --flex-container-background: hsl(200, 10%, 65%);
   --main-background-color: #666;
   --panel-background-color: hsl(220, 20%, 75%);
   --tab-font-color: hsl(240, 100%, 25%);
@@ -59,7 +59,7 @@ html {
 .main-wrapper {
   /* height:100vh; */
   /* width:90vw; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: flex;
 }
 
@@ -109,7 +109,7 @@ pre {
 .main-header {
 
   font-weight: bold;
-  padding: 8px 14px;
+  padding: 8px;
   border-bottom: 1px solid gray;
   
   /* border:1px solid red; */
