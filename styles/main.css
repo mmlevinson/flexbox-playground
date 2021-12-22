@@ -31,7 +31,7 @@ select {
   --panel-border-color: #222;
   --flex-container-background: hsl(200, 10%, 65%);
   --main-background-color: #666;
-  --panel-background-color: hsl(220, 20%, 75%);
+  --panel-background-color: hsl(220, 20%, 80%);
   --tab-font-color: hsl(240, 100%, 25%);
   --tab-inactive-color: hsl(220, 20%, 67%);
   --tab-active-color: var(--panel-background-color);
