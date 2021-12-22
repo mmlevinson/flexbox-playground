@@ -101,18 +101,18 @@ pre {
 }
 
 .app-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
   vertical-align: middle;
 }
 
 /* MAIN HEADER */
 .main-header {
-  
-  left:30rem;
+
   font-weight: bold;
-  margin: 2px 0px;
   padding: 8px 14px;
-  border-bottom: 3px solid var(--dark-green);
+  border-bottom: 1px solid gray;
+  
+  /* border:1px solid red; */
 }
 
 /* nav, div, li are all block level elements */
@@ -125,9 +125,10 @@ pre {
 /* shift nav elements to far right, you need to specify a width */
 .main-nav {
   text-align: right;
-  vertical-align: middle;
-  width: calc(100% - 220px);
-  /* border:1px solid red; */
+  vertical-align:middle;
+  width:calc(100% - 140px);
+  height:1rem;
+
 }
 
 
@@ -178,6 +179,15 @@ pre {
   width: 100%;
 }
 
+
+.device-outline{
+  margin-top:1rem;
+  box-sizing:content-box;
+  border:18px solid black;
+  border-radius:20px;
+  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+}
+
 .tab-panel {
   min-width:24rem;
   max-width: 24rem;
@@ -186,10 +196,7 @@ pre {
   /* flex-grow:0;   */
   /* margin: 4px; */
   margin-right:10px;
-  box-sizing:content-box;
-  border:18px solid black;
-  border-radius:20px;
-  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+  
 }
 
 /* To balance position on page */
@@ -252,8 +259,7 @@ pre {
   max-height: calc(var(--panel-height));
 }
 
-.tab-panel-contents#settings-panel,
-.flex-container {
+.tab-panel-contents#settings-panel{
   border-style: solid;
   border-width: 0px 1px 1px 1px;
   border-color: var(--panel-border-color);

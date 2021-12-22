@@ -39,8 +39,18 @@
   }
 }
 
+.layout-landscape{
+  resize: both;
+  width: calc(100vw- 16px);
+  max-width: 100%;
+  border: 18px solid black;
+  box-sizing: content-box;
+  border-radius: 20px;
+  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+}
+
 .flex-container{
-  margin:6px;
+  padding:6px;
 }
 
 #portrait {
@@ -52,10 +62,10 @@
   resize: both;
   width: calc(100vw- 16px);
   max-width: 100%;
-  border: 18px solid black;
+  /* border: 18px solid black;
   box-sizing: content-box;
   border-radius: 20px;
-  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33); */
   /* transition-property: width, height;
   transition-duration: 1s; */
 }

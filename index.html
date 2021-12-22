@@ -11,8 +11,8 @@
     <script src="./app.js" type="module" defer></script>
   </head>
   <body>
-    <!-- MAIN NAV -->
-    <header class="main-header">
+   
+    <!-- <header class="main-header">
       <div class="app-title">FlexBox Workspace</div>
       <nav class="main-nav">
         <ul class="main-nav-items">
@@ -51,11 +51,11 @@
           <li class="main-nav-item save-item"><a href="">Save</a></li>
         </ul>
       </nav>
-    </header>
+    </header> -->
     <!-- WRAPPER -->
     <div class="main-wrapper">
       <!-- TAB PANEL -->
-      <div class="tab-panel">
+      <div class="tab-panel device-outline">
         <div class="tab-bar">
           <span class="tab active-tab" id="tab-flex-container">Flex Container</span>
           <span class="tab" id="tab-flex-items">Flex Items</span>
@@ -309,9 +309,53 @@
         </div>
       </div>
 
-        <!-- LANDSCAPE -->
-        <div class="flex-container" id="landscape">
-          <!-- determined by user input -->
+        <div class="layout-landscape device-outline">
+              <!-- MAIN NAV -->
+    <header class="main-header">
+      <div class="app-title">FlexBox Workspace</div>
+      <nav class="main-nav">
+        <ul class="main-nav-items">
+          <li class="main-nav-item select-device-icon">
+            <select name="portrait-size" class="device-menu" id="portrait-size-menu">
+              <option value="responsive">Responsive</option>
+              <option value="separator">---------</option>
+              <option value="iPhone12ProMax">iPhone 12 Pro Max</option>
+              <option value="iPhone12Pro">iPhone 12 Pro</option>
+              <option value="iPhone12">iPhone 12</option>
+              <option value="iPhone11">iPhone 11</option>
+              <option value="iPhoneX">iPhone X</option>
+              <option value="iPodTouch">iPod Touch</option>
+              <option value="Nexus6P">Nexus 6P</option>
+              <option value="Nexus5x">Nexus 5x</option>
+              <option value="GooglePixel3XL">Google Pixel 3XL</option>
+              <option value="GooglePixel3">Google Pixel 3</option>
+              <option value="SamsungGalaxyNote9">Samsung Galaxy Note 9</option>
+              <option value="SamsungGalaxyNote5">Samsung Galaxy Note 5</option>
+              <option value="SamsungGalaxyS9">Samsung Galaxy S9/S9+</option>
+              <option value="SamsungGalaxyS8">Samsung Galaxy S8/S8+</option>
+              <option value="LGG5">LG G5</option>
+              <option value="separator">---------</option>
+              <option value="iPadPro">iPad Pro</option>
+              <option value="iPad3rdGen">iPad 3rd/4th Gen</option>
+              <option value="iPadMini2">iPad Mini 2/3</option>
+              <option value="iPadAir1">iPad Air 1/2</option>
+              <option value="Nexus9">Nexus 9</option>
+              <option value="SamsungGalaxy10">Samsung Galaxy 10</option>
+              <option value="ChromebookPixel">Chromebook Pixel</option>
+            </select>
+          </li>
+          <li class="main-nav-item reset-item"><a href="">Reset</a></li>
+          <li class="main-nav-item copy-item"><a href="">Copy</a></li>
+          <li class="main-nav-item load-item"><a href="">Load</a></li>
+          <li class="main-nav-item save-item"><a href="">Save</a></li>
+        </ul>
+      </nav>
+    </header>
+          <!-- LANDSCAPE -->
+          <div class="flex-container" id="landscape">
+          
+            <!-- determined by user input -->
+          </div>
         </div>
     </div>
   </body>
