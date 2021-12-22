@@ -10,14 +10,12 @@ const elements = {
       flexItems: document.getElementById('tab-flex-items'),
       cssOutput: document.getElementById('tab-css-output'),
       customCSS: document.getElementById('tab-custom-CSS'),
-      portraitLayout: document.getElementById('tab-portrait-layout'),
     },
     panels: {
       flexContainer: document.getElementById('panel-flex-container'),
       flexItems: document.getElementById('panel-flex-items'),
       customCSS: document.getElementById('panel-custom-CSS'),
       cssOutput: document.getElementById('panel-css-output'),
-      portraitLayout: document.getElementById('panel-portrait-layout'),
     },
   },
   flexContainer: {
