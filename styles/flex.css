@@ -1,17 +1,16 @@
 .flex-item {
   border: 3px solid hsla(256, 64%, 25%, 0.8);
-
-  background-color: hsl(0, 0%, 76%);
+  background-color: var(--general-text-background-color);
   padding: 8px;
   position: relative;
   /* margin: 15px; */
-  border-radius: 3px;
+  border-radius: 12px 12px 0 12px;
 }
 
 .flex-item .flex-item-number {
   position: absolute;
   text-align: center;
-  border: 1px solid rgba(255, 0, 0, 0.171);
+  border: 1px solid rgba(255, 0, 0, 0.5);
   border-radius: 50% 50% 0 50%;
   bottom: 0;
   left: calc(100% - 1.2rem);
@@ -39,14 +38,11 @@
   }
 }
 
+/* Block Level element assigned by browser, so it takes up full
+width even if we did not explicitly assign a width */
 .layout-landscape{
   resize: both;
-  width: calc(100vw- 16px);
-  max-width: 100%;
-  border: 18px solid black;
-  box-sizing: content-box;
-  border-radius: 20px;
-  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
+  margin-right:8px;
 }
 
 .flex-container{
@@ -59,16 +55,15 @@
 #portrait {
   width: 100%;
   height: 100%;
+  max-height:calc(var(--panel-height) - 12px);
 }
 
 #landscape {
   resize: both;
-  width: calc(100vw- 16px);
-  max-width: 100%;
-  /* border: 18px solid black;
-  box-sizing: content-box;
-  border-radius: 20px;
-  box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33); */
+  /* width: calc(100vw- 16px);
+  max-width: 100%; */
+  /* flex-grow:1; */
+
   /* transition-property: width, height;
   transition-duration: 1s; */
 }

@@ -148,7 +148,7 @@ const defaults = {
     },
     gap: {
       property: 'gap',
-      default: 0,
+      default: 4,
     },
     flexOrder: {
       property: 'flex-order',
