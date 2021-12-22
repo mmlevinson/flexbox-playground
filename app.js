@@ -186,7 +186,7 @@ function setUpMenuListeners() {
 
 function setUpButtonListeners() {
   //    Main Nav Menu buttons
-  elements.navigation.reset.addEventListener('click', (event) => {
+  elements.navigation.reset.addEventListener('click', () => {
     reset();
   });
 
@@ -291,10 +291,8 @@ function updateFlexItemText() {
 
 function updateFlexItemProperty(property, newValue) {
   for (let index = 0; index < WHICH_FLEX_ITEMS.length; index++) {
-    let portraitItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
-    let landscapeItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] + FLEX_ITEM_COUNT - 1];
-    portraitItem.style.setProperty(property, newValue);
-    landscapeItem.style.setProperty(property, newValue);
+    let flexItem = elements.flexItems.list[WHICH_FLEX_ITEMS[index] - 1];
+    flexItem.style.setProperty(property, newValue);
   }
 }
 
