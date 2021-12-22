@@ -40,6 +40,8 @@ select {
    /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
   --panel-height: calc(100vh - 92px);
+  --header-background-color:hsl(240, 60%, 22%);
+  --header-font-color:hsl(53, 25%, 80%);
 }
 
 html {
@@ -61,7 +63,7 @@ html {
 
 body {
   
-  background-color:hsl(0, 0%, 60%);
+  background-color:hsl(240, 15%, 80%);
   /* height: 100vh; */
 }
 ul {
@@ -90,9 +92,11 @@ pre {
 }
 
 .app-title {
-  color:var(--tab-font-color);
+  /* color:var(--tab-font-color); */
+  color: var(--header-font-color);
   font-size: 1.6rem;
   vertical-align: middle;
+  text-shadow: 4px 3px 4px hsl(48, 12%, 40%);
 }
 
 /* MAIN HEADER */
@@ -101,8 +105,10 @@ pre {
   width:100%;
   font-weight: bold;
   padding: 8px;
+  height:3.8rem;
   border-bottom: 1px solid gray;
-  background-color: hsl(53, 21%, 70%);
+  background-color: var(--header-background-color);
+  
   /* border:1px solid red; */
 }
 
@@ -118,13 +124,9 @@ pre {
   text-align: right;
   vertical-align:middle;
   width:calc(100% - 200px);
-  height:1rem;
+  margin-top:0.4rem;
+  /* border:1px solid red; */
 
-}
-
-.device-nav{
-  display:flex;
-  justify-content: center;
 }
 
 
@@ -134,17 +136,19 @@ pre {
 
 .main-nav-item a {
   text-decoration: none;
-  color: var(--tab-font-color);
-  padding:2px;
+  color: var(--header-font-color);
+  padding:2px 8px;
+  border:1px solid var(--header-background-color);
   border-radius: 8px;
-  font-size:1.2rem;
+  font-size:1.4rem;
 }
 
 .main-nav-item a:hover,
 .main-nav-item a:active {
   cursor: pointer;
-  background: wheat;
-  border: 1px solid var(--dark-green);
+  background: var(--header-font-color);
+  color:var(--header-background-color);
+  border: 1px solid hsl(300, 100%, 35%);
 }
 
 .button {
@@ -265,17 +269,14 @@ pre {
   width: calc(100vw - 280px);
 } */
 
-#select-device-menu {
-  background: none;
-  text-align: center;
-  color: var(--tab-font-color);
-  border: none;
-  font-size:1.2rem;
-  font-family:inherit;
-  font-weight:bold;
-  max-width:10rem;
-  /* margin-bottom:10px; */
+.device-header{
+  height:3rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 li.input-field {
   padding: 6px;
@@ -346,4 +347,44 @@ li.input-field > label {
 #css-output{
   height:calc(var(--panel-height) - 10px);
   border: 1px solid var(--panel-border-color);
+}
+
+.device-nav{
+  display:flex;
+  justify-content: center;
+  /* border:1px solid red; */
+  width:100%;
+}
+
+#select-device-menu {
+  background: none;
+  outline:none;
+  text-align: center;
+  color: var(--tab-font-color);
+  border: none;
+  font-size:1.2rem;
+  font-family:inherit;
+  font-weight:bold;
+  flex-grow:1;
+  max-width:200px;
+  /* max-width:10rem; */
+  /* margin-bottom:10px; */
+}
+
+.device-header-spacer{
+  flex-grow:1;
+}
+
+.rotate-arrow{
+  /* align-self: flex-end; */
+  /* border:1px solid red; */
+  padding:6px 12px;
+  max-width:40px;
+  border-radius:8px;
+  margin-right:4px;
+}
+
+.rotate-arrow:hover{
+  cursor:pointer;
+  background-color:var(--tab-inactive-color);
 }
