@@ -351,7 +351,7 @@ li.input-field > label {
 
 .device-nav{
   display:flex;
-  justify-content: center;
+  justify-content: space-between;
   /* border:1px solid red; */
   width:100%;
 }
@@ -371,9 +371,6 @@ li.input-field > label {
   /* margin-bottom:10px; */
 }
 
-.device-header-spacer{
-  flex-grow:1;
-}
 
 .rotate-arrow{
   /* align-self: flex-end; */
