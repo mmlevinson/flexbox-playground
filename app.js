@@ -90,12 +90,12 @@ function setUpFlexItems(newValue) {
   }
 
   if (!validateHowManyItems(newValue)) return;
-  clearFlexContainers(elements.flexContainer.landscape, elements.flexContainer.portrait);
+  clearFlexContainers(elements.flexContainer.landscape);
 
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     elements.flexContainer.landscape.append(newFlexItem(index));
-    elements.flexContainer.portrait.append(newFlexItem(index));
+    // elements.flexContainer.portrait.append(newFlexItem(index));
   }
   //update our references to all the flex-items so we can change
   //their content using the Apply button
@@ -235,13 +235,13 @@ function setUpToolTipListeners() {
 function setFlexContainerStyle(property, newValue) {
   //   console.log(`property, newValue`, property, newValue);
   elements.flexContainer.landscape.style.setProperty(property, newValue);
-  elements.flexContainer.portrait.style.setProperty(property, newValue);
+  // elements.flexContainer.portrait.style.setProperty(property, newValue);
   updateCSS();
 }
 
 function setDisplayType(newValue) {
   elements.flexContainer.landscape.style.display = newValue;
-  elements.flexContainer.portrait.style.display = newValue;
+  // elements.flexContainer.portrait.style.display = newValue;
 
 
   let isFlex = false;
@@ -395,24 +395,24 @@ function switchLayoutSize(event) {
 }
 
 
-function switchLayoutOrientation(event) {
-  console.log(`event`, event);
-  //which tab?  portrait or vertical
-  console.log(`event.srcElement.id`, event.srcElement.id);
-  const srcId = event.srcElement.id;   //svg
-  const src = srcId.split('__')[1];   //break off last fragment
-  if (!src) return;   //bad click, coming from somewhere else
-  const fragments = src.split('-'); 
-  let layout = fragments[0];   //landscape|portrait
-  let orientation = fragments[1];
-  const targetLayout = elements.flexContainer[layout];
-  console.log(`targetLayout`, targetLayout);
-  const currentWidth = targetLayout.style.width;
-  const currentHeight = targetLayout.style.height;
-  //flip them ... and rest max values as well
-  targetLayout.style.width = currentHeight;
-  targetLayout.style.maxWidth = currentHeight;
-  targetLayout.style.height = currentWidth;
-  targetLayout.style.maxheight = currentWidth;
+// function switchLayoutOrientation(event) {
+//   console.log(`event`, event);
+//   //which tab? 
+//   console.log(`event.srcElement.id`, event.srcElement.id);
+//   const srcId = event.srcElement.id;   //svg
+//   const src = srcId.split('__')[1];   //break off last fragment
+//   if (!src) return;   //bad click, coming from somewhere else
+//   const fragments = src.split('-'); 
+//   let layout = fragments[0];   //landscape|portrait
+//   let orientation = fragments[1];
+//   const targetLayout = elements.flexContainer[layout];
+//   console.log(`targetLayout`, targetLayout);
+//   const currentWidth = targetLayout.style.width;
+//   const currentHeight = targetLayout.style.height;
+//   //flip them ... and rest max values as well
+//   targetLayout.style.width = currentHeight;
+//   targetLayout.style.maxWidth = currentHeight;
+//   targetLayout.style.height = currentWidth;
+//   targetLayout.style.maxheight = currentWidth;
   
-}
+// }
