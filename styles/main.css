@@ -354,6 +354,7 @@ li.input-field > label {
   justify-content: space-between;
   /* border:1px solid red; */
   width:100%;
+  height:2rem;
 }
 
 #select-device-menu {
@@ -371,6 +372,14 @@ li.input-field > label {
   /* margin-bottom:10px; */
 }
 
+.layout-dimensions{
+  font-size:1.2rem;
+  font-family:inherit;
+  font-weight:bold;
+  color:var(--tab-font-color);
+  margin-left:10px;
+}
+
 
 .rotate-arrow{
   /* align-self: flex-end; */
@@ -385,3 +394,8 @@ li.input-field > label {
   cursor:pointer;
   background-color:var(--tab-inactive-color);
 }
+
+.success{
+  background-color:hsl(120, 30%, 45%);
+}
+

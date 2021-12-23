@@ -9,6 +9,7 @@ import { devices } from './data/devices.js';
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
 let customCSSDirty = false; //set this once user makes any changes
+let orientationLandscape = true; //used to decide which rotation angle
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -26,6 +27,7 @@ function initialize() {
   setUpEventListeners();
 
   reset(); //establishes default state of app, calls setUpFlexItems();
+  setUpDimensionWatcher();
 }
 
 function flexItemDefaults() {
@@ -138,10 +140,7 @@ function updateCSS() {
   }
 }
 
-
 function setUpValueFieldListeners() {
-
-
   elements.flexContainer.gap.addEventListener('input', (event) => {
     setFlexContainerStyle('gap', event.target.value + 'px');
   });
@@ -180,8 +179,7 @@ function setUpMenuListeners() {
 
   elements.menus.deviceMenu.addEventListener('change', (event) => {
     switchLayoutSize(event);
-  })
-
+  });
 }
 
 function setUpButtonListeners() {
@@ -217,15 +215,10 @@ function setUpButtonListeners() {
     parseAdditionalCSS(elements.additionalCSS.textArea.value);
   });
 
-  // Rotate Icons
-  // for (const key in elements.icons) {
-  //   elements.icons[key].addEventListener('click', (event) => {
-  //     switchLayoutOrientation(event);
-  //   })
-  // }
+  elements.icons.rotateIcon.addEventListener('click', (event) => {
+    rotateOrientation(event);
+  });
 }
-
-
 
 function setUpToolTipListeners() {
   //get the label for each one of these elements, its the parent.firstElementChild?
@@ -242,7 +235,6 @@ function setFlexContainerStyle(property, newValue) {
 function setDisplayType(newValue) {
   elements.flexContainer.landscape.style.display = newValue;
   // elements.flexContainer.portrait.style.display = newValue;
-
 
   let isFlex = false;
   if (newValue === 'flex' || newValue === 'inline-flex') {
@@ -265,8 +257,6 @@ function setDisplayType(newValue) {
 
   updateCSS();
 }
-
-
 
 function updateFlexItemText() {
   let itemText = elements.flexItems.flexItemText.value;
@@ -337,8 +327,6 @@ function setDefault(container, key) {
   }
 }
 
-
-
 /* MML...December 15, 2021 @ 16:08...Refactored public cssParser
  */
 
@@ -351,7 +339,6 @@ function setDefault(container, key) {
   }
   */
 function parseAdditionalCSS(rawText) {
-
   function setRule(index, property, value) {
     let flexItem = elements.flexItems.list[index - 1];
     flexItem.style.setProperty(property, value);
@@ -375,30 +362,27 @@ function parseAdditionalCSS(rawText) {
 }
 
 function switchLayoutSize(event) {
-
   console.log(`value`, event.target.value);
-  const deviceName = event.target.value;   //ie iPhone12
+  const deviceName = event.target.value; //ie iPhone12
   //lookup the default w/h
   const dimensions = devices[deviceName];
   console.log(`dimensions`, dimensions);
   //TESTING ... use landscape even for phones
   elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
-  elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
+  elements.deviceOutline.style.width = `${dimensions.width + 50}px`;
+  // elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
   elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
-  elements.flexContainer.landscape.style.maxHeight = `${dimensions.height}px`;
- 
-
+  elements.deviceOutline.style.height = `${dimensions.height + 50}px`;
 }
-
 
 // function switchLayoutOrientation(event) {
 //   console.log(`event`, event);
-//   //which tab? 
+//   //which tab?
 //   console.log(`event.srcElement.id`, event.srcElement.id);
 //   const srcId = event.srcElement.id;   //svg
 //   const src = srcId.split('__')[1];   //break off last fragment
 //   if (!src) return;   //bad click, coming from somewhere else
-//   const fragments = src.split('-'); 
+//   const fragments = src.split('-');
 //   let layout = fragments[0];   //landscape|portrait
 //   let orientation = fragments[1];
 //   const targetLayout = elements.flexContainer[layout];
@@ -410,5 +394,30 @@ function switchLayoutSize(event) {
 //   targetLayout.style.maxWidth = currentHeight;
 //   targetLayout.style.height = currentWidth;
 //   targetLayout.style.maxheight = currentWidth;
-  
+
 // }
+
+function rotateOrientation(event) {
+  //toggle the flag tracking the current orientation
+  //landscape is w>>h
+  const width = elements.flexContainer.deviceOutline.offsetWidth;
+  const height = elements.flexContainer.deviceOutline.offsetHeight;
+  // elements.flexContainer.landscape.style.width = `${+height}px`;
+  // elements.flexContainer.landscape.style.height = `${+width}px`;
+  elements.flexContainer.deviceOutline.style.width = `${+height + 50}px`;
+  elements.flexContainer.deviceOutline.style.height = `${+width}px`;
+}
+
+/* From StackOverflow Example  ResizeObserver API  */
+function onResize(element, callback) {
+  const resizeObserver = new ResizeObserver(() => callback());
+  resizeObserver.observe(element);
+}
+
+function setUpDimensionWatcher() {
+  const dimensions = document.querySelector('.layout-dimensions');
+  onResize(elements.flexContainer.landscape, () => {
+    const summary = `${elements.flexContainer.landscape.offsetWidth} px x ${elements.flexContainer.landscape.offsetHeight}px`;
+    dimensions.textContent = summary;
+  });
+}

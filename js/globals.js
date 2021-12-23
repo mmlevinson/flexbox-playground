@@ -20,6 +20,7 @@ const elements = {
   },
   flexContainer: {
     landscape: document.querySelector('.flex-container#landscape'),
+    deviceOutline:document.querySelector('.layout.device-outline'),
     // portrait: document.querySelector('.flex-container#portrait'),
     overflow: document.getElementById('overflowType'),
     displayType: document.getElementById('displayType'),
@@ -72,6 +73,7 @@ const elements = {
   },
   icons: {
     deviceOutline: document.getElementById('device-outline'),
+    rotateIcon: document.getElementById('rotate-icon'),
   },
 };
 
