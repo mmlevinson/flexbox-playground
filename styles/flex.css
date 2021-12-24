@@ -4,15 +4,16 @@
   padding: 8px;
   position: relative;
   /* margin: 15px; */
-  border-radius: 12px 12px 0 12px;
+  border-radius: 12px 0 12px 12px;
+  /* border-radius: 12px 12px 0 12px; */
 }
 
 .flex-item .flex-item-number {
   position: absolute;
   text-align: center;
   border: 1px solid rgba(255, 0, 0, 0.5);
-  border-radius: 50% 50% 0 50%;
-  bottom: 0;
+  border-radius: 50% 0 50% 50%;
+  top: 0;
   left: calc(100% - 1.2rem);
   width: 1.2rem;
   height: 1.2rem;
@@ -53,10 +54,13 @@ width even if we did not explicitly assign a width */
   border:2px solid var(--panel-border-color);
   gap:4px;
   resize: both;
+  width:100%;
+  height:calc(100% - 23px);
 }
 
 .responsive{
   width: calc(100vw- 16px);
+  height:100%;
   max-width: 100%; 
   flex-grow:1;
 }

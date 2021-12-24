@@ -366,13 +366,23 @@ function parseAdditionalCSS(rawText) {
   updateCSS();
 }
 
-function switchLayoutSize(dimensions) {
-  //TESTING ... use landscape even for phones
-  elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
+function updateDeviceOutlineSize(dimensions) {
+  //we need to break this out so that manual resizing of the flexContainer
+  //   can resize the deviceOutline as well, but
+  //   we must do this separately b/c we are tracking the resize event with the
+  //   ResizeObserver API and we can't just call switchLayoutSize or we have
+  //   an endless loop (re-triggering the observer, then switchLayoutSize etc.)
   elements.flexContainer.deviceOutline.style.width = `${dimensions.width}px`;
-  // elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
-  elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
   elements.flexContainer.deviceOutline.style.height = `${dimensions.height + 23}px`;
+  
+}
+
+function switchLayoutSize(dimensions) {
+  elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
+  elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
+  elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
+  elements.flexContainer.landscape.style.maxHeight = `${dimensions.height}px`;
+  updateDeviceOutlineSize(dimensions);   //must be separate b/c also called by the observer
 }
 
 function rotateOrientation(event) {
@@ -392,9 +402,13 @@ function onResize(element, callback) {
 }
 
 function setUpDimensionWatcher() {
-  const dimensions = document.querySelector('.layout-dimensions');
+  const layoutDimensions = document.querySelector('.layout-dimensions');
   onResize(elements.flexContainer.landscape, () => {
     const summary = `${elements.flexContainer.landscape.offsetWidth} px x ${elements.flexContainer.landscape.offsetHeight}px`;
-    dimensions.textContent = summary;
+    layoutDimensions.textContent = summary;
+    updateDeviceOutlineSize({
+      width: elements.flexContainer.landscape.width,
+      height: elements.flexContainer.landscape.height,
+    })
   });
 }

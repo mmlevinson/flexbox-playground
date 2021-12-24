@@ -39,7 +39,7 @@ select {
   --tool-panel-width: 27.5rem;
   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
-  --panel-height: calc(100vh - 92px);
+  --panel-height: calc(100vh - 100px);
   --header-background-color: hsl(240, 60%, 22%);
   --header-font-color: hsl(53, 25%, 80%);
 }
