@@ -330,7 +330,8 @@ li.input-field > label {
 }
 
 .device-header {
-  height: 1.8rem;
+  height: 2rem;
+  background-color: hsl(220, 20%, 74%);
 }
 
 .device-nav {
@@ -340,37 +341,45 @@ li.input-field > label {
   /* border:1px solid red; */
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid var(--panel-border-color);
+  /* border-bottom: 1px solid var(--panel-border-color); */
   /* border: 1px solid red; */
 }
 
 #select-device-menu {
   background: none;
   outline: none;
-  text-align: center;
+  text-align: left;
   color: var(--tab-font-color);
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: inherit;
   font-weight: bold;
   flex-grow: 1;
-  max-width: 200px;
+  /* width:8rem; */
+  max-width: 15rem;
   /* max-width:10rem; */
   /* margin-bottom:10px; */
 }
 
 .layout-dimensions {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: inherit;
-  font-weight: bold;
   color: var(--tab-font-color);
   margin-left: 10px;
+  flex-grow:4;
+}
+.layout-dimensions::before{
+  content:"( "
+}
+
+.layout-dimensions::after{
+  content:" )"
 }
 
 .rotate-arrow {
   /* align-self: flex-end; */
   /* border:1px solid red; */
-  padding: 6px 12px;
+  padding: 2px 12px;
   max-width: 40px;
   border-radius: 8px;
   margin-right: 4px;

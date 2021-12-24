@@ -178,7 +178,12 @@ function setUpMenuListeners() {
   });
 
   elements.menus.deviceMenu.addEventListener('change', (event) => {
-    switchLayoutSize(event);
+    console.log(`value`, event.target.value);
+      const deviceName = event.target.value; //ie iPhone12
+     //lookup the default w/h
+    const dimensions = devices[deviceName];
+    console.log(`dimensions`, dimensions);
+    switchLayoutSize(dimensions);
   });
 }
 
@@ -361,51 +366,23 @@ function parseAdditionalCSS(rawText) {
   updateCSS();
 }
 
-function switchLayoutSize(event) {
-  console.log(`value`, event.target.value);
-  const deviceName = event.target.value; //ie iPhone12
-  //lookup the default w/h
-  const dimensions = devices[deviceName];
-  console.log(`dimensions`, dimensions);
+function switchLayoutSize(dimensions) {
   //TESTING ... use landscape even for phones
   elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
-  elements.flexContainer.deviceOutline.style.width = `${dimensions.width + 6}px`;
+  elements.flexContainer.deviceOutline.style.width = `${dimensions.width}px`;
   // elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
   elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
-  elements.flexContainer.deviceOutline.style.height = `${dimensions.height +29}px`;
+  elements.flexContainer.deviceOutline.style.height = `${dimensions.height + 23}px`;
 }
 
-// function switchLayoutOrientation(event) {
-//   console.log(`event`, event);
-//   //which tab?
-//   console.log(`event.srcElement.id`, event.srcElement.id);
-//   const srcId = event.srcElement.id;   //svg
-//   const src = srcId.split('__')[1];   //break off last fragment
-//   if (!src) return;   //bad click, coming from somewhere else
-//   const fragments = src.split('-');
-//   let layout = fragments[0];   //landscape|portrait
-//   let orientation = fragments[1];
-//   const targetLayout = elements.flexContainer[layout];
-//   console.log(`targetLayout`, targetLayout);
-//   const currentWidth = targetLayout.style.width;
-//   const currentHeight = targetLayout.style.height;
-//   //flip them ... and rest max values as well
-//   targetLayout.style.width = currentHeight;
-//   targetLayout.style.maxWidth = currentHeight;
-//   targetLayout.style.height = currentWidth;
-//   targetLayout.style.maxheight = currentWidth;
-
-// }
-
 function rotateOrientation(event) {
-  //toggle the flag tracking the current orientation
-  //landscape is w>>h
-  const width = elements.flexContainer.deviceOutline.offsetWidth;
-  const height = elements.flexContainer.deviceOutline.offsetHeight;
-  // elements.flexContainer.landscape.style.width = `${+height}px`;
-  // elements.flexContainer.landscape.style.height = `${+width}px`;
-  elements.flexContainer.deviceOutline.style.width = `${+height + 50}px`;
-  elements.flexContainer.deviceOutline.style.height = `${+width}px`;
+  //just swap width/height of current layout dimensions
+  const width = elements.flexContainer.landscape.offsetWidth;
+  const height = elements.flexContainer.landscape.offsetHeight;
+  switchLayoutSize({
+    width: height,
+    height:width,
+  })
 }
 
 /* From StackOverflow Example  ResizeObserver API  */
