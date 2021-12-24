@@ -369,10 +369,10 @@ function switchLayoutSize(event) {
   console.log(`dimensions`, dimensions);
   //TESTING ... use landscape even for phones
   elements.flexContainer.landscape.style.width = `${dimensions.width}px`;
-  elements.deviceOutline.style.width = `${dimensions.width + 50}px`;
+  elements.flexContainer.deviceOutline.style.width = `${dimensions.width + 6}px`;
   // elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
   elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
-  elements.deviceOutline.style.height = `${dimensions.height + 50}px`;
+  elements.flexContainer.deviceOutline.style.height = `${dimensions.height +29}px`;
 }
 
 // function switchLayoutOrientation(event) {

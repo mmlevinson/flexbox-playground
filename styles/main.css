@@ -26,7 +26,7 @@ select {
 
 :root {
   --flex-item-color: hsla(15, 20%, 100%, 0.2);
-  --general-text-background-color:hsl(0, 0%, 82%);
+  --general-text-background-color: hsl(0, 0%, 82%);
   --flex-item-border-color: hsla(256, 64%, 25%, 0.24);
   --panel-border-color: #555;
   --flex-container-background: hsl(200, 10%, 65%);
@@ -37,11 +37,11 @@ select {
   --tab-active-color: var(--panel-background-color);
   --tab-hover-color: hsl(0, 0%, 60%);
   --tool-panel-width: 27.5rem;
-   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
+  /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
   --panel-height: calc(100vh - 92px);
-  --header-background-color:hsl(240, 60%, 22%);
-  --header-font-color:hsl(53, 25%, 80%);
+  --header-background-color: hsl(240, 60%, 22%);
+  --header-font-color: hsl(53, 25%, 80%);
 }
 
 html {
@@ -51,8 +51,8 @@ html {
 
 #panel-flex-items,
 #panel-custom-CSS,
-#panel-css-output{
-  display:none;
+#panel-css-output {
+  display: none;
 }
 
 .main-wrapper {
@@ -62,8 +62,7 @@ html {
 }
 
 body {
-  
-  background-color:hsl(240, 15%, 80%);
+  background-color: hsl(240, 15%, 80%);
   /* height: 100vh; */
 }
 ul {
@@ -86,9 +85,9 @@ h2,
 h3,
 input,
 select,
-textarea, 
+textarea,
 pre {
-  font-family:inherit;
+  font-family: inherit;
 }
 
 .app-title {
@@ -102,13 +101,13 @@ pre {
 /* MAIN HEADER */
 .main-header {
   display: inline-block;
-  width:100%;
+  width: 100%;
   font-weight: bold;
   padding: 8px;
-  height:3.8rem;
+  height: 3.8rem;
   border-bottom: 1px solid gray;
   background-color: var(--header-background-color);
-  
+
   /* border:1px solid red; */
 }
 
@@ -120,15 +119,13 @@ pre {
 }
 
 /* shift nav elements to far right, you need to specify a width */
-.main-nav{
+.main-nav {
   text-align: right;
-  vertical-align:middle;
-  width:calc(100% - 200px);
-  margin-top:0.4rem;
+  vertical-align: middle;
+  width: calc(100% - 200px);
+  margin-top: 0.4rem;
   /* border:1px solid red; */
-
 }
-
 
 .main-nav-item {
   margin: 0px 8px;
@@ -137,17 +134,17 @@ pre {
 .main-nav-item a {
   text-decoration: none;
   color: var(--header-font-color);
-  padding:2px 8px;
-  border:1px solid var(--header-background-color);
+  padding: 2px 8px;
+  border: 1px solid var(--header-background-color);
   border-radius: 8px;
-  font-size:1.4rem;
+  font-size: 1.4rem;
 }
 
 .main-nav-item a:hover,
 .main-nav-item a:active {
   cursor: pointer;
   background: var(--header-font-color);
-  color:var(--header-background-color);
+  color: var(--header-background-color);
   border: 1px solid hsl(300, 100%, 35%);
 }
 
@@ -161,12 +158,12 @@ pre {
   cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
   cursor: pointer;
   background-color: hsl(39, 77%, 83%);
 }
-.button:active{
-  background-color:  hsl(39, 77%, 50%);
+.button:active {
+  background-color: hsl(39, 77%, 50%);
 }
 
 .button-set {
@@ -176,23 +173,22 @@ pre {
   display: inline-block;
   width: 100%;
 }
-.device-outline{
-  margin-top:6px;
-  box-sizing:content-box;
-  border:15px solid hsl(0, 10%, 18%);
-  border-radius:20px;
+.device-outline {
+  margin-top: 6px;
+  box-sizing: content-box;
+  border: 15px solid hsl(0, 10%, 18%);
+  border-radius: 20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
 
 .tab-panel {
-  min-width:20rem;
+  min-width: 20rem;
   max-width: 20rem;
-  height:100%;
-  resize:vertical;
+  height: 100%;
+  resize: vertical;
   /* flex-grow:0;   */
   margin: 6px;
-  margin-right:10px;
-  
+  margin-right: 10px;
 }
 
 /* To balance position on page */
@@ -227,10 +223,10 @@ pre {
   border-radius: 6px 6px 0 0;
 }
 
-.tab-bar.layouts .tab:first-of-type{
+.tab-bar.layouts .tab:first-of-type {
   border-radius: 6px 6px 0 6px;
 }
-.tab-bar.layouts .tab:last-of-type{
+.tab-bar.layouts .tab:last-of-type {
   border-radius: 6px 6px 6px 0;
 }
 
@@ -248,14 +244,12 @@ pre {
   transition-timing-function: ease-out;
 }
 
-
-
 .tab-panel-contents {
   height: calc(var(--panel-height));
   max-height: calc(var(--panel-height));
 }
 
-.tab-panel-contents#settings-panel{
+.tab-panel-contents#settings-panel {
   border-style: solid;
   border-width: 0px 1px 1px 1px;
   border-color: var(--panel-border-color);
@@ -269,29 +263,19 @@ pre {
   width: calc(100vw - 280px);
 } */
 
-.device-header{
-  height:3rem;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-
 li.input-field {
   padding: 6px;
   display: flex;
   align-items: baseline;
-  
 }
 
 .input-field select,
-.input-field input{
+.input-field input {
   background-color: var(--general-text-background-color);
-  border:1px solid hsl(0, 0%, 60%);
-  outline:none;
-  text-align:center;
-  height:1.7rem;
+  border: 1px solid hsl(0, 0%, 60%);
+  outline: none;
+  text-align: center;
+  height: 1.7rem;
   box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.39);
 }
 
@@ -303,21 +287,18 @@ li.input-field {
   flex-grow: 1;
 }
 
-
 li.input-field > label {
   /* border:1px solid red; */
-  
+
   font-weight: bold;
   min-width: 8rem;
   margin-left: 4px;
 }
 
-
-
 #flex-item-text {
   font-weight: bold;
-  min-width:100%;
-  padding:6px;
+  min-width: 100%;
+  padding: 6px;
   height: calc(var(--panel-height) - 340px);
   background-color: var(--general-text-background-color);
 }
@@ -334,68 +315,72 @@ li.input-field > label {
   padding: 4px;
 }
 
-
 /* set as Flex in code when switchPanel() */
-#panel-custom-CSS{
-  flex-direction:column;
+#panel-custom-CSS {
+  flex-direction: column;
 }
 
-#custom-css-text{
-  height:calc(var(--panel-height) - 50px);
+#custom-css-text {
+  height: calc(var(--panel-height) - 50px);
 }
 
-#css-output{
-  height:calc(var(--panel-height) - 10px);
+#css-output {
+  height: calc(var(--panel-height) - 10px);
   border: 1px solid var(--panel-border-color);
 }
 
-.device-nav{
-  display:flex;
+.device-header {
+  height: 1.8rem;
+}
+
+.device-nav {
+  display: flex;
   justify-content: space-between;
+  align-items:center;
   /* border:1px solid red; */
-  width:100%;
-  height:2rem;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--panel-border-color);
+  /* border: 1px solid red; */
 }
 
 #select-device-menu {
   background: none;
-  outline:none;
+  outline: none;
   text-align: center;
   color: var(--tab-font-color);
   border: none;
-  font-size:1.2rem;
-  font-family:inherit;
-  font-weight:bold;
-  flex-grow:1;
-  max-width:200px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  font-weight: bold;
+  flex-grow: 1;
+  max-width: 200px;
   /* max-width:10rem; */
   /* margin-bottom:10px; */
 }
 
-.layout-dimensions{
-  font-size:1.2rem;
-  font-family:inherit;
-  font-weight:bold;
-  color:var(--tab-font-color);
-  margin-left:10px;
+.layout-dimensions {
+  font-size: 1.2rem;
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--tab-font-color);
+  margin-left: 10px;
 }
 
-
-.rotate-arrow{
+.rotate-arrow {
   /* align-self: flex-end; */
   /* border:1px solid red; */
-  padding:6px 12px;
-  max-width:40px;
-  border-radius:8px;
-  margin-right:4px;
+  padding: 6px 12px;
+  max-width: 40px;
+  border-radius: 8px;
+  margin-right: 4px;
 }
 
-.rotate-arrow:hover{
-  cursor:pointer;
-  background-color:var(--tab-inactive-color);
+.rotate-arrow:hover {
+  cursor: pointer;
+  background-color: var(--tab-inactive-color);
 }
 
-.success{
-  background-color:hsl(120, 30%, 45%);
+.success {
+  background-color: hsl(120, 30%, 45%);
 }
-
