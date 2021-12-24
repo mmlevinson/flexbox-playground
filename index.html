@@ -36,48 +36,32 @@
         <div class="tab-panel-contents" id="settings-panel">
           <ul class="panel-list">
             <!-- Flex Container Panel -->
-            <li id="panel-flex-container">
-              <ul class="panel-item">
-                <!-- How Many Items -->
-                <li class="input-field">
-                  <label for="howMany" class="setting-label">How Many Items?</label>
-                  <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
-                </li>
-                <!-- Display property -->
-                <li class="input-field">
-                  <label for="display" class="setting-label">Display:</label>
-
-                  <select name="display" class="setting-item tool-tip" id="displayType">
-                    <option value="block">BLOCK</option>
-                    <option value="inline">Inline</option>
-                    <option value="inline-block">Inline-Block</option>
-                    <option value="flex">Flex</option>
-                    <option value="inline-flex">Inline-Flex</option>
-                  </select>
-                </li>
-                <!-- Overflow property -->
-                <li class="input-field">
-                  <label for="overflow" class="setting-label">Overflow:</label>
-                  <select name="overflow" class="setting-item" id="overflowType">
-                    <option value="auto">AUTO</option>
-                    <option value="visible">Visible</option>
-                    <option value="hidden">Hidden</option>
-                    <option value="scroll">Scroll</option>
-                  </select>
-                </li>
-                <!-- Flex-Direction -->
-                <li class="input-field">
-                  <label for="flexDirection" class="setting-label">Flex-Direction:</label>
-                  <select name="flexDirection" class="setting-item" id="flexDirection" disabled>
-                    <option value="row">ROW</option>
-                    <option value="column">Column</option>
-                    <option value="row-reverse">Row-Reverse</option>
-                    <option value="column-reverse">Column-Reverse</option>
-                  </select>
-                </li>
-                <!-- Flex Wrap -->
-                <li class="input-field">
-                  <label for="flexWrap" class="setting-label">Flex-Wrap:</label>
+            <li class="panel" id="panel-flex-container">
+                <div class="item-row">
+                  <!-- Display Type -->
+                  <div class="input-field">
+                    <label for="display" class="setting-label">Display</label>
+                    <select name="display" class="setting-item tool-tip" id="displayType">
+                      <option value="block">BLOCK</option>
+                      <option value="inline">Inline</option>
+                      <option value="inline-block">Inline-Block</option>
+                      <option value="flex">Flex</option>
+                      <option value="inline-flex">Inline-Flex</option>
+                    </select>
+                  </div>
+                  <!-- Flex Direction -->
+                  <div class="input-field">
+                    <label for="flexDirection" class="setting-label">Flex-Direction:</label>
+                    <select name="flexDirection" class="setting-item" id="flexDirection" disabled>
+                      <option value="row">ROW</option>
+                      <option value="column">Column</option>
+                      <option value="row-reverse">Row-Reverse</option>
+                      <option value="column-reverse">Column-Reverse</option>
+                    </select>
+                  </div>
+                  <!-- Flex Wrap -->
+                  <div class="input-field">
+                  <label for="flexWrap" class="setting-label">Flex-Wrap</label>
                   <select name="flexWrap" class="setting-item" id="flexWrap" disabled>
                     <option value="nowrap">NO WRAP</option>
                     <option value="wrap">Wrap</option>
@@ -88,57 +72,34 @@
                     <option value="revert">Revert</option>
                     <option value="unset">Unset</option>
                   </select>
-                </li>
-                <!-- Align Content -->
-                <li class="input-field">
-                  <label for="alignContent" class="setting-label">Align-Content:</label>
-                  <select name="alignContent" class="setting-item" id="alignContent" disabled>
-                    <option value="normal">NORMAL</option>
-                    <option value="center">Center</option>
-                    <option value="start">Start</option>
-                    <option value="self-start">End</option>
-                    <option value="flex-start">Flex-Start</option>
-                    <option value="flex-end">Flex-End</option>
-                    <option value="stretch">Stretch</option>
-                    <option value="space-between">Space-Between</option>
-                    <option value="stretch">Stretch</option>
-                    <option value="space-evenly">Space-Evenly</option>
-                    <option value="baseline">Baseline</option>
-                    <option value="first baseline">First Baseline</option>
-                    <option value="last baseline">Last Baseline</option>
-                    <option value="safe center">Safe Center</option>
-                    <option value="unsafe center">Unsafe Center</option>
-                    <option value="inherit">Inherit</option>
-                    <option value="initial">Initial</option>
-                    <option value="revert">Revert</option>
-                    <option value="unset">Unset</option>
-                  </select>
-                </li>
-                <!-- Justify-Content -->
-                <li class="input-field">
-                  <label for="justifyContent" class="setting-label">Justify-Content:</label>
-                  <select name="justifyContent" class="setting-item" id="justifyContent" disabled>
-                    <option value="flex-start">FLEX-START</option>
-                    <option value="normal">Normal</option>
-                    <option value="center">Center</option>
-                    <option value="start">Start</option>
-                    <option value="end">End</option>
-                    <option value="left">Left</option>
-                    <option value="right">Right</option>
-                    <option value="flex-end">Flex-End</option>
-                    <option value="space-between">Space-Between</option>
-                    <option value="space-around">Space-Around</option>
-                    <option value="space-evenly">Space-Evenly</option>
-                    <option value="safe center">Safe Center</option>
-                    <option value="unsafe center">Unsafe Center</option>
-                    <option value="inherit">Inherit</option>
-                    <option value="initial">Initial</option>
-                    <option value="revert">Revert</option>
-                    <option value="unset">Unset</option>
-                  </select>
-                </li>
-                <!-- Align Items -->
-                <li class="input-field">
+                  </div>
+                </div>
+                <div class="item-row">
+                  <!-- Justify Content -->
+                  <div class="input-field">
+                    <label for="justifyContent" class="setting-label">Justify-Content:</label>
+                    <select name="justifyContent" class="setting-item" id="justifyContent" disabled>
+                      <option value="flex-start">FLEX-START</option>
+                      <option value="normal">Normal</option>
+                      <option value="center">Center</option>
+                      <option value="start">Start</option>
+                      <option value="end">End</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="flex-end">Flex-End</option>
+                      <option value="space-between">Space-Between</option>
+                      <option value="space-around">Space-Around</option>
+                      <option value="space-evenly">Space-Evenly</option>
+                      <option value="safe center">Safe Center</option>
+                      <option value="unsafe center">Unsafe Center</option>
+                      <option value="inherit">Inherit</option>
+                      <option value="initial">Initial</option>
+                      <option value="revert">Revert</option>
+                      <option value="unset">Unset</option>
+                    </select>                  
+                  </div>
+                  <div class="input-field">
+                  <!-- Align Items -->
                   <label for="alignItems" class="setting-label">Align-Items:</label>
                   <select name="alignItems" class="setting-item" id="alignItems" disabled>
                     <option value="stretch">STRETCH</option>
@@ -159,17 +120,57 @@
                     <option value="revert">Revert</option>
                     <option value="unset">Unset</option>
                   </select>
-                </li>
-                <!-- Gap -->
-                <li class="input-field">
-                  <label for="gap" class="setting-label">Gap:</label>
-                  <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
-                </li>
-                <!-- BUTTON SET -->
-                <li class="button-set" id="flex-container-buttons">
-                  <button class="button" type="button" name="Reset" id="flex-container-defaults-button">Defaults</button>
-                </li>
-              </ul>
+                  </div>
+                </div>
+                <div class="item-row">
+                  <!-- Align Content -->
+                    <div class="input-field">
+                      <label for="alignContent" class="setting-label">Align-Content:</label>
+                      <select name="alignContent" class="setting-item" id="alignContent" disabled>
+                        <option value="normal">NORMAL</option>
+                        <option value="center">Center</option>
+                        <option value="start">Start</option>
+                        <option value="self-start">End</option>
+                        <option value="flex-start">Flex-Start</option>
+                        <option value="flex-end">Flex-End</option>
+                        <option value="stretch">Stretch</option>
+                        <option value="space-between">Space-Between</option>
+                        <option value="stretch">Stretch</option>
+                        <option value="space-evenly">Space-Evenly</option>
+                        <option value="baseline">Baseline</option>
+                        <option value="first baseline">First Baseline</option>
+                        <option value="last baseline">Last Baseline</option>
+                        <option value="safe center">Safe Center</option>
+                        <option value="unsafe center">Unsafe Center</option>
+                        <option value="inherit">Inherit</option>
+                        <option value="initial">Initial</option>
+                        <option value="revert">Revert</option>
+                        <option value="unset">Unset</option>
+                      </select>
+                    </div>
+                    <!-- Overflow property -->
+                    <div class="input-field">
+                      <label for="overflow" class="setting-label">Overflow:</label>
+                      <select name="overflow" class="setting-item" id="overflowType">
+                        <option value="auto">AUTO</option>
+                        <option value="visible">Visible</option>
+                        <option value="hidden">Hidden</option>
+                        <option value="scroll">Scroll</option>
+                      </select>
+                    </div>
+                    <!-- Gap -->
+                    <div class="input-field">
+                <label for="gap" class="setting-label">Gap:</label>
+                <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
+
+                    </div>
+                </div>
+                <div class="item-row">
+                  <div class="input-field">                 
+                     <label for="howMany" class="setting-label">How Many Items?</label>
+                    <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
+                </div>
+                </div>
             </li>
             <!-- Flex Items Panel -->
             <li class="panel" id="panel-flex-items">
@@ -268,7 +269,7 @@
           </ul>
         </div>
       </div>
-
+      <!-- DEVICE LAYOUT -->
       <div class="layout device-outline">
         <header class="device-header">
           <nav class="device-nav">
@@ -323,7 +324,14 @@
     </div>
   </body>
 
+                <!-- How Many Items -->
+                <li class="input-field">
+                </li>
 
 
+                               <!-- BUTTON SET -->
+                               <li class="button-set" id="flex-container-buttons">
+                                <button class="button" type="button" name="Reset" id="flex-container-defaults-button">Defaults</button>
+                              </li>
             
 </html>

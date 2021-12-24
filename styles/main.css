@@ -269,20 +269,28 @@ pre {
   align-items: baseline;
 } */
 
-#panel-flex-items{
+#panel-flex-items,
+#panel-flex-container{
+ 
   flex-direction:column;
 }
 
 .input-field{
   /* border:2px solid yellow; */
   text-align: center;
+  flex-grow:1;
 }
 
 
 #flexBasis,
-#alignSelf{
-  min-width:9rem;
-  /* margin-right:5px; */
+#alignSelf,
+#flexWrap,
+#justifyContent,
+#alignItems,
+#alignContent, 
+#overflowType{
+  min-width:9rem; 
+   /* margin-right:5px; */
 }
 
 
@@ -295,6 +303,7 @@ pre {
   text-align: center;
   height: 1.7rem;
   box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.39);
+  width:100%;
 }
 
 .item-row{
@@ -316,10 +325,10 @@ pre {
 .input-field .setting-item {
   /* flex-grow: 1; */
   /* border:1px solid red; */
-  max-width:4rem;
+  /* max-width:4rem; */
 }
 
-li.input-field > label {
+.input-field > label {
   /* border:1px solid red; */
 
   font-weight: bold;
