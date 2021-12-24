@@ -176,7 +176,7 @@ pre {
 .device-outline {
   margin-top: 6px;
   box-sizing: content-box;
-  border: 15px solid hsl(0, 10%, 18%);
+  border: 15px solid hsl(0, 5%, 16%);
   border-radius: 20px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
@@ -331,7 +331,8 @@ li.input-field > label {
 
 .device-header {
   height: 2rem;
-  background-color: hsl(220, 20%, 74%);
+  /* background-color: hsl(220, 20%, 74%); */
+  background-color: black;
 }
 
 .device-nav {
@@ -347,14 +348,17 @@ li.input-field > label {
 
 #select-device-menu {
   background: none;
+  /* color: var(--tab-font-color); */
+  color:var(--header-font-color);
+
   outline: none;
   text-align: left;
-  color: var(--tab-font-color);
   border: none;
   font-size: 1.3rem;
   font-family: inherit;
   font-weight: bold;
   flex-grow: 1;
+  margin-right:0.8rem;
   /* width:8rem; */
   max-width: 15rem;
   /* max-width:10rem; */
@@ -364,7 +368,8 @@ li.input-field > label {
 .layout-dimensions {
   font-size: 1rem;
   font-family: inherit;
-  color: var(--tab-font-color);
+  /* color: var(--tab-font-color); */
+  color:var(--header-font-color);
   margin-left: 10px;
   flex-grow:4;
 }

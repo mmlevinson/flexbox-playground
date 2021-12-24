@@ -11,13 +11,13 @@
 .flex-item .flex-item-number {
   position: absolute;
   text-align: center;
-  border: 1px solid rgba(255, 0, 0, 0.5);
+  border: 1px solid rgba(255, 0, 0, 0.7);
   border-radius: 50% 0 50% 50%;
   top: 0;
   left: calc(100% - 1.2rem);
   width: 1.2rem;
   height: 1.2rem;
-  background-color: pink;
+  background-color: hsl(350, 50%, 88%);
   color: rgba(0, 0, 255, 0.564);
 }
 
@@ -42,7 +42,7 @@
 /* Block Level element assigned by browser, so it takes up full
 width even if we did not explicitly assign a width */
 .layout{
-  resize: both;
+  /* resize: both; */
   margin-right:8px;
   background-color: var(--panel-background-color);
 }

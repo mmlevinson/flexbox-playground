@@ -404,7 +404,7 @@ function onResize(element, callback) {
 function setUpDimensionWatcher() {
   const layoutDimensions = document.querySelector('.layout-dimensions');
   onResize(elements.flexContainer.landscape, () => {
-    const summary = `${elements.flexContainer.landscape.offsetWidth} px x ${elements.flexContainer.landscape.offsetHeight}px`;
+    const summary = `${elements.flexContainer.landscape.offsetWidth} px x ${elements.flexContainer.landscape.offsetHeight} px`;
     layoutDimensions.textContent = summary;
     updateDeviceOutlineSize({
       width: elements.flexContainer.landscape.width,
