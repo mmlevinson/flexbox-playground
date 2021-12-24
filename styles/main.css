@@ -176,8 +176,8 @@ pre {
 .device-outline {
   margin-top: 6px;
   box-sizing: content-box;
-  border: 15px solid hsl(0, 5%, 16%);
-  border-radius: 20px;
+  border: 14px solid hsl(0, 5%, 16%);
+  border-radius: 14px;
   box-shadow: 5px 6px 4px 0px rgba(0, 0, 0, 0.33);
 }
 
