@@ -28,15 +28,17 @@
       <!-- TAB PANEL -->
       <div class="tab-panel">
         <div class="tab-bar">
-          <span class="tab active-tab" id="tab-flex-container">Flex Container</span>
-          <span class="tab" id="tab-flex-items">Flex Items</span>
+          <span class="tab active-tab" id="tab-flex-container">Settings</span>
           <span class="tab" id="tab-custom-CSS">Custom CSS</span>
           <span class="tab" id="tab-css-output">CSS Result</span>
         </div>
         <div class="tab-panel-contents" id="settings-panel">
           <ul class="panel-list">
-            <!-- Flex Container Panel -->
             <li class="panel" id="panel-flex-container">
+              <div class="settings-title flex-container">
+                <span>Flex Container</span>
+                <span>Defaults</span>
+              </div>
                 <div class="item-row">
                   <!-- Display Type -->
                   <div class="input-field">
@@ -165,17 +167,29 @@
 
                     </div>
                 </div>
-                <div class="item-row">
-                  <!-- How Many Items -->
-                  <div class="input-field">                 
-                     <label for="howMany" class="setting-label">How Many Items?</label>
+                <div class="settings-title flex-container">
+                  <span>Flex Items
                     <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
+                  </span>
+                  <span>Apply</span>
+                  <span>Undo</span>
+                  <span>Defaults</span>
                 </div>
-                <div class="input-field">
-                  <!-- Which Items -->
-                  <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
-                  <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
-                </div>
+                <div class="item-row">
+                  <div class="item-buttons">
+                    <span class="item-number">1</span>
+                    <span class="item-number">2</span>
+                    <span class="item-number">3</span>
+                    <span class="item-number">4</span>
+                    <span class="item-number">5</span>
+                    <span class="item-number">6</span>
+                    <span class="item-number">7</span>
+                    <span class="item-number">8</span>
+                    <span class="item-number">9</span>
+                    <span class="item-number">10</span>
+                    <span class="item-number">11</span>
+                    <span class="item-number">12</span>
+                  </div>
                 </div>
                 <div class="item-row">
                   <div class="input-field">
@@ -243,16 +257,8 @@
                   <!-- Flex-Item Text -->
                   <textarea id="flex-item-text" cols="25" rows="4" placeholder="flex-item text"></textarea>
                 </div>
-                <div class="item-row">
-                  <li class="button-set" id="flex-item-buttons">
-                    <button class="button" type="button" name="Defaults">Defaults</button>
-                    <button class="button" type="button" name="Apply">Apply</button>
-                </li>
-  
             </li>
-            <!-- Flex Items Panel -->
-            <li class="panel" id="panel-flex-items">
-            </li>
+
             <!-- Custom CSS-->
             <li id="panel-custom-CSS">
               <textarea class="id" id="custom-css-text" rows="8"> </textarea>
@@ -327,11 +333,10 @@
                 <!-- How Many Items -->
                 <li class="input-field">
                 </li>
+                  <!-- Which Items -->
+                  <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
+                  <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
 
 
-                               <!-- BUTTON SET -->
-                               <li class="button-set" id="flex-container-buttons">
-                                <button class="button" type="button" name="Reset" id="flex-container-defaults-button">Defaults</button>
-                              </li>
             
 </html>

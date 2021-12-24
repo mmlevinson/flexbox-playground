@@ -200,9 +200,9 @@ function setUpButtonListeners() {
   }
 
   //FlexContainer Restore Defaults
-  elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
-    flexContainerDefaults();
-  });
+  // elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
+  //   flexContainerDefaults();
+  // });
 
   // elements.flexItems.buttons.restoreDefaults.addEventListener('click', (event) => {
   //   flexItemDefaults();

@@ -271,8 +271,13 @@ pre {
 
 #panel-flex-items,
 #panel-flex-container{
- 
   flex-direction:column;
+}
+
+.settings-title{
+  display:flex;
+  justify-content: space-between;
+  width:100%;
 }
 
 .input-field{
@@ -317,17 +322,6 @@ pre {
   margin:0.6rem 0px;
 }
 
-
-/* .input-field:first-of-type {
-  padding-top: 1.2rem;
-} */
-
-.input-field .setting-item {
-  /* flex-grow: 1; */
-  /* border:1px solid red; */
-  /* max-width:4rem; */
-}
-
 .input-field > label {
   /* border:1px solid red; */
 
@@ -336,11 +330,29 @@ pre {
   margin-left: 4px;
 }
 
+.item-buttons{
+  justify-content: space-around;
+}
+
+
+.item-number{
+  text-align: center;
+  vertical-align:center;
+  border: 1px solid rgba(255, 0, 0, 0.7);
+  border-radius: 50%;
+  padding:3px;
+
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: hsl(350, 50%, 88%);
+  color: rgba(0, 0, 255, 0.564);
+}
+
 #flex-item-text {
   font-weight: bold;
   min-width: 100%;
   padding: 6px;
-  height: calc(var(--panel-height) - 340px);
+  height: calc(var(--panel-height) - 357px);
   background-color: var(--general-text-background-color);
 }
 #custom-css-text,
