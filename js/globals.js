@@ -50,6 +50,7 @@ const elements = {
     whichItems: document.getElementById('whichItems'),
     buttons: {
       list: document.getElementById('flex-item-buttons'),
+      items: document.querySelector('.item-buttons'),
     },
   },
   additionalCSS: {

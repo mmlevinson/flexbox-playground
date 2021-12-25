@@ -1,15 +1,14 @@
 import { validateDimensions, validateHowManyItems } from './js/validate.js';
 import { LoremIpsum } from './js/classes.js';
-import { clearFlexContainers, toCamelCase } from './js/helpers.js';
+import { clearAllChildren, toCamelCase } from './js/helpers.js';
 import { elements, state, defaults } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
 import { devices } from './data/devices.js';
 
 let FLEX_ITEM_COUNT;
-let WHICH_FLEX_ITEMS = []; //any flex-items settings apply to these children
+let WHICH_FLEX_ITEMS = new Set(); //any flex-items settings apply to these children
 let customCSSDirty = false; //set this once user makes any changes
-let orientationLandscape = true; //used to decide which rotation angle
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -78,6 +77,10 @@ function switchTab(identifier) {
 }
 
 function setUpFlexItems(newValue) {
+  //CACHE CONTENT OF EXISTING FLEX ITEMS BEFORE
+  //  creating new ones, so prior work not lost
+  //  then restore content when finished
+
   function newFlexItem(index) {
     /* factory method */
     const newDiv = document.createElement('div');
@@ -85,19 +88,40 @@ function setUpFlexItems(newValue) {
     newDiv.classList.add('flex-item');
     newDiv.id = `item__${index}`;
     const span = document.createElement('span');
+    //RESTORE CACHED CONTENT?
     span.textContent = `${index + 1}`;
     span.classList.add('flex-item-number');
     newDiv.appendChild(span);
     return newDiv;
   }
 
+  function newItemNumber(index) {
+    let newSpan = document.createElement('span');
+    newSpan.classList.add('item-number');
+    newSpan.textContent = (index + 1).toString(); 
+    newSpan.addEventListener('click', (event) => {
+     console.log(`event`, event);
+      event.target.classList.toggle('active');
+      if (event.target.classList.value.includes('active')) {
+        //add this to the WHICH_FLEX_ITEMS array
+        WHICH_FLEX_ITEMS.add(index);
+      } else {
+        WHICH_FLEX_ITEMS.delete(index);
+      }
+    })
+    return newSpan;
+  }
+
   if (!validateHowManyItems(newValue)) return;
-  clearFlexContainers(elements.flexContainer.landscape);
+  clearAllChildren(elements.flexContainer.landscape);
+  clearAllChildren(elements.flexItems.buttons.items);
 
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+    //create a new div.flex-item in the parent flex-container
     elements.flexContainer.landscape.append(newFlexItem(index));
-    // elements.flexContainer.portrait.append(newFlexItem(index));
+    //create a new button representing this item in the settings panel
+    elements.flexItems.buttons.items.append(newItemNumber(index));
   }
   //update our references to all the flex-items so we can change
   //their content using the Apply button
@@ -187,6 +211,21 @@ function setUpMenuListeners() {
   });
 }
 
+function setUpItemButtons() {
+  //create <span.item-number>digit</span> for each FLEX_ITEM_COUNT
+  //remove all children
+  while (elements.flexItems.buttons.items.lastChild) {
+    elements.flexItems.buttons.items.removeChild(elements.flexItems.buttons.items.lastChild);
+}
+  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+    let newSpan = document.createElement('span');
+    newSpan.classList.add('item-number');
+    newSpan.textContent = index.toString();
+    elements.flexItems.buttons.items.appendChild(newSpan);
+  }
+  
+}
+
 function setUpButtonListeners() {
   //    Main Nav Menu buttons
   elements.navigation.reset.addEventListener('click', () => {
@@ -198,6 +237,10 @@ function setUpButtonListeners() {
       switchTab(event.srcElement.id);
     });
   }
+
+  setUpItemButtons();
+
+  
 
   //FlexContainer Restore Defaults
   // elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
@@ -307,18 +350,18 @@ function updateAllFlexItems(event) {
 /* whichItems is a field that takes a space-delimited array of numbers
 which tells us which FlexItems to be modified by the Apply button.  This allows
 the user to set individual properties for each FlexItem */
-import { isValidIndex } from './js/validate.js';
-function parseWhichItems() {
-  WHICH_FLEX_ITEMS = []; //reset
-  const userEntry = elements.flexItems.whichItems.value;
-  let choices = userEntry.trim().split(' ');
-  choices.forEach((choice) => {
-    if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
-      WHICH_FLEX_ITEMS.push(+choice); //output a Number
-    }
-  });
-  //   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
-}
+// import { isValidIndex } from './js/validate.js';
+// function parseWhichItems() {
+//   WHICH_FLEX_ITEMS = []; //reset
+//   const userEntry = elements.flexItems.whichItems.value;
+//   let choices = userEntry.trim().split(' ');
+//   choices.forEach((choice) => {
+//     if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
+//       WHICH_FLEX_ITEMS.push(+choice); //output a Number
+//     }
+//   });
+//   //   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
+// }
 
 function setDefault(container, key) {
   //   console.log(`defaults`, defaults);
