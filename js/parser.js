@@ -1,5 +1,5 @@
 import { defaults } from './globals.js';
-import {chop} from './helpers.js'
+import {chop, clip} from './helpers.js'
 
 class Element {
   level = 0;
@@ -87,13 +87,24 @@ class Parser {
     let styles = new RegExp(/(<.*>)/, 'gi');
     let stylesBlock = line.match(styles);  //array or null
     if (stylesBlock) {
-      console.log(`stylesBlock`, stylesBlock);
+      // console.log(`stylesBlock`, stylesBlock);
+    
       let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
       let pairs = stylesBlock[0].match(kvPairRegEx);
-      console.log(`pairs`, pairs);
+      // console.log(`pairs`, pairs);
       return pairs
     }
     return [];
+  }
+
+  getContent(line) {
+    if (!line) return "";  //guard, if empty string
+    const contentRegEx = new RegExp(/(`.*`)/, 'gi')
+    const content = line.match(contentRegEx);
+    if (content) {
+      return content[0];
+    }
+    return "";
   }
 
   getElementFromWord(word) {
@@ -183,8 +194,8 @@ class Parser {
       let newElement = this.spawnElement(firstWord); //this is the tag, id, classList parsed
       newElement.styles = this.getStyles(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
-      newElement.textContent = this.lines[i].match(/`.*`/);
-      // console.log(`newElement`, newElement);
+      newElement.textContent = clip(this.getContent(this.lines[i]));
+      console.log(`newElement`, newElement);
     }
   }
 }

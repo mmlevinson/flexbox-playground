@@ -16,6 +16,12 @@ function chop(text, numChars, fromEnd = true) {
   return text.substring(numChars); //start at numChars, return all remaining chars
 }
 
+function clip(text, numChars = 1) {
+  //start at numChars, end at -numChars
+  //substring treats negative indices as zero
+  return text.substring(numChars, text.length-numChars);
+}
+
 function toCamelCase(source) {
   //so far only one level of conversion, not iterating
   let words = source.split('-');
@@ -312,4 +318,4 @@ class LoremIpsum {
   }
 }
 
-export { clearAllChildren, chop, toCamelCase, LoremIpsum };
+export { clearAllChildren, chop, clip, toCamelCase, LoremIpsum };
