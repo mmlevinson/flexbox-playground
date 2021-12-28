@@ -71,8 +71,13 @@ class Parser {
     if (!line) return;  //guard, if empty string
     //use regex to pull out the attributes block
     let attributes = new RegExp(/({.*})/, 'gi');
-    const attrBlock = line.match(attributes);
-    console.log(`attrBlock`, attrBlock);
+    let attrBlock = line.match(attributes);
+    if (attrBlock) {
+      console.log(`attrBlock`, attrBlock);
+      let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
+      let pairs = attrBlock[0].match(kvPairRegEx);
+      console.log(`pairs`, pairs);
+    }
   }
 
   getElementFromWord(word) {
