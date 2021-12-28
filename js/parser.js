@@ -68,16 +68,32 @@ class Parser {
   }
 
   getAttributes(line) {
-    if (!line) return;  //guard, if empty string
+    if (!line) return [];  //guard, if empty string
     //use regex to pull out the attributes block
     let attributes = new RegExp(/({.*})/, 'gi');
-    let attrBlock = line.match(attributes);
+    let attrBlock = line.match(attributes);  //array or null
     if (attrBlock) {
-      console.log(`attrBlock`, attrBlock);
+      // console.log(`attrBlock`, attrBlock);
       let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
       let pairs = attrBlock[0].match(kvPairRegEx);
-      console.log(`pairs`, pairs);
+      // console.log(`pairs`, pairs);
+      return pairs
     }
+    return [];
+  }
+
+  getStyles(line) {
+    if (!line) return [];  //guard, if empty string
+    let styles = new RegExp(/(<.*>)/, 'gi');
+    let stylesBlock = line.match(styles);  //array or null
+    if (stylesBlock) {
+      console.log(`stylesBlock`, stylesBlock);
+      let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
+      let pairs = stylesBlock[0].match(kvPairRegEx);
+      console.log(`pairs`, pairs);
+      return pairs
+    }
+    return [];
   }
 
   getElementFromWord(word) {
@@ -165,7 +181,7 @@ class Parser {
       let firstWord = this.lines[i].split(' ')[0];
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
       let newElement = this.spawnElement(firstWord); //this is the tag, id, classList parsed
-      newElement.styles = this.lines[i].match(/(<.*>)/);
+      newElement.styles = this.getStyles(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
       newElement.textContent = this.lines[i].match(/`.*`/);
       // console.log(`newElement`, newElement);
