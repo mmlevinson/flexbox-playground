@@ -1,4 +1,5 @@
 import { defaults } from './globals.js';
+import {chop} from './helpers.js'
 
 class Element {
   level = 0;
@@ -13,8 +14,6 @@ class Element {
     this.tag = tagName.toLowerCase(); //browser convention outputs UPPERCASE
   }
 }
-
-
 
 /* .card
 -#first-card.card
@@ -34,9 +33,13 @@ class Parser {
   static beginsWithNotALetter = '^[^a-zA-Z]';
   static beginsWithDotHash = '^[#.]';
   static tagRegEx = '^([^#.]*)';
+  static bracketedStylesRegEx = '(<.*>)';
+  static bracketedAttributesRegEx = '({.*})';
+  static tickDelimitedTextContent = `.*`;
 
   lines = [];
   levels = [];
+  elements = [];
 
   constructor() {}
 
@@ -46,6 +49,7 @@ class Parser {
     this.lines = rawText.replaceAll('\r\n', '\n').trim().split('\n');
     this.getLineIndents();
     this.breakWords();
+    // console.log(`this.elements`, this.elements);
     return result;
   }
 
@@ -55,6 +59,11 @@ class Parser {
       let matches = line.match(/^[-]+/);
       return matches === null ? 0 : matches[0].length;
     });
+  }
+
+  getLevel(firstWord) {
+    let matches = firstWord.match(/^[-]+/);
+    return matches === null ? 0 : matches[0].length;
   }
 
   getElementFromWord(word) {
@@ -82,7 +91,7 @@ class Parser {
     } else if (dotPosition >= 0) {
       //case 3
       result.tagName = word.slice(0, dotPosition);
-      result.classList = word.slice(dotPosition + 1).replaceAll('.', ' '); 
+      result.classList = word.slice(dotPosition + 1).replaceAll('.', ' ');
     }
     const newElement = new Element(result.tagName);
     newElement.id = result.id;
@@ -90,31 +99,43 @@ class Parser {
     return newElement;
   }
 
-  spawnElement(word) {
-      let newElement = null;
-      const hashPosition = word.indexOf('#');
-      const dotPosition = word.indexOf('.');
-      if (hashPosition === 0) {  //shorthand for 'div'
-          //1 #id
-          //2 #id.classList
-          newElement = new Element('div');
-          if (dotPosition >= 0) {
-              //case 2
-            newElement.classList = word.slice(dotPosition + 1);
-            newElement.id = word.slice(1, dotPosition);
-          } else {
-              //case 1
-              newElement.id = word.slice(1); //returns all but first char
-          }
-      } else if (dotPosition === 0) {
-          // .classList
-          newElement = new Element('div');
-          newElement.classes = word.slice(1);
+  spawnElement(firstWord) {
+    //guard
+    if (!firstWord) { //empty string or null ... returns null
+      return null;
+    }
+    let newElement = null;
+    let level = this.getLevel(firstWord);
+    //now remove the preceeding dashes
+    let word = firstWord;
+    if (level > 0) {
+      word = chop(firstWord, level, false);  //from the front
+    }
+    const hashPosition = word.indexOf('#');
+    const dotPosition = word.indexOf('.');
+    if (hashPosition === 0) {
+      //shorthand for 'div'
+      //1 #id
+      //2 #id.classList
+      newElement = new Element('div');
+      if (dotPosition >= 0) {
+        //case 2
+        newElement.classList = word.slice(dotPosition + 1);
+        newElement.id = word.slice(1, dotPosition);
       } else {
-          newElement = this.getElementFromWord(word);
+        //case 1
+        newElement.id = word.slice(1); //returns all but first char
       }
-      console.log(`newElement`, newElement);
-      return newElement;
+    } else if (dotPosition === 0) {
+      // .classList
+      newElement = new Element('div');
+      newElement.classes = word.slice(1);
+    } else {
+      newElement = this.getElementFromWord(word);
+    }
+    newElement.level = level;
+    // console.log(`newElement`, newElement);
+    return newElement;
   }
 
   breakWords() {
@@ -125,8 +146,15 @@ class Parser {
 
     for (let i = 0; i < this.lines.length; i++) {
       //strip off the levels, break on space char
-      let words = this.lines[i].replaceAll('-', '').split(' ');
-      this.spawnElement(words[0]); //this is the tag, id, classList parsed
+      // let words = this.lines[i].replaceAll('-', '').split(' ');
+      // let words = this.lines[i].split(' ');
+      let firstWord = this.lines[i].split(' ')[0];
+      // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
+      let newElement = this.spawnElement(firstWord); //this is the tag, id, classList parsed
+      newElement.styles = this.lines[i].match(/(<.*>)/);
+      newElement.attributes = this.lines[i].match(/({.*})/);
+      newElement.textContent = this.lines[i].match(/`.*`/);
+      console.log(`newElement`, newElement);
     }
   }
 }
