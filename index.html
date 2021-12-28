@@ -77,6 +77,32 @@
                   </div>
                 </div>
                 <div class="item-row">
+                  <!-- Align Content -->
+                  <div class="input-field">
+                    <label for="alignContent" class="setting-label">Align-Content:</label>
+                    <select name="alignContent" class="setting-item" id="alignContent" disabled>
+                      <option value="normal">NORMAL</option>
+                      <option value="center">Center</option>
+                      <option value="start">Start</option>
+                      <option value="self-start">End</option>
+                      <option value="flex-start">Flex-Start</option>
+                      <option value="flex-end">Flex-End</option>
+                      <option value="stretch">Stretch</option>
+                      <option value="space-between">Space-Between</option>
+                      <option value="stretch">Stretch</option>
+                      <option value="space-evenly">Space-Evenly</option>
+                      <option value="baseline">Baseline</option>
+                      <option value="first baseline">First Baseline</option>
+                      <option value="last baseline">Last Baseline</option>
+                      <option value="safe center">Safe Center</option>
+                      <option value="unsafe center">Unsafe Center</option>
+                      <option value="inherit">Inherit</option>
+                      <option value="initial">Initial</option>
+                      <option value="revert">Revert</option>
+                      <option value="unset">Unset</option>
+                    </select>
+                  </div>
+                
                   <!-- Justify Content -->
                   <div class="input-field">
                     <label for="justifyContent" class="setting-label">Justify-Content</label>
@@ -100,6 +126,8 @@
                       <option value="unset">Unset</option>
                     </select>                  
                   </div>
+                </div>
+                <div class="item-row">
                   <!-- Align Items -->
                   <div class="input-field">
                   <label for="alignItems" class="setting-label">Align-Items</label>
@@ -123,33 +151,6 @@
                     <option value="unset">Unset</option>
                   </select>
                   </div>
-                </div>
-                <div class="item-row">
-                  <!-- Align Content -->
-                    <div class="input-field">
-                      <label for="alignContent" class="setting-label">Align-Content:</label>
-                      <select name="alignContent" class="setting-item" id="alignContent" disabled>
-                        <option value="normal">NORMAL</option>
-                        <option value="center">Center</option>
-                        <option value="start">Start</option>
-                        <option value="self-start">End</option>
-                        <option value="flex-start">Flex-Start</option>
-                        <option value="flex-end">Flex-End</option>
-                        <option value="stretch">Stretch</option>
-                        <option value="space-between">Space-Between</option>
-                        <option value="stretch">Stretch</option>
-                        <option value="space-evenly">Space-Evenly</option>
-                        <option value="baseline">Baseline</option>
-                        <option value="first baseline">First Baseline</option>
-                        <option value="last baseline">Last Baseline</option>
-                        <option value="safe center">Safe Center</option>
-                        <option value="unsafe center">Unsafe Center</option>
-                        <option value="inherit">Inherit</option>
-                        <option value="initial">Initial</option>
-                        <option value="revert">Revert</option>
-                        <option value="unset">Unset</option>
-                      </select>
-                    </div>
                     <!-- Overflow property -->
                     <div class="input-field">
                       <label for="overflow" class="setting-label">Overflow:</label>
@@ -171,16 +172,15 @@
                   <span>Flex Items
                     <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
                   </span>
-                  <span class="action-button">Apply</span>
-                  <span class="action-button">Undo</span>
-                  <span class="action-button">Defaults</span>
+                  <!-- Flex Item Buttons -->
+                  <span class="action-button flex-items-apply">Apply</span>
+                  <span class="action-button flex-items-undo">Undo</span>
+                  <span class="action-button flex-items-defaults">Defaults</span>
                 </div>
-                <div class="item-row item-buttons">
-                  <!-- Item Buttons -->
-                  <span class="item-number">1</span>
-                  <span class="item-number active">2</span>
-                  <span class="item-number">3</span>
-                  <span class="item-number">4</span>
+                <div class="item-row">
+                  <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
+                  <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
+
 
                 </div>
                 <div class="item-row">
@@ -321,13 +321,6 @@
       </div>
     </div>
   </body>
-
-                <!-- How Many Items -->
-                <li class="input-field">
-                </li>
-                  <!-- Which Items -->
-                  <label for="whichItems" class="setting-label flex-basis">Apply to Items:</label>
-                  <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
 
 
             

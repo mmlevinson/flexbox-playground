@@ -95,33 +95,13 @@ function setUpFlexItems(newValue) {
     return newDiv;
   }
 
-  function newItemNumber(index) {
-    let newSpan = document.createElement('span');
-    newSpan.classList.add('item-number');
-    newSpan.textContent = (index + 1).toString(); 
-    newSpan.addEventListener('click', (event) => {
-     console.log(`event`, event);
-      event.target.classList.toggle('active');
-      if (event.target.classList.value.includes('active')) {
-        //add this to the WHICH_FLEX_ITEMS array
-        WHICH_FLEX_ITEMS.add(index);
-      } else {
-        WHICH_FLEX_ITEMS.delete(index);
-      }
-    })
-    return newSpan;
-  }
-
   if (!validateHowManyItems(newValue)) return;
   clearAllChildren(elements.flexContainer.landscape);
-  clearAllChildren(elements.flexItems.buttons.items);
 
   FLEX_ITEM_COUNT = +newValue; //coerce any user input value to a numeric
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     //create a new div.flex-item in the parent flex-container
     elements.flexContainer.landscape.append(newFlexItem(index));
-    //create a new button representing this item in the settings panel
-    elements.flexItems.buttons.items.append(newItemNumber(index));
   }
   //update our references to all the flex-items so we can change
   //their content using the Apply button
@@ -211,20 +191,20 @@ function setUpMenuListeners() {
   });
 }
 
-function setUpItemButtons() {
-  //create <span.item-number>digit</span> for each FLEX_ITEM_COUNT
-  //remove all children
-  while (elements.flexItems.buttons.items.lastChild) {
-    elements.flexItems.buttons.items.removeChild(elements.flexItems.buttons.items.lastChild);
-}
-  for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
-    let newSpan = document.createElement('span');
-    newSpan.classList.add('item-number');
-    newSpan.textContent = index.toString();
-    elements.flexItems.buttons.items.appendChild(newSpan);
-  }
+// function setUpItemButtons() {
+//   //create <span.item-number>digit</span> for each FLEX_ITEM_COUNT
+//   //remove all children
+//   while (elements.flexItems.buttons.items.lastChild) {
+//     elements.flexItems.buttons.items.removeChild(elements.flexItems.buttons.items.lastChild);
+// }
+//   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
+//     let newSpan = document.createElement('span');
+//     newSpan.classList.add('item-number');
+//     newSpan.textContent = index.toString();
+//     elements.flexItems.buttons.items.appendChild(newSpan);
+//   }
   
-}
+// }
 
 function setUpButtonListeners() {
   //    Main Nav Menu buttons
@@ -238,7 +218,7 @@ function setUpButtonListeners() {
     });
   }
 
-  setUpItemButtons();
+  // setUpItemButtons();
 
   
 
@@ -252,10 +232,10 @@ function setUpButtonListeners() {
   //   updateAllFlexItems(event);
   // });
 
-  //the FlexItem Apply button
-  // elements.flexItems.buttons.apply.addEventListener('click', (event) => {
-  //   updateAllFlexItems(event);
-  // });
+  // the FlexItem Apply button
+  elements.flexItems.buttons.apply.addEventListener('click', (event) => {
+    updateAllFlexItems(event);
+  });
 
   //AdditionalCSS Apply Button
   elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
@@ -314,7 +294,7 @@ function updateFlexItemText() {
   //TESTING
   const parser = new Parser();
   parser.parse(itemText);
-  //is this LoremXX?
+  // is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {
     //returns 0 if not begins with 'lorem'
@@ -350,18 +330,19 @@ function updateAllFlexItems(event) {
 /* whichItems is a field that takes a space-delimited array of numbers
 which tells us which FlexItems to be modified by the Apply button.  This allows
 the user to set individual properties for each FlexItem */
-// import { isValidIndex } from './js/validate.js';
-// function parseWhichItems() {
-//   WHICH_FLEX_ITEMS = []; //reset
-//   const userEntry = elements.flexItems.whichItems.value;
-//   let choices = userEntry.trim().split(' ');
-//   choices.forEach((choice) => {
-//     if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
-//       WHICH_FLEX_ITEMS.push(+choice); //output a Number
-//     }
-//   });
-//   //   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
-// }
+import { isValidIndex } from './js/validate.js';
+function parseWhichItems() {
+  WHICH_FLEX_ITEMS = []; //reset
+  const userEntry = elements.flexItems.whichItems.value;
+  let choices = userEntry.trim().split(' ');
+  
+  choices.forEach((choice) => {
+    if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
+      WHICH_FLEX_ITEMS.push(+choice); //output a Number
+    }
+  });
+  //   console.log(`WHICH_FLEX_ITEMS`, WHICH_FLEX_ITEMS);
+}
 
 function setDefault(container, key) {
   //   console.log(`defaults`, defaults);
@@ -428,7 +409,7 @@ function switchLayoutSize(dimensions) {
   updateDeviceOutlineSize(dimensions);   //must be separate b/c also called by the observer
 }
 
-function rotateOrientation(event) {
+function rotateOrientation() {
   //just swap width/height of current layout dimensions
   const width = elements.flexContainer.landscape.offsetWidth;
   const height = elements.flexContainer.landscape.offsetHeight;

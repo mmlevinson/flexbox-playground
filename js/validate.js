@@ -10,7 +10,7 @@ function validateDimensions(width, height, landsacape = true) {
 }
 
 const MAX_ITEMS = 12;
-const MIN_ITEMS = 2;
+const MIN_ITEMS = 1;
 function validateHowManyItems(numItems) {
     if (!numItems) {
         return false;  //when delete button or empty field

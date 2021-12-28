@@ -14,6 +14,18 @@ class Element {
   }
 }
 
+
+
+/* .card
+-#first-card.card
+--h3.card.header `lorem25`
+--p.card.contents `lorem50`
+--img#banner.bannerTop.bannerActive <h:250 w:250>  {src:http://www.flashpoint.com/} 
+--label.input-label {name:bob type:number value:bob} `Whatever`
+--input#bobsAge.numericInput {value:40} `40`
+--button#apply {data-tooltip-id:apply} `Apply`
+ */
+
 class Parser {
   static indentLevelRegex = '^[-]+';
   static idRegex = '#[a-zA-Z0-9_]';
