@@ -36,6 +36,7 @@ class Parser {
   static bracketedStylesRegEx = '(<.*>)';
   static bracketedAttributesRegEx = '({.*})';
   static tickDelimitedTextContent = `.*`;
+  static keyValuePairRegEx = '[-A-Za-z0-9_]*:[-A-Za-z0-9_]*';
 
   lines = [];
   levels = [];
@@ -64,6 +65,14 @@ class Parser {
   getLevel(firstWord) {
     let matches = firstWord.match(/^[-]+/);
     return matches === null ? 0 : matches[0].length;
+  }
+
+  getAttributes(line) {
+    if (!line) return;  //guard, if empty string
+    //use regex to pull out the attributes block
+    let attributes = new RegExp(/({.*})/, 'gi');
+    const attrBlock = line.match(attributes);
+    console.log(`attrBlock`, attrBlock);
   }
 
   getElementFromWord(word) {
@@ -152,9 +161,9 @@ class Parser {
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
       let newElement = this.spawnElement(firstWord); //this is the tag, id, classList parsed
       newElement.styles = this.lines[i].match(/(<.*>)/);
-      newElement.attributes = this.lines[i].match(/({.*})/);
+      newElement.attributes = this.getAttributes(this.lines[i]);
       newElement.textContent = this.lines[i].match(/`.*`/);
-      console.log(`newElement`, newElement);
+      // console.log(`newElement`, newElement);
     }
   }
 }
