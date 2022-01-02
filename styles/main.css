@@ -270,36 +270,36 @@ pre {
 } */
 
 #panel-flex-items,
-#panel-flex-container{
-  flex-direction:column;
+#panel-flex-container {
+  display:flex;
+  flex-direction: column;
+  gap:0.3rem;
+ 
 }
 
-.settings-title{
-  display:flex;
+.settings-title {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  width:100%;
+  width: 100%;
 }
-
-.input-field{
-  /* border:2px solid yellow; */
-  text-align: center;
-  flex-grow:1;
-}
-
 
 #flexBasis,
 #alignSelf,
 #flexWrap,
 #justifyContent,
 #alignItems,
-#alignContent, 
-#overflowType{
-  min-width:9rem; 
-   /* margin-right:5px; */
+#alignContent,
+#overflowType {
+  min-width: 9rem;
+  /* margin-right:5px; */
 }
 
-
+.input-field {
+  display: flex;
+  width: 100%;
+  padding:0px 12px;
+}
 
 .input-field select,
 .input-field input {
@@ -309,75 +309,65 @@ pre {
   text-align: center;
   height: 1.7rem;
   box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.39);
-  width:100%;
+  width: 100%;
 }
 
-.item-row{
-  display:flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap:4px;
-  /* border:1px solid green; */
-  /* height:5rem; */
-  width:100%;
-  margin-top: 6px;
+.input-field select {
+  background-color: white;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .input-field > label {
   /* border:1px solid red; */
-
+  flex-grow: 1;
   font-weight: bold;
-  /* min-width: 8rem; */
+  min-width: 8rem;
   margin-left: 4px;
 }
 
-.action-button{
-  border:1px solid gray;
-  padding:4px 0.4rem;
-  border-radius:8px;
-  background-color:hsl(120, 10%, 30%);
-  color:wheat;
-  cursor:pointer;
+.action-button {
+  border: 1px solid gray;
+  padding: 4px 0.4rem;
+  border-radius: 8px;
+  background-color: hsl(120, 10%, 30%);
+  color: wheat;
+  cursor: pointer;
 }
 
-.action-button:hover{
-   background-color: wheat;
-   color:hsl(120, 10%, 30%);
+.action-button:hover {
+  background-color: wheat;
+  color: hsl(120, 10%, 30%);
 }
 
-
-.item-buttons{
-  background-color:  rgb(221, 221, 238);
+.item-buttons {
+  background-color: rgb(221, 221, 238);
   /* flex-grow:1; */
   /* display:flex; */
-  width:100%;
-  height:1.5rem;
+  width: 100%;
+  height: 1.5rem;
   /* align-items:center; */
   justify-content: flex-start;
-  gap:0;
+  gap: 0;
 }
 
 .item-number:hover,
-.item-number.active{
-  cursor:pointer;
-  background-color:blue;
-  color:hsl(350, 50%, 88%);
+.item-number.active {
+  cursor: pointer;
+  background-color: blue;
+  color: hsl(350, 50%, 88%);
 }
 
-
-
-
-
-
-.item-number{
+.item-number {
   text-align: center;
-  vertical-align:top;
+  vertical-align: top;
   border: 1px solid rgba(255, 0, 0, 0.7);
   /* border-radius: 50%; */
-  padding:0.28rem;
+  padding: 0.28rem;
 
   width: 1.5rem;
-  height:1.5rem;
+  height: 1.5rem;
   background-color: hsl(350, 50%, 88%);
   color: rgba(0, 0, 255, 0.564);
 }
@@ -425,7 +415,7 @@ pre {
 .device-nav {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   /* border:1px solid red; */
   width: 100%;
   height: 100%;
@@ -436,7 +426,7 @@ pre {
 #select-device-menu {
   background: none;
   /* color: var(--tab-font-color); */
-  color:var(--header-font-color);
+  color: var(--header-font-color);
 
   outline: none;
   text-align: left;
@@ -445,7 +435,7 @@ pre {
   font-family: inherit;
   font-weight: bold;
   flex-grow: 1;
-  margin-right:0.8rem;
+  margin-right: 0.8rem;
   /* width:8rem; */
   max-width: 15rem;
   /* max-width:10rem; */
@@ -456,16 +446,16 @@ pre {
   font-size: 1rem;
   font-family: inherit;
   /* color: var(--tab-font-color); */
-  color:var(--header-font-color);
+  color: var(--header-font-color);
   margin-left: 10px;
-  flex-grow:4;
+  flex-grow: 4;
 }
-.layout-dimensions::before{
-  content:"( "
+.layout-dimensions::before {
+  content: '( ';
 }
 
-.layout-dimensions::after{
-  content:" )"
+.layout-dimensions::after {
+  content: ' )';
 }
 
 .rotate-arrow {
@@ -486,7 +476,6 @@ pre {
   background-color: hsl(120, 30%, 45%);
 }
 
-.action-button.flex-items-apply{
-  border:1px solid red;
+.action-button.flex-items-apply {
+  border: 1px solid red;
 }
-
