@@ -241,22 +241,12 @@ pre {
   padding-top:0.7rem;
   border-style: solid;
   border-width: 0px 1px 1px 1px;
-  border-color: var(--panel-border-color);
+  /* background: var(--header-background-color); */
   background: var(--panel-background-color);
+  border-color: var(--panel-border-color);
   border-radius: 0 0 6px 6px;
   box-shadow: var(--standard-box-shadow);
 }
-
-/* .tab-panel-contents#layouts-panel {
-  margin-top:2px;
-  width: calc(100vw - 280px);
-} */
-
-/* li.input-field {
-  padding: 6px;
-  display: flex;
-  align-items: baseline;
-} */
 
 #panel-flex-items,
 #panel-flex-container {
@@ -266,8 +256,8 @@ pre {
 }
 
 #panel-flex-container{
-  border:1px solid red;
-  height:40rem;
+  /* border:1px solid red; */
+  height:240px;
 }
 
 /* Tab Panels start with display:none */
@@ -313,6 +303,12 @@ pre {
   margin-left: 4px;
 }
 
+.action-button-set{
+  height:2.5rem;
+  /* margin:0px 1px; */
+  background:var(--header-background-color);
+}
+
 .action-button {
   border: 1px solid gray;
   padding: 4px 0.4rem;
@@ -323,7 +319,7 @@ pre {
 }
 
 .action-button:first-of-type{
-  margin-left:8px;`
+  margin-left:8px;
 }
 
 .action-button:hover {
@@ -331,11 +327,6 @@ pre {
   color: hsl(120, 10%, 30%);
 }
 
-.action-button.flex-container-defaults{
-  border:1px solid red;
-position:relative;
-top: 100%;
-}
 
 #whichItems{
   max-width:6rem;

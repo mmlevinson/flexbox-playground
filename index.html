@@ -36,6 +36,7 @@
         <div class="tab-panel-contents">
           <!-- FLEX CONTAINER -->
           <div class="panel" id="panel-flex-container">
+            <!-- Display Type -->
             <div class="input-field">
               <label for="display" class="setting-label">Display</label>
               <select name="display" class="setting-item tool-tip" id="displayType">
@@ -65,9 +66,6 @@
                 <option value="wrap-reverse">Wrap-Reverse</option>
                 <option value="column-reverse">Column-Reverse</option>
                 <option value="inherit">Inherit</option>
-                <option value="initial">Initial</option>
-                <option value="revert">Revert</option>
-                <option value="unset">Unset</option>
               </select>
             </div>
             <!-- Justify Content -->
@@ -87,10 +85,6 @@
                 <option value="space-evenly">Space-Evenly</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
-                <option value="inherit">Inherit</option>
-                <option value="initial">Initial</option>
-                <option value="revert">Revert</option>
-                <option value="unset">Unset</option>
               </select>
             </div>
             <!-- Align Content -->
@@ -112,10 +106,6 @@
                 <option value="last baseline">Last Baseline</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
-                <option value="inherit">Inherit</option>
-                <option value="initial">Initial</option>
-                <option value="revert">Revert</option>
-                <option value="unset">Unset</option>
               </select>
             </div>
             <!-- Align Items -->
@@ -135,10 +125,6 @@
                 <option value="last baseline">Last Baseline</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
-                <option value="inherit">Inherit</option>
-                <option value="initial">Initial</option>
-                <option value="revert">Revert</option>
-                <option value="unset">Unset</option>
               </select>
             </div>
             <!-- Overflow property -->
@@ -156,6 +142,9 @@
               <label for="gap" class="setting-label">Gap:</label>
               <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
             </div>
+          </div>
+          <div class="action-button-set" id="flex-container-buttons">
+            <button class="action-button" type="button" id="flex-container-defaults-button">Restore Defaults</button>
           </div>
           <!-- FLEX ITEMS -->
           <div class="panel" id="panel-flex-items">
