@@ -196,6 +196,7 @@ pre {
 
 .tab-bar {
   display: flex; /* took away all spacing between tabs !! */
+  
 }
 
 .tab {
@@ -209,14 +210,16 @@ pre {
   margin: 0;
   padding: 2px 5px;
   border-radius: 6px 6px 0 0;
+  box-shadow: var(--standard-box-shadow);
+  
 }
 
-.tab-bar.layouts .tab:first-of-type {
+/* .tab-bar.layouts .tab:first-of-type {
   border-radius: 6px 6px 0 6px;
 }
 .tab-bar.layouts .tab:last-of-type {
   border-radius: 6px 6px 6px 0;
-}
+} */
 
 .tab:hover {
   cursor: pointer;
@@ -256,7 +259,7 @@ pre {
 
 #panel-flex-container{
   /* border:1px solid red; */
-  height:270px;    /* to push down the defaults button */
+  height:300px;    /* to push down the defaults button */
 }
 
 /* Tab Panels start with display:none */
@@ -280,7 +283,7 @@ pre {
   display: flex;
   align-items:baseline;
   width: 100%;
-  padding:0px 12px;
+  padding:0px 0.5rem;
 }
 
 
@@ -309,8 +312,10 @@ pre {
 }
 
 .action-button-set{
-  justify-content: flex-end;
 
+  justify-content: space-around;
+  gap:0.5rem;
+/* background:green; */
 }
 
 .action-button {
@@ -322,18 +327,17 @@ pre {
   cursor: pointer;
 }
 
-.action-button:first-of-type{
+/* .action-button:first-of-type{
   margin-left:8px;
-}
+} */
 
 .action-button:hover {
-  background-color: wheat;
-  color: hsl(120, 96%, 79%);
+  background-color: hsl(39, 40%, 75%);
+  color: var(--header-background-color);
 }
 
-#flex-container-defaults-button{
-  flex-shrink:0;
-  min-width:13.5rem;
+.action-button{
+  flex-grow:1;
 }
 
 

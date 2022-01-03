@@ -36,6 +36,12 @@
         <div class="tab-panel-contents">
           <!-- FLEX CONTAINER -->
           <div class="panel" id="panel-flex-container">
+            <!-- Container Class Name -->
+            <div class="input-field">
+              <label for="containerClass">Class Name</label>
+              <input type="text" value=".flex-container" name="containerClass" id="flex-container-class-name" class="setting-item" />
+            </div>
+            <!-- How Many Items -->
             <div class="input-field">
               <label for="howManyItems">How Many Items?</label>
               <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
@@ -77,16 +83,16 @@
               <label for="justifyContent" class="setting-label">Justify-Content</label>
               <select name="justifyContent" class="setting-item" id="justifyContent" disabled>
                 <option value="flex-start">FLEX-START</option>
-                <option value="normal">Normal</option>
+                <option value="flex-end">Flex-End</option>
+                <option value="space-between">Space-Between</option>
+                <option value="space-around">Space-Around</option>
+                <option value="space-evenly">Space-Evenly</option>
                 <option value="center">Center</option>
                 <option value="start">Start</option>
                 <option value="end">End</option>
                 <option value="left">Left</option>
                 <option value="right">Right</option>
-                <option value="flex-end">Flex-End</option>
-                <option value="space-between">Space-Between</option>
-                <option value="space-around">Space-Around</option>
-                <option value="space-evenly">Space-Evenly</option>
+                <option value="normal">Normal</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
               </select>
@@ -96,18 +102,17 @@
               <label for="alignContent" class="setting-label">Align-Content</label>
               <select name="alignContent" class="setting-item" id="alignContent" disabled>
                 <option value="normal">NORMAL</option>
-                <option value="center">Center</option>
-                <option value="start">Start</option>
-                <option value="self-start">End</option>
                 <option value="flex-start">Flex-Start</option>
                 <option value="flex-end">Flex-End</option>
                 <option value="stretch">Stretch</option>
                 <option value="space-between">Space-Between</option>
-                <option value="stretch">Stretch</option>
                 <option value="space-evenly">Space-Evenly</option>
                 <option value="baseline">Baseline</option>
                 <option value="first baseline">First Baseline</option>
                 <option value="last baseline">Last Baseline</option>
+                <option value="start">Start</option>
+                <option value="self-start">End</option>
+                <option value="center">Center</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
               </select>
@@ -146,12 +151,19 @@
               <label for="gap" class="setting-label">Gap</label>
               <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
             </div>
+            <div class="action-button-set" id="flex-container-buttons">
+              <button class="action-button" type="button" id="flex-container-defaults-button">Restore Defaults</button>
+              <button class="action-button" type="button" id="flex-container-apply-class">Apply</button>
+            </div>
           </div>
-          <div class="action-button-set" id="flex-container-buttons">
-            <button class="action-button" type="button" id="flex-container-defaults-button">Restore Defaults</button>
-          </div>
+
           <!-- FLEX ITEMS -->
           <div class="panel" id="panel-flex-items">
+            <!-- Container Class Name -->
+            <div class="input-field">
+              <label for="itemClass">Class Name</label>
+              <input type="text" value=".flex-item" name="itemClass" id="flex-items-class-name" class="setting-item" />
+            </div>
             <!-- Flex Grow -->
             <div class="input-field">
               <label for="flexGrow" class="setting-label">Flex-Grow</label>
@@ -187,10 +199,7 @@
               <label for="alignSelf" class="setting-label">Align-Self</label>
               <select name="alignSelf" class="setting-item" id="alignSelf" disabled>
                 <option value="auto">AUTO</option>
-                <option value="normal">Normal</option>
                 <option value="center">Center</option>
-                <option value="start">Start</option>
-                <option value="self-start">End</option>
                 <option value="self-start">Self-Start</option>
                 <option value="self-end">Self-End</option>
                 <option value="flex-start">Flex-Start</option>
@@ -199,12 +208,11 @@
                 <option value="baseline">Baseline</option>
                 <option value="first baseline">First Baseline</option>
                 <option value="last baseline">Last Baseline</option>
+                <option value="normal">Normal</option>
+                <option value="start">Start</option>
+                <option value="self-start">End</option>
                 <option value="safe center">Safe Center</option>
                 <option value="unsafe center">Unsafe Center</option>
-                <option value="inherit">Inherit</option>
-                <option value="initial">Initial</option>
-                <option value="revert">Revert</option>
-                <option value="unset">Unset</option>
               </select>
             </div>
             <!-- Flex Proportion -->
@@ -217,10 +225,7 @@
               <label for="flexOrder" class="setting-label">Order</label>
               <input type="number" min="0" value="0" name="flexOrder" id="flexOrder" class="setting-item" disabled />
             </div>
-            <!-- Flex-Item Text -->
-            <div class="item-row">
-              <textarea id="flex-item-text" cols="25" rows="4" placeholder="flex-item text"></textarea>
-            </div>
+
             <div class="flex-item-buttons">
               <!-- Flex Item Buttons -->
               <span class="action-button flex-items-apply">Apply to Items...</span>
@@ -232,6 +237,10 @@
           </div>
           <!-- CUSTOM CSS -->
           <div class="panel" id="panel-custom-CSS">
+            <!-- Flex-Item Text -->
+            <div class="item-row">
+              <textarea id="flex-item-text" cols="25" rows="4" placeholder="flex-item text"></textarea>
+            </div>
             <textarea class="id" id="custom-css-text" rows="8"> </textarea>
             <!-- BUTTON SET -->
             <div class="button-set" id="additional-css-buttons">
