@@ -19,7 +19,8 @@ function initialize() {
   console.log(`elements`, elements);
   //additional properties of elements are set here b/c they are not accessible
   //in the elements constructor
-  // elements.flexItems.buttons.restoreDefaults = elements.flexItems.buttons.list.children[0];
+  // elements.flexItems.6
+
   // elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[1];
   elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
   elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
@@ -227,10 +228,10 @@ function setUpButtonListeners() {
   //   flexContainerDefaults();
   // });
 
-  // elements.flexItems.buttons.restoreDefaults.addEventListener('click', (event) => {
-  //   flexItemDefaults();
-  //   updateAllFlexItems(event);
-  // });
+  elements.flexItems.buttons.defaults.addEventListener('click', (event) => {
+    flexItemDefaults();
+    updateAllFlexItems(event);
+  });
 
   // the FlexItem Apply button
   elements.flexItems.buttons.apply.addEventListener('click', (event) => {

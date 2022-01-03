@@ -226,13 +226,14 @@
               <input type="number" min="0" value="0" name="flexOrder" id="flexOrder" class="setting-item" disabled />
             </div>
 
-            <div class="flex-item-buttons">
-              <!-- Flex Item Buttons -->
-              <span class="action-button flex-items-apply">Apply to Items...</span>
+            <!-- Flex Item Buttons -->
+            <div class="input-field">
+              <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
               <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
-
-              <span class="action-button flex-items-undo">Undo</span>
-              <span class="action-button flex-items-defaults">Defaults</span>
+            </div>
+            <div class="action-button-set">
+              <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
+              <button class="action-button  flex-item-buttons flex-items-undo">Undo</button>
             </div>
           </div>
           <!-- CUSTOM CSS -->

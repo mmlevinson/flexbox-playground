@@ -49,8 +49,9 @@ const elements = {
     // flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
     whichItems: document.getElementById('whichItems'),
     buttons: {
-      list: document.getElementById('flex-item-buttons'),
-      apply: document.querySelector('.action-button.flex-items-apply')
+      apply: document.querySelector('.flex-items-apply'),
+      defaults: document.querySelector('.flex-items-defaults'),
+      undo: document.querySelector('.flex-items-undo'),
     },
   },
   additionalCSS: {

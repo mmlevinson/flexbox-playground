@@ -282,10 +282,9 @@ pre {
 .action-button-set{
   display: flex;
   align-items:baseline;
-  width: 100%;
+  /* width: 100%; */
   padding:0px 0.5rem;
 }
-
 
 .input-field select, 
 .input-field input {
@@ -312,7 +311,6 @@ pre {
 }
 
 .action-button-set{
-
   justify-content: space-around;
   gap:0.5rem;
 /* background:green; */
@@ -325,26 +323,21 @@ pre {
   background-color: hsl(268, 83%, 25%);
   color: wheat;
   cursor: pointer;
+  flex-grow:1;
 }
-
-/* .action-button:first-of-type{
-  margin-left:8px;
-} */
 
 .action-button:hover {
   background-color: hsl(39, 40%, 75%);
   color: var(--header-background-color);
 }
 
-.action-button{
-  flex-grow:1;
+
+
+.action-button.flex-items-apply {
+  /* border: 1px solid red; */
+  min-width:8rem;
+  margin-right:0.5rem;
 }
-
-
-#whichItems{
-  max-width:6rem;
-}
-
 
 #flex-item-text {
   font-weight: bold;
@@ -450,6 +443,3 @@ pre {
   background-color: hsl(120, 30%, 45%);
 }
 
-.action-button.flex-items-apply {
-  border: 1px solid red;
-}
