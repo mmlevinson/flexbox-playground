@@ -40,7 +40,7 @@ select {
   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
   --panel-height: calc(100vh - 100px);
-  --header-background-color: hsl(240, 60%, 22%);
+  --header-background-color: hsl(240, 30%, 30%);
   --header-font-color: hsl(53, 25%, 80%);
 }
 
@@ -65,10 +65,7 @@ body {
   background-color: hsl(240, 15%, 80%);
   /* height: 100vh; */
 }
-ul {
-  list-style: none;
-  /* display:inline-block; */
-}
+
 
 body,
 div,
@@ -227,10 +224,12 @@ pre {
 }
 
 .tab.active-tab {
-  background-color: var(--panel-background-color);
-  color: navy;
+  background-color: var(--header-background-color);
+  /* background-color: var(--panel-background-color); */
+  color: var(--header-font-color);
+  /* color: navy; */
   border-bottom: none;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
   transition-property: background-color, color;
   transition-timing-function: ease-out;
 }
@@ -241,8 +240,8 @@ pre {
   padding-top:0.7rem;
   border-style: solid;
   border-width: 0px 1px 1px 1px;
-  /* background: var(--header-background-color); */
-  background: var(--panel-background-color);
+  background: var(--header-background-color);
+  /* background: var(--panel-background-color); */
   border-color: var(--panel-border-color);
   border-radius: 0 0 6px 6px;
   box-shadow: var(--standard-box-shadow);
@@ -286,7 +285,7 @@ pre {
 
 .input-field select, 
 .input-field input {
-  background-color: white;
+  background-color: hsl(0, 10%, 80%);
   border: none;
   outline: none;
   box-shadow: none;
@@ -301,6 +300,7 @@ pre {
   font-weight: bold;
   min-width: 8rem;
   margin-left: 4px;
+  color:wheat;
 }
 
 .action-button-set{
