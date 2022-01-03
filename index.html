@@ -28,14 +28,18 @@
       <!-- TAB PANEL -->
       <section class="tab-panel">
         <div class="tab-bar">
-          <span class="tab active-tab" id="tab-flex-container">Flex Container</span>
-          <span class="tab" id="tab-flex-items">Flex Items</span>
+          <span class="tab active-tab" id="tab-flex-container">Parent Container</span>
+          <span class="tab" id="tab-flex-items">Child Items</span>
           <span class="tab" id="tab-custom-CSS">Custom CSS</span>
           <span class="tab" id="tab-css-output">CSS Result</span>
         </div>
         <div class="tab-panel-contents">
           <!-- FLEX CONTAINER -->
           <div class="panel" id="panel-flex-container">
+            <div class="input-field">
+              <label for="howManyItems">How Many Items?</label>
+              <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
+            </div>
             <!-- Display Type -->
             <div class="input-field">
               <label for="display" class="setting-label">Display</label>
@@ -89,7 +93,7 @@
             </div>
             <!-- Align Content -->
             <div class="input-field">
-              <label for="alignContent" class="setting-label">Align-Content:</label>
+              <label for="alignContent" class="setting-label">Align-Content</label>
               <select name="alignContent" class="setting-item" id="alignContent" disabled>
                 <option value="normal">NORMAL</option>
                 <option value="center">Center</option>
@@ -129,7 +133,7 @@
             </div>
             <!-- Overflow property -->
             <div class="input-field">
-              <label for="overflow" class="setting-label">Overflow:</label>
+              <label for="overflow" class="setting-label">Overflow</label>
               <select name="overflow" class="setting-item" id="overflowType">
                 <option value="auto">AUTO</option>
                 <option value="visible">Visible</option>
@@ -139,7 +143,7 @@
             </div>
             <!-- Gap -->
             <div class="input-field">
-              <label for="gap" class="setting-label">Gap:</label>
+              <label for="gap" class="setting-label">Gap</label>
               <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
             </div>
           </div>
@@ -148,10 +152,6 @@
           </div>
           <!-- FLEX ITEMS -->
           <div class="panel" id="panel-flex-items">
-            <div class="input-field">
-              <label for="howManyItems">How Many Items?</label>
-              <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
-            </div>
             <!-- Flex Grow -->
             <div class="input-field">
               <label for="flexGrow" class="setting-label">Flex-Grow</label>

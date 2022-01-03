@@ -251,12 +251,12 @@ pre {
 #panel-flex-container {
   display:flex;
   flex-direction: column;
-  gap:0.5rem;
+  gap:0.6rem;
 }
 
 #panel-flex-container{
   /* border:1px solid red; */
-  height:240px;
+  height:270px;    /* to push down the defaults button */
 }
 
 /* Tab Panels start with display:none */
@@ -275,7 +275,8 @@ pre {
 
 
 
-.input-field {
+.input-field,
+.action-button-set{
   display: flex;
   align-items:baseline;
   width: 100%;
@@ -298,15 +299,18 @@ pre {
   /* border:1px solid red; */
   flex-grow: 1;
   font-weight: bold;
-  min-width: 8rem;
+  min-width: 8.5rem;
   margin-left: 4px;
   color:wheat;
 }
 
+.input-field > input {
+  padding:0 0.4rem;
+}
+
 .action-button-set{
-  height:2.5rem;
-  /* margin:0px 1px; */
-  background:var(--header-background-color);
+  justify-content: flex-end;
+
 }
 
 .action-button {
@@ -324,7 +328,12 @@ pre {
 
 .action-button:hover {
   background-color: wheat;
-  color: hsl(120, 10%, 30%);
+  color: hsl(120, 96%, 79%);
+}
+
+#flex-container-defaults-button{
+  flex-shrink:0;
+  min-width:13.5rem;
 }
 
 
