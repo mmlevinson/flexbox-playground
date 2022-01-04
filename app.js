@@ -1,10 +1,11 @@
 import { validateDimensions, validateHowManyItems } from './js/validate.js';
 import { LoremIpsum } from './js/classes.js';
 import { clearAllChildren, toCamelCase } from './js/helpers.js';
-import { elements, state, defaults, toolTips } from './js/globals.js';
+import { elements, state, defaults } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
 import { devices } from './data/devices.js';
+import { toolTips } from './data/tooltips.js';
 
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = new Set(); //any flex-items settings apply to these children
@@ -17,22 +18,16 @@ initialize();
 function initialize() {
   //we store references to all DOM elements we need in one global Object
   console.log(`elements`, elements);
-  //additional properties of elements are set here b/c they are not accessible
-  //in the elements constructor
-  // elements.flexItems.6
-
   // elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[1];
   elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
   elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
+  setUpToolTips();
   setUpEventListeners();
-  setUpToolTipListeners();
-
-  reset(); //establishes default state of app, calls setUpFlexItems();
   setUpDimensionWatcher();
+  reset(); //establishes default state of app, calls setUpFlexItems();
 }
 
 function flexItemDefaults() {
-  setDefault('flexItems', 'flexProportion');
   setDefault('flexItems', 'flexShrink');
   setDefault('flexItems', 'flexGrow');
   setDefault('flexItems', 'flexBasis');
@@ -115,7 +110,6 @@ function setUpEventListeners() {
   setUpValueFieldListeners();
   setUpMenuListeners();
   setUpButtonListeners();
-  setUpToolTipListeners();
 }
 
 
@@ -252,9 +246,9 @@ function setUpButtonListeners() {
   });
 }
 
-function setUpToolTipListeners() {
+function setUpToolTips() {
   const allLabels = Array.from(document.querySelectorAll('.setting-label'));
-  console.log(`allLabels`, allLabels);
+  // console.log(`allLabels`, allLabels);
   
   allLabels.forEach((label) => {
     let name = toCamelCase(label.textContent);
@@ -263,9 +257,6 @@ function setUpToolTipListeners() {
       label.setAttribute('title', tip);
     }
    })
-
-  
-
 }
 
 function setFlexContainerStyle(property, newValue) {
@@ -289,7 +280,6 @@ function setDisplayType(newValue) {
   elements.flexContainer.alignItems.disabled = !isFlex;
   elements.flexContainer.alignContent.disabled = !isFlex;
   elements.flexContainer.gap.disabled = !isFlex;
-  elements.flexItems.flexProportion.disabled = !isFlex;
   elements.flexItems.flexGrow.disabled = !isFlex;
   elements.flexItems.flexShrink.disabled = !isFlex;
   elements.flexItems.flexBasis.disabled = !isFlex;
