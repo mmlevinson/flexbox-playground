@@ -152,9 +152,12 @@ pre {
   margin: 0px 5px;
   border-radius: 6px;
   padding: 4px 0px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
+
+/* Cursor switching can be interferred with by other programs.  Quit
+all and relaunch Chrome, then it works again */
 .button:hover {
   cursor: pointer;
   background-color: hsl(39, 77%, 83%);
@@ -163,13 +166,13 @@ pre {
   background-color: hsl(39, 77%, 50%);
 } */
 
-.button-set {
+/* .button-set {
   background: none;
   padding: 8px;
   padding-left: 22px;
   display: inline-block;
   width: 100%;
-}
+} */
 .device-outline {
   margin-top: 6px;
   box-sizing: content-box;
@@ -340,7 +343,7 @@ background:green;
 } */
 
 .action-button {
-  border: 1px solid gray;
+  border: 2px solid gray;
   padding: 4px 0.4rem;
   border-radius: 8px;
   /* background-color: hsl(268, 83%, 25%); */
@@ -348,12 +351,18 @@ background:green;
   color: wheat;
   flex-grow:1;
   box-shadow:var(--standard-box-shadow);
+  transition: all 100ms
 }
 
 .action-button:hover {
   background-color: hsl(39, 40%, 75%);
   color: var(--header-background-color);
   cursor: pointer;
+}
+
+.action-button:active{
+  background-color: hsl(39, 50%, 65%);
+
 }
 
 #panel-flex-item-content{
