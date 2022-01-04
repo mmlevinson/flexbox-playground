@@ -55,7 +55,7 @@ width even if we did not explicitly assign a width */
   gap:4px;
   resize: both;
   width:100%;
-  height:calc(100% - 23px);
+  height:calc(100% - 25px);
 }
 
 .responsive{

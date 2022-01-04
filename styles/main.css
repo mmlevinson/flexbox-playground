@@ -50,7 +50,7 @@ html {
 }
 
 #panel-flex-items,
-#panel-custom-CSS,
+#panel-flex-item-content,
 #panel-css-output {
   display: none;
 }
@@ -232,7 +232,7 @@ pre {
   color: var(--header-font-color);
   /* color: navy; */
   border-bottom: none;
-  transition-duration: 200ms;
+  transition-duration: 100ms;
   transition-property: background-color, color;
   transition-timing-function: ease-out;
 }
@@ -353,6 +353,13 @@ pre {
   margin-right:0.5rem;
 }
 
+.content-label{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:var(--panel-background-color)
+}
+
 #flex-item-text {
   font-weight: bold;
   /* min-width: 100%; */
@@ -375,7 +382,7 @@ pre {
 }
 
 /* set as Flex in code when switchPanel() */
-#panel-custom-CSS {
+#panel-flex-item-content {
   flex-direction: column;
 }
 

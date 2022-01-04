@@ -19,8 +19,8 @@ function initialize() {
   //we store references to all DOM elements we need in one global Object
   console.log(`elements`, elements);
   // elements.flexItems.buttons.apply = elements.flexItems.buttons.list.children[1];
-  elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
-  elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
+  // elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
+  // elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
   setUpToolTips();
   setUpEventListeners();
   setUpDimensionWatcher();
@@ -236,10 +236,10 @@ function setUpButtonListeners() {
   });
 
   //AdditionalCSS Apply Button
-  elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
-    //update the custom.css file which is imported into the project
-    parseAdditionalCSS(elements.additionalCSS.textArea.value);
-  });
+  // elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {
+  //   //update the custom.css file which is imported into the project
+  //   parseAdditionalCSS(elements.additionalCSS.textArea.value);
+  // });
 
   elements.icons.rotateIcon.addEventListener('click', (event) => {
     rotateOrientation(event);

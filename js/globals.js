@@ -8,13 +8,13 @@ const elements = {
     settings: {
       flexContainer: document.getElementById('tab-flex-container'),
       flexItems: document.getElementById('tab-flex-items'),
+      flexItemContent: document.getElementById('tab-flex-item-content'),
       cssOutput: document.getElementById('tab-css-output'),
-      customCSS: document.getElementById('tab-custom-CSS'),
     },
     panels: {
       flexContainer: document.getElementById('panel-flex-container'),
       flexItems: document.getElementById('panel-flex-items'),
-      customCSS: document.getElementById('panel-custom-CSS'),
+      flexItemContent: document.getElementById('panel-flex-item-content'),
       cssOutput: document.getElementById('panel-css-output'),
     },
   },
@@ -53,6 +53,11 @@ const elements = {
       defaults: document.querySelector('.flex-items-defaults'),
       undo: document.querySelector('.flex-items-undo'),
     },
+  },
+  childContent: {
+    flexItemContent: document.getElementById('flex-item-text'),
+    customCSS: document.getElementById('custom-CSS'),
+    
   },
   additionalCSS: {
     buttons: {
