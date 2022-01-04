@@ -190,32 +190,47 @@ const defaults = {
 
 const toolTips = {
   overflow: {
-    text: 'Tip',
+    text: 'How the browser displays content that \n exceeds the bounds of the \n enclosing box',
   },
-  displayType: {
-    text: 'Tip',
+  display: {
+    text: 'The CSS Display Property, which determines \n how an element (and children ) \n participates in flow layout',
   },
   flexDirection: {
-    text: 'Tip',
+    text: 'Placement (and direction ) of items \n  positioned along the Main Axis in a \n Flex Container',
   },
   flexWrap: {
-    text: 'Tip',
+    text: 'Sets whether flex items are forced into one line \n or allowed to wrap into muliple lines (and the wrapping direction)',
   },
   justifyContent: {
-    text: 'Tip',
+    text: 'Specifies how the browser distributes excess space around items \n along the Main Axis of a Flex Container',
   },
   alignItems: {
-    text: 'Tip',
+    text: 'Controls placement of items along the Cross Axis \n of a Flex Container by setting \n the align-self of every item as a group',
+  },
+  alignSelf: {
+    text:'Sets positioning for a single item on the Cross Axis \n by overriding the group value  set by the \n align-items property'
   },
   alignContent: {
-    text: 'Tip',
+    text: 'Sets the distribution of excess space \n around items on the Cross Axis',
   },
   order: {
-    text: 'Tip',
+    text: 'Sets the visual ordering of any single item within \n its container (which overrides the default DOM based ordering of a layout) ',
   },
   gap: {
-    text: 'Tip',
+    text: 'Optional space between items',
   },
+  flexGrow: {
+    text:'Sets an items proportional growth, \n if possible, along the Main Axis'
+  },
+  flexShrink: {
+    text:'Sets an items proportional shrink-to-fit \n behavior along the Main Axis'
+  },
+  flexBasis: {
+    text: 'Sets the initial size of an item along \n the Main Axis based on the content box unless \n otherwise set by the box-sizing property'
+  },
+  value: {
+    text:'Quantity used for the flex-basis calculation,   such as\n%, px, (r)em, fill, max-content, min-content, fit-content'
+  }
 };
 
 export { elements, state, defaults, toolTips };

@@ -1,3 +1,11 @@
+function addGlobalEventListener(type, selector, callback) {
+  document.addEventListener(type, (event) => {
+    if (event.target.matches(selector)) {
+      callback(event);
+    }
+  })
+}
+
 function clearAllChildren(parent) {
   //while loops were illustrated in MDN Node.removeChild()
   //but I substituted .lastChild for .firstChild b/c it

@@ -286,6 +286,19 @@ pre {
   padding:0px 0.5rem;
 }
 
+/* .input-field::after{
+  content:'i';
+  font-family:serif;
+  font-size:1.2rem;
+  border-radius:100%;
+  min-width:1.4rem;
+  text-align:center;
+  vertical-align:center;
+  margin-left:0.4rem;
+  background:hsl(0, 0%, 20%);
+  color:hsl(0, 20%, 80%);
+} */
+
 .input-field select, 
 .input-field input {
   background-color: hsl(0, 10%, 80%);
@@ -320,7 +333,8 @@ pre {
   border: 1px solid gray;
   padding: 4px 0.4rem;
   border-radius: 8px;
-  background-color: hsl(268, 83%, 25%);
+  /* background-color: hsl(268, 83%, 25%); */
+  background-color: hsl(357, 50%, 20%);
   color: wheat;
   cursor: pointer;
   flex-grow:1;
@@ -341,15 +355,16 @@ pre {
 
 #flex-item-text {
   font-weight: bold;
-  min-width: 100%;
+  /* min-width: 100%; */
   padding: 6px;
-  height: calc(var(--panel-height) - 270px);
+  height: 40%;
   background-color: var(--general-text-background-color);
 }
+#flex-item-text,
 #custom-css-text,
 #css-output {
   background-color: var(--general-text-background-color);
-  font-family: 'Arial', sans-serif;
+  font-family: 'Arial', sans-serif; 
   /* font-weight:bold; */
   font-size: 1rem;
   width: calc(100% - 8px);
@@ -365,7 +380,8 @@ pre {
 }
 
 #custom-css-text {
-  height: calc(var(--panel-height) - 50px);
+  /* height: calc(var(--panel-height) - 50px); */
+  height:40%;
 }
 
 #css-output {

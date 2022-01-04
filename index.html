@@ -30,7 +30,7 @@
         <div class="tab-bar">
           <span class="tab active-tab" id="tab-flex-container">Parent Container</span>
           <span class="tab" id="tab-flex-items">Child Items</span>
-          <span class="tab" id="tab-custom-CSS">Custom CSS</span>
+          <span class="tab" id="tab-custom-CSS">Child Content</span>
           <span class="tab" id="tab-css-output">CSS Result</span>
         </div>
         <div class="tab-panel-contents">
@@ -43,12 +43,12 @@
             </div>
             <!-- How Many Items -->
             <div class="input-field">
-              <label for="howManyItems">How Many Items?</label>
+              <label for="howManyItems" title="Set the number of Flex Items inside the Flex Container">How Many Items?</label>
               <input type="number" min="1" max="12" value="4" name="howManyItems" id="howManyItems" class="setting-item" />
             </div>
             <!-- Display Type -->
             <div class="input-field">
-              <label for="display" class="setting-label">Display</label>
+              <label for="display" class="setting-label" title="CSS Display Property">Display</label>
               <select name="display" class="setting-item tool-tip" id="displayType">
                 <option value="block">BLOCK</option>
                 <option value="inline">Inline</option>
@@ -215,11 +215,6 @@
                 <option value="unsafe center">Unsafe Center</option>
               </select>
             </div>
-            <!-- Flex Proportion -->
-            <div class="input-field">
-              <label for="flexProportion" class="setting-label flex-proportion">Flex</label>
-              <input type="number" min="0" value="0" name="flexProportion" id="flexProportion" class="setting-item" disabled />
-            </div>
             <!-- Flex Order -->
             <div class="input-field">
               <label for="flexOrder" class="setting-label">Order</label>
@@ -233,20 +228,25 @@
             </div>
             <div class="action-button-set">
               <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
-              <button class="action-button  flex-item-buttons flex-items-undo">Undo</button>
+              <button class="action-button flex-item-buttons flex-items-undo">Undo</button>
             </div>
           </div>
-          <!-- CUSTOM CSS -->
+          <!-- Child Content -->
           <div class="panel" id="panel-custom-CSS">
             <!-- Flex-Item Text -->
             <div class="item-row">
               <textarea id="flex-item-text" cols="25" rows="4" placeholder="flex-item text"></textarea>
             </div>
             <textarea class="id" id="custom-css-text" rows="8"> </textarea>
-            <!-- BUTTON SET -->
-            <div class="button-set" id="additional-css-buttons">
-              <button class="button" type="button" name="Reset">Reset</button>
-              <button class="button" type="button" name="Apply">Apply</button>
+
+            <!-- Flex Item Buttons -->
+            <div class="input-field">
+              <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
+              <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
+            </div>
+            <div class="action-button-set">
+              <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
+              <button class="action-button flex-item-buttons flex-items-undo">Undo</button>
             </div>
           </div>
           <div class="panel" id="panel-css-output">
@@ -312,4 +312,9 @@
       </section>
     </main>
   </body>
+              <!-- BUTTON SET -->
+              <div class="button-set" id="additional-css-buttons">
+                <button class="button" type="button" name="Reset">Reset</button>
+                <button class="button" type="button" name="Apply">Apply</button>
+              </div>
 </html>

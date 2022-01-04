@@ -1,7 +1,7 @@
 import { validateDimensions, validateHowManyItems } from './js/validate.js';
 import { LoremIpsum } from './js/classes.js';
 import { clearAllChildren, toCamelCase } from './js/helpers.js';
-import { elements, state, defaults } from './js/globals.js';
+import { elements, state, defaults, toolTips } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
 import { devices } from './data/devices.js';
@@ -25,6 +25,7 @@ function initialize() {
   elements.additionalCSS.buttons.reset = elements.additionalCSS.buttons.list.children[0];
   elements.additionalCSS.buttons.apply = elements.additionalCSS.buttons.list.children[1];
   setUpEventListeners();
+  setUpToolTipListeners();
 
   reset(); //establishes default state of app, calls setUpFlexItems();
   setUpDimensionWatcher();
@@ -116,6 +117,8 @@ function setUpEventListeners() {
   setUpButtonListeners();
   setUpToolTipListeners();
 }
+
+
 
 function updateCSS() {
   //print out the .style property of the FlexContainer and each FlexIem
@@ -250,8 +253,19 @@ function setUpButtonListeners() {
 }
 
 function setUpToolTipListeners() {
-  //get the label for each one of these elements, its the parent.firstElementChild?
-  //set up a 'hover' event and set the tooltip text
+  const allLabels = Array.from(document.querySelectorAll('.setting-label'));
+  console.log(`allLabels`, allLabels);
+  
+  allLabels.forEach((label) => {
+    let name = toCamelCase(label.textContent);
+    if (toolTips.hasOwnProperty(name)) {
+      let tip = toolTips[name].text;
+      label.setAttribute('title', tip);
+    }
+   })
+
+  
+
 }
 
 function setFlexContainerStyle(property, newValue) {
@@ -435,5 +449,6 @@ function setUpDimensionWatcher() {
       width: elements.flexContainer.landscape.width,
       height: elements.flexContainer.landscape.height,
     })
+
   });
 }
