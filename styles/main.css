@@ -39,7 +39,7 @@ select {
   --tool-panel-width: 27.5rem;
   /* --panel-height: calc((var(--sub-panel-height) * 2) + 8px); */
   --standard-box-shadow: 2px 3px 6px 0px rgba(41, 46, 81, 0.79);
-  --panel-height: calc(100vh - 100px);
+  --panel-height: calc(100vh - 120px);
   --header-background-color: hsl(240, 30%, 30%);
   --header-font-color: hsl(53, 25%, 80%);
 }
@@ -356,14 +356,6 @@ background:green;
   cursor: pointer;
 }
 
-
-
-.action-button.flex-items-apply {
-  /* border: 1px solid red; */
-  min-width:8rem;
-  margin-right:0.5rem;
-}
-
 #panel-flex-item-content{
   /* background:black; */
   height:100%;
@@ -424,11 +416,7 @@ background:green;
 
 #flex-item-text, 
 #custom-css-text {
-  height:95%;
-  /* height: 12rem; */
-  /* min-width: 100%; */
-  /* height: 40%; */
-  /* background-color: var(--general-text-background-color); */
+  height:92%;
 }
 
 #panel-css-output{
@@ -520,9 +508,5 @@ background:green;
 
 .error {
   background-color: hsl(0, 77%, 36%);
-}
-
-.actionbutton.flex-items-apply{
-  border:1px solid red;
 }
 

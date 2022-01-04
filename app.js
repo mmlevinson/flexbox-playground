@@ -10,6 +10,7 @@ import { toolTips } from './data/tooltips.js';
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = new Set(); //any flex-items settings apply to these children
 let customCSSDirty = false; //set this once user makes any changes
+let CURRENT_TAB = 'flexContainer';   //context for the Apply/Undo/Defaults buttons
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -56,12 +57,13 @@ function reset() {
   updateCSS();
 }
 
-function switchTab(identifier) {
+function switchTab(identifier) { 
   let words = identifier.split('-');
   words.splice(0, 1); //remove 'tab | panel'
   let clickedTab = toCamelCase(words.join('-'));
   //rebuild the correct key for elements.tabs
   // console.log(`clickedTab`, clickedTab);
+  CURRENT_TAB = clickedTab;  //context for the mini-toolbar buttons
   for (const tab in elements.tabs.settings) {
     if (tab === clickedTab) {
       elements.tabs.settings[tab].classList.add('active-tab');
@@ -216,15 +218,15 @@ function setUpButtonListeners() {
     copyToClipboard(this, text);
   });
 
-  elements.buttons.restoreDefaults.flexItems.addEventListener('click', (event) => {
-    flexItemDefaults();
-    updateAllFlexItems(event);
-  });
+  // elements.buttons.restoreDefaults.flexItems.addEventListener('click', (event) => {
+  //   flexItemDefaults();
+  //   updateAllFlexItems(event);
+  // });
 
   // the FlexItem Apply button
-  elements.buttons.apply.flexItems.addEventListener('click', (event) => {
-    updateAllFlexItems(event);
-  });
+  // elements.buttons.apply.flexItems.addEventListener('click', (event) => {
+  //   updateAllFlexItems(event);
+  // });
 
   //AdditionalCSS Apply Button
   // elements.additionalCSS.buttons.apply.addEventListener('click', (event) => {

@@ -72,23 +72,8 @@ const elements = {
     rotateIcon: document.getElementById('rotate-icon'),
   },
   buttons: {
-    restoreDefaults: {
-      flexContainer: document.getElementById('flex-container-defaults-button'),
-      flexItems: document.querySelector('.action-button.flex-items-defaults'),
-      flexItemContents:null
-    },
-    apply: {
-      flexContainer: document.getElementById('flex-container-apply-button'),
-      flexItems: document.querySelector('.action-button.flex-items-apply'),
-      flexItemContents:null,
-    },
-    undo: {
-      flexContainer: null,
-      flexItems: document.querySelector('.action-button.flex-items.undo'),
-      flexItemContents:null,
-    },
     copyToClipboard: document.querySelector('.action-button.copy-to-clipboard'),
-    
+  
   }
 };
 

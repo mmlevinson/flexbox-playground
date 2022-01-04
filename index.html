@@ -157,11 +157,6 @@
               <label for="gap" class="setting-label">Gap</label>
               <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
             </div>
-            <!-- Buttons -->
-            <div class="action-button-set" id="flex-container-buttons">
-              <button class="action-button" type="button" id="flex-container-defaults-button">Restore Defaults</button>
-              <button class="action-button" type="button" id="flex-container-apply-button">Apply</button>
-            </div>
           </div>
 
           <!-- FLEX ITEMS -->
@@ -227,15 +222,6 @@
               <label for="flexOrder" class="setting-label">Order</label>
               <input type="number" min="0" value="0" name="flexOrder" id="flexOrder" class="setting-item" disabled />
             </div>
-
-            <!-- Flex Item Buttons -->
-            <div class="input-field">
-              <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
-            </div>
-            <div class="action-button-set">
-              <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
-              <button class="action-button flex-item-buttons flex-items-undo">Undo</button>
-            </div>
           </div>
           <!-- Child Content -->
           <div class="panel" id="panel-flex-item-content">
@@ -248,20 +234,11 @@
              <label for="custom-CSS" class="content-label">Flex Item(s) Styles</label>
              <textarea class="id" id="custom-css-text" rows="8"> </textarea>
            </div>
-
-            <!-- Flex Item Buttons -->
-
-            <div class="action-button-set">
-              <button class="action-button flex-items-undo">Undo</button>
-              <button class="action-button flex-items-defaults">Defaults</button>
-              <button class="action-button flex-items-apply">Apply</button>
-            </div>
           </div>
           <div class="panel" id="panel-css-output">
             <pre id="css-output">whatever</pre>
-            <div class="action-button-set">
-              <button class="action-button copy-to-clipboard">Copy to Clipboard</button>
-            </div>
+            <button class="action-button copy-to-clipboard">Copy to Clipboard</button>
+
           </div>
         </div>
       </section>
