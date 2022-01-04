@@ -22,7 +22,7 @@
 }
 
 .flex-item-number.selected{
-  background-color:black;
+  background-color:green;
   color:hsl(60, 100%, 70%);
 }
 

@@ -254,10 +254,39 @@ function handleActionButton(event) {
         flexItemDefaults();
       }
       break;
-  
+    case 'Apply':
+      if (CURRENT_TAB === 'flexItemContent') {
+        updateFlexItemText();
+        //and also the custom CSS styles
+      }
+      if (CURRENT_TAB === 'flexItems') {
+        updateFlexItemProperties();
+      }
     default:
       break;
   }
+}
+
+function updateFlexItemProperties() {
+  //loop all the WHICH_FLEX_ITEMS and set their styles to the values
+  // in the flex items settings
+  console.log(`got it`);
+  let items = Array.from(WHICH_FLEX_ITEMS);
+  console.log(`items`, items);
+  for (let index = 0; index < items.length; index++) {
+    const flexItem = elements.flexItems.list[items[index]];
+    flexItem.style.setProperty('flex-grow', elements.flexItems.flexGrow.value);
+    flexItem.style.setProperty('flex-shrink', elements.flexItems.flexShrink.value);
+    flexItem.style.setProperty('flex-basis', elements.flexItems.flexBasis.value);
+    flexItem.style.setProperty('align-self', elements.flexItems.alignSelf.value);
+    flexItem.style.setProperty('order', elements.flexItems.flexOrder.value);
+  }        
+  updateCSS();
+}
+
+function updateSelectedFlexItems() {
+  //for each item in WHICH_FLEX_ITEMS, update the text and item properties
+  
 }
 
 /* Global Event Handler (above) which watches each flex-item-number
@@ -354,7 +383,7 @@ function updateFlexItemProperty(property, newValue) {
 function updateAllFlexItems(event) {
   // console.log(`event`, event);
   // parseWhichItems();
-  updateFlexItemText();
+  // updateFlexItemText();
   // updateFlexItemProperty('flex', elements.flexItems.flexProportion.value);
   updateFlexItemProperty('flex-grow', elements.flexItems.flexGrow.value);
   updateFlexItemProperty('flex-shrink', elements.flexItems.flexShrink.value);
