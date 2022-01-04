@@ -75,9 +75,6 @@ const elements = {
   menus: {
     deviceMenu: document.getElementById('select-device-menu'),
   },
-  toolTip: {
-    text: document.querySelector('.tooltip > .tooltip-text'),
-  },
   icons: {
     deviceOutline: document.getElementById('device-outline'),
     rotateIcon: document.getElementById('rotate-icon'),

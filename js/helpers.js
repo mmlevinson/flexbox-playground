@@ -42,6 +42,30 @@ function toCamelCase(source) {
   return firstWord + camelWords;
 }
 
+function copyToClipboard(copyButton, text) {
+  /* Promise based API in the browser */
+  navigator.clipboard
+    .writeText(text)
+    .then(function () {
+      //clipboard successfully set
+      copyButton.textContent = 'Copied !';
+      copyButton.classList.add('success');
+      setTimeout(() => {
+        copyButton.classList.remove('success');
+        copyButton.textContent = 'Copy to Clipboard';
+      }, 1000);
+    })
+    .catch((error) => {
+      copyButton.textContent = 'Failed !';
+      copyButton.classList.add('error');
+      setTimeout(() => {
+        copyButton.classList.remove('error');
+        copyButton.textContent = 'Copy';
+        copyButton.disabled = false;
+      }, 1000);
+    });
+}
+
 /* LoremIpsum adapted from https://github.com/fffilo/lorem-ipsum-js/blob/master/src/lorem-ipsum.js */
 
 class LoremIpsum {
@@ -326,4 +350,4 @@ class LoremIpsum {
   }
 }
 
-export { clearAllChildren, chop, clip, toCamelCase, LoremIpsum };
+export { clearAllChildren, chop, clip, toCamelCase, copyToClipboard,  LoremIpsum };
