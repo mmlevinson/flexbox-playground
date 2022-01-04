@@ -234,17 +234,17 @@
           <!-- Child Content -->
           <div class="panel" id="panel-flex-item-content">
             <!-- Flex-Item Text -->
-            <div>
+            <div class="flex-item-content-wrapper">
               <label for="flex-item-text" class="content-label">Flex Item(s) Content</label>
-              <textarea id="flex-item-text" cols="25" rows="4" placeholder="flex-item text"></textarea>
+              <textarea id="flex-item-text" cols="25" rows="5" placeholder="flex-item text"></textarea>
             </div>
-           <div>
-             <label for="custom-CSS">Custom CSS</label>
+           <div class="flex-item-content-wrapper">
+             <label for="custom-CSS" class="content-label">Flex Item(s) Styles</label>
              <textarea class="id" id="custom-css-text" rows="8"> </textarea>
            </div>
 
             <!-- Flex Item Buttons -->
-            <div class="input-field">
+            <div class="input-field flex-items-apply">
               <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
               <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
             </div>

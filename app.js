@@ -125,7 +125,7 @@ function updateCSS() {
   let cssText = `\ndiv.flex-container  {\n${landscapeStyle}}\n\n`;
 
   let flexItemCSS = '';
-  let additionalCSSTemplate = '/*Additional CSS Rules*/\n\n';
+  let additionalCSSTemplate = '';
 
   for (let index = 0; index < FLEX_ITEM_COUNT; index++) {
     const element = elements.flexItems.list[index];
