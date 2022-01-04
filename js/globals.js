@@ -79,6 +79,10 @@ const elements = {
     deviceOutline: document.getElementById('device-outline'),
     rotateIcon: document.getElementById('rotate-icon'),
   },
+  buttons: {
+    copyToClipboard: document.querySelector('.action-button.copy-to-clipboard'),
+    
+  }
 };
 
 const state = {

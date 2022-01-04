@@ -159,9 +159,9 @@ pre {
   cursor: pointer;
   background-color: hsl(39, 77%, 83%);
 }
-.button:active {
+/* .button:active {
   background-color: hsl(39, 77%, 50%);
-}
+} */
 
 .button-set {
   background: none;
@@ -337,13 +337,13 @@ pre {
   /* background-color: hsl(268, 83%, 25%); */
   background-color: hsl(357, 50%, 20%);
   color: wheat;
-  cursor: pointer;
   flex-grow:1;
 }
 
 .action-button:hover {
   background-color: hsl(39, 40%, 75%);
   color: var(--header-background-color);
+  cursor: pointer;
 }
 
 
@@ -511,4 +511,8 @@ pre {
 .error {
   background-color: hsl(0, 77%, 36%);
 }
+
+/* .action-button.copy-to-clipboard{
+  border:1px solid red;
+} */
 

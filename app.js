@@ -1,6 +1,6 @@
 import { validateDimensions, validateHowManyItems } from './js/validate.js';
 import { LoremIpsum } from './js/classes.js';
-import { clearAllChildren, toCamelCase } from './js/helpers.js';
+import { clearAllChildren, toCamelCase, copyToClipboard } from './js/helpers.js';
 import { elements, state, defaults } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
@@ -112,8 +112,6 @@ function setUpEventListeners() {
   setUpButtonListeners();
 }
 
-
-
 function updateCSS() {
   //print out the .style property of the FlexContainer and each FlexIem
   //I found an interesting property called cssText on the element.style object
@@ -181,8 +179,8 @@ function setUpMenuListeners() {
 
   elements.menus.deviceMenu.addEventListener('change', (event) => {
     console.log(`value`, event.target.value);
-      const deviceName = event.target.value; //ie iPhone12
-     //lookup the default w/h
+    const deviceName = event.target.value; //ie iPhone12
+    //lookup the default w/h
     const dimensions = devices[deviceName];
     console.log(`dimensions`, dimensions);
     switchLayoutSize(dimensions);
@@ -201,7 +199,7 @@ function setUpMenuListeners() {
 //     newSpan.textContent = index.toString();
 //     elements.flexItems.buttons.items.appendChild(newSpan);
 //   }
-  
+
 // }
 
 function setUpButtonListeners() {
@@ -216,9 +214,12 @@ function setUpButtonListeners() {
     });
   }
 
-  // setUpItemButtons();
+  elements.buttons.copyToClipboard.addEventListener('click', function (event) {
+    const text = elements.cssOutput.textContent;
+    copyToClipboard(this, text);
+  });
 
-  
+  // setUpItemButtons();
 
   //FlexContainer Restore Defaults
   // elements.flexContainer.buttons.restoreDefaults.addEventListener('click', (event) => {
@@ -249,14 +250,14 @@ function setUpButtonListeners() {
 function setUpToolTips() {
   const allLabels = Array.from(document.querySelectorAll('.setting-label'));
   // console.log(`allLabels`, allLabels);
-  
+
   allLabels.forEach((label) => {
     let name = toCamelCase(label.textContent);
     if (toolTips.hasOwnProperty(name)) {
       let tip = toolTips[name].text;
       label.setAttribute('title', tip);
     }
-   })
+  });
 }
 
 function setFlexContainerStyle(property, newValue) {
@@ -340,7 +341,7 @@ function parseWhichItems() {
   WHICH_FLEX_ITEMS = []; //reset
   const userEntry = elements.flexItems.whichItems.value;
   let choices = userEntry.trim().split(' ');
-  
+
   choices.forEach((choice) => {
     if (isValidIndex(choice, FLEX_ITEM_COUNT)) {
       WHICH_FLEX_ITEMS.push(+choice); //output a Number
@@ -403,7 +404,6 @@ function updateDeviceOutlineSize(dimensions) {
   //   an endless loop (re-triggering the observer, then switchLayoutSize etc.)
   elements.flexContainer.deviceOutline.style.width = `${dimensions.width}px`;
   elements.flexContainer.deviceOutline.style.height = `${dimensions.height + 23}px`;
-  
 }
 
 function switchLayoutSize(dimensions) {
@@ -411,7 +411,7 @@ function switchLayoutSize(dimensions) {
   elements.flexContainer.landscape.style.maxWidth = `${dimensions.width}px`;
   elements.flexContainer.landscape.style.height = `${dimensions.height}px`;
   elements.flexContainer.landscape.style.maxHeight = `${dimensions.height}px`;
-  updateDeviceOutlineSize(dimensions);   //must be separate b/c also called by the observer
+  updateDeviceOutlineSize(dimensions); //must be separate b/c also called by the observer
 }
 
 function rotateOrientation() {
@@ -420,8 +420,8 @@ function rotateOrientation() {
   const height = elements.flexContainer.landscape.offsetHeight;
   switchLayoutSize({
     width: height,
-    height:width,
-  })
+    height: width,
+  });
 }
 
 /* From StackOverflow Example  ResizeObserver API  */
@@ -438,7 +438,6 @@ function setUpDimensionWatcher() {
     updateDeviceOutlineSize({
       width: elements.flexContainer.landscape.width,
       height: elements.flexContainer.landscape.height,
-    })
-
+    });
   });
 }
