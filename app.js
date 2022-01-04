@@ -1,6 +1,6 @@
 import { validateDimensions, validateHowManyItems } from './js/validate.js';
 import { LoremIpsum } from './js/classes.js';
-import { clearAllChildren, toCamelCase, copyToClipboard } from './js/helpers.js';
+import { clearAllChildren, toCamelCase, copyToClipboard, addGlobalEventListener } from './js/helpers.js';
 import { elements, state, defaults } from './js/globals.js';
 import CSSParser from './js/cssParser.js';
 import Parser from './js/parser.js';
@@ -245,6 +245,16 @@ function setUpButtonListeners() {
   elements.icons.rotateIcon.addEventListener('click', (event) => {
     rotateOrientation(event);
   });
+
+  addGlobalEventListener('click', '.flex-item-number', selectFlextItem)
+}
+
+function selectFlextItem(event) {
+  console.log(`event`, event);
+  const allItemNumbers = document.querySelectorAll('.flex-item-number');
+  const whichItem = Number(event.target.textContent) - 1;
+  console.log(`whichItem`, whichItem);
+  allItemNumbers[whichItem].classList.toggle('selected');
 }
 
 function setUpToolTips() {

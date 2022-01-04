@@ -350,4 +350,4 @@ class LoremIpsum {
   }
 }
 
-export { clearAllChildren, chop, clip, toCamelCase, copyToClipboard,  LoremIpsum };
+export { clearAllChildren, addGlobalEventListener, chop, clip, toCamelCase, copyToClipboard,  LoremIpsum };

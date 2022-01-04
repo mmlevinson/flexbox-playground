@@ -8,7 +8,7 @@
   /* border-radius: 12px 12px 0 12px; */
 }
 
-.flex-item .flex-item-number {
+.flex-item-number {
   position: absolute;
   text-align: center;
   border: 1px solid rgba(255, 0, 0, 0.7);
@@ -21,6 +21,10 @@
   color: rgba(0, 0, 255, 0.564);
 }
 
+.flex-item-number.selected{
+  background-color:black;
+  color:white;
+}
 
 
 @keyframes RotateOrientation {
