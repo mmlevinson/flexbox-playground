@@ -238,7 +238,26 @@ function setUpButtonListeners() {
     rotateOrientation(event);
   }, {capture:true});
 
-  addGlobalEventListener('click', '.flex-item-number', selectFlexItem)
+  addGlobalEventListener('click', '.flex-item-number', selectFlexItem);
+  addGlobalEventListener('click', '.action-button', handleActionButton);
+}
+
+function handleActionButton(event) {
+  console.log(`event.target`, event.target.textContent);
+  const action = event.target.textContent;  //Apply|Undo|Defaults|Copy to Clipboard
+  switch (action) {
+    case 'Defaults':
+       if (CURRENT_TAB === 'flexContainer') {
+         flexContainerDefaults();
+       }
+      if (CURRENT_TAB === 'flexItems') {
+        flexItemDefaults();
+      }
+      break;
+  
+    default:
+      break;
+  }
 }
 
 /* Global Event Handler (above) which watches each flex-item-number
