@@ -30,6 +30,8 @@ function clip(text, numChars = 1) {
   return text.substring(numChars, text.length-numChars);
 }
 
+
+
 function toCamelCase(source) {
   //so far only one level of conversion, not iterating
   let words = source.split('-');

@@ -25,8 +25,14 @@
     </header>
     <!-- WRAPPER -->
     <main class="main-wrapper">
+
       <!-- TAB PANEL -->
       <section class="tab-panel">
+        <div class="mini-toolbar">
+          <button class="action-button">Defaults</button>
+          <button class="action-button">Undo</button>
+          <button class="action-button">Apply</button>
+        </div>
         <div class="tab-bar">
           <span class="tab active-tab" id="tab-flex-container">Parent Container</span>
           <span class="tab" id="tab-flex-items">Child Items</span>
@@ -151,9 +157,10 @@
               <label for="gap" class="setting-label">Gap</label>
               <input type="number" min="0" value="0" name="gap" id="gap" class="setting-item" disabled />
             </div>
+            <!-- Buttons -->
             <div class="action-button-set" id="flex-container-buttons">
               <button class="action-button" type="button" id="flex-container-defaults-button">Restore Defaults</button>
-              <button class="action-button" type="button" id="flex-container-apply-class">Apply</button>
+              <button class="action-button" type="button" id="flex-container-apply-button">Apply</button>
             </div>
           </div>
 
@@ -224,7 +231,6 @@
             <!-- Flex Item Buttons -->
             <div class="input-field">
               <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
-              <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
             </div>
             <div class="action-button-set">
               <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
@@ -244,13 +250,11 @@
            </div>
 
             <!-- Flex Item Buttons -->
-            <div class="input-field flex-items-apply">
-              <button for="whichItems" class="action-button flex-items-apply">Apply To Items</button>
-              <input type="text" min="0" value="1 2 3 4" name="whichItems" id="whichItems" class="setting-item" />
-            </div>
+
             <div class="action-button-set">
-              <button class="action-button flex-item-buttons flex-items-defaults">Restore Defaults</button>
-              <button class="action-button flex-item-buttons flex-items-undo">Undo</button>
+              <button class="action-button flex-items-undo">Undo</button>
+              <button class="action-button flex-items-defaults">Defaults</button>
+              <button class="action-button flex-items-apply">Apply</button>
             </div>
           </div>
           <div class="panel" id="panel-css-output">

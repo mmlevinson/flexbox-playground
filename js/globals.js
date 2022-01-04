@@ -32,9 +32,6 @@ const elements = {
     order: null,
     gap: document.getElementById('gap'),
     howManyItems: document.getElementById('howManyItems'),
-    buttons: {
-      restoreDefaults: document.getElementById('flex-container-defaults-button'),
-    },
   },
   flexItems: {
     list: document.querySelectorAll('.flex-item'),
@@ -46,18 +43,10 @@ const elements = {
     alignSelf: document.getElementById('alignSelf'),
     flexOrder: document.getElementById('flexOrder'),
     flexItemText: document.getElementById('flex-item-text'),
-    // flexItems: document.querySelectorAll('.flex-item-checkbox'), //array
-    whichItems: document.getElementById('whichItems'),
-    buttons: {
-      apply: document.querySelector('.flex-items-apply'),
-      defaults: document.querySelector('.flex-items-defaults'),
-      undo: document.querySelector('.flex-items-undo'),
-    },
   },
   childContent: {
     flexItemContent: document.getElementById('flex-item-text'),
     customCSS: document.getElementById('custom-CSS'),
-    
   },
   additionalCSS: {
     buttons: {
@@ -67,6 +56,9 @@ const elements = {
   },
   cssOutput: document.getElementById('css-output'),
   navigation: {
+    undo: null,
+    defaults: null,
+    apply:null,
     reset: document.querySelector('.main-nav-item.reset-item'),
     copy: document.querySelector('.main-nav-item.copy-item'),
     load: document.querySelector('.main-nav-item.load-item'),
@@ -80,6 +72,21 @@ const elements = {
     rotateIcon: document.getElementById('rotate-icon'),
   },
   buttons: {
+    restoreDefaults: {
+      flexContainer: document.getElementById('flex-container-defaults-button'),
+      flexItems: document.querySelector('.action-button.flex-items-defaults'),
+      flexItemContents:null
+    },
+    apply: {
+      flexContainer: document.getElementById('flex-container-apply-button'),
+      flexItems: document.querySelector('.action-button.flex-items-apply'),
+      flexItemContents:null,
+    },
+    undo: {
+      flexContainer: null,
+      flexItems: document.querySelector('.action-button.flex-items.undo'),
+      flexItemContents:null,
+    },
     copyToClipboard: document.querySelector('.action-button.copy-to-clipboard'),
     
   }
