@@ -36,7 +36,8 @@ class Parser {
   static bracketedStylesRegEx = '(<.*>)';
   static bracketedAttributesRegEx = '({.*})';
   static tickDelimitedTextContent = `.*`;
-  static keyValuePairRegEx = '[-A-Za-z0-9_]*:[-A-Za-z0-9_]*';
+  static keyValuePairRegEx = '[-A-Za-z0-9_]+:[-A-Za-z0-9_ ]+;';
+  static cssRuleRegEx = '[-\w\d]+:[-\w\d\s]+;';
 
   lines = [];
   levels = [];
@@ -83,16 +84,27 @@ class Parser {
   }
 
   getStyles(line) {
+    //inline style block is <key:value; key:value;>
     if (!line) return [];  //guard, if empty string
     let styles = new RegExp(/(<.*>)/, 'gi');
     let stylesBlock = line.match(styles);  //array or null
+    console.log(`stylesBlock`, stylesBlock);
     if (stylesBlock) {
+      //<key:value; key:value;>
       // console.log(`stylesBlock`, stylesBlock);
-    
-      let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
+      // let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
+      //split out each CSS rule
+      let kvPairRegEx = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
+      // console.log(`stylesBlock[0]`, stylesBlock[0]);
       let pairs = stylesBlock[0].match(kvPairRegEx);
-      // console.log(`pairs`, pairs);
-      return pairs
+      console.log(`pairs`, pairs);
+      //['key:value;', 'key:value;']
+      let css = pairs.map((pair) => {
+        //remove the terminating semicolon
+        return chop(pair, 1);
+      }) 
+      // console.log(`css`, css);
+      return css
     }
     return [];
   }
@@ -147,17 +159,19 @@ class Parser {
     }
     let newElement = null;
     let level = this.getLevel(firstWord);
-    //now remove the preceeding dashes
     let word = firstWord;
+    //remove preceeding hyphens
     if (level > 0) {
       word = chop(firstWord, level, false);  //from the front
     }
+    //Q: Starts with a Tag?
     const hashPosition = word.indexOf('#');
     const dotPosition = word.indexOf('.');
     if (hashPosition === 0) {
-      //shorthand for 'div'
-      //1 #id
-      //2 #id.classList
+      //A:  No. so assume this is shorthand for a <div> 
+      //Q:  Is there an #id
+      //        1 #id
+      //        2 #id.classList
       newElement = new Element('div');
       if (dotPosition >= 0) {
         //case 2
@@ -168,7 +182,8 @@ class Parser {
         newElement.id = word.slice(1); //returns all but first char
       }
     } else if (dotPosition === 0) {
-      // .classList
+      //A: No. so assume this is shorthand for a <div>
+      //Q: is there a .classList
       newElement = new Element('div');
       newElement.classes = word.slice(1);
     } else {
@@ -195,7 +210,7 @@ class Parser {
       newElement.styles = this.getStyles(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
       newElement.textContent = clip(this.getContent(this.lines[i]));
-      console.log(`newElement`, newElement);
+      // console.log(`newElement`, newElement);
     }
   }
 }
