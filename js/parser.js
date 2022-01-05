@@ -88,22 +88,19 @@ class Parser {
     if (!line) return [];  //guard, if empty string
     let styles = new RegExp(/(<.*>)/, 'gi');
     let stylesBlock = line.match(styles);  //array or null
-    console.log(`stylesBlock`, stylesBlock);
     if (stylesBlock) {
       //<key:value; key:value;>
-      // console.log(`stylesBlock`, stylesBlock);
-      // let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
       //split out each CSS rule
-      let kvPairRegEx = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
+      let cssKeyValuePairs = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
       // console.log(`stylesBlock[0]`, stylesBlock[0]);
-      let pairs = stylesBlock[0].match(kvPairRegEx);
+      let pairs = stylesBlock[0].match(cssKeyValuePairs);
       console.log(`pairs`, pairs);
       //['key:value;', 'key:value;']
       let css = pairs.map((pair) => {
         //remove the terminating semicolon
         return chop(pair, 1);
       }) 
-      // console.log(`css`, css);
+      console.log(`css`, css);
       return css
     }
     return [];

@@ -19,12 +19,13 @@ function clearAllChildren(parent) {
 
 function chop(text, numChars, fromEnd = true) {
   if (fromEnd) {
-    return text.substring(text.length - numChars, numChars);
+    return text.substring(0, text.length-numChars);
   }
   return text.substring(numChars); //start at numChars, return all remaining chars
 }
 
 function clip(text, numChars = 1) {
+  //remove x chars from each end of string
   //start at numChars, end at -numChars
   //substring treats negative indices as zero
   return text.substring(numChars, text.length-numChars);
