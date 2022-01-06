@@ -1,5 +1,5 @@
 import { defaults } from './globals.js';
-import {chop, clip} from './helpers.js'
+import { chop, clip } from './helpers.js';
 
 class Element {
   level = 0;
@@ -37,7 +37,7 @@ class Parser {
   static bracketedAttributesRegEx = '({.*})';
   static tickDelimitedTextContent = `.*`;
   static keyValuePairRegEx = '[-A-Za-z0-9_]+:[-A-Za-z0-9_ ]+;';
-  static cssRuleRegEx = '[-\w\d]+:[-\w\d\s]+;';
+  static cssRuleRegEx = '[-wd]+:[-wds]+;';
 
   lines = [];
   levels = [];
@@ -69,51 +69,51 @@ class Parser {
   }
 
   getAttributes(line) {
-    if (!line) return [];  //guard, if empty string
+    if (!line) return []; //guard, if empty string
     //use regex to pull out the attributes block
-    let attributes = new RegExp(/({.*})/, 'gi');
-    let attrBlock = line.match(attributes);  //array or null
+    let regex = new RegExp(/({.*})/, 'gi');
+    let attrBlock = line.match(regex); //array or null
     if (attrBlock) {
       // console.log(`attrBlock`, attrBlock);
-      let kvPairRegEx = new RegExp(/[-A-Za-z0-9_]*:[-A-Za-z0-9_]*/, 'gi');
-      let pairs = attrBlock[0].match(kvPairRegEx);
-      // console.log(`pairs`, pairs);
-      return pairs
+      let attributes = clip(attrBlock[0], 1);  //remove both curly braces
+      console.log(`attributes`, attributes);
+      regex = new RegExp(/[-\w\d]+:(?:[-\w\d\s'"]+)/, 'gi');
+      let pairs = attributes.match(regex);
+      console.log(`pairs`, pairs);
+      return pairs;
     }
     return [];
   }
 
   getStyles(line) {
     //inline style block is <key:value; key:value;>
-    if (!line) return [];  //guard, if empty string
+    if (!line) return []; //guard, if empty string
     let styles = new RegExp(/(<.*>)/, 'gi');
-    let stylesBlock = line.match(styles);  //array or null
+    let stylesBlock = line.match(styles); //array or null
     if (stylesBlock) {
       //<key:value; key:value;>
       //split out each CSS rule
-      let cssKeyValuePairs = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
-      // console.log(`stylesBlock[0]`, stylesBlock[0]);
-      let pairs = stylesBlock[0].match(cssKeyValuePairs);
-      console.log(`pairs`, pairs);
-      //['key:value;', 'key:value;']
+      let regex = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
+      let pairs = stylesBlock[0].match(regex);
+      //array of ['key:value;', 'key:value;']
       let css = pairs.map((pair) => {
         //remove the terminating semicolon
         return chop(pair, 1);
-      }) 
-      console.log(`css`, css);
-      return css
+      });
+      // console.log(`css`, css);
+      return css;
     }
     return [];
   }
 
   getContent(line) {
-    if (!line) return "";  //guard, if empty string
-    const contentRegEx = new RegExp(/(`.*`)/, 'gi')
+    if (!line) return ''; //guard, if empty string
+    const contentRegEx = new RegExp(/(`.*`)/, 'gi');
     const content = line.match(contentRegEx);
     if (content) {
       return content[0];
     }
-    return "";
+    return '';
   }
 
   getElementFromWord(word) {
@@ -151,7 +151,8 @@ class Parser {
 
   spawnElement(firstWord) {
     //guard
-    if (!firstWord) { //empty string or null ... returns null
+    if (!firstWord) {
+      //empty string or null ... returns null
       return null;
     }
     let newElement = null;
@@ -159,13 +160,13 @@ class Parser {
     let word = firstWord;
     //remove preceeding hyphens
     if (level > 0) {
-      word = chop(firstWord, level, false);  //from the front
+      word = chop(firstWord, level, false); //from the front
     }
     //Q: Starts with a Tag?
     const hashPosition = word.indexOf('#');
     const dotPosition = word.indexOf('.');
     if (hashPosition === 0) {
-      //A:  No. so assume this is shorthand for a <div> 
+      //A:  No. so assume this is shorthand for a <div>
       //Q:  Is there an #id
       //        1 #id
       //        2 #id.classList
