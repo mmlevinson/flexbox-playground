@@ -1,5 +1,5 @@
 import { defaults } from './globals.js';
-import { chop, clip } from './helpers.js';
+import { chop, clip, LoremIpsum } from './helpers.js';
 
 class Element {
   level = 0;
@@ -9,7 +9,7 @@ class Element {
   styles = {};
   attributes = {};
   link = '';
-  contents = '';
+  content = '';
 
   constructor(tagName) {
     this.tag = tagName.toLowerCase(); //browser convention outputs UPPERCASE
@@ -18,14 +18,16 @@ class Element {
 
 /*
 .card
+.card
 -#first-card.card
 --h3.card.header `lorem25`
 --p.card.contents `lorem50`
----a.active {href=http://www.something.com/whatever23.find-me/cgi?name='Max'&age='31'}
+---a.active {href=http://www.something.com/whatever23.find-me/?name='Max'&age='31'}
 --img#banner.bannerTop.bannerActive <h:250; w:250; border:1px solid green;>  {src=http://www.flashpoint.com/} 
 --label.input-label {name:bob, type:number, value:'pop warner'} `Whatever`
 --input#bobsAge.numericInput {value:40} `40`
 --button#apply {data-tooltip-id:apply} `Apply`
+ 
  
  */
 
@@ -42,22 +44,23 @@ class Parser {
   static tickDelimitedTextContent = `.*`;
   static keyValuePairRegEx = '[-A-Za-z0-9_]+:[-A-Za-z0-9_ ]+;';
   static cssRuleRegEx = '[-wd]+:[-wds]+;';
-  static urlRegEx = /[\w]+=([\w]+:\/{2}[.-\w\d?=&'"/]+)/
+  static urlRegEx = /[\w]+=([\w]+:\/{2}[.-\w\d?=&'"/]+)/;
 
   lines = [];
   levels = [];
   elements = [];
+  tree = null;
 
   constructor() {}
 
   parse(rawText) {
-    let result = '';
     //windows systems use CRLF where Unix uses LN
     this.lines = rawText.replaceAll('\r\n', '\n').trim().split('\n');
-    this.getLineIndents();
+    // this.getLineIndents();
     this.breakWords();
     // console.log(`this.elements`, this.elements);
-    return result;
+    this.buildTree();
+    return this.tree;
   }
 
   getLineIndents() {
@@ -80,7 +83,7 @@ class Parser {
     let matchResults = line.match(regex); //array or null
     if (matchResults) {
       // console.log(`attrBlock`, attrBlock);
-      let attributes = clip(matchResults[0], 1);  //remove both curly braces
+      let attributes = clip(matchResults[0], 1); //remove both curly braces
       // console.log(`attributes`, attributes);
       //pull out key:value pairs
       regex = new RegExp(/[-\w\d]+:(?:[-\w\d\s'"]+)/, 'gi');
@@ -117,7 +120,14 @@ class Parser {
     const regex = new RegExp(/`.*`/, 'gi');
     const matchResults = line.match(regex);
     if (matchResults) {
-      return clip(matchResults[0]);  //remove tick marks
+      let rawContents = clip(matchResults[0]); //remove tick marks
+      const loremCount = LoremIpsum.isLorem(rawContents);
+      if (loremCount) {
+        //0 means the string did not begins with 'lorem'
+        return LoremIpsum.getSentence(loremCount);
+      } else {
+        return rawContents;
+      }
     }
     return '';
   }
@@ -199,18 +209,18 @@ class Parser {
     return newElement;
   }
 
-  parseLink(line){
-   //for <a> or <img> tags, there should be an attribute with the link
-   //  delimited by curly braces
-    const regex = new RegExp(/([\w]+)=([\w]+:\/{2}[-\w\d?=.&'"/]+)/, 'gi')
+  parseLink(line) {
+    //for <a> or <img> tags, there should be an attribute with the link
+    //  delimited by curly braces
+    const regex = new RegExp(/([\w]+)=([\w]+:\/{2}[-\w\d?=.&'"/]+)/, 'gi');
     const matchResult = regex.exec(line);
     if (matchResult) {
       // console.log(`matchResult`, matchResult);
       //matchResult[0] is the entire match
       //matchResult[1] is the protocol (src | href)
-      //matchResult[2] is the link text 
+      //matchResult[2] is the link text
       const linkText = matchResult[2];
-      console.log(`linkText`, linkText);
+      // console.log(`linkText`, linkText);
       return linkText;
     }
     return '';
@@ -229,14 +239,36 @@ class Parser {
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
       let newElement = this.spawnElement(this.lines[i]); //this is the tag, id, classList parsed
       newElement.styles = this.getStyles(this.lines[i]);
-      newElement.textContent = this.getContent(this.lines[i]);
+      newElement.content = this.getContent(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
       if (newElement.tag === 'a' || newElement.tag === 'img') {
         //we need the URLs
         newElement.link = this.parseLink(this.lines[i]);
       }
-      console.log(`newElement`, newElement);
+      // console.log(`newElement`, newElement);
+      this.elements.push(newElement);
     }
+  }
+
+  /* Mother of all methods...walk down the array of Elements and build
+  a node tree based on the levels of each element referenced off the previous element */
+  buildTree() {
+    const wrappingDiv = document.createElement('div');
+    wrappingDiv.classList.add('wrapper');
+    this.tree = wrappingDiv;
+    //this is the head node of our tree
+    //TEST ... lets just add the first one for now
+    let e = this.elements[0];
+    let element = document.createElement(e.tag);
+    if (e === null) return;
+    if (e.id) {
+      element.setAttribute('id', e.id);
+    }
+    //some of these are empty strings so no harm donegirt 
+    element.classList.add(e.classes);
+    element.textContent = e.content;
+    //after configuring element, add to tree as sibling or child
+    this.tree.append(element);
   }
 }
 

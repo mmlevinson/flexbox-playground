@@ -356,7 +356,8 @@ function updateFlexItemText() {
 
   //TESTING
   const parser = new Parser();
-  parser.parse(itemText);
+  const tree = parser.parse(itemText);
+  console.log(`tree`, tree);
   // is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {

@@ -324,7 +324,7 @@ class LoremIpsum {
     words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
     let result = words.join(' ');
     //add some punctuation
-    let punct = '...!?';
+    let punct = '.;,!?';
     return result + punct.charAt(Math.floor(Math.random() * punct.length));
   }
 
