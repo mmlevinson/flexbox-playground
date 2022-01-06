@@ -8,6 +8,7 @@ class Element {
   classes = '';
   styles = {};
   attributes = {};
+  link = '';
   contents = '';
 
   constructor(tagName) {
@@ -41,7 +42,7 @@ class Parser {
   static tickDelimitedTextContent = `.*`;
   static keyValuePairRegEx = '[-A-Za-z0-9_]+:[-A-Za-z0-9_ ]+;';
   static cssRuleRegEx = '[-wd]+:[-wds]+;';
-  static urlRegEx = /[\w]+=[\w]+:\/{2}[.-\w\d?=&'"/]+/
+  static urlRegEx = /[\w]+=([\w]+:\/{2}[.-\w\d?=&'"/]+)/
 
   lines = [];
   levels = [];
@@ -198,6 +199,23 @@ class Parser {
     return newElement;
   }
 
+  parseLink(line){
+   //for <a> or <img> tags, there should be an attribute with the link
+   //  delimited by curly braces
+    const regex = new RegExp(/([\w]+)=([\w]+:\/{2}[-\w\d?=.&'"/]+)/, 'gi')
+    const matchResult = regex.exec(line);
+    if (matchResult) {
+      // console.log(`matchResult`, matchResult);
+      //matchResult[0] is the entire match
+      //matchResult[1] is the protocol (src | href)
+      //matchResult[2] is the link text 
+      const linkText = matchResult[2];
+      console.log(`linkText`, linkText);
+      return linkText;
+    }
+    return '';
+  }
+
   breakWords() {
     //for each line, break into words based on space char
     // const words = this.lines[0].replaceAll('-', '').split(' ');
@@ -211,8 +229,12 @@ class Parser {
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
       let newElement = this.spawnElement(this.lines[i]); //this is the tag, id, classList parsed
       newElement.styles = this.getStyles(this.lines[i]);
-      newElement.attributes = this.getAttributes(this.lines[i]);
       newElement.textContent = this.getContent(this.lines[i]);
+      newElement.attributes = this.getAttributes(this.lines[i]);
+      if (newElement.tag === 'a' || newElement.tag === 'img') {
+        //we need the URLs
+        newElement.link = this.parseLink(this.lines[i]);
+      }
       console.log(`newElement`, newElement);
     }
   }
