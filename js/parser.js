@@ -245,8 +245,42 @@ class Parser {
         //we need the URLs
         newElement.link = this.parseLink(this.lines[i]);
       }
-      // console.log(`newElement`, newElement);
+      console.log(`newElement`, newElement);
       this.elements.push(newElement);
+    }
+  }
+
+  buildElementFromIndex(index) {
+    //given the index, create a new DOM element from our descriptive class
+    const e = this.elements[index];
+    const element = document.createElement(e.tag);
+    if (e === null) return;
+    //what is the previous elements level
+    if (e.id) {
+      element.setAttribute('id', e.id);
+    }
+    //some of these are empty strings so no harm donegirt
+    element.classList.add(e.classList);
+    element.textContent = e.content;
+    //after configuring element, add to tree as sibling or child
+    return element;
+  }
+
+  appendNewElement(element, index){
+   //if we know the index this.elements, we can find the previous element
+   //  unless its zeroth
+   if (index === 0) {   //first one, so just append to this.tree
+     this.tree.append(element)
+     return;
+    } 
+    const prior = this.elements[index - 1]
+    if (element.level === prior.level) {
+      prior.parent.append(element)
+    } else if (element.level > prior.level) {
+      prior.append(element);
+    } else {
+      //we are outdenting, so the element is less than prior, so we
+      //need to find out what level it is and get the next matching sibling
     }
   }
 
@@ -258,17 +292,15 @@ class Parser {
     this.tree = wrappingDiv;
     //this is the head node of our tree
     //TEST ... lets just add the first one for now
-    let e = this.elements[0];
-    let element = document.createElement(e.tag);
-    if (e === null) return;
-    if (e.id) {
-      element.setAttribute('id', e.id);
-    }
-    //some of these are empty strings so no harm donegirt 
-    element.classList.add(e.classes);
-    element.textContent = e.content;
-    //after configuring element, add to tree as sibling or child
-    this.tree.append(element);
+    let e = this.buildElementFromIndex(0);
+    this.appendNewElement(e, 0);
+    e = this.buildElementFromIndex(1);
+    console.log(`e`, e);
+    this.appendNewElement(e, 1);
+    // this.tree.append(e);
+    e = this.buildElementFromIndex(2);
+    console.log(`e`, e);
+    this.appendNewElement(e, 2);
   }
 }
 
