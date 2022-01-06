@@ -15,14 +15,17 @@ class Element {
   }
 }
 
-/* .card
+/*
+.card
 -#first-card.card
 --h3.card.header `lorem25`
 --p.card.contents `lorem50`
---img#banner.bannerTop.bannerActive <h:250 w:250>  {src:http://www.flashpoint.com/} 
---label.input-label {name:bob type:number value:bob} `Whatever`
+---a.active {href=http://www.something.com/whatever23.find-me/cgi?name='Max'&age='31'}
+--img#banner.bannerTop.bannerActive <h:250; w:250; border:1px solid green;>  {src=http://www.flashpoint.com/} 
+--label.input-label {name:bob, type:number, value:'pop warner'} `Whatever`
 --input#bobsAge.numericInput {value:40} `40`
 --button#apply {data-tooltip-id:apply} `Apply`
+ 
  */
 
 class Parser {
@@ -38,6 +41,7 @@ class Parser {
   static tickDelimitedTextContent = `.*`;
   static keyValuePairRegEx = '[-A-Za-z0-9_]+:[-A-Za-z0-9_ ]+;';
   static cssRuleRegEx = '[-wd]+:[-wds]+;';
+  static urlRegEx = /[\w]+=[\w]+:\/{2}[.-\w\d?=&'"/]+/
 
   lines = [];
   levels = [];
@@ -72,14 +76,15 @@ class Parser {
     if (!line) return []; //guard, if empty string
     //use regex to pull out the attributes block
     let regex = new RegExp(/({.*})/, 'gi');
-    let attrBlock = line.match(regex); //array or null
-    if (attrBlock) {
+    let matchResults = line.match(regex); //array or null
+    if (matchResults) {
       // console.log(`attrBlock`, attrBlock);
-      let attributes = clip(attrBlock[0], 1);  //remove both curly braces
-      console.log(`attributes`, attributes);
+      let attributes = clip(matchResults[0], 1);  //remove both curly braces
+      // console.log(`attributes`, attributes);
+      //pull out key:value pairs
       regex = new RegExp(/[-\w\d]+:(?:[-\w\d\s'"]+)/, 'gi');
       let pairs = attributes.match(regex);
-      console.log(`pairs`, pairs);
+      // console.log(`pairs`, pairs);
       return pairs;
     }
     return [];
@@ -108,10 +113,10 @@ class Parser {
 
   getContent(line) {
     if (!line) return ''; //guard, if empty string
-    const contentRegEx = new RegExp(/(`.*`)/, 'gi');
-    const content = line.match(contentRegEx);
-    if (content) {
-      return content[0];
+    const regex = new RegExp(/`.*`/, 'gi');
+    const matchResults = line.match(regex);
+    if (matchResults) {
+      return clip(matchResults[0]);  //remove tick marks
     }
     return '';
   }
@@ -149,7 +154,8 @@ class Parser {
     return newElement;
   }
 
-  spawnElement(firstWord) {
+  spawnElement(line) {
+    let firstWord = line.split(' ')[0]; //first word is the Tag#id.classList followed by space char
     //guard
     if (!firstWord) {
       //empty string or null ... returns null
@@ -202,13 +208,12 @@ class Parser {
       //strip off the levels, break on space char
       // let words = this.lines[i].replaceAll('-', '').split(' ');
       // let words = this.lines[i].split(' ');
-      let firstWord = this.lines[i].split(' ')[0];
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
-      let newElement = this.spawnElement(firstWord); //this is the tag, id, classList parsed
+      let newElement = this.spawnElement(this.lines[i]); //this is the tag, id, classList parsed
       newElement.styles = this.getStyles(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
-      newElement.textContent = clip(this.getContent(this.lines[i]));
-      // console.log(`newElement`, newElement);
+      newElement.textContent = this.getContent(this.lines[i]);
+      console.log(`newElement`, newElement);
     }
   }
 }
