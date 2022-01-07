@@ -134,34 +134,43 @@ class Parser {
 
   getElementFromWord(word) {
     if (!word) return null;
-    //1 tag#identifier
-    //2 tag#id.classes
-    //3 tag.classes
+    //0 tag
+    //1 tag#id
+    //2 tag#id.class1.class2
+    //3 tag.class1.class2
     const result = {
-      tagName: word,
+      tag: word,   //case 0
       id: '',
-      classList: '',
+      classes: '',
     };
     const hashPosition = word.indexOf('#');
     const dotPosition = word.indexOf('.');
+    //Q1: Is there an #id
     if (hashPosition >= 0) {
-      result.tagName = word.slice(0, hashPosition);
+      //A1: Yes ... (cases 1,2)
+      // ... grab the tag chars from the string start
+      result.tag = word.slice(0, hashPosition);
+      //Q2: Is there also .class.class
       if (dotPosition >= 0) {
-        //case 2
-        result.classList = word.slice(dotPosition + 1).replaceAll('.', ' '); //to end of string
+        //A2: Yes, there is .class.class (case #2)
+        // ... grab the id
         result.id = word.slice(hashPosition + 1, dotPosition);
+        // ... grab the classes (to end of string)
+        result.classes = word.slice(dotPosition + 1).replaceAll('.', ' '); //to end of string
       } else {
-        //case 1
+        //A2: No classes (case 1)
+        //  ... grab just the #id 
         result.id = word.slice(hashPosition + 1); //to end of string
       }
     } else if (dotPosition >= 0) {
-      //case 3
-      result.tagName = word.slice(0, dotPosition);
-      result.classList = word.slice(dotPosition + 1).replaceAll('.', ' ');
+      //A1: No #id but .class1.class present (case 3)
+      // ... grab tag then classes
+      result.tag = word.slice(0, dotPosition);
+      result.classes = word.slice(dotPosition + 1).replaceAll('.', ' ');
     }
-    const newElement = new Element(result.tagName);
+    const newElement = new Element(result.tag);
     newElement.id = result.id;
-    newElement.classes = result.classList;
+    newElement.classes = result.classes;
     return newElement;
   }
 
@@ -173,35 +182,43 @@ class Parser {
       return null;
     }
     let newElement = null;
+    //Q: How deeply nested is this line?
     let level = this.getLevel(firstWord);
     let word = firstWord;
-    //remove preceeding hyphens
+    //Next ... remove preceeding hyphens
     if (level > 0) {
       word = chop(firstWord, level, false); //from the front
     }
-    //Q: Starts with a Tag?
+    //Then, examine for a leading <tag> string
+    //   ... which must preceeed any #id or .class designation
     const hashPosition = word.indexOf('#');
     const dotPosition = word.indexOf('.');
+    //Q1: starts with a tag designation?
+     
+     
+     // 3 .class1.class2
     if (hashPosition === 0) {
-      //A:  No. so assume this is shorthand for a <div>
-      //Q:  Is there an #id
-      //        1 #id
-      //        2 #id.classList
+      //A1: No ... first char is a hash (#) ie starts with an #id
+      
       newElement = new Element('div');
+      //Q2:  Is there also .class string?
       if (dotPosition >= 0) {
-        //case 2
-        newElement.classList = word.slice(dotPosition + 1);
+        //A2: Yes so grab #id then .classes
+        // 2 #id.class1.class2
         newElement.id = word.slice(1, dotPosition);
+        newElement.classes = word.slice(dotPosition + 1);
       } else {
-        //case 1
+        //A2 :No classes, so just grab #id
+        // 1 #id
         newElement.id = word.slice(1); //returns all but first char
       }
     } else if (dotPosition === 0) {
-      //A: No. so assume this is shorthand for a <div>
-      //Q: is there a .classList
+      //Q3: starts with a .classes string
+      //A3:  Yes ... default <div> with .classes
       newElement = new Element('div');
       newElement.classes = word.slice(1);
     } else {
+      //A1 Yes...there is a tag, so create with specific tag
       newElement = this.getElementFromWord(word);
     }
     newElement.level = level;
@@ -233,6 +250,7 @@ class Parser {
     // this.spawnElement(words[0]);
 
     for (let i = 0; i < this.lines.length; i++) {
+      this.parseLine(this.lines[i]);
       //strip off the levels, break on space char
       // let words = this.lines[i].replaceAll('-', '').split(' ');
       // let words = this.lines[i].split(' ');
@@ -245,7 +263,7 @@ class Parser {
         //we need the URLs
         newElement.link = this.parseLink(this.lines[i]);
       }
-      console.log(`newElement`, newElement);
+      // console.log(`newElement`, newElement);
       this.elements.push(newElement);
     }
   }
@@ -295,13 +313,56 @@ class Parser {
     let e = this.buildElementFromIndex(0);
     this.appendNewElement(e, 0);
     e = this.buildElementFromIndex(1);
-    console.log(`e`, e);
+    // console.log(`e`, e);
     this.appendNewElement(e, 1);
     // this.tree.append(e);
     e = this.buildElementFromIndex(2);
-    console.log(`e`, e);
+    // console.log(`e`, e);
     this.appendNewElement(e, 2);
   }
-}
+
+
+
+  parseLine(line) {
+    //Break off the first word 
+    let firstWord = line.split(' ')[0];
+    if (!firstWord) return null;
+
+    //Q: How many preceeding hyphens (to indicate nesting level)
+    const level = this.getLevel(firstWord);
+    //Now chop off these hyphens
+    if (level > 0) {
+      firstWord = chop(firstWord, level, false);   //from beginning of string
+    }
+    //Examine for preceeding <tag> designation
+    //1 tag
+    //2 tag#id
+    //3 tag#id.classes
+    //4 tag.classes
+    //Regex ... find all \w\d preceeding [#.\s], with groupings & indices
+    const regex = new RegExp(/^([\w\d]+)(?=[#. ])/, 'gid');
+    const match = regex.exec(firstWord);
+    // console.log(`match`, match);
+    if (match) {
+      //there is a tag in the
+      const tag = match[1];
+      //now remove the preceeding tag, 
+      const remaining = firstWord.slice(tag.length);  //to the end of string
+      console.log(`tag, remaining`, tag, remaining);
+    } else {
+      //no preceeding tag, so default to <div>
+      //process #id.classes
+    }
+  
+  }
+
+
+
+
+
+};//end of Class
+
+
+
 
 export default Parser;
