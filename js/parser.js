@@ -272,7 +272,7 @@ class Parser {
         element:this.buildElement(config),
       });
     }
-    // console.log(`this.elements`, this.elements);
+    console.log(`this.domos`, this.domos);
   }
 
   buildElement(config) {
@@ -294,6 +294,25 @@ class Parser {
     return element;
   }
 
+  getNextPrior(currentIndex) {
+    //walk up domos, checking each level for one before ours
+    const current = this.domos[currentIndex];
+    // console.log(`current`, current);
+    let priorIndex = currentIndex - 1;
+    let prior = null;
+    while (priorIndex > 0) {
+      // console.log(`priorIndex`, priorIndex);
+      prior = this.domos[priorIndex];
+      // console.log(`prior`, prior);
+      if (current.level === prior.level) {
+        console.log(`prior`, prior);
+        return prior.element;
+      }
+      priorIndex = priorIndex - 1;
+    }
+    return null;
+  }
+
   appendNewElement(index) {
     //if we know the index this.elements, we can find the previous element
     //  unless its zeroth
@@ -306,18 +325,23 @@ class Parser {
 
     const current = this.domos[index];
     const prior = this.domos[index - 1];
-    console.log(`current`, current);
-    console.log(`prior`, prior);
+    // console.log(`current`, current);
+    // console.log(`prior`, prior);
     // this.tree.append(current.element);
     if (current.level === prior.level) {
       // console.log(`prior.parent`, prior.parent);
-      prior.element.parent.append(current.element);
+      prior.element.parentElement.append(current.element);
     } else if (current.level > prior.level) {
       prior.element.append(current.element);
     } else {
       //we are outdenting, so the element is less than prior, so we
-      //need to find out what level it is and get the next matching sibling
+      //need to walk back until we find the nearest element one level before
       console.log(`neither`);
+      const priorSibling = this.getNextPrior(index);
+      // console.log(`priorSibling`, priorSibling);
+      if (priorSibling) {
+        priorSibling.parentElement.append(current.element);
+      }
     }
   }
 
@@ -332,6 +356,9 @@ class Parser {
     this.appendNewElement(0);
     this.appendNewElement(1);
     this.appendNewElement(2);
+    this.appendNewElement(3);
+    this.appendNewElement(4);
+    this.appendNewElement(5);
   }
 
   parseLine(line) {
