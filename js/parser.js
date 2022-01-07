@@ -48,7 +48,7 @@ class Parser {
 
   lines = [];
   levels = [];
-  elements = [];
+  domos = [];    //{level:number, element:HTMLElement}
   tree = null;
 
   constructor() {}
@@ -62,7 +62,6 @@ class Parser {
     this.buildTree();
     return this.tree;
   }
-
 
   /* DEPRECATED */
   getLineIndents() {
@@ -133,7 +132,6 @@ class Parser {
     }
     return '';
   }
-  
 
   /* DEPRECATED */
   getElementFromWord(word) {
@@ -143,7 +141,7 @@ class Parser {
     //2 tag#id.class1.class2
     //3 tag.class1.class2
     const result = {
-      tag: word,   //case 0
+      tag: word, //case 0
       id: '',
       classes: '',
     };
@@ -163,7 +161,7 @@ class Parser {
         result.classes = word.slice(dotPosition + 1).replaceAll('.', ' '); //to end of string
       } else {
         //A2: No classes (case 1)
-        //  ... grab just the #id 
+        //  ... grab just the #id
         result.id = word.slice(hashPosition + 1); //to end of string
       }
     } else if (dotPosition >= 0) {
@@ -177,7 +175,6 @@ class Parser {
     newElement.classes = result.classes;
     return newElement;
   }
-
 
   /* DEPRECATED */
   spawnElement(line) {
@@ -200,12 +197,11 @@ class Parser {
     const hashPosition = word.indexOf('#');
     const dotPosition = word.indexOf('.');
     //Q1: starts with a tag designation?
-     
-     
-     // 3 .class1.class2
+
+    // 3 .class1.class2
     if (hashPosition === 0) {
       //A1: No ... first char is a hash (#) ie starts with an #id
-      
+
       newElement = new Element('div');
       //Q2:  Is there also .class string?
       if (dotPosition >= 0) {
@@ -254,58 +250,74 @@ class Parser {
     // const words = this.lines[0].replaceAll('-', '').split(' ');
     // console.log(`words`, words);
     // this.spawnElement(words[0]);
-      // this.parseLine(this.lines[i]);
-      //strip off the levels, break on space char
-      // let words = this.lines[i].replaceAll('-', '').split(' ');
-      // let words = this.lines[i].split(' ');
-      // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
+    // this.parseLine(this.lines[i]);
+    //strip off the levels, break on space char
+    // let words = this.lines[i].replaceAll('-', '').split(' ');
+    // let words = this.lines[i].split(' ');
+    // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
 
     for (let i = 0; i < this.lines.length; i++) {
-    
-      let newElement = this.parseLine(this.lines[i]); //this is the tag, id, classList parsed
-      newElement.styles = this.getStyles(this.lines[i]);
-      newElement.content = this.getContent(this.lines[i]);
-      newElement.attributes = this.getAttributes(this.lines[i]);
-      if (newElement.tag === 'a' || newElement.tag === 'img') {
+      let line = this.lines[i];
+      let firstWord = line.split(' ')[0];
+      let config = this.parseLine(line); //this is the tag, id, classList parsed
+      config.styles = this.getStyles(line);
+      config.content = this.getContent(line);
+      config.attributes = this.getAttributes(line);
+      if (config.tag === 'a' || config.tag === 'img') {
         //we need the URLs
-        newElement.link = this.parseLink(this.lines[i]);
+        config.link = this.parseLink(this.lines[i]);
       }
-      console.log(`newElement`, newElement);
-      this.elements.push(newElement);
+      this.domos.push({
+        level: this.getLevel(firstWord),
+        element:this.buildElement(config),
+      });
     }
+    // console.log(`this.elements`, this.elements);
   }
 
-  buildElementFromIndex(index) {
+  buildElement(config) {
     //given the index, create a new DOM element from our descriptive class
-    const e = this.elements[index];
-    const element = document.createElement(e.tag);
-    if (e === null) return;
-    //what is the previous elements level
-    if (e.id) {
-      element.setAttribute('id', e.id);
+    const element = document.createElement(config.tag);
+    if (element === null) return null;
+    //embed the #id
+    if (config.id) {
+      element.setAttribute('id', config.id);
     }
-    //some of these are empty strings so no harm donegirt
-    element.classList.add(e.classList);
-    element.textContent = e.content;
+    //embed all .classes
+    if (config.classes) {
+      for (const className of config.classes) {
+        element.classList.add(className);
+      }
+    }
+    element.textContent = config.content;
     //after configuring element, add to tree as sibling or child
     return element;
   }
 
-  appendNewElement(element, index){
-   //if we know the index this.elements, we can find the previous element
-   //  unless its zeroth
-   if (index === 0) {   //first one, so just append to this.tree
-     this.tree.append(element)
-     return;
-    } 
-    const prior = this.elements[index - 1]
-    if (element.level === prior.level) {
-      prior.parent.append(element)
-    } else if (element.level > prior.level) {
-      prior.append(element);
+  appendNewElement(index) {
+    //if we know the index this.elements, we can find the previous element
+    //  unless its zeroth
+
+    if (index === 0) {
+      //first one, so just append to this.tree
+      this.tree.append(this.domos[0].element);
+      return;
+    }
+
+    const current = this.domos[index];
+    const prior = this.domos[index - 1];
+    console.log(`current`, current);
+    console.log(`prior`, prior);
+    // this.tree.append(current.element);
+    if (current.level === prior.level) {
+      // console.log(`prior.parent`, prior.parent);
+      prior.element.parent.append(current.element);
+    } else if (current.level > prior.level) {
+      prior.element.append(current.element);
     } else {
       //we are outdenting, so the element is less than prior, so we
       //need to find out what level it is and get the next matching sibling
+      console.log(`neither`);
     }
   }
 
@@ -317,21 +329,13 @@ class Parser {
     this.tree = wrappingDiv;
     //this is the head node of our tree
     //TEST ... lets just add the first one for now
-    let e = this.buildElementFromIndex(0);
-    this.appendNewElement(e, 0);
-    e = this.buildElementFromIndex(1);
-    // console.log(`e`, e);
-    this.appendNewElement(e, 1);
-    // this.tree.append(e);
-    e = this.buildElementFromIndex(2);
-    // console.log(`e`, e);
-    this.appendNewElement(e, 2);
+    this.appendNewElement(0);
+    this.appendNewElement(1);
+    this.appendNewElement(2);
   }
 
-
-
   parseLine(line) {
-    //Break off the first word 
+    //Break off the first word
     let firstWord = line.split(' ')[0];
     if (!firstWord) return null;
 
@@ -339,11 +343,11 @@ class Parser {
     const level = this.getLevel(firstWord);
     //Now chop off these hyphens
     if (level > 0) {
-      firstWord = chop(firstWord, level, false);   //from beginning of string
+      firstWord = chop(firstWord, level, false); //from beginning of string
     }
     //Build a new Element()
-    let tag = 'div';   //default, if none specified
-    let remaining = firstWord;  //#id.classes if no tag present
+    let tag = 'div'; //default, if none specified
+    let remaining = firstWord; //#id.classes if no tag present
     //Examine for preceeding <tag> designation
     //1 tag
     //2 tag#id
@@ -357,8 +361,8 @@ class Parser {
     if (result) {
       //starts with name of tag
       tag = result[1];
-      //now remove the tag, 
-      remaining = firstWord.slice(tag.length);  //to the end of string
+      //now remove the tag,
+      remaining = firstWord.slice(tag.length); //to the end of string
     }
     //now we know what tag we are creating
     const newElement = new Element(tag);
@@ -367,10 +371,12 @@ class Parser {
     const hashPosition = remaining.indexOf('#');
     const dotPosition = remaining.indexOf('.');
 
-    if (hashPosition === 0) {   // remaining starts with #id
-      if (dotPosition > 0) {  //there is also .classes
+    if (hashPosition === 0) {
+      // remaining starts with #id
+      if (dotPosition > 0) {
+        //there is also .classes
         //#id.classes
-        newElement.id = remaining.slice(1, dotPosition);  //#id
+        newElement.id = remaining.slice(1, dotPosition); //#id
         newElement.classes = remaining.slice(dotPosition + 1).split('.'); //.classes
       } else {
         //#id
@@ -383,14 +389,6 @@ class Parser {
     // console.log(`newElement`, newElement);
     return newElement;
   }
-
-
-
-
-
-};//end of Class
-
-
-
+} //end of Class
 
 export default Parser;

@@ -243,7 +243,7 @@ function setUpButtonListeners() {
 }
 
 function handleActionButton(event) {
-  console.log(`event.target`, event.target.textContent);
+  // console.log(`event.target`, event.target.textContent);
   const action = event.target.textContent;  //Apply|Undo|Defaults|Copy to Clipboard
   switch (action) {
     case 'Defaults':
