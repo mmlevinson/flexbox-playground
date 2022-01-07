@@ -334,25 +334,45 @@ class Parser {
     if (level > 0) {
       firstWord = chop(firstWord, level, false);   //from beginning of string
     }
+    //Build a new Element()
+    let tag = 'div';   //default, if none specified
+    let remaining = firstWord;  //#id.classes if no tag present
     //Examine for preceeding <tag> designation
     //1 tag
     //2 tag#id
     //3 tag#id.classes
     //4 tag.classes
-    //Regex ... find all \w\d preceeding [#.\s], with groupings & indices
+    //Regex ... find all \w\d preceeding [#.\s], using groupings
     const regex = new RegExp(/^([\w\d]+)(?=[#. ])/, 'gid');
-    const match = regex.exec(firstWord);
-    // console.log(`match`, match);
-    if (match) {
-      //there is a tag in the
-      const tag = match[1];
-      //now remove the preceeding tag, 
-      const remaining = firstWord.slice(tag.length);  //to the end of string
-      console.log(`tag, remaining`, tag, remaining);
-    } else {
-      //no preceeding tag, so default to <div>
-      //process #id.classes
+    const tagMatched = regex.exec(firstWord);
+
+    // console.log(`tagMatched`, tagMatched);
+    if (tagMatched) {
+      //starts with name of tag
+      tag = tagMatched[1];
+      //now remove the tag, 
+      remaining = firstWord.slice(tag.length);  //to the end of string
     }
+    //now we know what tag we are creating
+    const newElement = new Element(tag);
+    //now pull off #id and .classes
+    const hashPosition = remaining.indexOf('#');
+    const dotPosition = remaining.indexOf('.');
+
+    if (hashPosition === 0) {   // remaining starts with #id
+      if (dotPosition > 0) {  //there is also .classes
+        //#id.classes
+        newElement.id = remaining.slice(1, dotPosition);  //#id
+        newElement.classes = remaining.slice(dotPosition + 1); //.classes
+      } else {
+        //#id
+        newElement.id = remaining.slice(1); //to end of string
+      }
+    } else if (dotPosition === 0) {
+      //.classes    (but no #id)
+      newElement.classes = remaining.slice(1);
+    }
+    console.log(`newElement`, newElement);
   
   }
 
