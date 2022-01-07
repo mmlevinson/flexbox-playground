@@ -63,6 +63,8 @@ class Parser {
     return this.tree;
   }
 
+
+  /* DEPRECATED */
   getLineIndents() {
     //for each line, get the number of dashes
     this.levels = this.lines.map((line) => {
@@ -131,7 +133,9 @@ class Parser {
     }
     return '';
   }
+  
 
+  /* DEPRECATED */
   getElementFromWord(word) {
     if (!word) return null;
     //0 tag
@@ -174,6 +178,8 @@ class Parser {
     return newElement;
   }
 
+
+  /* DEPRECATED */
   spawnElement(line) {
     let firstWord = line.split(' ')[0]; //first word is the Tag#id.classList followed by space char
     //guard
@@ -248,14 +254,15 @@ class Parser {
     // const words = this.lines[0].replaceAll('-', '').split(' ');
     // console.log(`words`, words);
     // this.spawnElement(words[0]);
-
-    for (let i = 0; i < this.lines.length; i++) {
-      this.parseLine(this.lines[i]);
+      // this.parseLine(this.lines[i]);
       //strip off the levels, break on space char
       // let words = this.lines[i].replaceAll('-', '').split(' ');
       // let words = this.lines[i].split(' ');
       // let newElement = this.spawnElement(words[0])); //this is the tag, id, classList parsed
-      let newElement = this.spawnElement(this.lines[i]); //this is the tag, id, classList parsed
+
+    for (let i = 0; i < this.lines.length; i++) {
+    
+      let newElement = this.parseLine(this.lines[i]); //this is the tag, id, classList parsed
       newElement.styles = this.getStyles(this.lines[i]);
       newElement.content = this.getContent(this.lines[i]);
       newElement.attributes = this.getAttributes(this.lines[i]);
@@ -263,7 +270,7 @@ class Parser {
         //we need the URLs
         newElement.link = this.parseLink(this.lines[i]);
       }
-      // console.log(`newElement`, newElement);
+      console.log(`newElement`, newElement);
       this.elements.push(newElement);
     }
   }
@@ -344,17 +351,18 @@ class Parser {
     //4 tag.classes
     //Regex ... find all \w\d preceeding [#.\s], using groupings
     const regex = new RegExp(/^([\w\d]+)(?=[#. ])/, 'gid');
-    const tagMatched = regex.exec(firstWord);
+    const result = regex.exec(firstWord);
 
-    // console.log(`tagMatched`, tagMatched);
-    if (tagMatched) {
+    // console.log(`result`, result);
+    if (result) {
       //starts with name of tag
-      tag = tagMatched[1];
+      tag = result[1];
       //now remove the tag, 
       remaining = firstWord.slice(tag.length);  //to the end of string
     }
     //now we know what tag we are creating
     const newElement = new Element(tag);
+    newElement.level = level;
     //now pull off #id and .classes
     const hashPosition = remaining.indexOf('#');
     const dotPosition = remaining.indexOf('.');
@@ -363,17 +371,17 @@ class Parser {
       if (dotPosition > 0) {  //there is also .classes
         //#id.classes
         newElement.id = remaining.slice(1, dotPosition);  //#id
-        newElement.classes = remaining.slice(dotPosition + 1); //.classes
+        newElement.classes = remaining.slice(dotPosition + 1).split('.'); //.classes
       } else {
         //#id
         newElement.id = remaining.slice(1); //to end of string
       }
     } else if (dotPosition === 0) {
       //.classes    (but no #id)
-      newElement.classes = remaining.slice(1);
+      newElement.classes = remaining.slice(1).split('.');
     }
-    console.log(`newElement`, newElement);
-  
+    // console.log(`newElement`, newElement);
+    return newElement;
   }
 
 
