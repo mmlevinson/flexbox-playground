@@ -85,6 +85,7 @@ function setUpFlexItems(newValue) {
     const newDiv = document.createElement('div');
     newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
+    newDiv.setAttribute('contenteditable', true)
     newDiv.id = `item__${index}`;
     const span = document.createElement('span');
     //RESTORE CACHED CONTENT?
