@@ -272,7 +272,7 @@ class Parser {
         element:this.buildElement(config),
       });
     }
-    console.log(`this.domos`, this.domos);
+    // console.log(`this.domos`, this.domos);
   }
 
   buildElement(config) {
@@ -298,14 +298,14 @@ class Parser {
     //walk up domos, checking each level for one before ours
     const current = this.domos[currentIndex];
     // console.log(`current`, current);
-    let priorIndex = currentIndex - 1;
     let prior = null;
+    let priorIndex = currentIndex - 1;
     while (priorIndex > 0) {
       // console.log(`priorIndex`, priorIndex);
       prior = this.domos[priorIndex];
       // console.log(`prior`, prior);
       if (current.level === prior.level) {
-        console.log(`prior`, prior);
+        // console.log(`prior`, prior);
         return prior.element;
       }
       priorIndex = priorIndex - 1;
@@ -353,12 +353,18 @@ class Parser {
     this.tree = wrappingDiv;
     //this is the head node of our tree
     //TEST ... lets just add the first one for now
-    this.appendNewElement(0);
-    this.appendNewElement(1);
-    this.appendNewElement(2);
-    this.appendNewElement(3);
-    this.appendNewElement(4);
-    this.appendNewElement(5);
+    // this.appendNewElement(0);
+    // this.appendNewElement(1);
+    // this.appendNewElement(2);
+    // this.appendNewElement(3);
+    // this.appendNewElement(4);
+    // this.appendNewElement(5);
+    // this.appendNewElement(6);
+    // this.appendNewElement(7);
+    // this.appendNewElement(8);
+    for (let index = 0; index < this.domos.length; index++) {
+      this.appendNewElement(index);
+    }
   }
 
   parseLine(line) {

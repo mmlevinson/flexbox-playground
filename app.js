@@ -355,24 +355,31 @@ function updateFlexItemText() {
 
   if (!itemText) return;
 
-  //TESTING
-  const parser = new Parser();
-  const tree = parser.parse(itemText);
-  console.log(`tree`, tree);
+  const items = Array.from(WHICH_FLEX_ITEMS);
+
   // is this LoremXX?
   const loremCount = LoremIpsum.isLorem(itemText);
   if (loremCount) {
     //returns 0 if not begins with 'lorem'
     itemText = LoremIpsum.getSentence(loremCount);
+    for (let index = 0; index < items.length; index++) {
+      const flexItem = elements.flexItems.list[items[index]];
+      flexItem.firstChild.textContent = itemText; //update the textNode associated with the
+    }
+  } else {
+    //TESTING
+    const parser = new Parser();
+    const tree = parser.parse(itemText);
+    console.log(`tree`, tree);
+    for (let index = 0; index < items.length; index++) {
+      const flexItem = elements.flexItems.list[items[index]];
+      flexItem.append(tree);
+      
+    }
   }
    
   //we store the flexItems in a Set
-  const items = Array.from(WHICH_FLEX_ITEMS);
 
-  for (let index = 0; index < items.length; index++) {
-    const flexItem = elements.flexItems.list[items[index]];
-    flexItem.firstChild.textContent = itemText; //update the textNode associated with the
-  }
 }
 
 function updateFlexItemProperty(property, newValue) {
