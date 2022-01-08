@@ -370,12 +370,21 @@ function updateFlexItemText() {
     //TESTING
     const parser = new Parser();
     const tree = parser.parse(itemText);
-    console.log(`tree`, tree);
-    for (let index = 0; index < items.length; index++) {
-      const flexItem = elements.flexItems.list[items[index]];
-      flexItem.append(tree);
-      
+    if (tree) {   
+      //also remove any children hanging around from a prior call
+      for (let index = 0; index < items.length; index++) {
+        const flexItem = elements.flexItems.list[items[index]];
+        //empty the prior contents of this flexItem  
+        // clearAllChildren(flexItem);
+        // //replace the .flex-item-number in the upper corner
+        // // const itemNumber = document.createElement('span');
+        // // itemNumber.textContent = items[index+1].toString();
+        // // itemNumber.classList.add('flex-item-number', 'selected');
+        // // flexItem.append(itemNumber);
+        flexItem.append(tree); 
+      }
     }
+    // console.log(`tree`, tree);
   }
    
   //we store the flexItems in a Set

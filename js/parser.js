@@ -351,17 +351,6 @@ class Parser {
     const wrappingDiv = document.createElement('div');
     wrappingDiv.classList.add('wrapper');
     this.tree = wrappingDiv;
-    //this is the head node of our tree
-    //TEST ... lets just add the first one for now
-    // this.appendNewElement(0);
-    // this.appendNewElement(1);
-    // this.appendNewElement(2);
-    // this.appendNewElement(3);
-    // this.appendNewElement(4);
-    // this.appendNewElement(5);
-    // this.appendNewElement(6);
-    // this.appendNewElement(7);
-    // this.appendNewElement(8);
     for (let index = 0; index < this.domos.length; index++) {
       this.appendNewElement(index);
     }
@@ -370,7 +359,7 @@ class Parser {
   parseLine(line) {
     //Break off the first word
     let firstWord = line.split(' ')[0];
-    if (!firstWord) return null;
+    if (!firstWord) return null;   
 
     //Q: How many preceeding hyphens (to indicate nesting level)
     const level = this.getLevel(firstWord);
@@ -387,9 +376,13 @@ class Parser {
     //3 tag#id.classes
     //4 tag.classes
     //Regex ... find all \w\d preceeding [#.\s], using groupings
-    const regex = new RegExp(/^([\w\d]+)(?=[#. ])/, 'gid');
-    const result = regex.exec(firstWord);
-
+    //any isolated tags have no space chars after them so ???
+    //hack
+    // firstWord += ' ';   //now it does so will satisfy RegEx
+    console.log(`firstWord`, firstWord);  //h2 should now have trailing space
+    const regex = new RegExp(/^([\w\d]+)(?=[#.\s])/, 'gid');
+    const result = regex.exec(firstWord + " ");
+    console.log(`result`, result);
     // console.log(`result`, result);
     if (result) {
       //starts with name of tag
