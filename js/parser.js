@@ -98,20 +98,23 @@ class Parser {
   getStyles(line) {
     //inline style block is <key:value; key:value;>
     if (!line) return []; //guard, if empty string
-    let styles = new RegExp(/(<.*>)/, 'gi');
-    let stylesBlock = line.match(styles); //array or null
-    if (stylesBlock) {
+    let regex = new RegExp(/(<.*>)/, 'gi');
+    let match = line.match(regex); //array or null
+    if (match) {
       //<key:value; key:value;>
       //split out each CSS rule
-      let regex = new RegExp(/[-\w\d]+:[-\w\d\s]+;/, 'gi');
-      let pairs = stylesBlock[0].match(regex);
+      let stylesBlock = match[0];
+      console.log(`stylesBlock`, stylesBlock);
+      let regex = new RegExp(/([-\w\d]+):([-\w\d\s(.,%)]+);/, 'gi');
+      let styles = stylesBlock.matchAll(regex);
       //array of ['key:value;', 'key:value;']
-      let css = pairs.map((pair) => {
-        //remove the terminating semicolon
-        return chop(pair, 1);
-      });
-      // console.log(`css`, css);
-      return css;
+      console.log(`styles`, styles);
+      // let css = pairs.map((pair) => {
+      //   //remove the terminating semicolon
+      //   return chop(pair, 1);
+      // });
+      // // console.log(`css`, css);
+      // return css;
     }
     return [];
   }
@@ -245,6 +248,22 @@ class Parser {
     return '';
   }
 
+  /* Multiple copies of the same tree need to have their 
+  #id's and name attributes adjusted to prevent duplicates
+  within the same document.    
+  Also, creating a tree is the same as creating unique elements
+  so you cannot just pass a copy by reference.  You must create
+  new elements to utilize multiples with the same content
+  This method utilizes node.clone(deep) and then walks the tree
+  to append the index number to the #id */
+  clone(tree, index) {
+    if (!tree || index < 0) {
+      return null;
+    }
+      
+    let root = tree.clone(true); //deep.. all nodes/text
+  }
+
   breakWords() {
     //for each line, break into words based on space char
     // const words = this.lines[0].replaceAll('-', '').split(' ');
@@ -285,8 +304,14 @@ class Parser {
     }
     //embed all .classes
     if (config.classes) {
-      for (const className of config.classes) {
-        element.classList.add(className);
+      // for (const className of config.classes) {
+      //   element.classList.add(className);
+      // }
+      element.classList.add(config.classes);   //will accept an array
+    }
+    if (config.styles) {
+      for (const style of config.styles) {
+        element.style.setAttribute(style.key, style.property);
       }
     }
     element.textContent = config.content;
@@ -379,10 +404,10 @@ class Parser {
     //any isolated tags have no space chars after them so ???
     //hack
     // firstWord += ' ';   //now it does so will satisfy RegEx
-    console.log(`firstWord`, firstWord);  //h2 should now have trailing space
+    // console.log(`firstWord`, firstWord);  //h2 should now have trailing space
     const regex = new RegExp(/^([\w\d]+)(?=[#.\s])/, 'gid');
     const result = regex.exec(firstWord + " ");
-    console.log(`result`, result);
+    // console.log(`result`, result);
     // console.log(`result`, result);
     if (result) {
       //starts with name of tag

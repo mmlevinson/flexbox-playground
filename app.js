@@ -10,7 +10,7 @@ import { toolTips } from './data/tooltips.js';
 let FLEX_ITEM_COUNT;
 let WHICH_FLEX_ITEMS = new Set(); //any flex-items settings apply to these children
 let customCSSDirty = false; //set this once user makes any changes
-let CURRENT_TAB = 'flexContainer';   //context for the Apply/Undo/Defaults buttons
+let CURRENT_TAB = 'flexContainer'; //context for the Apply/Undo/Defaults buttons
 
 /* Perform setup in advance of any User activated events */
 initialize();
@@ -57,13 +57,13 @@ function reset() {
   updateCSS();
 }
 
-function switchTab(identifier) { 
+function switchTab(identifier) {
   let words = identifier.split('-');
   words.splice(0, 1); //remove 'tab | panel'
   let clickedTab = toCamelCase(words.join('-'));
   //rebuild the correct key for elements.tabs
   // console.log(`clickedTab`, clickedTab);
-  CURRENT_TAB = clickedTab;  //context for the mini-toolbar buttons
+  CURRENT_TAB = clickedTab; //context for the mini-toolbar buttons
   for (const tab in elements.tabs.settings) {
     if (tab === clickedTab) {
       elements.tabs.settings[tab].classList.add('active-tab');
@@ -85,7 +85,8 @@ function setUpFlexItems(newValue) {
     const newDiv = document.createElement('div');
     newDiv.textContent = LoremIpsum.getSentence(defaults.loremText.words);
     newDiv.classList.add('flex-item');
-    newDiv.setAttribute('contenteditable', true)
+    newDiv.setAttribute('contenteditable', true);
+    newDiv.setAttribute('index', (index = 1).toString() + '\n');
     newDiv.id = `item__${index}`;
     const span = document.createElement('span');
     //RESTORE CACHED CONTENT?
@@ -151,7 +152,6 @@ function setUpValueFieldListeners() {
   elements.flexContainer.howManyItems.addEventListener('input', (event) => {
     setUpFlexItems(event.target.value);
   });
-
 }
 
 function setUpMenuListeners() {
@@ -235,9 +235,13 @@ function setUpButtonListeners() {
   //   parseAdditionalCSS(elements.additionalCSS.textArea.value);
   // });
 
-  elements.icons.rotateIcon.addEventListener('click', (event) => {
-    rotateOrientation(event);
-  }, {capture:true});
+  elements.icons.rotateIcon.addEventListener(
+    'click',
+    (event) => {
+      rotateOrientation(event);
+    },
+    { capture: true }
+  );
 
   addGlobalEventListener('click', '.flex-item-number', selectFlexItem);
   addGlobalEventListener('click', '.action-button', handleActionButton);
@@ -245,12 +249,12 @@ function setUpButtonListeners() {
 
 function handleActionButton(event) {
   // console.log(`event.target`, event.target.textContent);
-  const action = event.target.textContent;  //Apply|Undo|Defaults|Copy to Clipboard
+  const action = event.target.textContent; //Apply|Undo|Defaults|Copy to Clipboard
   switch (action) {
     case 'Defaults':
-       if (CURRENT_TAB === 'flexContainer') {
-         flexContainerDefaults();
-       }
+      if (CURRENT_TAB === 'flexContainer') {
+        flexContainerDefaults();
+      }
       if (CURRENT_TAB === 'flexItems') {
         flexItemDefaults();
       }
@@ -281,13 +285,12 @@ function updateFlexItemProperties() {
     flexItem.style.setProperty('flex-basis', elements.flexItems.flexBasis.value);
     flexItem.style.setProperty('align-self', elements.flexItems.alignSelf.value);
     flexItem.style.setProperty('order', elements.flexItems.flexOrder.value);
-  }        
+  }
   updateCSS();
 }
 
 function updateSelectedFlexItems() {
   //for each item in WHICH_FLEX_ITEMS, update the text and item properties
-  
 }
 
 /* Global Event Handler (above) which watches each flex-item-number
@@ -370,25 +373,29 @@ function updateFlexItemText() {
     //TESTING
     const parser = new Parser();
     const tree = parser.parse(itemText);
-    if (tree) {   
+    if (tree) {
       //also remove any children hanging around from a prior call
       for (let index = 0; index < items.length; index++) {
         const flexItem = elements.flexItems.list[items[index]];
-        //empty the prior contents of this flexItem  
-        // clearAllChildren(flexItem);
+        //empty the prior contents of this flexItem
+        clearAllChildren(flexItem);
         // //replace the .flex-item-number in the upper corner
         // // const itemNumber = document.createElement('span');
         // // itemNumber.textContent = items[index+1].toString();
         // // itemNumber.classList.add('flex-item-number', 'selected');
         // // flexItem.append(itemNumber);
-        flexItem.append(tree); 
+        flexItem.append(tree);
+        //replace the .flex-item-number in the upper corner
+        // const itemNumber = document.createElement('span');
+        // itemNumber.textContent = items[index+1].toString();
+        // itemNumber.classList.add('flex-item-number', 'selected');
+        // flexItem.append(itemNumber);
       }
     }
     // console.log(`tree`, tree);
   }
-   
-  //we store the flexItems in a Set
 
+  //we store the flexItems in a Set
 }
 
 function updateFlexItemProperty(property, newValue) {

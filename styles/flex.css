@@ -3,9 +3,25 @@
   background-color: var(--general-text-background-color);
   padding: 8px;
   position: relative;
+  padding-top:1.5rem;
   /* margin: 15px; */
-  border-radius: 12px 0 12px 12px;
+  /* border-radius: 12px 0 12px 12px; */
   /* border-radius: 12px 12px 0 12px; */
+}
+
+.flex-item::before{
+  content: attr(index);
+  font-size:1rem;
+  position:absolute;
+  top:0;
+  left:0;
+  border:1px solid red;
+  border-radius: 0 50% 50% 50%;
+  background-color: hsl(350, 50%, 88%);
+  color: rgba(0, 0, 255, 0.564);
+  width: 1.4rem;
+  height: 1.4rem;
+  text-align:center;
 }
 
 .flex-item-number {
@@ -24,6 +40,12 @@
 .flex-item-number.selected{
   background-color:green;
   color:hsl(60, 100%, 70%);
+}
+
+.flex-item-number:hover{
+  cursor:pointer;
+  background-color: blue;
+  color:white;
 }
 
 
